@@ -21,7 +21,7 @@ const Home = () => {
   return (
     <div>
       <LayOut>
-        <div style={{ margin: "100px", color: "red" }}>Home ++++++++++</div>
+        <div>Home ++++++++++</div>
       </LayOut>
     </div>
   );

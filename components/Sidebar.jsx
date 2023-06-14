@@ -3,14 +3,15 @@ import Link from "next/link";
 
 const Sidebar = () => {
   return (
-    <div>
-      <ul>
-        <li>
+    <div className="sidebar">
+      <ul className="sidebar__menu">
+        <li className="sidebar__menu-item">
           <Link href="/">Go to Example Page</Link>
         </li>
-        <li><Link href="/home">Home</Link></li>
-        <li>Menu Item 3</li>
-        {/* Add more menu items as needed */}
+        <li className="sidebar__menu-item">
+          <Link href="/home">Home</Link>
+        </li>
+        <li className="sidebar__menu-item">Menu Item 3</li>
       </ul>
     </div>
   );

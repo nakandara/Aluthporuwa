@@ -19,24 +19,16 @@ import Header from './header'
 
 const Layout = ({ children }) => {
   return (
-    <div>
-      {/* Add your header component here */}
+    <div className="layout">
       <header>
-        {/* Your header content */}
-       <Header/>
+        <Header />
       </header>
-
-      {/* Render the main content */}
-      <main>
-           <div>
- <Sidebar/>
-       {children}
-     </div>
-      </main>
-
-      {/* Add your footer component here */}
+      <div className="content">
+        <Sidebar />
+        <div className="main">{children}</div>
+      </div>
       <footer>
-        {/* Your footer content */}
+        {/* Add your footer content */}
       </footer>
     </div>
   );
