@@ -1,9 +1,30 @@
-import React from 'react'
+import React from "react";
+import LayOut from "../../components/Layout";
+import Sidebar from "../../components/Sidebar";
+import { useSession } from "next-auth/react";
+import { useRouter } from "next/router";
 
-const home = () => {
+const Home = () => {
+  const { data: session, status } = useSession();
+  const router = useRouter();
+
+  if (status === "loading") {
+    return <h1>Loading...</h1>;
+  }
+
+  if (status === "unauthenticated") {
+    // Redirect the user to the sign-in page
+    router.push("/auth/signin");
+    return null;
+  }
+
   return (
-    <div>home</div>
-  )
-}
+    <div>
+      <LayOut>
+        <div style={{ margin: "100px", color: "red" }}>fnfkks</div>
+      </LayOut>
+    </div>
+  );
+};
 
-export default home
+export default Home;
