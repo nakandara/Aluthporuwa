@@ -10,7 +10,7 @@ export default function Component() {
   if (session && session.user) {
     return (
       <div>
-<div style={{display:"flex",backgroundColor:"red", justifyContent:"flex-end"}}>
+<div style={{display:"flex", justifyContent:"flex-end",width:"100%"}}>
         Signed in as {session.user.email} <br />
         <button  onClick={() => signOut()}>Sign out</button>
         

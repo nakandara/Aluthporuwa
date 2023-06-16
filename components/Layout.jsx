@@ -20,16 +20,16 @@ import Header from './header'
 const Layout = ({ children }) => {
   return (
     <div className="layout">
-      <header>
-        <Header />
-      </header>
       <div className="content">
         <Sidebar />
-        <div className="main">{children}</div>
+        <div className='grid_one'>
+        <div className='header_one'> <Header/></div>
+       <div className='main_one'>{children}</div>
+       <div className='footer_one'>Fotter</div>
+        </div>
+      
       </div>
-      <footer>
-        {/* Add your footer content */}
-      </footer>
+    
     </div>
   );
 };

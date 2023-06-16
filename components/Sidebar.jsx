@@ -1,10 +1,12 @@
 import React from "react";
 import Link from "next/link";
 
-const Sidebar = () => {
+
+const Sidebar = ({ isOpen, onClose }) => {
   return (
     <div className="sidebar">
       <ul className="sidebar__menu">
+        icons
         <li className="sidebar__menu-item">
           <Link href="/">Go to Example Page</Link>
         </li>
