@@ -1,12 +1,26 @@
-import React from "react";
+import React, { useState } from "react";
 import Link from "next/link";
+import MenuIcon from "@mui/icons-material/Menu";
 
+const Sidebar = ({ }) => {
+  const[isOpen,setIsOpen] = useState(true)
+  console.log(isOpen ? "sidebar" : "");
+const toggleBar = () =>{
+  if (isOpen === true) {
+    setIsOpen(false)
+  }
+  else{
+    setIsOpen(true)
+  }
+}
 
-const Sidebar = ({ isOpen, onClose }) => {
   return (
-    <div className="sidebar">
+    <div  className={` ${isOpen ? "sidebar" : "sidebar_open"}`} >
       <ul className="sidebar__menu">
-        icons
+        <div className="menu__icon">
+          <div className="logo_one">logo</div>
+          <MenuIcon onClick={toggleBar}/>
+        </div>
         <li className="sidebar__menu-item">
           <Link href="/">Go to Example Page</Link>
         </li>

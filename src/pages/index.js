@@ -11,7 +11,10 @@ export default function Component() {
   if (session && session.user) {
     return (
       <>
-        <LayOut  />
+        <LayOut>
+        gdgdgd 
+        </LayOut>
+      
       </>
     );
   }

@@ -1,5 +1,6 @@
-import { useSession } from 'next-auth/react';
-import { useRouter } from 'next/router';
+import { useSession } from "next-auth/react";
+import { useRouter } from "next/router";
+import Layout from "../../components/Layout";
 
 const Dashboard = () => {
   const { data: session, status } = useSession();
@@ -17,10 +18,12 @@ const Dashboard = () => {
 
   // Add your protected dashboard content here
   return (
-    <div>
-      <h1>Welcome to the Dashboard</h1>
-      <p>User: {session?.user?.email}</p>
-    </div>
+    <Layout>
+      <div>
+        <h1>Welcome to the Dashboard</h1>
+        <p>User: {session?.user?.email}</p>
+      </div>
+    </Layout>
   );
 };
 
