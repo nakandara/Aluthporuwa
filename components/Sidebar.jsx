@@ -1,24 +1,27 @@
-import React, { useState } from "react";
+import React, { useState ,useContext} from "react";
 import Link from "next/link";
 import MenuIcon from "@mui/icons-material/Menu";
+import ToggleContext from '../contex/ToggleContext';
 
 const Sidebar = ({}) => {
+   const { toggle, setToggle } = useContext(ToggleContext);
+ 
   const [isOpen, setIsOpen] = useState(true);
-  console.log(isOpen ? "sidebar" : "");
+ 
   const toggleBar = () => {
-    if (isOpen === true) {
-      setIsOpen(false);
-    } else {
+    if (toggle === false) {
       setIsOpen(true);
+    } else {
+      setIsOpen(false);
     }
   };
 
   return (
-    <div className={` ${isOpen ? "sidebar" : "sidebar_open"}`}>
+    <div className={` ${toggle ? "sidebar_close" : "sidebar"}`}>
       <ul className="sidebar__menu">
         <div className="menu__icon">
           <div className="logo_one">logo</div>
-          <MenuIcon className="toggle__icon" onClick={toggleBar} />
+          {/* <MenuIcon className="toggle__icon" onClick={toggleBar} /> */}
         </div>
         <div className="sidebar__menu-item">
           <li>

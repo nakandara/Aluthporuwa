@@ -29,6 +29,20 @@ const Layout = ({ children }) => {
         </div>
       </div>
     </div>
+
+
+    // <div className="layout">
+    // <div className='header_one'>
+    //   <Header />
+    // </div>
+    // <div className="content">
+    //   <Sidebar />
+    //   <div className="main">{children}</div>
+    
+    // </div>
+    // <div className='footer_one'>sdjbhasjidbs</div>
+   
+  //</div>
   );
 };
 
