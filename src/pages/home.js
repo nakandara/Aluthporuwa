@@ -3,6 +3,7 @@ import LayOut from "../../components/Layout";
 import Sidebar from "../../components/Sidebar";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/router";
+import Elevation from '../../components/Home/Content'
 
 const Home = () => {
   const { data: session, status } = useSession();
@@ -21,38 +22,7 @@ const Home = () => {
   return (
     <div>
       <LayOut>
-        <div>Home ++++++++++</div>
-        <div>Home ++++++++++</div>
-        <div>Home ++++++++++</div>
-        <div>Home ++++++++++</div>
-        <div>Home ++++++++++</div>
-        <div>Home ++++++++++</div>
-        <div>Home ++++++++++</div>
-        <div>Home ++++++++++</div>
-        <div>Home ++++++++++</div>
-        <div>Home ++++++++++</div>
-        <div>Home ++++++++++</div>
-        <div>Home ++++++++++</div>
-        <div>Home ++++++++++</div>
-        <div>Home ++++++++++</div>
-        <div>Home ++++++++++</div>
-        <div>Home ++++++++++</div>
-        <div>Home ++++++++++</div>
-        <div>Home ++++++++++</div>
-        <div>Home ++++++++++</div>
-        <div>Home ++++++++++</div>
-        <div>Home ++++++++++</div>
-        <div>Home ++++++++++</div>
-        <div>Home ++++++++++</div>
-        <div>Home ++++++++++</div>
-        <div>Home ++++++++++</div>
-        <div>Home ++++++++++</div>
-        <div>Home ++++++++++</div>
-        <div>Home ++++++++++</div>
-        <div>Home ++++++++++</div>
-        <div>Home ++++++++++</div>
-        <div>Home ++++++++++</div>
-        <div>Home ++++++++++</div>
+     <Elevation/>
       </LayOut>
     </div>
   );

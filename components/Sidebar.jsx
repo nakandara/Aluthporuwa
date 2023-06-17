@@ -30,6 +30,9 @@ const Sidebar = ({}) => {
           <li>
             <Link href="/home">Home</Link>
           </li>
+          <li>
+            <Link href="/">Dashnoard</Link>
+          </li>
           <li>Menu Item 3</li>
         </div>
       </ul>
