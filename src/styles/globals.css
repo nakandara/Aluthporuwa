@@ -192,7 +192,7 @@ footer {
   justify-content: space-around;
   /* margin-bottom: 20%;
   padding-left: 60%; */
-  padding-bottom: 15%;
+  padding-bottom: 45px;
     /* border: 2px solid rgb(194, 87, 10); */
 }
 
@@ -207,16 +207,20 @@ footer {
   
 }
 
-.sidebar_open{
+.sidebar_open {
   background-color: #031e2e;
-  width: 40px;
-  .sidebar__menu-item{
-    display: none;
-  }
-  .logo_one{
-    display: none;
-  }
+  width: 60px;
 }
+
+.sidebar_open .logo_one{
+  display: none;
+}
+.sidebar_open .sidebar__menu-item {
+  display: none;
+}
+
+
+
 
 @media (max-width:450px) {
 .sidebar{
