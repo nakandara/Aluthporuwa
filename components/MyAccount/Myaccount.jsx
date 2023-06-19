@@ -8,6 +8,7 @@ import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import Tooltip from '@mui/material/Tooltip';
+
 import PersonAdd from '@mui/icons-material/PersonAdd';
 import Settings from '@mui/icons-material/Settings';
 import Logout from '@mui/icons-material/Logout';
@@ -99,10 +100,11 @@ export default function AccountMenu() {
           </ListItemIcon>
           Settings
         </MenuItem>
-        <MenuItem onClick={handleClose}>
+        <MenuItem onClick={() => signOut()}>
           <ListItemIcon>
-            <Logout fontSize="small" />
-          </ListItemIcon>
+            <Logout  fontSize="small" />
+          
+          </ListItemIcon >
           Logout
         </MenuItem>
       </Menu>

@@ -26,8 +26,13 @@ export default function Component() {
 
   return (
     <>
-      Not signed in <br />
-      <button onClick={handleSignIn}>Sign in</button>
+    
+      <div className="gender">
+        <div>  Are you  </div><br />
+      <button className="male" onClick={handleSignIn}>Male </button> Or
+      <button className="female" onClick={handleSignIn}>Female </button> ?
+      </div>
+      
     </>
   );
 }
