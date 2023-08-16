@@ -22,7 +22,7 @@ const Dashboard = () => {
     <Layout>
       <div>
         <h1>Welcome to the Dashboard</h1>
-        <p>User: </p>
+        <p>User one: </p>
       </div>
       <Usermap/>
     </Layout>
