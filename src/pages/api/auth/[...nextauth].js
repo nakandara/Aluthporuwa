@@ -9,8 +9,8 @@ export const authOptions = {
   // Configure one or more authentication providers
   providers: [
     GoogleProvider({
-      clientId: process.env.GOOGLE_CLIENT_ID,
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET
+      clientId:"115349291449-buik3uifhd4t22q385b27cl6lks01alk.apps.googleusercontent.com",
+      clientSecret:"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"
     })
   ],
   pages:{
@@ -25,3 +25,5 @@ callbacks: {
 }
 
 export default NextAuth(authOptions)
+
+

@@ -16,9 +16,9 @@ import { useSession, signIn, signOut } from "next-auth/react";
 
 export default function AccountMenu() {
 
-    const { data: session } = useSession();
+   
   const [anchorEl, setAnchorEl] = React.useState(null);
-  const imageUrl = session.user.image;
+ 
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -40,8 +40,8 @@ export default function AccountMenu() {
             aria-haspopup="true"
             aria-expanded={open ? 'true' : undefined}
           >
-       <Avatar src={imageUrl} alt="Avatar" sx={{ width: 32, height: 32 }}>
-      {imageUrl ? null : 'M'}
+       <Avatar alt="Avatar" sx={{ width: 32, height: 32 }}>
+     
     </Avatar>
           </IconButton>
         </Tooltip>

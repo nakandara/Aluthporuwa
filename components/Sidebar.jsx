@@ -5,6 +5,7 @@ import ToggleContext from '../contex/ToggleContext';
 
 const Sidebar = ({}) => {
    const { toggle, setToggle } = useContext(ToggleContext);
+   console.log(toggle);
  
   const [isOpen, setIsOpen] = useState(true);
  

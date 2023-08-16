@@ -8,7 +8,8 @@ import { deepOrange, deepPurple } from '@mui/material/colors';
 import AccountMenu from './MyAccount/Myaccount'
 
 export default function Header() {
-  const { data: session } = useSession();
+ 
+  const [loginD, setLoginD] = useState(true);
   const router = useRouter();
   
   const { toggle, setToggle } = useContext(ToggleContext);
@@ -18,13 +19,13 @@ export default function Header() {
   };
    // Replace with your image URL
 
-  if (session && session.user) {
+  if (loginD) {
     return (
       <div>
         
         <div className="header__one">
         <MenuIcon className="toggle__icon" onClick={handleToggle}/>
-         {session.user.email} <br />
+        scfsfsf <br />
       
          <AccountMenu />
           {/* <button onClick={() => signOut()}>Sign out</button> */}
