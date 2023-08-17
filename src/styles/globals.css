@@ -92,3 +92,18 @@
     color: #999;
     font-size: 12px;
   }
+
+  .container {
+    /* ...other container styles... */
+    text-align: center; /* Center align the content within the container */
+  }
+  
+  .image-container {
+    margin-bottom: 20px; /* Add some spacing below the image */
+  }
+  
+  .logo {
+    max-width: 100%; /* Make the image responsive */
+    height: auto; /* Maintain the aspect ratio */
+  }
+  
