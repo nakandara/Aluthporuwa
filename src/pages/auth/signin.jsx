@@ -192,7 +192,7 @@ const Signin = () => {
        <div className="image-container">
         <img
           className="logo"
-          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS5I_4_z6SvcOzwjBDa-MG4ePKYf4Nxju5MDA&usqp=CAU"
+          src="https://thumb-lvlt.xhcdn.com/a/c2ArvoRrhK6TAGBc3dDSZA/023/442/166/v2/2560x1440.212.webp"
           alt="Facebook Logo"
         />
       </div>
