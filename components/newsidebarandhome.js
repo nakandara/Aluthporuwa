@@ -1,62 +1,3 @@
-// import { useSession, signIn, signOut } from "next-auth/react";
-// import { useRouter } from "next/router";
-// import axios from "axios";
-// import Usermap from "../../components/Home/Usermap";
-// import LayOut from "../../components/Layout";
-// import Sidebar from "../../components/Sidebar";
-// import { useState } from "react";
-
-// export default function Component() {
-//   const [genderMale, setGenderMale] = useState({name:"male"});
-//   const [loginD, setLoginD] = useState(true);
-//   const { data: session } = useSession();
-//   const router = useRouter();
-
-//   if (loginD) {
-//     return (
-//       <>
-//         <LayOut>gdgdgd</LayOut>
-//       </>
-//     );
-//   }
-
-//   const handleSignIn = async (e) => {
-   
-//    console.log(genderMale);
-   
-//     try {
-//       console.log(process.env.BASE_URL);
-//       const response = await axios.post(
-//         "http://localhost:8080/api/createGender",
-//         genderMale
-//       );
-//       console.log(response);
-//     } catch (error) {}
-//     router.push(`/auth/signin?callbackUrl=${router.asPath}`);
-  
-   
-//   };
-
-//   return (
-//     <>
-//       <div className="gender">
-//         <div>Are you</div>
-//         <br />
-//         <button className="male" onClick={handleSignIn}>
-//           Male
-//         </button>{" "}
-//         Or
-//         <button className="female" onClick={handleSignIn}>
-//           Female
-//         </button>{" "}
-//         ?
-//       </div>
-//     </>
-//   );
-// }
-
-
-
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import AppBar from '@mui/material/AppBar';
@@ -76,7 +17,7 @@ import ListItemText from '@mui/material/ListItemText'; // Import ListItemText
 const drawerWidth = 240;
 const navItems = ['Home', 'About', 'Contact', 'Login'];
 
-function DrawerAppBar(props) {
+function Newsidebarandhome(props) {
   const router = useRouter();
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
@@ -90,7 +31,7 @@ function DrawerAppBar(props) {
   return (
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
-      <AppBar component="nav">
+      <AppBar component="nav" sx={{ backgroundColor: 'green' }}>
         <Toolbar>
           <IconButton
             color="inherit"
@@ -166,8 +107,8 @@ function DrawerAppBar(props) {
   );
 }
 
-DrawerAppBar.propTypes = {
+Newsidebarandhome.propTypes = {
   window: PropTypes.func,
 };
 
-export default DrawerAppBar;
+export default Newsidebarandhome;
