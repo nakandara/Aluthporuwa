@@ -3,18 +3,7 @@ import Sidebar from './Sidebar';
 import Header from './header'
 import Newsidebarandhome from '../components/newsidebarandhome'
 
-// const Layout = ({ children }) => {
-//   return (
-//     <div>
-// <Sidebar/>
-//       {children}
-//     </div>
-    
-    
-//   );
-// };
 
-// export default Layout;
 
 
 
@@ -23,6 +12,7 @@ const Layout = ({ children }) => {
     <div className="layout">
       <div className="content">
         <Newsidebarandhome/>
+        <div className='main_one'>{children}</div>
         {/* <Sidebar />
         <div className='grid_one'>
         <div className='header_one'> <Header/></div>
@@ -33,18 +23,7 @@ const Layout = ({ children }) => {
     </div>
 
 
-    // <div className="layout">
-    // <div className='header_one'>
-    //   <Header />
-    // </div>
-    // <div className="content">
-    //   <Sidebar />
-    //   <div className="main">{children}</div>
     
-    // </div>
-    // <div className='footer_one'>sdjbhasjidbs</div>
-   
-  //</div>
   );
 };
 

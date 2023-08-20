@@ -102,6 +102,12 @@ function Newsidebarandhome(props) {
           ))}
         </List>
       </Drawer>
+      <>
+        {router.pathname === '/about' }
+        {router.pathname === '/contact'}
+        {router.pathname === '/login' }
+        {router.pathname === '/'}
+      </>
 
     </Box>
   );
