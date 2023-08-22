@@ -1,5 +1,6 @@
 import React from 'react';
 import Sidebar from './Sidebar';
+import MiniDrawer from './drawer';
 import Header from './header'
 import Newsidebarandhome from '../components/newsidebarandhome'
 
@@ -12,6 +13,7 @@ const Layout = ({ children }) => {
     <div className="layout">
       <div className="content">
         <Newsidebarandhome/>
+        {/* <MiniDrawer/> */}
         <div className='main_one'>{children}</div>
         {/* <Sidebar />
         <div className='grid_one'>

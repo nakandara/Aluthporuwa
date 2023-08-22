@@ -1,44 +1,65 @@
-import React, { useState ,useContext} from "react";
-import Link from "next/link";
-import MenuIcon from "@mui/icons-material/Menu";
-import ToggleContext from '../contex/ToggleContext';
+import React, { useState } from 'react';
+import Drawer from '@mui/material/Drawer';
+import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
+import ListItemIcon from '@mui/material/ListItemIcon';
+import ListItemText from '@mui/material/ListItemText';
+import Divider from '@mui/material/Divider';
+import InboxIcon from '@mui/icons-material/Inbox';
+import MailIcon from '@mui/icons-material/Mail';
 
-const Sidebar = ({}) => {
-   const { toggle, setToggle } = useContext(ToggleContext);
-   console.log(toggle);
- 
-  const [isOpen, setIsOpen] = useState(true);
- 
-  const toggleBar = () => {
-    if (toggle === false) {
-      setIsOpen(true);
-    } else {
-      setIsOpen(false);
+
+function Sidebar() {
+  const [open, setOpen] = useState(false);
+
+  const toggleDrawer = (isOpen) => (event) => {
+    if (
+      event.type === 'keydown' &&
+      (event.key === 'Tab' || event.key === 'Shift')
+    ) {
+      return;
     }
+
+    setOpen(isOpen);
   };
 
   return (
-    <div className={` ${toggle ? "sidebar_close" : "sidebar"}`}>
-      <ul className="sidebar__menu">
-        <div className="menu__icon">
-          <div className="logo_one">logo</div>
-          {/* <MenuIcon className="toggle__icon" onClick={toggleBar} /> */}
+    <div>
+      <Drawer anchor="left" open={open} onClose={toggleDrawer(false)}>
+        <div
+          role="presentation"
+          onClick={toggleDrawer(false)}
+          onKeyDown={toggleDrawer(false)}
+        >
+          <List>
+            <ListItem button>
+              <ListItemIcon>
+                <InboxIcon />
+              </ListItemIcon>
+              <ListItemText primary="Inbox" />
+            </ListItem>
+            <ListItem button>
+              <ListItemIcon>
+                <MailIcon />
+              </ListItemIcon>
+              <ListItemText primary="Mail" />
+            </ListItem>
+          </List>
+          <Divider />
+          <List>
+            <ListItem button>
+              <ListItemText primary="Trash" />
+            </ListItem>
+            <ListItem button>
+              <ListItemText primary="Spam" />
+            </ListItem>
+          </List>
         </div>
-        <div className="sidebar__menu-item">
-          <li>
-            <Link href="/">Dashnoard</Link>
-          </li>
-          <li>
-            <Link href="/home">Home</Link>
-          </li>
-          <li>
-            <Link href="/dashboard">Dashnoard</Link>
-          </li>
-       
-        </div>
-      </ul>
+      </Drawer>
     </div>
   );
-};
+}
 
 export default Sidebar;
+
+

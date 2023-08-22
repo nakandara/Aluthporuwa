@@ -5,6 +5,7 @@ import Paper from '@mui/material/Paper';
 import Usermap from './Usermap'
 import Box from '@mui/material/Box';
 import { createTheme, ThemeProvider, styled } from '@mui/material/styles';
+import { Margin } from "@mui/icons-material";
 
 const Item = styled(Paper)(({ theme }) => ({
   ...theme.typography.body2,
@@ -19,25 +20,21 @@ const lightTheme = createTheme({ palette: { mode: 'light' } });
 
 export default function Elevation() {
   return (
-    <Grid container spacing={2}>
+    <Grid container spacing={4}>
       {[darkTheme, darkTheme].map((theme, index) => (
         <Grid item xs={6} key={index}>
           <ThemeProvider theme={theme}>
             <Box
               sx={{
-                p: 2,
+                margin:"80px",
+                p: 3,
                 bgcolor: 'background.default',
                 display: 'grid',
                 gridTemplateColumns: { md: '1fr 1fr' },
                 gap: 2,
               }}
             >
-              {[0, 1, 2, 3, 4, 6, 8, 12, 16, 24].map((elevation) => (
-                <Item key={elevation} elevation={elevation}>
-                  {`elevation=${elevation}`}
-
-                </Item>
-              ))}
+             h
             </Box>
           </ThemeProvider>
         </Grid>
