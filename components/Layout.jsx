@@ -16,6 +16,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import ListItem from '@mui/material/ListItem';
+import Container from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
@@ -113,8 +114,7 @@ const Layout = ({ children }) => {
   };
 
   return (
-    <div className="layout">
-      <div className="content">
+    
    
         <Box sx={{ display: 'flex' }}>
       <CssBaseline />
@@ -187,17 +187,11 @@ const Layout = ({ children }) => {
         </List>
       </Drawer>
       <Main open={open}>
-        <DrawerHeader />
-        <div >{children}</div>
-      
+    {children}
       </Main>
     </Box>
     
-      </div>
-    </div>
 
-
-    
   );
 };
 
