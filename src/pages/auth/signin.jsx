@@ -13,7 +13,7 @@ const provider = [
 
 const Signin = () => {
 
-  const { token, setToken } = useToken();
+  const { token, setToken,setUser ,user} = useToken();
   const router = useRouter();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -43,12 +43,13 @@ const Signin = () => {
       console.log(response, "fffffffffffffff");
       if (response.data) {
         localStorage.setItem("accessToken", response.data.token);
-        // Store the token in local storage
+        
         setToken(response.data.token);
-        // Redirect the user after successful sign-in
+        setUser(response.data)
+        
         router.push("/home");
       } else {
-        // Handle unsuccessful login (show an error message, etc.)
+        
         console.log("Login failed");
       }
     } catch (error) {
@@ -56,7 +57,7 @@ const Signin = () => {
     }
   };
   
-  
+  console.log(user);
 
 
   return (
