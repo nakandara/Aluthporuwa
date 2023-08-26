@@ -31,7 +31,7 @@ import Newsidebarandhome from '../components/newsidebarandhome'
 
 
 const drawerWidth = 240;
-const navItems = ['Home', 'About', 'Contact', 'Login'];
+const navItems = ['Home', 'About', 'Contact', 'Login','MyAccount'];
 const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })(
   ({ theme, open }) => ({
     flexGrow: 1,
@@ -107,7 +107,9 @@ const Layout = ({ children }) => {
         return <AddIcCallIcon />;
         case 'Login':
         return <FolderSharedIcon />;
-      // Add more cases and corresponding icons for other items
+        case 'MyAccount':
+        return <FolderSharedIcon />;
+    
       default:
         return null;
     }
