@@ -8,9 +8,32 @@ export const TokenProvider = ({ children }) => {
   const [user, setUser] = useState();
 
   useEffect(() => {
-    localStorage.getItem("accessToken", token);
-    setToken(localStorage.getItem("accessToken", token))
+   
+    const storedToken = localStorage.getItem("accessToken");
+    if (storedToken) {
+      setToken(storedToken);
+    }
+
+    const storedUser = localStorage.getItem("user");
+    if (storedUser) {
+      setUser(JSON.parse(storedUser));
+    }
+  }, []);
+  useEffect(() => {
+    if (token) {
+      localStorage.setItem("accessToken", token);
+    } else {
+      localStorage.removeItem("accessToken");
+    }
   }, [token]);
+
+  useEffect(() => {
+    if (user) {
+      localStorage.setItem("user", JSON.stringify(user));
+    } else {
+      localStorage.removeItem("user");
+    }
+  }, [user]);
 
   return (
     <TokenContext.Provider value={{ token, setToken,user, setUser }}>
