@@ -1,12 +1,23 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import Layout from "../../components/Layout";
 import { useToken } from '../context/TokenContext';
 import { Container, Paper, Typography, Avatar } from '@mui/material';
 import Box from '@mui/material/Box';
+import { useRouter } from "next/router";
 import { styled } from '@mui/material/styles';
 
 const MyAccount = () => {
   const { token, setToken, user } = useToken();
+  const router = useRouter();
+  useEffect(() => {
+    const accessToken = localStorage.getItem("accessToken");
+    if (accessToken !== null && accessToken !== "unauthenticated") {
+      router.push("/myaccount");
+    } else {
+      router.push("/auth/signin");
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   const [fileInputOpen, setFileInputOpen] = useState(false);
 
   const handleAvatarClick = () => {
