@@ -21,35 +21,34 @@ const Signin = () => {
   
 
 
-  console.log(process.env.BASE_URL);
+ 
   const handleOAuthSignIn = (name) => () => signIn(name);
   const google = () => {
     window.open(`/auth/google`);
   };
-  console.log(process.env.BASE_URL);
+  
   const normalLogin = async () => {
-    
- 
     try {
       const response = await axios.post(
-     
         `${environments.BASE_HOST_URL}/api/login`,
         {
           email: username,
           password: password,
         }
       );
-  
-      console.log(response, "fffffffffffffff");
-      if (response.data) {
-        localStorage.setItem("accessToken", response.data.token);
-        
-        setToken(response.data.token);
-        setUser(response.data)
-        
+      
+      if (response.data && response.data.token && response.data.user) {
+        const accessToken = response.data.token;
+        const user = response.data.user;
+
+        localStorage.setItem("accessToken", accessToken);
+        localStorage.setItem("user", JSON.stringify(user));
+
+        setToken(accessToken);
+        setUser(user);
+
         router.push("/home");
       } else {
-        
         console.log("Login failed");
       }
     } catch (error) {
@@ -57,7 +56,6 @@ const Signin = () => {
     }
   };
   
-  console.log(user);
 
 
   return (

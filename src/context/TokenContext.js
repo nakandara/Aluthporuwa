@@ -1,45 +1,33 @@
-// TokenContext.js
-import { createContext, useContext, useState, useEffect } from 'react';
+import React, { createContext, useContext, useState,useEffect } from "react";
 
 const TokenContext = createContext();
 
 export const TokenProvider = ({ children }) => {
-  const [token, setToken] = useState();
-  const [user, setUser] = useState();
+  const [token, setToken] = useState("");
+  const [user, setUser] = useState(null);
 
+
+  
   useEffect(() => {
-   
     const storedToken = localStorage.getItem("accessToken");
-    if (storedToken) {
-      setToken(storedToken);
-    }
-
     const storedUser = localStorage.getItem("user");
-    if (storedUser) {
-      setUser(JSON.parse(storedUser));
+    
+    if (storedToken && storedUser) {
+      const userObj = JSON.parse(storedUser);
+      setUser(userObj);
+      setToken(storedToken);
+    } else {
+      // Handle the case where either the token or user is not available in localStorage
     }
   }, []);
-  useEffect(() => {
-    if (token) {
-      localStorage.setItem("accessToken", token);
-    } else {
-      localStorage.removeItem("accessToken");
-    }
-  }, [token]);
-
-  useEffect(() => {
-    if (user) {
-      localStorage.setItem("user", JSON.stringify(user));
-    } else {
-      localStorage.removeItem("user");
-    }
-  }, [user]);
 
   return (
-    <TokenContext.Provider value={{ token, setToken,user, setUser }}>
+    <TokenContext.Provider value={{ token, setToken, user, setUser }}>
       {children}
     </TokenContext.Provider>
   );
 };
 
-export const useToken = () => useContext(TokenContext);
+export const useToken = () => {
+  return useContext(TokenContext);
+};

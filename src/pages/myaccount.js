@@ -5,19 +5,12 @@ import { Container, Paper, Typography, Avatar } from '@mui/material';
 import Box from '@mui/material/Box';
 import { useRouter } from "next/router";
 import { styled } from '@mui/material/styles';
+import ProtectedRoute from "../../components/protect/protectedRoute"; 
 
 const MyAccount = () => {
   const { token, setToken, user } = useToken();
   const router = useRouter();
-  useEffect(() => {
-    const accessToken = localStorage.getItem("accessToken");
-    if (accessToken !== null && accessToken !== "unauthenticated") {
-      router.push("/myaccount");
-    } else {
-      router.push("/auth/signin");
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+
   const [fileInputOpen, setFileInputOpen] = useState(false);
 
   const handleAvatarClick = () => {
@@ -29,6 +22,8 @@ const MyAccount = () => {
     // Handle the selected file, you can use this to upload the file
   };
 
+  console.log(user,"jkkkkkkkkkkkkk");
+
   const Item = styled(Paper)(({ theme }) => ({
     backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
     ...theme.typography.body2,
@@ -36,13 +31,14 @@ const MyAccount = () => {
     textAlign: 'center',
     color: theme.palette.text.secondary,
   }));
-  
+
   if (!user) {
     return <div>Loading user data...</div>;
   }
 
   return (
     <Layout>
+      <ProtectedRoute>
       <div style={{ marginTop: "50px" }}>
         <Box sx={{ width: 1 }}>
           <Box display="grid" gridTemplateColumns={{ xs: "1fr", md: "repeat(12, 1fr)" }} gap={2}>
@@ -56,8 +52,8 @@ const MyAccount = () => {
                     onClick={handleAvatarClick}
                   />
                 </label>
-                <Typography>Hello, {user.user.name}!</Typography>
-                <Typography>Email: {user.user.email}</Typography>
+                <Typography>Hello, {user.name}!</Typography>
+                <Typography>Email: {user.email}</Typography>
                 <Typography variant="h6" gutterBottom>
                   Upload Profile Photo
                 </Typography>
@@ -83,6 +79,8 @@ const MyAccount = () => {
           </Box>
         </Box>
       </div>
+      </ProtectedRoute>
+     
     </Layout>
   );
 };
