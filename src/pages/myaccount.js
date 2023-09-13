@@ -6,6 +6,7 @@ import Box from '@mui/material/Box';
 import { useRouter } from "next/router";
 import { styled } from '@mui/material/styles';
 import ProtectedRoute from "../../components/protect/protectedRoute"; 
+import MyInformations from "../../components/MyInformation/MyInformations"; 
 
 const MyAccount = () => {
   const { token, setToken, user } = useToken();
@@ -71,6 +72,7 @@ const MyAccount = () => {
             <Box gridColumn={{ xs: "1", md: "span 4" }}>
               <Item>
                 <Typography>My Information</Typography>
+                <MyInformations/>
               </Item>
             </Box>
             <Box gridColumn={{ xs: "1", md: "span 8" }}>

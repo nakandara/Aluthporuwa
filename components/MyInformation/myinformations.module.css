@@ -1,0 +1,14 @@
+/* myinformations.css */
+
+.my-informations-container {
+    display: flex;
+    align-items: center;
+    margin-top: 30px;
+  }
+  
+  .my-informations-heading {
+    margin-right: 50px;
+  }
+  
+  /* Add more styles as needed */
+  
