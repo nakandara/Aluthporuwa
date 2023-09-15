@@ -69,14 +69,17 @@ const MyAccount = () => {
                 )}
               </Item>
             </Box>
-            <Box gridColumn={{ xs: "1", md: "span 4" }}>
+            <Box gridColumn={{ xs: "1", md: "span 8" }}>
               <Item>
-                <Typography>My Information</Typography>
+                <Typography>My Information Step 01</Typography>
                 <MyInformations/>
               </Item>
             </Box>
-            <Box gridColumn={{ xs: "1", md: "span 8" }}>
-              <Item>xs=8</Item>
+            <Box gridColumn={{ xs: "1", md: "span 4" }}>
+              <Item>
+              <Typography>My Information Step 02</Typography>
+              
+              </Item>
             </Box>
           </Box>
         </Box>

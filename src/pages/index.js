@@ -1,59 +1,3 @@
-// import { useSession, signIn, signOut } from "next-auth/react";
-// import { useRouter } from "next/router";
-// import axios from "axios";
-// import Usermap from "../../components/Home/Usermap";
-// import LayOut from "../../components/Layout";
-// import Sidebar from "../../components/Sidebar";
-// import { useState } from "react";
-
-// export default function Component() {
-//   const [genderMale, setGenderMale] = useState({name:"male"});
-//   const [loginD, setLoginD] = useState(true);
-//   const { data: session } = useSession();
-//   const router = useRouter();
-
-//   if (loginD) {
-//     return (
-//       <>
-//         <LayOut>gdgdgd</LayOut>
-//       </>
-//     );
-//   }
-
-//   const handleSignIn = async (e) => {
-   
-//    console.log(genderMale);
-   
-//     try {
-//       console.log(process.env.BASE_URL);
-//       const response = await axios.post(
-//         "http://localhost:8080/api/createGender",
-//         genderMale
-//       );
-//       console.log(response);
-//     } catch (error) {}
-//     router.push(`/auth/signin?callbackUrl=${router.asPath}`);
-  
-   
-//   };
-
-//   return (
-//     <>
-//       <div className="gender">
-//         <div>Are you</div>
-//         <br />
-//         <button className="male" onClick={handleSignIn}>
-//           Male
-//         </button>{" "}
-//         Or
-//         <button className="female" onClick={handleSignIn}>
-//           Female
-//         </button>{" "}
-//         ?
-//       </div>
-//     </>
-//   );
-// }
 
 
 
@@ -71,7 +15,8 @@ import MenuIcon from '@mui/icons-material/Menu';
 import { useRouter } from 'next/router';
 import List from '@mui/material/List'; // Import List
 import ListItem from '@mui/material/ListItem'; // Import ListItem
-import ListItemText from '@mui/material/ListItemText'; // Import ListItemText
+import ListItemText from '@mui/material/ListItemText';
+import MainPage from '../../components/Home/MainPage';  // Import ListItemText
 
 const drawerWidth = 240;
 const navItems = ['Home', 'About', 'Contact', 'Login'];
@@ -88,7 +33,7 @@ function DrawerAppBar(props) {
   const container = window !== undefined ? () => window().document.body : undefined;
 
   return (
-    <Box sx={{ display: 'flex' }}>
+    <Box >
       <CssBaseline />
       <AppBar component="nav">
         <Toolbar>
@@ -127,6 +72,7 @@ function DrawerAppBar(props) {
           </Box>
         </Toolbar>
       </AppBar>
+      
       <Drawer
         container={container}
         variant="temporary"
@@ -161,7 +107,9 @@ function DrawerAppBar(props) {
           ))}
         </List>
       </Drawer>
-
+<div style={{marginTop:"80px"}}>
+ <MainPage/>
+</div>
     </Box>
   );
 }
