@@ -15,7 +15,7 @@ const VideoWithTextAndOpacity = () => {
         autoPlay
         loop
         muted
-        style={{ opacity: 0.19 }} // Change this value to set the desired opacity (0 to 1)
+        style={{ opacity: 0.25 }} // Change this value to set the desired opacity (0 to 1)
       >
          <source src="/media/heart.webm" type="video/webm" />
       
