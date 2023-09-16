@@ -1,6 +1,3 @@
-
-
-
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import AppBar from '@mui/material/AppBar';
@@ -13,10 +10,10 @@ import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import MenuIcon from '@mui/icons-material/Menu';
 import { useRouter } from 'next/router';
-import List from '@mui/material/List'; // Import List
-import ListItem from '@mui/material/ListItem'; // Import ListItem
+import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
-import MainPage from '../../components/Home/MainPage';  // Import ListItemText
+import MainPage from '../../components/Home/MainPage';
 
 const drawerWidth = 240;
 const navItems = ['Home', 'About', 'Contact', 'Login'];
@@ -33,7 +30,7 @@ function DrawerAppBar(props) {
   const container = window !== undefined ? () => window().document.body : undefined;
 
   return (
-    <Box >
+    <Box sx={{ backgroundColor: 'black', minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
       <CssBaseline />
       <AppBar component="nav">
         <Toolbar>
@@ -107,9 +104,9 @@ function DrawerAppBar(props) {
           ))}
         </List>
       </Drawer>
-<div style={{marginTop:"80px"}}>
- <MainPage/>
-</div>
+      <div style={{ marginTop: "80px", flex: 1 }}>
+        <MainPage />
+      </div>
     </Box>
   );
 }
