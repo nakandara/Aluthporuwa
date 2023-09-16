@@ -4,6 +4,7 @@ import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
 
+
 // Your Video component with text overlay and opacity
 const VideoWithTextAndOpacity = () => {
   return (
@@ -16,7 +17,8 @@ const VideoWithTextAndOpacity = () => {
         muted
         style={{ opacity: 0.19 }} // Change this value to set the desired opacity (0 to 1)
       >
-        <source src="https://www.shutterstock.com/shutterstock/videos/1042801111/preview/stock-footage-extreme-close-up-view-of-a-young-couple-beautifully-passionately-kissing-each-other-at-sunset-in.webm" type="video/webm" />
+         <source src="/media/heart.webm" type="video/webm" />
+      
         Your browser does not support the video tag.
       </video>
       <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)' }}>
