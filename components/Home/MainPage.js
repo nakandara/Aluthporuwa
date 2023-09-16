@@ -22,9 +22,10 @@ const VideoWithTextAndOpacity = () => {
         Your browser does not support the video tag.
       </video>
       <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)' }}>
-        <h1 style={{ color: 'white', fontSize: '2rem', textShadow: '2px 2px 4px rgba(0, 0, 0, 0.5)' }}>
-          <span className="responsive-text">ඔබගේ මංගල යෝජනාව දැන්ම වෙන් කරවා ගන්න.</span>
-        </h1>
+      <h1 style={{ color: 'white', fontSize: '2rem', textShadow: '2px 2px 4px rgba(128, 128, 128, 0.5)' }}>
+  <span className="responsive-text">ඔබගේ මංගල යෝජනාව දැන්ම වෙන් කරවා ගන්න.</span>
+</h1>
+
       </div>
     </div>
   );
