@@ -4,6 +4,30 @@ import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
 
+// Your Video component with text overlay and opacity
+const VideoWithTextAndOpacity = () => {
+  return (
+    <div style={{ position: 'relative' }}>
+      <video
+        width="100%"
+        height="auto" // Adjust the height as needed
+        autoPlay
+        loop
+        muted
+        style={{ opacity: 0.19 }} // Change this value to set the desired opacity (0 to 1)
+      >
+        <source src="https://www.shutterstock.com/shutterstock/videos/1042801111/preview/stock-footage-extreme-close-up-view-of-a-young-couple-beautifully-passionately-kissing-each-other-at-sunset-in.webm" type="video/webm" />
+        Your browser does not support the video tag.
+      </video>
+      <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)' }}>
+        <h1 style={{ color: 'white', fontSize: '2rem', textShadow: '2px 2px 4px rgba(0, 0, 0, 0.5)' }}>
+          <span className="responsive-text">ඔබගේ මංගල යෝජනාව දැන්ම වෙන් කරවා ගන්න.</span>
+        </h1>
+      </div>
+    </div>
+  );
+};
+
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
   ...theme.typography.body2,
@@ -14,21 +38,6 @@ const Item = styled(Paper)(({ theme }) => ({
 
 export default function BasicGrid() {
   return (
-    <Box sx={{ flexGrow: 1 }}>
-      <Grid container spacing={2}>
-        <Grid item xs={8}>
-          <Item>xs=8</Item>
-        </Grid>
-        <Grid item xs={4}>
-          <Item>xs=4</Item>
-        </Grid>
-        <Grid item xs={4}>
-          <Item>xs=4</Item>
-        </Grid>
-        <Grid item xs={8}>
-          <Item>xs=8</Item>
-        </Grid>
-      </Grid>
-    </Box>
+    <VideoWithTextAndOpacity />
   );
 }
