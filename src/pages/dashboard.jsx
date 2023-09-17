@@ -7,17 +7,7 @@ const Dashboard = () => {
   // const { data: session, status } = useSession();
   const router = useRouter();
 
-  // if (status === 'loading') {
-  //   return <h1>Loading...</h1>;
-  // }
 
-  // if (status === 'unauthenticated') {
-  //   // Redirect the user to the sign-in page
-  //   router.push('/auth/signin');
-  //   return null;
-  // }
-  // console.log(session)
-  // Add your protected dashboard content here
   return (
     <Layout>
       <div>

@@ -1,19 +1,20 @@
 import * as React from 'react';
 import { styled } from '@mui/material/styles';
-
 import Paper from '@mui/material/Paper';
-import Grid from '@mui/material/Grid';
-
+import { useRouter } from "next/router";
 import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
-import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 
 // Your Video component with text overlay and opacity
 const VideoWithTextAndOpacity = () => {
+  const router = useRouter();
+  
+const LoginPage =() =>{
+  router.push("/auth/signin");
+}
+
   return (
     <div style={{ position: 'relative' }}>
       <video
@@ -32,7 +33,7 @@ const VideoWithTextAndOpacity = () => {
       <h1 style={{ color: 'white', fontSize: '2rem', textShadow: '2px 2px 4px rgba(128, 128, 128, 0.5)' }}>
   <span className="responsive-text">ඔබගේ මංගල යෝජනාව දැන්ම වෙන් කරවා ගන්න.</span>
   <br/>
-  <Button className='responsive_button' variant="contained" size="large">
+  <Button onClick={LoginPage} className='responsive_button' variant="contained" size="large">
   ඉදිරියට යන්න.
         </Button>
 </h1>

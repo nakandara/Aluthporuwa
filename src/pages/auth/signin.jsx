@@ -18,8 +18,6 @@ const Signin = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
-  
-
 
  
   const handleOAuthSignIn = (name) => () => signIn(name);
@@ -56,6 +54,12 @@ const Signin = () => {
     }
   };
   
+
+  const RegisterUser = async () => {
+    router.push("/signupPage");
+  };
+
+
 
 
   return (
@@ -101,6 +105,7 @@ const Signin = () => {
             <div className="bg-inner"></div>
           </div>
         </div>
+    
         <button onClick={normalLogin} className="btn block-cube block-cube-hover" type="button">
           <div className="bg-top">
             <div className="bg-inner"></div>
@@ -138,6 +143,20 @@ const Signin = () => {
           </button>
         ))}
 
+
+<button onClick={RegisterUser} className="btn block-cube block-cube-hover" type="button">
+          <div className="bg-top">
+            <div className="bg-inner"></div>
+          </div>
+          <div className="bg-right">
+            <div className="bg-inner"></div>
+          </div>
+          <div className="bg">
+            <div className="bg-inner"></div>
+          </div>
+          {/* .bg2 */}
+          <div  className="text">Register User</div>
+        </button>
         <div className="credits">
           <a href="https://codepen.io/marko-zub/" target="_blank"></a>
         </div>
