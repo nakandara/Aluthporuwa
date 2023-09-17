@@ -3,9 +3,14 @@ import { styled } from '@mui/material/styles';
 
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
-import Button from '@mui/material/Button';
-import Box from '@mui/material/Box';
 
+import Button from '@mui/material/Button';
+import Typography from '@mui/material/Typography';
+import Box from '@mui/material/Box';
+import Card from '@mui/material/Card';
+import CardActions from '@mui/material/CardActions';
+import CardContent from '@mui/material/CardContent';
+import CardMedia from '@mui/material/CardMedia';
 
 // Your Video component with text overlay and opacity
 const VideoWithTextAndOpacity = () => {
@@ -51,6 +56,7 @@ export default function BasicGrid() {
   <VideoWithTextAndOpacity />
   <div  style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
   <Box
+  className="card_style"
     sx={{
       display: 'flex',
       flexWrap: 'wrap',
@@ -58,14 +64,54 @@ export default function BasicGrid() {
       alignItems: 'center', // Center vertically
       '& > :not(style)': {
         m: 1,
-        width: 228,
-        height: 228,
+        width: 328,
+        height: 150,
       },
     }}
   >
-     <Paper elevation={0} sx={{ backgroundColor: 'gray' }} /> {/* Change the background color to red */}
-    <Paper elevation={0} sx={{ backgroundColor: 'gray' }} /> {/* Change the background color to blue */}
-    <Paper elevation={0} sx={{ backgroundColor: 'gray' }} /> {/* Change the background color to green */}
+    
+  
+
+   
+    <Card sx={{ maxWidth: 300 }}>
+    <CardMedia
+              sx={{ height: '200%' }} // Set the height to '100%' to display the full image
+              image="/media/nilu.jpg"
+              title="green iguana"
+            />
+    </Card>
+      
+   
+    
+    <Card sx={{ maxWidth: 300 }}>
+      <CardMedia
+      sx={{ height: '200%' }}
+        image="/media/chamodh.jpg"
+        title="green iguana"
+      />
+   
+    </Card>
+    <Card sx={{ maxWidth: 300 }}>
+      <CardMedia
+         sx={{ height: '200%' }}
+        image="media/tharu.jpg"
+        title="green iguana"
+      />
+ 
+  
+    </Card>
+    <Card sx={{ maxWidth: 300 }}>
+      <CardMedia
+       sx={{ height: '200%' }}
+        image="media/mol.jpg"
+        title="green iguana"
+      />
+      
+   
+    </Card> 
+
+    
+    {/* Change the background color to green */}
   </Box>
   </div>
   

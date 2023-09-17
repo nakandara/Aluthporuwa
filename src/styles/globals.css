@@ -474,5 +474,13 @@ h1 {
   padding: 8px 12px;
   margin-top: -10px;
   }
+ 
 }
-
+/* @media (max-width: 450px) {
+.card_style{
+  width: 6000px !important;
+  display: 'flex',
+  
+}
+ 
+} */
