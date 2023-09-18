@@ -4,45 +4,36 @@ import React, { useState } from "react";
 import { useRouter } from "next/router";
 import { environments } from "../../components/environment/environments";
 
-
-
-const signupPage = () => {
+const SignupPage = () => { // Renamed to 'SignupPage'
   const router = useRouter();
- 
+
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
+  const normalLogin = async () => {
+    try {
+      const response = await axios.post(
+        `${environments.BASE_HOST_URL}/api/createUser`,
+        {
+          email: username,
+          password: password,
+        }
+      );
 
- const normalLogin =async ()=>{
-
-  try {
-    const response = await axios.post(
-      `${environments.BASE_HOST_URL}/api/createUser`,
-      {
-        email: username,
-        password: password,
+      if (response.data && response.data.token) {
+        router.push("/auth/signin");
+      } else {
+        console.log("Login failed");
       }
-    );
-    
-   
-    if (response.data && response.data.token) {
-
-      router.push("/auth/signin");
-    } else {
-      console.log("Login failed");
+    } catch (error) {
+      console.error("Error during login:", error);
     }
-  } catch (error) {
-    console.error("Error during login:", error);
-  }
- }
-
-
+  };
 
   return (
     <div>
-    
       <form className="form" autoComplete="off" onSubmit={normalLogin}>
-        <div className="control">
+      <div className="control">
           <h1>Register Page</h1>
         </div>
         <div className="control block-cube block-input">
@@ -107,5 +98,4 @@ const signupPage = () => {
   );
 };
 
-export default signupPage;
-
+export default SignupPage; // Updated component name
