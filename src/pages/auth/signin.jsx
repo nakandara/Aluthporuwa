@@ -1,6 +1,7 @@
 import { signIn, useSession } from "next-auth/react";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
+import Swal from 'sweetalert2';
 import { useToken } from '../../context/TokenContext';
 import axios from "axios";
 import { environments } from "../../../components/environment/environments";
@@ -17,7 +18,7 @@ const Signin = () => {
   const router = useRouter();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-
+  const [loading, setLoading] = useState(false)
 
  
   const handleOAuthSignIn = (name) => () => signIn(name);
@@ -34,23 +35,39 @@ const Signin = () => {
           password: password,
         }
       );
-      
+      console.log(response);
+  
       if (response.data && response.data.token && response.data.user) {
+        setLoading(true)
         const accessToken = response.data.token;
         const user = response.data.user;
-
+  
         localStorage.setItem("accessToken", accessToken);
         localStorage.setItem("user", JSON.stringify(user));
-
+  
         setToken(accessToken);
         setUser(user);
-
+  
         router.push("/home");
       } else {
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Invalid credentials',
+         
+        });
+        // Moved the "Login failed" console log here
         console.log("Login failed");
       }
     } catch (error) {
       console.error("Error during login:", error);
+      // You can also log the error here
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Invalid credentials',
+       
+      });
     }
   };
   
@@ -59,7 +76,33 @@ const Signin = () => {
     router.push("/signupPage");
   };
 
+if (loading) {
+  let timerInterval
+Swal.fire({
+  title: 'Auto close alert!',
+  html: 'I will close in <b></b> milliseconds.',
+  timer: 2000,
+  timerProgressBar: true,
+  didOpen: () => {
+    Swal.showLoading()
+    const b = Swal.getHtmlContainer().querySelector('b')
+    timerInterval = setInterval(() => {
+      b.textContent = Swal.getTimerLeft()
+    }, 1000)
+  },
+  willClose: () => {
+    clearInterval(timerInterval)
+  }
+}).then((result) => {
+  /* Read more about handling dismissals below */
+  if (result.dismiss === Swal.DismissReason.timer) {
+    console.log('I was closed by the timer')
+  }
+})
+}
+else{
 
+}
 
 
   return (
