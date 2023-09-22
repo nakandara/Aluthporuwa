@@ -74,33 +74,56 @@ export default function BasicGrid() {
   
 
    
-    <Card sx={{ maxWidth: 300 }}>
-    <CardMedia
-              sx={{ height: '200%' }} // Set the height to '100%' to display the full image
-              image="/media/nilu.jpg"
-              title="green iguana"
-            />
+    <Card sx={{ maxWidth: 300,display:'flex'}}>
+    <div className='card_b'> <CardMedia
+      sx={{ height: '120%' }}
+        image="/media/chamodh.jpg"
+        title="green iguana"
+      /></div>
+    <div className='card_info'>
+      <div>නම:චලනී පබෝදා</div>
+      <div>වයස:21</div>
+      <div>ලග්නය:කටක</div>
+      <div>උපන් දිනය:1998.09.10</div>
+    </div>
+            
     </Card>
       
    
     
-    <Card sx={{ maxWidth: 300 }}>
-      <CardMedia
-      sx={{ height: '200%' }}
-        image="/media/chamodh.jpg"
-        title="green iguana"
-      />
+    <Card sx={{ maxWidth: 300,display:'flex'}}>
+    <div className='card_b'> <CardMedia
+      sx={{ height: '120%' }}
+      image="/media/chamodh.jpg"
+      title="green iguana"
+      /></div>
+    <div className='card_info'>
+      <div>නම:චලනී පබෝදා</div>
+      <div>වයස:21</div>
+      <div>ලග්නය:කටක</div>
+      <div>උපන් දිනය:1998.09.10</div>
+    </div>
+            
+    </Card>
    
+    
+    
+
+    <Card sx={{ maxWidth: 300,display:'flex'}}>
+    <div className='card_b'> <CardMedia
+      sx={{ height: '120%' }}
+      image="media/tharu.jpg"
+      title="green iguana"
+      /></div>
+    <div className='card_info'>
+      <div>නම:චලනී පබෝදා</div>
+      <div>වයස:21</div>
+      <div>ලග්නය:කටක</div>
+      <div>උපන් දිනය:1998.09.10</div>
+    </div>
+            
     </Card>
-    <Card sx={{ maxWidth: 300 }}>
-      <CardMedia
-         sx={{ height: '200%' }}
-        image="media/tharu.jpg"
-        title="green iguana"
-      />
- 
   
-    </Card>
     <Card sx={{ maxWidth: 300 }}>
       <CardMedia
        sx={{ height: '200%' }}

@@ -476,6 +476,17 @@ h1 {
   }
  
 }
+.card_b{
+  color: #c9e6ec;
+  background-color: #c7dee2;
+  width: 120px;
+  margin: 2px;
+}
+.card_info{
+  background-color: rgb(6, 9, 56);
+  color: #fff;
+  margin: 2px;
+}
 /* @media (max-width: 450px) {
 .card_style{
   width: 6000px !important;
