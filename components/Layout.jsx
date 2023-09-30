@@ -1,7 +1,5 @@
 import React from 'react';
-import Sidebar from './Sidebar';
-import MiniDrawer from './drawer';
-import Header from './header'
+
 import { styled, useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
@@ -101,7 +99,13 @@ const Layout = ({ children }) => {
   const handleDrawerOpen = () => {
     setOpen(true);
   };
+  const handleLogout = () => {
+    // Clear local storage data here
+    localStorage.clear();
 
+    // Redirect to the home page
+    router.push('/');
+  };
   const handleDrawerClose = () => {
     setOpen(false);
   };
@@ -168,8 +172,17 @@ const Layout = ({ children }) => {
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
             >
-              {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
+             {settings.map((setting) => (
+                <MenuItem
+                  key={setting}
+                  onClick={() => {
+                    if (setting === 'Logout') {
+                      handleLogout(); // Call the logout function
+                    } else {
+                      handleCloseUserMenu();
+                    }
+                  }}
+                >
                   <Typography textAlign="center">{setting}</Typography>
                 </MenuItem>
               ))}
