@@ -1,18 +1,23 @@
 import React, { useState,useEffect } from "react";
 import Layout from "../../components/Layout";
-import { useToken } from '../context/TokenContext';
+import axios from "axios";
 import { Container, Paper, Typography, Avatar } from '@mui/material';
 import Box from '@mui/material/Box';
 import { useRouter } from "next/router";
 import { styled } from '@mui/material/styles';
 import ProtectedRoute from "../../components/protect/protectedRoute"; 
 import MyInformations from "../../components/MyInformation/MyInformations"; 
+import { environments } from "../../components/environment/environments";
+import { useToken } from '../context/TokenContext';
 
 const MyAccount = () => {
-  const { token, setToken, user } = useToken();
+  const {  user } = useToken();
   const router = useRouter();
+ 
 
   const [fileInputOpen, setFileInputOpen] = useState(false);
+  const [data, setData] = useState('');
+  const [loading, setLoading] = useState(true);
 
   const handleAvatarClick = () => {
     setFileInputOpen(true);
@@ -23,7 +28,37 @@ const MyAccount = () => {
     // Handle the selected file, you can use this to upload the file
   };
 
-  console.log(user,"jkkkkkkkkkkkkk");
+
+
+  useEffect(() => {
+    if (user && user.userId) {
+      
+      const apiUrl = `${environments.BASE_HOST_URL}/api/getProfile/${user.userId}`;
+     
+      // Create an async function to fetch data
+      async function fetchData() {
+        try {
+          
+          const response = await axios.get(apiUrl);
+          console.log(response.data?.profile,"oooooooooooooooooo");
+          if (!response.data) {
+            throw new Error('Network response was not ok');
+          }
+          const data = response.data?.profile;
+      
+          setData(data); // Update the state with the fetched data
+          setLoading(false); // Set loading to false when data is loaded
+        } catch (error) {
+          console.error('Error fetching data:', error);
+          setLoading(false); // Set loading to false in case of an error
+        }
+      }
+  
+      fetchData();
+    }
+  }, [user]);
+  
+  console.log(data,"llllllllllllll");
 
   const Item = styled(Paper)(({ theme }) => ({
     backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -58,6 +93,7 @@ const MyAccount = () => {
                 <Typography variant="h6" gutterBottom>
                   Upload Profile Photo
                 </Typography>
+              
                 {fileInputOpen && (
                   <input
                     accept="image/*"
@@ -72,13 +108,20 @@ const MyAccount = () => {
             <Box gridColumn={{ xs: "1", md: "span 8" }}>
               <Item>
                 <Typography>My Information Step 01</Typography>
-                <MyInformations/>
+                <MyInformations name={user.name} data={data}/>
               </Item>
             </Box>
             <Box gridColumn={{ xs: "1", md: "span 4" }}>
               <Item>
               <Typography>My Information Step 02</Typography>
-              
+              <Typography> Name :  {data.username}</Typography>
+                <Typography> Birthday : {user.birthday}</Typography>
+                <Typography> Gender : {data.gender}</Typography>
+                <Typography> Religion : {user.religion}</Typography>
+                <Typography> Race : {data.race}</Typography>
+                <Typography>Caste :  {user.caste}</Typography>
+                <Typography> District : {data.district}</Typography>
+                <Typography>City : {user.city}</Typography>
               </Item>
             </Box>
           </Box>
