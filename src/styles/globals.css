@@ -495,3 +495,35 @@ h1 {
 }
  
 } */
+
+.contact_topic{
+  justify-content: center;
+  display: flex;
+ background-color: #3f7df0;
+  color: #ffffff;
+}
+
+.contact-container {
+  background-image: url('/media/newien.jpg'); /* Replace with your image path */
+  background-size: cover; /* or background-size: contain; */
+  background-repeat: no-repeat;
+  background-position: center center;
+  height: 35vw;
+  margin-top: 10px;
+  
+  /* Add other styles as needed */
+}
+.step{
+  background-color: #fff;
+  height: 30vw;
+}
+.step_heading{
+  color: #020024;
+  justify-content: center;
+  display: flex;
+}
+.card{
+  display:flex;
+  background-color: #c9e6ec;
+  color: #020024;
+}

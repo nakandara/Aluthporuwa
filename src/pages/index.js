@@ -107,6 +107,27 @@ function DrawerAppBar(props) {
       <div style={{ marginTop: "80px", flex: 1 }}>
         <MainPage />
       </div>
+      <section>
+        <div className='step'>
+         <div className='step_heading'> අතිනත් Step</div>
+         <div className='card'>
+          <div>card 01</div>
+          <div>card 02</div>
+          <div>card 03</div>
+          <div>card 04</div>
+          <div>card 05</div>
+          <div>card 06</div>
+          <div>card 07</div>
+         </div>
+        </div>
+      </section>
+      <section>
+      <div className='contact-container'>
+      <div className='contact_topic'>අපව සම්බන්ධ කරගන්න</div>
+      <div></div>
+      </div>
+      </section>
+     
       <footer style={{ backgroundColor: '#333', padding: '20px', color: '#fff', textAlign: 'center' }}>
         &copy; {new Date().getFullYear()} අතිනත් Pvt LTD. All Rights Reserved.
       </footer>
