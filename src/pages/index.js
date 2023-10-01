@@ -129,7 +129,7 @@ function DrawerAppBar(props) {
       </section>
      
       <footer style={{ backgroundColor: '#333', padding: '20px', color: '#fff', textAlign: 'center' }}>
-        &copy; {new Date().getFullYear()} අතිනත් Pvt LTD. All Rights Reserved.
+        &copy; {new Date().getFullYear()} අතිනත් Pvt. LTD. All Rights Reserved.
       </footer>
     </Box>
   );
