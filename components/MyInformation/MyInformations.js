@@ -1,7 +1,8 @@
-import * as React from "react";
+
+import React, { useState,useEffect } from "react";
 import Grid from "@mui/material/Grid";
 import TextField from "@mui/material/TextField";
-
+import axios from "axios";
 import InputLabel from "@mui/material/InputLabel";
 import Typography from "@mui/material/Typography";
 import FormHelperText from "@mui/material/FormHelperText";
@@ -14,19 +15,24 @@ import Button from "@mui/material/Button";
 import DeleteIcon from "@mui/icons-material/Delete";
 import SendIcon from "@mui/icons-material/Send";
 import Stack from "@mui/material/Stack";
+import { environments } from "../../components/environment/environments";
+
+
 
 export default function MyInformations({name,data}) {
   const [userData, setUserData] = React.useState({
-    
+    userId:data.userId,
     username: data.username,
-    city:'',
-    district: "",
-    race: "",
-    gender:"",
-    religion:""
+    city:data.city,
+    district: data.district,
+    race: data.race,
+    gender:data.gender,
+    religion:data.religion
   });
 
   const [step, setStep] = React.useState(1);
+  const [fileInputOpen, setFileInputOpen] = useState(false);
+  const [datastore, setDatastore] = useState('');
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -57,8 +63,19 @@ export default function MyInformations({name,data}) {
   };
 
 
-  const FormSubmit = () =>{
+  const FormSubmit = async () =>{
     console.log(userData);
+    try {
+      const apiUrl = `${environments.BASE_HOST_URL}/api/createProfile`; 
+      const response = await axios.post(apiUrl,userData);
+    
+      console.log(response.data.ProfileDB);
+  
+   
+    } catch (error) {
+      console.error('Error fetching data:', error);
+      setLoading(false); // Set loading to false in case of an error
+    }
   }
 
   return (
@@ -104,10 +121,9 @@ export default function MyInformations({name,data}) {
                     value={userData.city}
                     onChange={handleChange}
                   >
-                    <MenuItem value=""></MenuItem>
-                    <MenuItem value={10}>Kanthale</MenuItem>
-                    <MenuItem value={20}>polgolla</MenuItem>
-                    <MenuItem value={30}>godagama</MenuItem>
+                    <MenuItem value="Kanthale">Kanthale</MenuItem>
+      <MenuItem value="polgolla">polgolla</MenuItem>
+      <MenuItem value="godagama">godagama</MenuItem>
                   </Select>
                 </FormControl>
               </Grid>
@@ -132,8 +148,8 @@ export default function MyInformations({name,data}) {
                     onChange={handleChange}
                   >
                    
-                    <MenuItem value={10}>ස්ත්‍රී</MenuItem>
-                    <MenuItem value={20}>පුරුෂ</MenuItem>
+                    <MenuItem value='ස්ත්‍රී'>ස්ත්‍රී</MenuItem>
+                    <MenuItem value='පුරුෂ'>පුරුෂ</MenuItem>
                   </Select>
                 </FormControl>
               </Grid>
@@ -155,15 +171,15 @@ export default function MyInformations({name,data}) {
                     id="demo-simple-select-helper"
                     label="religion"
                     name="religion"
-                    value={userData.religion}
+                    value={userData.religion || ''}
                     onChange={handleChange}
                   >
                     <MenuItem value=""></MenuItem>
-                    <MenuItem value={10}>බෞද්ධ</MenuItem>
-                    <MenuItem value={20}>හින්දු</MenuItem>
-                    <MenuItem value={30}>ක්‍රිස්තියාන්ත</MenuItem>
-                    <MenuItem value={30}>ඉස්ලාම්</MenuItem>
-                    <MenuItem value={30}>රාජ්‍යයේ අනුක්ඛම් </MenuItem>
+                    <MenuItem value='බෞද්ධ'>බෞද්ධ</MenuItem>
+                    <MenuItem value='හින්දු'>හින්දු</MenuItem>
+                    <MenuItem value='ක්‍රිස්තියාන්ත'>ක්‍රිස්තියාන්ත</MenuItem>
+                    <MenuItem value='ඉස්ලාම්'>ඉස්ලාම්</MenuItem>
+                    <MenuItem value='රාජ්‍යයේ'>රාජ්‍යයේ අනුක්ඛම් </MenuItem>
                   </Select>
                 </FormControl>
               </Grid>
@@ -187,8 +203,8 @@ export default function MyInformations({name,data}) {
                     value={userData.race}
                     onChange={handleChange}
                   >
-                    <MenuItem value=""></MenuItem>
-                    <MenuItem value={10}>Caucasian</MenuItem>
+                    
+                    <MenuItem value='Caucasian'>Caucasian</MenuItem>
                   
                   </Select>
                 </FormControl>
@@ -224,7 +240,7 @@ export default function MyInformations({name,data}) {
                     onChange={handleChange}
                   >
                     <MenuItem value=""></MenuItem>
-                    <MenuItem value={10}>Caucasian</MenuItem>
+                    <MenuItem value='Caucasian'>Caucasian</MenuItem>
                   
                   </Select>
                 </FormControl>

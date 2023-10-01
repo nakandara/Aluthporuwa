@@ -515,15 +515,71 @@ h1 {
 }
 .step{
   background-color: #fff;
-  height: 30vw;
+ padding-bottom: 10px;
+  justify-content: center;
+  
 }
 .step_heading{
   color: #020024;
   justify-content: center;
   display: flex;
 }
-.card{
-  display:flex;
-  background-color: #c9e6ec;
+.card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* Optional: Add some spacing between the cards */
+  gap: 10px; /* Adjust as needed */
+}
+
+.card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  /* Optional: Add some spacing between the cards */
+  gap: 10px; /* Adjust as needed */
+}
+
+.cardtemp {
+  /* Optional: Style for the cards */
+  border: 1px solid #ccc;
   color: #020024;
+  background-color: rgb(182, 232, 247);
+  border-radius: 10px;
+  padding: 10px;
+  text-align: center;
+  height: 140px;
+  width: calc(33.33% - 10px); /* Adjust as needed */
+}
+.flex{
+  display: flex;
+  gap: 5px;
+}
+.oneinside{
+  background-color: #ebe6a3;
+  width: 70%;
+  height: 120px;
+  border-radius: 20px;
+}
+.secondside{
+  background-color: #b6b3ee;
+  width: 30%;
+  height: 120px;
+  border-radius: 20px;
+}
+.center{
+  text-align: center;
+  justify-content: center;
+}
+
+@media screen and (max-width: 768px) {
+  .cardtemp {
+    width: calc(50% - 10px); /* Adjust for 2 cards per row */
+  }
+}
+@media screen and (max-width: 360px) {
+  .cardtemp {
+    width: calc(100% - 10px); /* Adjust for 2 cards per row */
+  }
 }

@@ -111,13 +111,50 @@ function DrawerAppBar(props) {
         <div className='step'>
          <div className='step_heading'> අතිනත් Step</div>
          <div className='card'>
-          <div>card 01</div>
-          <div>card 02</div>
-          <div>card 03</div>
-          <div>card 04</div>
-          <div>card 05</div>
-          <div>card 06</div>
-          <div>card 07</div>
+          <div className='cardtemp '>
+            <div className='center flex'>
+            <div className='oneinside'>1</div>
+            <div  className='secondside'>2</div>
+            </div>
+           
+          </div>
+          <div className='cardtemp '>
+            <div className='center flex'>
+            <div className='oneinside'>1</div>
+            <div  className='secondside'>2</div>
+            </div>
+           
+          </div>
+          <div className='cardtemp '>
+            <div className='center flex'>
+            <div className='oneinside'>1</div>
+            <div  className='secondside'>2</div>
+            </div>
+           
+          </div>
+          <div className='cardtemp '>
+            <div className='center flex'>
+            <div className='oneinside'>1</div>
+            <div  className='secondside'>2</div>
+            </div>
+           
+          </div>
+          <div className='cardtemp '>
+            <div className='center flex'>
+            <div className='oneinside'>1</div>
+            <div  className='secondside'>2</div>
+            </div>
+           
+          </div>
+          <div className='cardtemp '>
+            <div className='center flex'>
+            <div className='oneinside'>1</div>
+            <div  className='secondside'>2</div>
+            </div>
+           
+          </div>
+      
+          
          </div>
         </div>
       </section>
