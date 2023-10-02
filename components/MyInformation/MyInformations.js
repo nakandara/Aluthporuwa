@@ -43,9 +43,9 @@ export default function MyInformations({name,data}) {
   };
 
   const handleNextStep = () => {
-    // Validate user input or perform any necessary checks before moving to the next step
+ 
     if (step === 1) {
-      // For example, if you want to move to the next step only when the name is filled
+   
       if (!userData.username) {
         alert("Please enter your name before proceeding.");
         return;
