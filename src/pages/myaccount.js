@@ -115,13 +115,13 @@ const MyAccount = () => {
               <Item>
               <Typography>My Information Step 02</Typography>
               <Typography> Name :  {data.username}</Typography>
-                <Typography> Birthday : {user.birthday}</Typography>
+                <Typography> Birthday : {data.birthday}</Typography>
                 <Typography> Gender : {data.gender}</Typography>
-                <Typography> Religion : {user.religion}</Typography>
+                <Typography> Religion : {data.religion}</Typography>
                 <Typography> Race : {data.race}</Typography>
-                <Typography>Caste :  {user.caste}</Typography>
+                <Typography>Caste :  {data.caste}</Typography>
                 <Typography> District : {data.district}</Typography>
-                <Typography>City : {user.city}</Typography>
+                <Typography>City : {data.city}</Typography>
               </Item>
             </Box>
           </Box>
