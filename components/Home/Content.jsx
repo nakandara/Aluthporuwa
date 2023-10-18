@@ -5,6 +5,7 @@ import { styled } from '@mui/material/styles';
 import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
 import Box from '@mui/material/Box';
+import CardMedia from '@mui/material/CardMedia';
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -17,200 +18,250 @@ const Item = styled(Paper)(({ theme }) => ({
 export default function Elevation() {
   return (
     <Box sx={{ width: '100%' }}>
-      <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
-        <Grid item xs={6}>
-          <Item>1</Item>
-        </Grid>
-        <Grid item xs={6}>
-          <Item>2</Item>
-        </Grid>
-        <Grid item xs={6}>
-          <Item>3</Item>
-        </Grid>
-        <Grid item xs={6}>
-          <Item>4</Item>
-        </Grid>
-        <Grid item xs={6}>
-          <Item>1</Item>
-        </Grid>
-        <Grid item xs={6}>
-          <Item>2</Item>
-        </Grid>
-        <Grid item xs={6}>
-          <Item>3</Item>
-        </Grid>
-        <Grid item xs={6}>
-          <Item>4</Item>
-        </Grid>
-        <Grid item xs={6}>
-          <Item>1</Item>
-        </Grid>
-        <Grid item xs={6}>
-          <Item>2</Item>
-        </Grid>
-        <Grid item xs={6}>
-          <Item>3</Item>
-        </Grid>
-        <Grid item xs={6}>
-          <Item>4</Item>
-        </Grid>
-        <Grid item xs={6}>
-          <Item>1</Item>
-        </Grid>
-        <Grid item xs={6}>
-          <Item>2</Item>
-        </Grid>
-        <Grid item xs={6}>
-          <Item>3</Item>
-        </Grid>
-        <Grid item xs={6}>
-          <Item>4</Item>
-        </Grid>
-        <Grid item xs={6}>
-          <Item>1</Item>
-        </Grid>
-        <Grid item xs={6}>
-          <Item>2</Item>
-        </Grid>
-        <Grid item xs={6}>
-          <Item>3</Item>
-        </Grid>
-        <Grid item xs={6}>
-          <Item>4</Item>
-        </Grid>
-        <Grid item xs={6}>
-          <Item>1</Item>
-        </Grid>
-        <Grid item xs={6}>
-          <Item>2</Item>
-        </Grid>
-        <Grid item xs={6}>
-          <Item>3</Item>
-        </Grid>
-        <Grid item xs={6}>
-          <Item>4</Item>
-        </Grid>
-        <Grid item xs={6}>
-          <Item>1</Item>
-        </Grid>
-        <Grid item xs={6}>
-          <Item>2</Item>
-        </Grid>
-        <Grid item xs={6}>
-          <Item>3</Item>
-        </Grid>
-        <Grid item xs={6}>
-          <Item>4</Item>
-        </Grid>
-        <Grid item xs={6}>
-          <Item>1</Item>
-        </Grid>
-        <Grid item xs={6}>
-          <Item>2</Item>
-        </Grid>
-        <Grid item xs={6}>
-          <Item>3</Item>
-        </Grid>
-        <Grid item xs={6}>
-          <Item>4</Item>
-        </Grid>
-        <Grid item xs={6}>
-          <Item>1</Item>
-        </Grid>
-        <Grid item xs={6}>
-          <Item>2</Item>
-        </Grid>
-        <Grid item xs={6}>
-          <Item>3</Item>
-        </Grid>
-        <Grid item xs={6}>
-          <Item>4</Item>
-        </Grid>
-        <Grid item xs={6}>
-          <Item>1</Item>
-        </Grid>
-        <Grid item xs={6}>
-          <Item>2</Item>
-        </Grid>
-        <Grid item xs={6}>
-          <Item>3</Item>
-        </Grid>
-        <Grid item xs={6}>
-          <Item>4</Item>
-        </Grid>
-        <Grid item xs={6}>
-          <Item>1</Item>
-        </Grid>
-        <Grid item xs={6}>
-          <Item>2</Item>
-        </Grid>
-        <Grid item xs={6}>
-          <Item>3</Item>
-        </Grid>
-        <Grid item xs={6}>
-          <Item>4</Item>
-        </Grid>
-        <Grid item xs={6}>
-          <Item>1</Item>
-        </Grid>
-        <Grid item xs={6}>
-          <Item>2</Item>
-        </Grid>
-        <Grid item xs={6}>
-          <Item>3</Item>
-        </Grid>
-        <Grid item xs={6}>
-          <Item>4</Item>
-        </Grid>
-        <Grid item xs={6}>
-          <Item>1</Item>
-        </Grid>
-        <Grid item xs={6}>
-          <Item>2</Item>
-        </Grid>
-        <Grid item xs={6}>
-          <Item>3</Item>
-        </Grid>
-        <Grid item xs={6}>
-          <Item>4</Item>
-        </Grid>
-        <Grid item xs={6}>
-          <Item>1</Item>
-        </Grid>
-        <Grid item xs={6}>
-          <Item>2</Item>
-        </Grid>
-        <Grid item xs={6}>
-          <Item>3</Item>
-        </Grid>
-        <Grid item xs={6}>
-          <Item>4</Item>
-        </Grid>
-        <Grid item xs={6}>
-          <Item>1</Item>
-        </Grid>
-        <Grid item xs={6}>
-          <Item>2</Item>
-        </Grid>
-        <Grid item xs={6}>
-          <Item>3</Item>
-        </Grid>
-        <Grid item xs={6}>
-          <Item>4</Item>
-        </Grid>
-        <Grid item xs={6}>
-          <Item>1</Item>
-        </Grid>
-        <Grid item xs={6}>
-          <Item>2</Item>
-        </Grid>
-        <Grid item xs={6}>
-          <Item>3</Item>
-        </Grid>
-        <Grid item xs={6}>
-          <Item>4</Item>
-        </Grid>
-      </Grid>
+          <div className='card'>
+          <div className='cardtemp '>
+            <div className='center flex'>
+            <div className='oneinside'>
+            <div className='det_one'>
+              <div>නම:</div>
+              <div>චලනී පබෝදා</div>
+            </div>
+            <div className='det_one'>
+              <div className='det_sec'>වයස:</div>
+              <div>21</div>
+            </div>
+            <div className='det_one'>
+              <div>ලග්නය:</div>
+              <div>කටක</div>
+            </div>
+            <div className='det_one'>
+              <div>උපන් දිනය:</div>
+              <div>1998.09.10</div>
+            </div>
+            </div>
+            <div  className='secondside'>
+            <CardMedia
+      sx={{ height: '120%' }}
+        image="/media/chamodh.jpg"
+        title="green iguana"
+      />
+            </div>
+            </div>
+           
+          </div>
+          <div className='cardtemp '>
+            <div className='center flex'>
+            <div className='oneinside'>1</div>
+            <div  className='secondside'>2</div>
+            </div>
+           
+          </div>
+          <div className='cardtemp '>
+            <div className='center flex'>
+            <div className='oneinside'>1</div>
+            <div  className='secondside'>2</div>
+            </div>
+           
+          </div>
+          <div className='cardtemp '>
+            <div className='center flex'>
+            <div className='oneinside'>1</div>
+            <div  className='secondside'>2</div>
+            </div>
+           
+          </div>
+          <div className='cardtemp '>
+            <div className='center flex'>
+            <div className='oneinside'>1</div>
+            <div  className='secondside'>2</div>
+            </div>
+           
+          </div>
+          <div className='cardtemp '>
+            <div className='center flex'>
+            <div className='oneinside'>1</div>
+            <div  className='secondside'>2</div>
+            </div>
+           
+          </div>
+          <div className='cardtemp '>
+            <div className='center flex'>
+            <div className='oneinside'>1</div>
+            <div  className='secondside'>2</div>
+            </div>
+           
+          </div>
+          <div className='cardtemp '>
+            <div className='center flex'>
+            <div className='oneinside'>1</div>
+            <div  className='secondside'>2</div>
+            </div>
+           
+          </div>
+          <div className='cardtemp '>
+            <div className='center flex'>
+            <div className='oneinside'>1</div>
+            <div  className='secondside'>2</div>
+            </div>
+           
+          </div>
+          <div className='cardtemp '>
+            <div className='center flex'>
+            <div className='oneinside'>1</div>
+            <div  className='secondside'>2</div>
+            </div>
+           
+          </div>
+          <div className='cardtemp '>
+            <div className='center flex'>
+            <div className='oneinside'>1</div>
+            <div  className='secondside'>2</div>
+            </div>
+           
+          </div>
+          <div className='cardtemp '>
+            <div className='center flex'>
+            <div className='oneinside'>1</div>
+            <div  className='secondside'>2</div>
+            </div>
+           
+          </div>
+          <div className='cardtemp '>
+            <div className='center flex'>
+            <div className='oneinside'>1</div>
+            <div  className='secondside'>2</div>
+            </div>
+           
+          </div>
+          <div className='cardtemp '>
+            <div className='center flex'>
+            <div className='oneinside'>1</div>
+            <div  className='secondside'>2</div>
+            </div>
+           
+          </div>
+          <div className='cardtemp '>
+            <div className='center flex'>
+            <div className='oneinside'>1</div>
+            <div  className='secondside'>2</div>
+            </div>
+           
+          </div>
+          <div className='cardtemp '>
+            <div className='center flex'>
+            <div className='oneinside'>1</div>
+            <div  className='secondside'>2</div>
+            </div>
+           
+          </div>
+          <div className='cardtemp '>
+            <div className='center flex'>
+            <div className='oneinside'>1</div>
+            <div  className='secondside'>2</div>
+            </div>
+           
+          </div>
+          <div className='cardtemp '>
+            <div className='center flex'>
+            <div className='oneinside'>1</div>
+            <div  className='secondside'>2</div>
+            </div>
+           
+          </div>
+          <div className='cardtemp '>
+            <div className='center flex'>
+            <div className='oneinside'>1</div>
+            <div  className='secondside'>2</div>
+            </div>
+           
+          </div>
+          <div className='cardtemp '>
+            <div className='center flex'>
+            <div className='oneinside'>1</div>
+            <div  className='secondside'>2</div>
+            </div>
+           
+          </div>
+          <div className='cardtemp '>
+            <div className='center flex'>
+            <div className='oneinside'>1</div>
+            <div  className='secondside'>2</div>
+            </div>
+           
+          </div>
+          <div className='cardtemp '>
+            <div className='center flex'>
+            <div className='oneinside'>1</div>
+            <div  className='secondside'>2</div>
+            </div>
+           
+          </div>
+          <div className='cardtemp '>
+            <div className='center flex'>
+            <div className='oneinside'>1</div>
+            <div  className='secondside'>2</div>
+            </div>
+           
+          </div>
+          <div className='cardtemp '>
+            <div className='center flex'>
+            <div className='oneinside'>1</div>
+            <div  className='secondside'>2</div>
+            </div>
+           
+          </div>
+          <div className='cardtemp '>
+            <div className='center flex'>
+            <div className='oneinside'>1</div>
+            <div  className='secondside'>2</div>
+            </div>
+           
+          </div>
+          <div className='cardtemp '>
+            <div className='center flex'>
+            <div className='oneinside'>1</div>
+            <div  className='secondside'>2</div>
+            </div>
+           
+          </div>
+          <div className='cardtemp '>
+            <div className='center flex'>
+            <div className='oneinside'>1</div>
+            <div  className='secondside'>2</div>
+            </div>
+           
+          </div>
+          <div className='cardtemp '>
+            <div className='center flex'>
+            <div className='oneinside'>1</div>
+            <div  className='secondside'>2</div>
+            </div>
+           
+          </div>
+          <div className='cardtemp '>
+            <div className='center flex'>
+            <div className='oneinside'>1</div>
+            <div  className='secondside'>2</div>
+            </div>
+           
+          </div>
+          <div className='cardtemp '>
+            <div className='center flex'>
+            <div className='oneinside'>1</div>
+            <div  className='secondside'>2</div>
+            </div>
+           
+          </div>
+          <div className='cardtemp '>
+            <div className='center flex'>
+            <div className='oneinside'>1</div>
+            <div  className='secondside'>2</div>
+            </div>
+           
+          </div>
+      
+          
+         </div>
     </Box>
   );
 }

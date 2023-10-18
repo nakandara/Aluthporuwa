@@ -558,13 +558,13 @@ h1 {
 }
 .oneinside{
   background-color: #ebe6a3;
-  width: 70%;
+  width: 60%;
   height: 120px;
   border-radius: 20px;
 }
 .secondside{
   background-color: #b6b3ee;
-  width: 30%;
+  width: 40%;
   height: 120px;
   border-radius: 20px;
 }
@@ -582,4 +582,42 @@ h1 {
   .cardtemp {
     width: calc(100% - 10px); /* Adjust for 2 cards per row */
   }
+  .det_one{
+    display: flex;
+  font-size: smaller;
+    text-align:left;
+    justify-content:space-around
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  
+  .det_one{
+    display: flex;
+  font-size: smaller;
+    text-align:left;
+    justify-content:space-around
+  }
+}
+@media screen and (max-width: 450px) {
+  
+  .det_one{
+    display: flex;
+  font-size:x-small;
+    text-align:left;
+    justify-content:space-around
+  }
+}
+
+.det_one{
+  display: flex;
+
+  text-align:left;
+  justify-content:space-around
+}
+.det_sec{
+
+  display: flex;
+  text-align:left;
+  justify-content:flex-start
 }
