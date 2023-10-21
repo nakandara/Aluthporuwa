@@ -17,7 +17,12 @@ const MyAccount = () => {
 
   const [fileInputOpen, setFileInputOpen] = useState(false);
   const [data, setData] = useState('');
+  const [image, setImage] = useState('');
   const [loading, setLoading] = useState(true);
+
+  
+  const [selectedFile, setSelectedFile] = useState(null);
+
 
   const handleAvatarClick = () => {
     setFileInputOpen(true);
@@ -25,28 +30,79 @@ const MyAccount = () => {
 
   const handleFileInputChange = (event) => {
     const file = event.target.files[0];
-    // Handle the selected file, you can use this to upload the file
+    setSelectedFile(file);
+    if (file) {
+     
+      editAvatarPhoto(file);
+    } else {
+     
+      uploadProfilePhoto(file);
+    }
+  };
+
+  const editAvatarPhoto = async (file) => {
+    const formData = new FormData();
+    formData.append("image", file);
+    formData.append("userId", user.userId);
+
+    try {
+      const response = await axios.post(
+        `${environments.BASE_HOST_URL}/api/editProfilePhoto/${user.userId}`,
+        formData
+      );
+
+      if (response.data.success) {
+     
+      } else {
+        
+      }
+    } catch (error) {
+      
+    }
   };
 
 
+  const uploadProfilePhoto = async (file) => {
+    const formData = new FormData();
+    formData.append("image", file);
+    formData.append("userId", user.userId);
+  
+    try {
+      const response = await axios.post(
+        `${environments.BASE_HOST_URL}/api/createProfilePhoto`,
+        formData
+      );
+  
+      if (response.data.success) {
+   
+      } else {
+       
+      }
+    } catch (error) {
+    
+    }
+  };
 
   useEffect(() => {
     if (user && user.userId) {
       
       const apiUrl = `${environments.BASE_HOST_URL}/api/getProfile/${user.userId}`;
+      const apiUrlPhoto = `${environments.BASE_HOST_URL}/api/getProfilePhoto/${user.userId}`;
      
       // Create an async function to fetch data
       async function fetchData() {
         try {
           
           const response = await axios.get(apiUrl);
-          console.log(response.data?.profile,"oooooooooooooooooo");
+          const responsePhoto = await axios.get(apiUrlPhoto);
+          console.log(response.data?.profile);
           if (!response.data) {
             throw new Error('Network response was not ok');
           }
           const data = response.data?.profile;
-      
+         
           setData(data); // Update the state with the fetched data
+          setImage(responsePhoto.data?.imageUrl)
           setLoading(false); // Set loading to false when data is loaded
         } catch (error) {
           console.error('Error fetching data:', error);
@@ -58,7 +114,7 @@ const MyAccount = () => {
     }
   }, [user]);
   
-  console.log(data,"llllllllllllll");
+
 
   const Item = styled(Paper)(({ theme }) => ({
     backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -71,7 +127,7 @@ const MyAccount = () => {
   if (!user) {
     return <div>Loading user data...</div>;
   }
-
+console.log(image);
   return (
     <Layout>
       <ProtectedRoute>
@@ -84,7 +140,8 @@ const MyAccount = () => {
                   <Avatar
                     sx={{ width: 120, height: 70, marginBottom: 2, cursor: 'pointer' }}
                     alt="Profile Photo"
-                    src="url_to_profile_photo"
+                    src={image}
+                    onChange={handleFileInputChange}
                     onClick={handleAvatarClick}
                   />
                 </label>

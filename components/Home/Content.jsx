@@ -41,7 +41,7 @@ export default function Elevation() {
             </div>
             <div  className='secondside'>
             <CardMedia
-      sx={{ height: '120%' }}
+      sx={{ height: '100%' }}
         image="/media/chamodh.jpg"
         title="green iguana"
       />
