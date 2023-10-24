@@ -539,6 +539,8 @@ h1 {
   flex-wrap: wrap;
   /* Optional: Add some spacing between the cards */
   gap: 10px; /* Adjust as needed */
+
+
 }
 
 .cardtemp {
@@ -607,6 +609,10 @@ h1 {
     text-align:left;
     justify-content:space-around
   }
+
+
+ 
+  
 }
 
 .det_one{
@@ -620,4 +626,37 @@ h1 {
   display: flex;
   text-align:left;
   justify-content:flex-start
+}
+
+
+.profile_InfoPopup_one{
+  
+  justify-content: center;
+}
+.profile_InfoPopup_two{
+width: 50%;
+background-color: #cceaf0;
+height:50vw;
+}
+.profile_InfoPopup_three{
+  width: 50%;
+background-color: #baf5c0;
+height:50vw;
+}
+.profile_InfoPopup_four{
+  display: flex;
+}
+.profile_InfoPopup_five{
+  
+  align-items:flex-end;
+  justify-content: center;
+}
+.profile_InfoPopup_six{
+  align-items:flex-end;
+  justify-content: center;
+}
+
+.bone_image{
+
+background-color: #bdceca;
 }

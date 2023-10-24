@@ -15,7 +15,7 @@ const Home = () => {
     <div>
       <ProtectedRoute>
       <LayOut>
-        <div style={{ marginTop: "50px" }}>
+        <div style={{ marginTop: "50px" }} className="bone_image">
           <Elevation />
         </div>
       </LayOut>
