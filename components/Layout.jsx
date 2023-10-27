@@ -27,9 +27,13 @@ import { useRouter } from 'next/router';
 import Newsidebarandhome from '../components/newsidebarandhome'
 import Avatar from '@mui/material/Avatar';
 import Tooltip from '@mui/material/Tooltip';
+import Dialog from "@mui/material/Dialog";
+import Slide from "@mui/material/Slide";
+
 import Menu from '@mui/material/Menu';
 import { useMediaQuery } from '@mui/material';
 import MenuItem from '@mui/material/MenuItem';
+import Button from "@mui/material/Button";
 
 
 const drawerWidth = 240;
@@ -88,7 +92,15 @@ const Layout = ({ children }) => {
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
+  const [menuOpen, setMenuOpen] = React.useState(false);
 
+  const dialogStyle = {
+    width: "80%",
+    height:"80%", // Default width for larger screens
+    maxWidth: "none", // Remove the max-width constraint
+  
+   
+  };
   const handleDrawerToggle = () => {
     setMobileOpen((prevState) => !prevState);
   };
@@ -131,17 +143,40 @@ const Layout = ({ children }) => {
     }
   };
 
+  const Transition = React.forwardRef(function Transition(props, ref) {
+    return <Slide direction="right" ref={ref} {...props} />;
+  });
+  const handleOpen = () => {
+    setMenuOpen(true);
+  };
+
+  const handleClose = () => {
+    setMenuOpen(false);
+  };
+
+
+
+  const OpenMenu = () => {
+    handleOpen();
+    console.log('open');
+  };
+
+  // Function to close the menu
+  const CloseMenu = () => {
+    handleOpen();
+  };
+
   return (
-    
-   
-        <Box sx={{ display: 'flex' }}>
+    <div>
+    <Box sx={{ display: 'flex' }}>
       <CssBaseline />
       <AppBar position="fixed" open={open}>
         <Toolbar>
           <IconButton
+          onClick={OpenMenu}
             color="inherit"
             aria-label="open drawer"
-            onClick={handleDrawerOpen}
+          
             edge="start"
             sx={{ mr: 2, ...(open && { display: 'none' }) }}
           >
@@ -156,37 +191,7 @@ const Layout = ({ children }) => {
                 <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
               </IconButton>
             </Tooltip>
-            <Menu
-              sx={{ mt: '45px' }}
-              id="menu-appbar"
-              anchorEl={anchorElUser}
-              anchorOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
-              }}
-              open={Boolean(anchorElUser)}
-              onClose={handleCloseUserMenu}
-            >
-             {settings.map((setting) => (
-                <MenuItem
-                  key={setting}
-                  onClick={() => {
-                    if (setting === 'Logout') {
-                      handleLogout(); // Call the logout function
-                    } else {
-                      handleCloseUserMenu();
-                    }
-                  }}
-                >
-                  <Typography textAlign="center">{setting}</Typography>
-                </MenuItem>
-              ))}
-            </Menu>
+          
           </Box>
         </Toolbar>
     
@@ -244,10 +249,59 @@ const Layout = ({ children }) => {
           ))}
         </List>
       </Drawer>
+      
       <Main open={open}>
     {children}
       </Main>
+      
     </Box>
+    <Dialog
+  open={menuOpen}
+  onClose={CloseMenu}
+  disableScrollLock
+  PaperProps={{ style: dialogStyle }}
+  className="profile_InfoPopup"
+  TransitionComponent={Slide} // Use the Slide transition
+  transitionDuration={600} // Adjust the duration as needed
+  transitionDirection="right" // Slide from right
+>
+      <div className="profile_InfoPopup_one">
+        <div className="profile_InfoPopup_five">
+        <Button onClick={handleClose} color="primary">
+            Close
+          </Button>
+        </div>
+        <div className='hedding_menu'>MENU</div>
+        <div>
+        <List>
+      {navItems.map((item) => (
+        <ListItem
+          key={item}
+          button
+          onClick={() => {
+            if (item === 'Login') {
+              router.push('/auth/signin');
+            } else {
+              router.push(`/${item.toLowerCase()}`);
+            }
+            handleDrawerToggle();
+          }}
+        >
+          <ListItemIcon>{getIconForItem(item)}</ListItemIcon>
+          <ListItemText primary={item} />
+        </ListItem>
+      ))}
+    </List>
+        </div>
+      <div className="profile_InfoPopup_four" >
+      <div className="profile_InfoPopup_two">1</div>
+        <div className="profile_InfoPopup_three">2</div>
+      </div>
+        
+      </div>
+      </Dialog>
+    </div>
+   
     
 
   );

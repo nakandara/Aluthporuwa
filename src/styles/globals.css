@@ -660,3 +660,13 @@ height:50vw;
 
 background-color: #bdceca;
 }
+
+.hedding_menu{
+  justify-content: center;
+  align-items: center;
+  background-color: yellow;
+  padding-left: 48%;
+  color: black;
+  text-shadow: #00000010;
+  font-weight: 700;
+}
