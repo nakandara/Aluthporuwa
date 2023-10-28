@@ -29,7 +29,7 @@ const Signin = () => {
   const normalLogin = async () => {
     try {
       const response = await axios.post(
-        `${environments.BASE_HOST_URL}/api/login`,
+        `${environments.BASE_HOST_LOCAL_URL}/api/login`,
         {
           email: username,
           password: password,

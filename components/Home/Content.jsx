@@ -6,6 +6,7 @@ import Box from "@mui/material/Box";
 import CardMedia from "@mui/material/CardMedia";
 import Dialog from "@mui/material/Dialog";
 import Button from "@mui/material/Button";
+import { Typography } from "@mui/material";
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
@@ -15,13 +16,10 @@ const Item = styled(Paper)(({ theme }) => ({
   color: theme.palette.text.secondary,
 }));
 
-
 const dialogStyle = {
-  width: "80%",
-  height:"80%", // Default width for larger screens
+  width: "100%",
+  height: "80%", // Default width for larger screens
   maxWidth: "none", // Remove the max-width constraint
-
- 
 };
 
 export default function Elevation() {
@@ -38,6 +36,29 @@ export default function Elevation() {
   const popupAccount = () => {
     handleOpen();
   };
+
+
+  const boxStyle = {
+    border: '5px solid #ccc', // Border style and color
+    padding: '20px', // Padding inside the box
+  };
+  
+  const content = `
+    Live Cam සදහා වන "verified" හා "verified 100% cash back Guaranteed"
+    සහ෭ත live cam සෙවාවන්හි "verified" Label සහ෭ත දැන්වීම් අප ආයතනය
+    මගින් සත්‍ය දැන්වීම් බවට තහවුරු කර ඇති අතර "verified 100% cash back
+    Guaranteed" Label සහ෭ත දැන්වීම් සදහා ආයතනය මගින් වගකියනු ඇත.
+    "verified 100% cash back Guaranteed" ලෙස නම්කර ඇති දැන්වීමක් මගින්
+    පමණක් ඔබ යම්කිසි වංචාවලට හසුවුවහොත් අප ආයතනය මගින් ඔබට ඔබගේ මුදල
+    නැවත ලබා ගත හැකිය. Live Cam සෙවාවන් ලබාගැනීමේදී හැකි සැමවිටම
+    "verified" හෝ "verified 100% cash back Guaranteed" Label සහ෭ත
+    දැන්වීම් මගින් ඔබට ගුණාත්ම සේවාවක් ලබාගත හැක "verified" හා "verified
+    100% cash back Guaranteed" Label සහ෭ත දැන්වීමක් මගින් වංචාවකට
+    අසුවුවහොත් පහත සදහන් අත්යවශ තොරතුරු සමග ඔබගේ පැමිණිල්ල අප වෙත
+    whatsapp කරන්න 1 . Ad Screenshot Or Link (දැන්වීමේ සදහන් දුරකථන
+    අංකයම තිබිය යුතුය. ) 2 . Bank Transfer Details 3 . Chat History
+    Details
+  `;
   return (
     <>
       <Box sx={{ width: "100%" }}>
@@ -516,18 +537,26 @@ export default function Elevation() {
         PaperProps={{ style: dialogStyle }}
         className="profile_InfoPopup"
       >
-      <div className="profile_InfoPopup_one">
-        <div className="profile_InfoPopup_five">
-        <Button onClick={handleClose} color="primary">
-            Close
-          </Button>
+        <div className="profile_InfoPopup_one">
+          <div className="profile_InfoPopup_five">
+            <Button onClick={handleClose} color="primary">
+              Close
+            </Button>
+          </div>
+          <div className="main_onen">
+            <div className="profile_InfoPopup_img">
+              <img src="/media/chamodh.jpg" alt="girl one"/>
+            </div>
+          <Typography style={boxStyle}>
+          {content}
+          </Typography>
+          </div>
+          
+          <div className="profile_InfoPopup_four">
+            <div className="profile_InfoPopup_two"></div>
+            <div className="profile_InfoPopup_three">2</div>
+          </div>
         </div>
-      <div className="profile_InfoPopup_four" >
-      <div className="profile_InfoPopup_two">1</div>
-        <div className="profile_InfoPopup_three">2</div>
-      </div>
-        
-      </div>
       </Dialog>
     </>
   );
