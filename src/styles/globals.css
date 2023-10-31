@@ -732,3 +732,39 @@ background-color: #bdceca;
     margin-bottom: 16px; /* Add spacing between the image and text */
   }
 }
+
+.profile_InfoPopup_watsapp {
+  border: 2px solid rgb(65, 158, 21);
+  border-radius: 10px;
+  height: 50px;
+  justify-content: center;
+  text-align: center;
+  width: 60%;
+  margin-left: 20vw;
+  margin-bottom: 10px;
+}
+.profile_InfoPopup_phoneNumber {
+  border: 2px solid rgb(45, 145, 228);
+  border-radius: 10px;
+  height: 50px;
+  justify-content: center;
+  text-align: center;
+  width: 60%;
+  margin-left: 20vw;
+  row-gap: 100px;
+  column-gap: 100px;
+  margin-bottom: 10px;
+
+}
+
+.divider {
+  border-top: 5px solid #e0d2d2; /* Adjust width and color as needed */
+}
+.profile_InfoPopup_contactMain{
+  row-gap: 100px;
+  column-gap: 100px;
+}
+
+.YourPostColor{
+  background-color: greenyellow;
+}

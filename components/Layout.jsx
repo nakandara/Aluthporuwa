@@ -34,6 +34,7 @@ import Menu from '@mui/material/Menu';
 import { useMediaQuery } from '@mui/material';
 import MenuItem from '@mui/material/MenuItem';
 import Button from "@mui/material/Button";
+import YourPost from './Your-post/YourPost';
 
 
 const drawerWidth = 240;
@@ -181,6 +182,7 @@ const Layout = ({ children }) => {
             sx={{ mr: 2, ...(open && { display: 'none' }) }}
           >
             <MenuIcon />
+          
           </IconButton>
           <Typography variant="h6" noWrap component="div">
             Persistent drawer
@@ -191,6 +193,7 @@ const Layout = ({ children }) => {
                 <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
               </IconButton>
             </Tooltip>
+            <YourPost/>
             <Menu
               sx={{ mt: '45px' }}
               id="menu-appbar"

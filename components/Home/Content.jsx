@@ -551,9 +551,14 @@ export default function Elevation() {
           {content}
           </Typography>
           </div>
-          
+          <div className="profile_InfoPopup_contactMain">
+          <div className="profile_InfoPopup_phoneNumber">Phone Number</div>
+          <div className="profile_InfoPopup_watsapp " >watsapp number</div>
+          </div>
+          <div className="divider"></div>
+          <div>Content</div>
           <div className="profile_InfoPopup_four">
-            <div className="profile_InfoPopup_two"></div>
+            <div className="profile_InfoPopup_two">1</div>
             <div className="profile_InfoPopup_three">2</div>
           </div>
         </div>
