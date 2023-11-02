@@ -2,18 +2,9 @@ import * as React from 'react';
 import { styled } from '@mui/material/styles';
 import Button from '@mui/material/Button';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
+import { useRouter } from 'next/router';
 
-const VisuallyHiddenInput = styled('input')({
-  clip: 'rect(0 0 0 0)',
-  clipPath: 'inset(50%)',
-  height: 1,
-  overflow: 'hidden',
-  position: 'absolute',
-  bottom: 0,
-  left: 0,
-  whiteSpace: 'nowrap',
-  width: 1,
-});
+
 
 
 const buttonStyle = {
@@ -22,16 +13,45 @@ const buttonStyle = {
   }
 
 export default function YourPost() {
+  const router = useRouter();
+
+
+const MyPost = () =>{
+  router.push('/myPostPage'); 
+}
+
+
+const GoBack = () => {
+  router.push('/home'); 
+}
+
+const isMyPostPage = router.pathname === '/myPostPage';
+
   return (
-    <Button
-      component="label"
-      variant="contained"
-      startIcon={<CloudUploadIcon />}
-      style={buttonStyle}
-      className='YourPostColor'
-    >
-      Post Your Add
-      <VisuallyHiddenInput type="file" />
-    </Button>
+    <>
+      {/* {!isMyPostPage && (
+        <Button
+          component="label"
+          variant="contained"
+          startIcon={<CloudUploadIcon />}
+          style={buttonStyle}
+          className='YourPostColor'
+          onClick={MyPost}
+        >
+          Post Your Ad
+        </Button>
+      )} */}
+
+      {isMyPostPage ?  <button onClick={GoBack}>Go Home</button> :  <Button
+          component="label"
+          variant="contained"
+          startIcon={<CloudUploadIcon />}
+          style={buttonStyle}
+          className='YourPostColor'
+          onClick={MyPost}
+        >
+          Post Your Ad
+        </Button>}
+    </>
   );
 }

@@ -185,7 +185,7 @@ const Layout = ({ children }) => {
           
           </IconButton>
           <Typography variant="h6" noWrap component="div">
-            Persistent drawer
+           
           </Typography>
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
