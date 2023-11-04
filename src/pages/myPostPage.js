@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Layout from "../../components/Layout";
-import { useToken } from "../context/TokenContext";
+import { useToken } from "../context/TokenContext"; // Check the import
 import { Container, Paper, Typography, Avatar } from "@mui/material";
 import Box from "@mui/material/Box";
-import { useRouter } from "next/router";
+import { useRouter } from "next/router"; // Check the import
 import { styled } from "@mui/material/styles";
 import ProtectedRoute from "../../components/protect/protectedRoute";
 import InputLabel from "@mui/material/InputLabel";
@@ -11,13 +11,12 @@ import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 
-
 const MyPostPage = () => {
   const { user } = useToken();
   const router = useRouter();
 
   const [image, setImage] = useState("");
-  const [age, setAge] = React.useState("");
+  const [age, setAge] = useState(""); // Use 'useState' consistently
 
   const autoSize = (event) => {
     const textbox = event.target;
@@ -25,9 +24,7 @@ const MyPostPage = () => {
     textbox.style.height = `${textbox.scrollHeight}px`;
   };
 
-  const handleChange = (event) => {
-    setAge(event.target.value);
-  };
+  // Define 'handleChange' function as needed
 
   const Item = styled(Paper)(({ theme }) => ({
     backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
@@ -37,12 +34,10 @@ const MyPostPage = () => {
     color: theme.palette.text.secondary,
   }));
 
-
-
   if (!user) {
     return <div>Loading user data...</div>;
   }
-  console.log(image);
+
   return (
     <Layout>
       <ProtectedRoute>
@@ -59,16 +54,16 @@ const MyPostPage = () => {
               }}
             >
               <Item>
-              <div className="postPage_images_upload">
-  Upload Images
-  <img
-    className="slider_postPage_image"
-    src="/media/chamodh.jpg"
-    alt="Image 3"
-  />
-</div>
+                <div className="postPage_images_upload">
+                  Upload Images
+                  <img
+                    className="slider_postPage_image"
+                    src="/media/chamodh.jpg"
+                    alt="Image 3"
+                  />
+                </div>
 
-                <FormControl sx={{marginTop:"20px"}} fullWidth>
+                <FormControl sx={{ marginTop: "20px" }} fullWidth>
                   <InputLabel id="demo-simple-select-label">
                     Category.
                   </InputLabel>
