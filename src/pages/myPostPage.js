@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Layout from "../../components/Layout";
-import { useToken } from "../context/TokenContext"; // Check the import
+import { useToken } from "../context/TokenContext";
 import { Container, Paper, Typography, Avatar } from "@mui/material";
 import Box from "@mui/material/Box";
-import { useRouter } from "next/router"; // Check the import
+import { useRouter } from "next/router";
 import { styled } from "@mui/material/styles";
 import ProtectedRoute from "../../components/protect/protectedRoute";
 import InputLabel from "@mui/material/InputLabel";
@@ -16,7 +16,7 @@ const MyPostPage = () => {
   const router = useRouter();
 
   const [image, setImage] = useState("");
-  const [age, setAge] = useState(""); // Use 'useState' consistently
+  const [age, setAge] = React.useState("");
 
   const autoSize = (event) => {
     const textbox = event.target;
@@ -24,7 +24,9 @@ const MyPostPage = () => {
     textbox.style.height = `${textbox.scrollHeight}px`;
   };
 
-  // Define 'handleChange' function as needed
+  const handleChange = (event) => {
+    setAge(event.target.value);
+  };
 
   const Item = styled(Paper)(({ theme }) => ({
     backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
@@ -37,7 +39,7 @@ const MyPostPage = () => {
   if (!user) {
     return <div>Loading user data...</div>;
   }
-
+  console.log(image);
   return (
     <Layout>
       <ProtectedRoute>
