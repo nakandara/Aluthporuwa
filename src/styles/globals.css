@@ -618,9 +618,8 @@ h1 {
 
       .main_onen{
         display: grid;
-        background-color: yellow;
-        justify-content: center;
-        align-items: center;
+        background-color: rgb(215, 216, 216);
+        
       }
   
 }
@@ -715,10 +714,11 @@ background-color: #bdceca;
 
 .profile_InfoPopup_img {
   flex: 1;
+  width: auto;
 }
 
 .profile_InfoPopup_img img {
-  width: 400px;
+  width:400px;
   height: 400px;
 }
 
@@ -731,6 +731,14 @@ background-color: #bdceca;
   .profile_InfoPopup_img {
     margin-bottom: 16px; /* Add spacing between the image and text */
   }
+}
+
+@media screen and (max-width: 470px) {
+  .profile_InfoPopup_img img {
+    width:200px;
+    height: 300px;
+  }
+  
 }
 
 .profile_InfoPopup_watsapp {
@@ -770,4 +778,39 @@ background-color: #bdceca;
 }
 .css-1633um2-MuiPaper-root{
   background-color: #e3e3e3fa !important;
+}
+
+
+.postPage_images_upload{
+  background-color: #b6b3ee;
+  height: 370px;
+  border-radius: 70px;
+  margin-bottom: 10px;
+  align-items: center;
+  justify-content: center;
+
+}
+/* components/AutoSizeTextBox.module.css */
+
+.auto-size-textbox {
+  resize: none;
+  overflow: hidden;
+  max-height: 200px;
+  width: 100%;
+  border: 1px solid #170909;
+  padding: 10px;
+  font-size: 16px;
+  background-color: #e3e3e3fa;
+  margin-top: 10px;
+  border-radius: 3px;
+  color: #032b35;
+}
+.slider_postPage_image{
+  background-color: #b6b3ee;
+  height: 300px;
+  border-radius: 70px;
+  margin-bottom: 30px;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
 }

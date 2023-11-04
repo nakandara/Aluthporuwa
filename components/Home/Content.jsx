@@ -549,9 +549,9 @@ export default function Elevation() {
             <div className="profile_InfoPopup_img">
               <img src="/media/chamodh.jpg" alt="girl one"/>
             </div>
-          <Typography style={boxStyle}>
+          <div style={boxStyle}>
           {content}
-          </Typography>
+          </div>
           </div>
           <div className="profile_InfoPopup_contactMain">
           <div className="profile_InfoPopup_phoneNumber">Phone Number</div>
