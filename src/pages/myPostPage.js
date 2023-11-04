@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Layout from "../../components/Layout";
 import { useToken } from "../context/TokenContext";
-
 import { Container, Paper, Typography, Avatar } from "@mui/material";
 import Box from "@mui/material/Box";
 import { useRouter } from "next/router";
@@ -71,7 +70,7 @@ const MyPostPage = () => {
 
                 <FormControl sx={{marginTop:"20px"}} fullWidth>
                   <InputLabel id="demo-simple-select-label">
-                    Category
+                    Category.
                   </InputLabel>
                   <Select
                     labelId="demo-simple-select-label"
