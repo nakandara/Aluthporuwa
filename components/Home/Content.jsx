@@ -6,7 +6,7 @@ import Box from "@mui/material/Box";
 import CardMedia from "@mui/material/CardMedia";
 import Dialog from "@mui/material/Dialog";
 import Button from "@mui/material/Button";
-import { Typography } from "@mui/material";
+import Image from 'next/image'; 
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",

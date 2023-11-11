@@ -14,7 +14,7 @@ import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 import MainPage from '../../components/Home/MainPage';
-
+import Footer from './../../components/footer'
 const drawerWidth = 240;
 const navItems = ['Home', 'About', 'Contact', 'Login'];
 
@@ -165,9 +165,10 @@ function DrawerAppBar(props) {
       </div>
       </section>
      
-      <footer style={{ backgroundColor: '#333', padding: '20px', color: '#fff', textAlign: 'center' }}>
-        &copy; {new Date().getFullYear()} අතිනත් Pvt. LTD. All Rights Reserved.
-      </footer>
+     
+        <Footer/>
+       
+     
     </Box>
   );
 }

@@ -9,15 +9,15 @@ const ProtectedRoute = ({ children }) => {
 
   useEffect(() => {
     const storedUser = localStorage.getItem("user");
-    const user = JSON.parse(storedUser);
-    console.log(user);
-    if (user !== undefined) {
+    const parsedUser = JSON.parse(storedUser);
+    console.log(parsedUser);
+    if (parsedUser !== undefined) {
       setIsLoading(false);
-      if (!user) {
+      if (!parsedUser) {
         router.push("/auth/signin");
       }
     }
-  }, [user]);
+  }, [router]); // Include 'router' as a dependency here
 
   if (isLoading) {
     // You can show a loading spinner or any other loading indicator here

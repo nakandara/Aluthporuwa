@@ -1,5 +1,4 @@
 import React from "react";
-
 import { styled, useTheme } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import Drawer from "@mui/material/Drawer";
@@ -29,12 +28,12 @@ import Avatar from "@mui/material/Avatar";
 import Tooltip from "@mui/material/Tooltip";
 import Dialog from "@mui/material/Dialog";
 import Slide from "@mui/material/Slide";
-
 import Menu from "@mui/material/Menu";
 import { useMediaQuery } from "@mui/material";
 import MenuItem from "@mui/material/MenuItem";
 import Button from "@mui/material/Button";
 import YourPost from "./Your-post/YourPost";
+import Footer from './footer'
 
 const drawerWidth = 240;
 const navItems = ["Home", "About", "Contact", "Login", "MyAccount"];
@@ -283,7 +282,7 @@ const Layout = ({ children }) => {
         <Main open={open}>{children}</Main>
         
       </Box>
-      <div style={{padding:"100px"}}>footer</div>
+      <div ><Footer/></div>
       <Dialog
         open={menuOpen}
         onClose={CloseMenu}
@@ -292,7 +291,7 @@ const Layout = ({ children }) => {
         className="profile_InfoPopup"
         TransitionComponent={Slide} // Use the Slide transition
         transitionDuration={600} // Adjust the duration as needed
-        transitionDirection="right" // Slide from right
+       // Slide from right
       >
         <div className="profile_InfoPopup_one">
           <div className="profile_InfoPopup_five">
