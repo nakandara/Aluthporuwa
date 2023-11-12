@@ -1,24 +1,20 @@
-import React from 'react'
-import Layout from "../../components/Layout";
+import React from 'react';
+import Layout from '../../components/Layout';
+import ProtectedRoute from "../../components/protect/protectedRoute";
 
-const about = () => {
+
+const About = () => {
   return (
-    <div>
-        <Layout>
-      <div>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <h1>Welcome to the Dashboard</h1>
-        <p>User one: </p>
-      </div>
+    <Layout>
+      <ProtectedRoute>
+        <div className='multi-color-gradient' style={{ marginTop: "50px",height:"100vh" }}>
+       <div>
+        <h1 className='header_about'>අප ගැන</h1>
+       </div>
+        </div>
+      </ProtectedRoute>
     </Layout>
-    </div>
-  )
-}
+  );
+};
 
-export default about
+export default About;

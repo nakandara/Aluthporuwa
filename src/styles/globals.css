@@ -92,7 +92,7 @@ body {
 body {
  
 
-    background-color: #212121;
+    background-color: linear-gradient(45deg, #d688f2, #498bee, #72b6e4, #f05297);;
   color: #fff;
   font-family: monospace, serif;
   letter-spacing: 0.05em;
@@ -875,4 +875,22 @@ a {
   padding: 10px;
     
   }
+}
+
+/* styles.css */
+/* styles.css */
+.multi-color-gradient {
+  background: linear-gradient(45deg, #d688f2, #498bee, #72b6e4, #f05297); /* Example multiple gradient colors */
+ 
+}
+
+.margin-t{
+  margin-top: 60px;
+}
+
+.header_about{
+  align-items: center;
+  text-align: center;
+  padding-top: 100px;
+
 }
