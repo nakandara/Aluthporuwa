@@ -880,10 +880,12 @@ a {
 /* styles.css */
 /* styles.css */
 .multi-color-gradient {
-  background: linear-gradient(45deg, #d688f2, #498bee, #72b6e4, #f05297); /* Example multiple gradient colors */
+  background: linear-gradient(45deg, #5391b3, #033c6d, #023d65, #047350); /* Example multiple gradient colors */
  
 }
-
+.multi-color-gradient-menu{
+  background-color: #00d4ff;
+}
 .margin-t{
   margin-top: 60px;
 }

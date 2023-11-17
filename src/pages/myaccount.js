@@ -131,7 +131,7 @@ console.log(image);
   return (
     <Layout>
       <ProtectedRoute>
-      <div className="multi-color-gradient" style={{ marginTop: "50px" }}>
+      <div className="multi-color-gradient" style={{ marginTop: "60px" }}>
         <Box sx={{ width: 1 }}>
           <Box display="grid" gridTemplateColumns={{ xs: "1fr", md: "repeat(12, 1fr)" }} gap={2}>
             <Box gridColumn={{ xs: "1", md: "span 12" }} sx={{ height: '25vh', display: 'grid', marginBottom: "100px"}}>

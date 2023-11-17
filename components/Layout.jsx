@@ -94,8 +94,8 @@ const Layout = ({ children }) => {
   const [menuOpen, setMenuOpen] = React.useState(false);
 
   const dialogStyle = {
-    width: "80%",
-    height: "80%", // Default width for larger screens
+    width: "90%",
+    height: "60%", // Default width for larger screens
     maxWidth: "none", // Remove the max-width constraint
   };
   const handleDrawerToggle = () => {
@@ -286,14 +286,24 @@ const Layout = ({ children }) => {
       <Dialog
         open={menuOpen}
         onClose={CloseMenu}
+
         disableScrollLock
-        PaperProps={{ style: dialogStyle }}
-        className="profile_InfoPopup"
+       
+        PaperProps={{
+          style: {
+            backgroundImage: 'linear-gradient(to right, #d688f2, #498bee)' /* Gradient colors */,
+            color: 'white',
+            width: "90%",
+            height: "60%", // Default width for larger screens
+            maxWidth: "none", /* Text color */
+          }
+        }}
+        className="profile_InfoPopup  "
         TransitionComponent={Slide} // Use the Slide transition
         transitionDuration={600} // Adjust the duration as needed
        // Slide from right
       >
-        <div className="profile_InfoPopup_one">
+        <div className="profile_InfoPopup_one ">
           <div className="profile_InfoPopup_five">
             <Button onClick={handleClose} color="primary">
               Close
@@ -321,10 +331,7 @@ const Layout = ({ children }) => {
               ))}
             </List>
           </div>
-          <div className="profile_InfoPopup_four">
-            <div className="profile_InfoPopup_two">1</div>
-            <div className="profile_InfoPopup_three">2</div>
-          </div>
+        
         </div>
       </Dialog>
     </div>
