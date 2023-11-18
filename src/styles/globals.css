@@ -896,3 +896,48 @@ a {
   padding-top: 100px;
 
 }
+
+.card-post{
+  background: linear-gradient(45deg, #330430, #4c91ce, #0a4997, #6012b4);
+  border: 0.3px solid #9038de;
+  border-radius: 20px;
+  padding: 20px;
+  height: 230px;
+  margin: 10px;
+  flex: 1;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Flexbox container for cards */
+.card-container-post {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+/* Media query for smaller screens (mobile) */
+@media screen and (max-width: 768px) {
+  .card-post {
+    flex-basis: 100%;
+    height: 300px;
+    align-items: center;
+     justify-content: center;
+    
+     
+  }
+  .image_postView{
+    flex-basis: 100%;
+    margin-left: 40px;
+  }
+}
+.image_postView{
+  height: 150px;
+  border-radius: 10px;
+  width: 60%;
+ 
+}
+.image_postView_image {
+  height: 150px;
+  border-radius: 10px;
+  width: 60%;
+  
+}

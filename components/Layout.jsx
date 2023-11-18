@@ -36,7 +36,7 @@ import YourPost from "./Your-post/YourPost";
 import Footer from './footer'
 
 const drawerWidth = 240;
-const navItems = ["Home", "About", "Contact", "Login", "MyAccount"];
+const navItems = ["Home", "About", "Contact", "Login", "MyAccount","Post"];
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
 const Main = styled("main", { shouldForwardProp: (prop) => prop !== "open" })(
   ({ theme, open }) => ({
@@ -134,7 +134,9 @@ const Layout = ({ children }) => {
         return <FolderSharedIcon />;
       case "MyAccount":
         return <FolderSharedIcon />;
-
+        case "Post":
+          return <FolderSharedIcon />;
+  
       default:
         return null;
     }
