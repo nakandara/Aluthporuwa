@@ -1,22 +1,36 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Layout from "../../components/Layout";
-import { useToken } from "../context/TokenContext";
-import { Container, Paper, Typography, Avatar } from "@mui/material";
+import { Container, Paper, Typography } from "@mui/material";
 import Box from "@mui/material/Box";
-import { useRouter } from "next/router";
+import axios from "axios";
 import { styled } from "@mui/material/styles";
-import ProtectedRoute from "../../components/protect/protectedRoute";
-import InputLabel from "@mui/material/InputLabel";
-import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
+import MenuItem from "@mui/material/MenuItem";
+import InputLabel from "@mui/material/InputLabel";
+import Swal from 'sweetalert2';
+import { useToken } from "../context/TokenContext";
+import { environments } from "../../components/environment/environments";
 
 const MyPostPage = () => {
   const { user } = useToken();
-  const router = useRouter();
+  const [age, setAge] = useState("");
+  const [image, setImage] = useState('/media/downloadpictureuploader .jpeg');
+  const [category, setCategory] = useState("");
+  const [description, setDescription] = useState("");
+  const [selectedFile, setSelectedFile] = useState(null);
 
-  const [image, setImage] = useState("");
-  const [age, setAge] = React.useState("");
+  const handleImageUpload = (event) => {
+    const file = event.target.files[0];
+    setSelectedFile(file); // Store the selected file in selectedFile state
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        setImage(reader.result); // Update the image state with the new image data URL
+      };
+      reader.readAsDataURL(file);
+    }
+  };
 
   const autoSize = (event) => {
     const textbox = event.target;
@@ -25,7 +39,7 @@ const MyPostPage = () => {
   };
 
   const handleChange = (event) => {
-    setAge(event.target.value);
+    setDescription(event.target.value);
   };
 
   const Item = styled(Paper)(({ theme }) => ({
@@ -36,17 +50,57 @@ const MyPostPage = () => {
     color: theme.palette.text.secondary,
   }));
 
-  if (!user) {
-    return <div>Loading user data...</div>;
-  }
-  console.log(image);
+  const handleSubmit = async (file) => {
+    const formData = new FormData();
+    formData.append("userId", user.userId);
+    formData.append("image", file);
+    formData.append("category", category);
+    formData.append("description", description);
+
+    try {
+      const response = await axios.post(
+        `${environments.BASE_HOST_URL}/api/createPost`,
+        formData
+      );
+
+      if (response.data.success) {
+        Swal.fire("Successfully created Post");
+      } else {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "response went wrong!",
+        
+        });
+      }
+    } catch (error) {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Something went wrong!",
+       
+      });
+    }
+  };
+
   return (
     <Layout>
-      <ProtectedRoute>
-        <div style={{ marginTop: "50px" }}>
+      <form
+        onSubmit={(e) => {
+          e.preventDefault();
+          handleSubmit(selectedFile);
+        }}
+      >
+        <div style={{ marginTop: "70px", marginBottom: "100vh" }}>
           <div style={{ marginTop: "10px", backgroundColor: "#e3e3e3fa" }}>
             <Box
               gridColumn={{ xs: "1", md: "span 12" }}
+              onClick={() => {
+                const uploadInput = document.getElementById("upload-photo");
+                if (uploadInput) {
+                  uploadInput.click(); // Click the file input when the Box is clicked
+                }
+              }}
               sx={{
                 height: "35vh",
                 display: "grid",
@@ -57,62 +111,66 @@ const MyPostPage = () => {
             >
               <Item>
                 <div className="postPage_images_upload">
-                  Upload Images
-                  <img
-                    className="slider_postPage_image"
-                    src="/media/chamodh.jpg"
-                    alt="Image 3"
-                  />
+                  <label htmlFor="upload-photo">
+                    Upload Images
+                    <input
+                      style={{ display: "none" }}
+                      id="upload-photo"
+                      type="file"
+                      accept="image/*"
+                      onChange={handleImageUpload}
+                    />
+                  </label>
+                  {image && (
+                    <img
+                      className="slider_postPage_image"
+                      src={image}
+                      alt="Uploaded Image"
+                      style={{
+                        maxWidth: "100%",
+                        maxHeight: "200px",
+                        marginTop: "10px",
+                      }}
+                    />
+                  )}
                 </div>
 
-                <FormControl sx={{ marginTop: "20px" }} fullWidth>
+              </Item>
+            </Box>
+            
+          </div>
+          <FormControl sx={{ marginTop:"100px"}} fullWidth>
                   <InputLabel id="demo-simple-select-label">
                     Category.
                   </InputLabel>
                   <Select
                     labelId="demo-simple-select-label"
                     id="demo-simple-select"
-                    value={age}
+                    value={category}
                     label="Age"
-                    onChange={handleChange}
+                    onChange={(e) => setCategory(e.target.value)}
                   >
                     <MenuItem value={10}>Land</MenuItem>
                     <MenuItem value={20}>Spa</MenuItem>
                     <MenuItem value={30}>Vehicle</MenuItem>
                   </Select>
                 </FormControl>
-                <textarea
-                  className="auto-size-textbox"
-                  onInput={autoSize}
-                  placeholder="Description"
-                  style={{ marginBottom: "30px" }}
-                ></textarea>
-              </Item>
-            </Box>
-          </div>
+         <div>
+         <textarea
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
+              placeholder="Description"
+              onInput={autoSize}
+              className="textArea_t"
+            ></textarea>
+         </div>
+         <div class="centered-view">
+  <button class="custom-button">Click Me</button>
+</div>
 
-          <div style={{ marginTop: "340px", backgroundColor: "#e3e3e3fa" }}>
-            <Box
-              gridColumn={{ xs: "1", md: "span 12" }}
-              sx={{
-                height: "25vh",
-                display: "grid",
-                marginBottom: "100px",
-                backgroundColor: "blue",
-                color: "red",
-              }}
-            >
-              <Item>
-                <Typography>Hello, {user.name}!</Typography>
-                <Typography>Email: {user.email}</Typography>
-                <Typography variant="h6" gutterBottom>
-                  Upload Profile Photo
-                </Typography>
-              </Item>
-            </Box>
-          </div>
         </div>
-      </ProtectedRoute>
+        
+      </form>
     </Layout>
   );
 };

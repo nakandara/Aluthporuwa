@@ -790,6 +790,15 @@ background-color: #bdceca;
   justify-content: center;
 
 }
+.textArea_t{
+  margin-top: 60px;
+  border-radius: 10px;
+  width: 100%;
+  height: 10vh;
+  color: rgb(19, 1, 1);
+  font-weight: 400;
+  background-color: rgb(210, 236, 199);
+}
 /* components/AutoSizeTextBox.module.css */
 
 .auto-size-textbox {
@@ -887,7 +896,7 @@ a {
   background-color: #00d4ff;
 }
 .margin-t{
-  margin-top: 60px;
+  margin-top: 30px;
 }
 
 .header_about{
@@ -940,4 +949,41 @@ a {
   border-radius: 10px;
   width: 60%;
   
+}
+
+/* Basic button styles */
+.custom-button {
+  justify-content: center;
+  display: inline-block;
+  padding: 12px 24px;
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+  text-decoration: none;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  background-color: #4CAF50; /* Change this to your preferred background color */
+  color: #ffffff; /* Change this to your preferred text color */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Adjust the shadow as needed */
+  transition: background-color 0.3s, transform 0.2s, box-shadow 0.3s;
+}
+
+/* Hover effect */
+.custom-button:hover {
+  background-color: #45a049; /* Change this to your preferred hover color */
+  transform: translateY(-2px); /* Adjust the button's position on hover */
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15); /* Adjust the hover shadow */
+}
+
+/* Optional: Add more styles for active state */
+.custom-button:active {
+  transform: translateY(1px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+.centered-view {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 10vh; /* 100% of the viewport height */
 }
