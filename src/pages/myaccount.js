@@ -10,10 +10,10 @@ import MyInformations from "../../components/MyInformation/MyInformations";
 import { environments } from "../../components/environment/environments";
 import { useToken } from "../context/TokenContext";
 
-
-const url = `${environments.BASE_HOST_URL}/api/createProfilePhoto`
-const urlGet = `${environments.BASE_HOST_URL}/api/getProfilePhoto`
-const editUrl =  `${environments.BASE_HOST_URL}/api/editProfilePhoto`
+const url = `${environments.BASE_HOST_URL}/api/createProfilePhoto`;
+const urlGet = `${environments.BASE_HOST_URL}/api/getProfilePhoto`;
+const editUrl = `${environments.BASE_HOST_URL}/api/editProfilePhoto`;
+const GetProfileUrl = `${environments.BASE_HOST_URL}/api/getProfile`;
 
 const MyAccount = () => {
   const { user } = useToken();
@@ -23,11 +23,25 @@ const MyAccount = () => {
   const [data, setData] = useState("");
   const [image, setImage] = useState("");
   const [loading, setLoading] = useState(true);
+  const [infoData, setInfoData] = useState("");
 
   const [postImage, setPostImage] = useState({ image: "" });
 
   const fileInputRef = useRef(null);
 
+  const fetchProfile = async () => {
+    try {
+      const response = await axios.get(`${GetProfileUrl}/${user.userId}`);
+      console.log(response);
+      if (response.data) {
+        setInfoData(response.data.profile);
+      } else {
+        console.log(response.error);
+      }
+    } catch (error) {}
+  };
+
+  console.log(infoData);
   const fetchProfilePhoto = async () => {
     try {
       const response = await axios.get(`${urlGet}/${user.userId}`);
@@ -42,6 +56,7 @@ const MyAccount = () => {
 
   useEffect(() => {
     fetchProfilePhoto();
+    fetchProfile();
   }, [user]);
 
   const createPost = async (newImage) => {
@@ -81,10 +96,6 @@ const MyAccount = () => {
       createPost({ image: base64, userId });
     }
   };
-
-
-
-  
 
   const Item = styled(Paper)(({ theme }) => ({
     backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
@@ -149,14 +160,14 @@ const MyAccount = () => {
               <Box gridColumn={{ xs: "1", md: "span 4" }}>
                 <Item>
                   <Typography>My Information Step 02</Typography>
-                  <Typography> Name : {data.username}</Typography>
-                  <Typography> Birthday : {data.birthday}</Typography>
-                  <Typography> Gender : {data.gender}</Typography>
-                  <Typography> Religion : {data.religion}</Typography>
-                  <Typography> Race : {data.race}</Typography>
-                  <Typography>Caste : {data.caste}</Typography>
-                  <Typography> District : {data.district}</Typography>
-                  <Typography>City : {data.city}</Typography>
+                  <Typography> Name : {infoData.username}</Typography>
+                  <Typography> Birthday : {infoData.birthday}</Typography>
+                  <Typography> Gender : {infoData.gender}</Typography>
+                  <Typography> Religion : {infoData.religion}</Typography>
+                  <Typography> Race : {infoData.race}</Typography>
+                  <Typography>Caste : {infoData.caste}</Typography>
+                  <Typography> District : {infoData.district}</Typography>
+                  <Typography>City : {infoData.city}</Typography>
                 </Item>
               </Box>
             </Box>

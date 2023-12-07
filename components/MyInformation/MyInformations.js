@@ -1,5 +1,4 @@
-
-import React, { useState,useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import Grid from "@mui/material/Grid";
 import TextField from "@mui/material/TextField";
 import axios from "axios";
@@ -14,55 +13,49 @@ import Divider from "@mui/material/Divider";
 import Button from "@mui/material/Button";
 import DeleteIcon from "@mui/icons-material/Delete";
 import SendIcon from "@mui/icons-material/Send";
-import Stack from "@mui/material/Stack";
 import { environments } from "../../components/environment/environments";
-import SkipPreviousIcon from '@mui/icons-material/SkipPrevious';
-import SkipNextIcon from '@mui/icons-material/SkipNext';
-import dayjs from 'dayjs';
-import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import SkipPreviousIcon from "@mui/icons-material/SkipPrevious";
+import SkipNextIcon from "@mui/icons-material/SkipNext";
+import dayjs from "dayjs";
+import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import { DatePicker } from "@mui/x-date-pickers/DatePicker";
+import { useToken } from "../../src/context/TokenContext";
 
-
-
-
-
-export default function MyInformations({name,data}) {
+export default function MyInformations({ name, data }) {
+  const { user } = useToken();
+  console.log(user.userId,'data');
   const [userData, setUserData] = React.useState({
-    userId:data.userId,
+    userId: user.userId,
     username: data.username,
-    city:data.city,
+    city: data.city,
     district: data.district,
     race: data.race,
-    gender:data.gender,
-    religion:data.religion,
+    gender: data.gender,
+    religion: data.religion,
     birthday: data.birthday ? dayjs(data.birthday) : dayjs(),
   });
-
+  const GetProfileUrl = `${environments.BASE_HOST_URL}/api/getProfile`;
   const [step, setStep] = React.useState(1);
   const [fileInputOpen, setFileInputOpen] = useState(false);
-  const [datastore, setDatastore] = useState('');
+  const [datastore, setDatastore] = useState("");
 
   const [selectedDate, setSelectedDate] = useState(dayjs());
 
   const handleDateChange = (date) => {
     setSelectedDate(date);
   };
- 
 
   const handleChange = (event) => {
     const { name, value } = event.target;
     setUserData({
       ...userData,
       [name]: value,
-      
     });
   };
 
   const handleNextStep = () => {
- 
     if (step === 1) {
-   
       if (!userData.username) {
         alert("Please enter your name before proceeding.");
         return;
@@ -79,21 +72,30 @@ export default function MyInformations({name,data}) {
     }
   };
 
-
-  const FormSubmit = async () =>{
+  const FormSubmit = async () => {
     console.log(userData);
-    try {
-      const apiUrl = `${environments.BASE_HOST_URL}/api/createProfile`; 
-      const response = await axios.post(apiUrl,userData);
     
-      console.log(response.data.ProfileDB);
-  
-   
-    } catch (error) {
-      console.error('Error fetching data:', error);
-      setLoading(false); // Set loading to false in case of an error
+    try {
+      const AlreadyUse = await axios.get(`${GetProfileUrl}/${user.userId}`);
+      console.log(AlreadyUse);
+
+    if (AlreadyUse) {
+      console.log('apiUrlAlreadyUse');
+      const apiUrlAlreadyUse = `${environments.BASE_HOST_URL}/api/updateProfile/${user.userId}`;
+      const response = await axios.post(apiUrlAlreadyUse, userData);
+      console.log("Information Successfully Update");
+    }else{
+      const apiUrl = `${environments.BASE_HOST_URL}/api/createProfile`;
+      const response = await axios.post(apiUrl, userData);
+      console.log("Information Successfully Created");
     }
-  }
+      
+     
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    
+    }
+  };
 
   return (
     <div>
@@ -128,7 +130,7 @@ export default function MyInformations({name,data}) {
                 </Typography>
                 <FormControl sx={{ m: 1, minWidth: 120 }}>
                   <InputLabel id="demo-simple-select-helper-label">
-                  City
+                    City
                   </InputLabel>
                   <Select
                     labelId="demo-simple-select-helper-label"
@@ -139,12 +141,12 @@ export default function MyInformations({name,data}) {
                     onChange={handleChange}
                   >
                     <MenuItem value="Kanthale">Kanthale</MenuItem>
-      <MenuItem value="polgolla">polgolla</MenuItem>
-      <MenuItem value="godagama">godagama</MenuItem>
+                    <MenuItem value="polgolla">polgolla</MenuItem>
+                    <MenuItem value="godagama">godagama</MenuItem>
                   </Select>
                 </FormControl>
               </Grid>
-           
+
               <Grid item xs={12} sm={6}>
                 <Typography
                   style={{ marginTop: "20px" }}
@@ -165,17 +167,11 @@ export default function MyInformations({name,data}) {
                     value={userData.gender}
                     onChange={handleChange}
                   >
-                   
-                    <MenuItem value='ස්ත්‍රී'>ස්ත්‍රී</MenuItem>
-                    <MenuItem value='පුරුෂ'>පුරුෂ</MenuItem>
+                    <MenuItem value="ස්ත්‍රී">ස්ත්‍රී</MenuItem>
+                    <MenuItem value="පුරුෂ">පුරුෂ</MenuItem>
                   </Select>
                 </FormControl>
               </Grid>
-              
-
-
-          
-
 
               <Grid item xs={12} sm={6}>
                 <Typography
@@ -194,15 +190,15 @@ export default function MyInformations({name,data}) {
                     id="demo-simple-select-helper"
                     label="religion"
                     name="religion"
-                    value={userData.religion || ''}
+                    value={userData.religion || ""}
                     onChange={handleChange}
                   >
                     <MenuItem value=""></MenuItem>
-                    <MenuItem value='බෞද්ධ'>බෞද්ධ</MenuItem>
-                    <MenuItem value='හින්දු'>හින්දු</MenuItem>
-                    <MenuItem value='ක්‍රිස්තියාන්ත'>ක්‍රිස්තියාන්ත</MenuItem>
-                    <MenuItem value='ඉස්ලාම්'>ඉස්ලාම්</MenuItem>
-                    <MenuItem value='රාජ්‍යයේ'>රාජ්‍යයේ අනුක්ඛම් </MenuItem>
+                    <MenuItem value="බෞද්ධ">බෞද්ධ</MenuItem>
+                    <MenuItem value="හින්දු">හින්දු</MenuItem>
+                    <MenuItem value="ක්‍රිස්තියාන්ත">ක්‍රිස්තියාන්ත</MenuItem>
+                    <MenuItem value="ඉස්ලාම්">ඉස්ලාම්</MenuItem>
+                    <MenuItem value="රාජ්‍යයේ">රාජ්‍යයේ අනුක්ඛම් </MenuItem>
                   </Select>
                 </FormControl>
               </Grid>
@@ -216,7 +212,7 @@ export default function MyInformations({name,data}) {
                 </Typography>
                 <FormControl sx={{ m: 1, minWidth: 120 }}>
                   <InputLabel id="demo-simple-select-helper-label">
-                  Race
+                    Race
                   </InputLabel>
                   <Select
                     labelId="demo-simple-select-helper-label"
@@ -226,9 +222,7 @@ export default function MyInformations({name,data}) {
                     value={userData.race}
                     onChange={handleChange}
                   >
-                    
-                    <MenuItem value='Caucasian'>Caucasian</MenuItem>
-                  
+                    <MenuItem value="Caucasian">Caucasian</MenuItem>
                   </Select>
                 </FormControl>
               </Grid>
@@ -237,11 +231,9 @@ export default function MyInformations({name,data}) {
         )}
 
         {step === 2 && (
-      <div>
-      <Grid style={{ marginTop: "20px" }} container spacing={2}>
-      
-
-      <Grid item xs={12} sm={6}>
+          <div>
+            <Grid style={{ marginTop: "20px" }} container spacing={2}>
+              <Grid item xs={12} sm={6}>
                 <Typography
                   style={{ marginTop: "20px" }}
                   variant="body2"
@@ -251,7 +243,7 @@ export default function MyInformations({name,data}) {
                 </Typography>
                 <FormControl sx={{ m: 1, minWidth: 120 }}>
                   <InputLabel id="demo-simple-select-helper-label">
-                  District
+                    District
                   </InputLabel>
                   <Select
                     fullWidth
@@ -262,124 +254,111 @@ export default function MyInformations({name,data}) {
                     onChange={handleChange}
                   >
                     <MenuItem value=""></MenuItem>
-                    <MenuItem value='කොළඹ'>කොළඹ</MenuItem>
-                    <MenuItem value='ගම්පහ'>ගම්පහ</MenuItem>
-                    <MenuItem value='කළුතර'>කළුතර</MenuItem>
-                    <MenuItem value='මහනුවර'>මහනුවර</MenuItem>
-                    <MenuItem value='මාතලේ'>මාතලේ</MenuItem>
-                    <MenuItem value='නුවර එළිය'>නුවර එළිය</MenuItem>
-                    <MenuItem value='ගාල්'>ගාල්</MenuItem>
-                    <MenuItem value='මාතර'>මාතර</MenuItem>
-                    <MenuItem value='හම්බන්තොට'>හම්බන්තොට</MenuItem>
-                    <MenuItem value='යාපනය'>යාපනය</MenuItem>
-                    <MenuItem value='කිලිනොච්චි'>කිලිනොච්චි</MenuItem>
-                    <MenuItem value='මන්නාරම'>මන්නාරම</MenuItem>
-                    <MenuItem value='වවුනියා'>වවුනියා</MenuItem>
-                    <MenuItem value='මුලතිවු'>මුලතිවු</MenuItem>
-                    <MenuItem value='මඩකලපුව'>මඩකලපුව</MenuItem>
-                    <MenuItem value='අම්පාර'>අම්පාර</MenuItem>
-                    <MenuItem value='ත්‍රිකුණාමලය'>ත්‍රිකුණාමලය</MenuItem>
-                    <MenuItem value='කුරුණෑගල'>කුරුණෑගල</MenuItem>
-                    <MenuItem value='පුත්තලම'>පුත්තලම</MenuItem>
-                    <MenuItem value='අනුරාධපුරය'>අනුරාධපුරය</MenuItem>
-                    <MenuItem value='පොළොන්නරුව'>පොළොන්නරුව</MenuItem>
-                    <MenuItem value='බදුල්ල'>බදුල්ල</MenuItem>
-                    <MenuItem value='මොනරාගල'>මොනරාගල</MenuItem>
-                    <MenuItem value='රත්නපුර'>රත්නපුර</MenuItem>
-                    <MenuItem value='කෑගල්ල'>කෑගල්ල</MenuItem>
-          
-                  
+                    <MenuItem value="කොළඹ">කොළඹ</MenuItem>
+                    <MenuItem value="ගම්පහ">ගම්පහ</MenuItem>
+                    <MenuItem value="කළුතර">කළුතර</MenuItem>
+                    <MenuItem value="මහනුවර">මහනුවර</MenuItem>
+                    <MenuItem value="මාතලේ">මාතලේ</MenuItem>
+                    <MenuItem value="නුවර එළිය">නුවර එළිය</MenuItem>
+                    <MenuItem value="ගාල්">ගාල්</MenuItem>
+                    <MenuItem value="මාතර">මාතර</MenuItem>
+                    <MenuItem value="හම්බන්තොට">හම්බන්තොට</MenuItem>
+                    <MenuItem value="යාපනය">යාපනය</MenuItem>
+                    <MenuItem value="කිලිනොච්චි">කිලිනොච්චි</MenuItem>
+                    <MenuItem value="මන්නාරම">මන්නාරම</MenuItem>
+                    <MenuItem value="වවුනියා">වවුනියා</MenuItem>
+                    <MenuItem value="මුලතිවු">මුලතිවු</MenuItem>
+                    <MenuItem value="මඩකලපුව">මඩකලපුව</MenuItem>
+                    <MenuItem value="අම්පාර">අම්පාර</MenuItem>
+                    <MenuItem value="ත්‍රිකුණාමලය">ත්‍රිකුණාමලය</MenuItem>
+                    <MenuItem value="කුරුණෑගල">කුරුණෑගල</MenuItem>
+                    <MenuItem value="පුත්තලම">පුත්තලම</MenuItem>
+                    <MenuItem value="අනුරාධපුරය">අනුරාධපුරය</MenuItem>
+                    <MenuItem value="පොළොන්නරුව">පොළොන්නරුව</MenuItem>
+                    <MenuItem value="බදුල්ල">බදුල්ල</MenuItem>
+                    <MenuItem value="මොනරාගල">මොනරාගල</MenuItem>
+                    <MenuItem value="රත්නපුර">රත්නපුර</MenuItem>
+                    <MenuItem value="කෑගල්ල">කෑගල්ල</MenuItem>
                   </Select>
                 </FormControl>
-                
-               
               </Grid>
-     
-        <Grid item xs={12} sm={6}>
-          <Typography
-            style={{ marginTop: "20px" }}
-            variant="body2"
-            color="textSecondary"
-          >
-            උපන්දිනය
-          </Typography>
-          <LocalizationProvider dateAdapter={AdapterDayjs}>
-      <DatePicker
-        label="Select Date"
-        value={userData.birthday}
-        onChange={(date) =>
-          setUserData({ ...userData, birthday: dayjs(date) })
-        }
-      />
-    </LocalizationProvider>
-        </Grid>
-        
 
+              <Grid item xs={12} sm={6}>
+                <Typography
+                  style={{ marginTop: "20px" }}
+                  variant="body2"
+                  color="textSecondary"
+                >
+                  උපන්දිනය
+                </Typography>
+                <LocalizationProvider dateAdapter={AdapterDayjs}>
+                  <DatePicker
+                    label="Select Date"
+                    value={userData.birthday}
+                    onChange={(date) =>
+                      setUserData({ ...userData, birthday: dayjs(date) })
+                    }
+                  />
+                </LocalizationProvider>
+              </Grid>
 
-    
-
-
-        <Grid item xs={12} sm={6}>
-          <Typography
-            style={{ marginTop: "20px" }}
-            variant="body2"
-            color="textSecondary"
-          >
-            ආගම
-          </Typography>
-          <FormControl sx={{ m: 1, minWidth: 120 }}>
-            <InputLabel id="demo-simple-select-helper-label">
-              ආගම
-            </InputLabel>
-            <Select
-              labelId="demo-simple-select-helper-label"
-              id="demo-simple-select-helper"
-              label="religion"
-              name="religion"
-              value={userData.religion || ''}
-              onChange={handleChange}
-            >
-              <MenuItem value=""></MenuItem>
-              <MenuItem value='බෞද්ධ'>බෞද්ධ</MenuItem>
-              <MenuItem value='හින්දු'>හින්දු</MenuItem>
-              <MenuItem value='ක්‍රිස්තියාන්ත'>ක්‍රිස්තියාන්ත</MenuItem>
-              <MenuItem value='ඉස්ලාම්'>ඉස්ලාම්</MenuItem>
-              <MenuItem value='රාජ්‍යයේ'>රාජ්‍යයේ අනුක්ඛම් </MenuItem>
-            </Select>
-          </FormControl>
-        </Grid>
-        <Grid item xs={12} sm={6}>
-          <Typography
-            style={{ marginTop: "20px" }}
-            variant="body2"
-            color="textSecondary"
-          >
-            Select your race
-          </Typography>
-          <FormControl sx={{ m: 1, minWidth: 120 }}>
-            <InputLabel id="demo-simple-select-helper-label">
-            Race
-            </InputLabel>
-            <Select
-              labelId="demo-simple-select-helper-label"
-              id="demo-simple-select-helper"
-              label="Race"
-              name="race"
-              value={userData.race}
-              onChange={handleChange}
-            >
-              
-              <MenuItem value='Caucasian'>Caucasian</MenuItem>
-            
-            </Select>
-          </FormControl>
-        </Grid>
-      </Grid>
-      <button onClick={FormSubmit}>submit</button>
-    </div>
-          
+              <Grid item xs={12} sm={6}>
+                <Typography
+                  style={{ marginTop: "20px" }}
+                  variant="body2"
+                  color="textSecondary"
+                >
+                  ආගම
+                </Typography>
+                <FormControl sx={{ m: 1, minWidth: 120 }}>
+                  <InputLabel id="demo-simple-select-helper-label">
+                    ආගම
+                  </InputLabel>
+                  <Select
+                    labelId="demo-simple-select-helper-label"
+                    id="demo-simple-select-helper"
+                    label="religion"
+                    name="religion"
+                    value={userData.religion || ""}
+                    onChange={handleChange}
+                  >
+                    <MenuItem value=""></MenuItem>
+                    <MenuItem value="බෞද්ධ">බෞද්ධ</MenuItem>
+                    <MenuItem value="හින්දු">හින්දු</MenuItem>
+                    <MenuItem value="ක්‍රිස්තියාන්ත">ක්‍රිස්තියාන්ත</MenuItem>
+                    <MenuItem value="ඉස්ලාම්">ඉස්ලාම්</MenuItem>
+                    <MenuItem value="රාජ්‍යයේ">රාජ්‍යයේ අනුක්ඛම් </MenuItem>
+                  </Select>
+                </FormControl>
+              </Grid>
+              <Grid item xs={12} sm={6}>
+                <Typography
+                  style={{ marginTop: "20px" }}
+                  variant="body2"
+                  color="textSecondary"
+                >
+                  Select your race
+                </Typography>
+                <FormControl sx={{ m: 1, minWidth: 120 }}>
+                  <InputLabel id="demo-simple-select-helper-label">
+                    Race
+                  </InputLabel>
+                  <Select
+                    labelId="demo-simple-select-helper-label"
+                    id="demo-simple-select-helper"
+                    label="Race"
+                    name="race"
+                    value={userData.race}
+                    onChange={handleChange}
+                  >
+                    <MenuItem value="Caucasian">Caucasian</MenuItem>
+                  </Select>
+                </FormControl>
+              </Grid>
+            </Grid>
+            <button onClick={FormSubmit}>submit</button>
+          </div>
         )}
-
       </form>
       <List
         sx={{
@@ -405,7 +384,7 @@ export default function MyInformations({name,data}) {
             variant="contained"
             onClick={handlePreviousStep}
             endIcon={<SkipPreviousIcon />}
-            style={{margin:'10px'}}
+            style={{ margin: "10px" }}
           >
             Previous Step
           </Button>
