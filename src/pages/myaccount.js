@@ -60,6 +60,7 @@ const MyAccount = () => {
   }, [user]);
 
   const createPost = async (newImage) => {
+    
     try {
       await axios.post(url, newImage);
 
@@ -80,9 +81,12 @@ const MyAccount = () => {
   };
 
   const handleFileUpload = async (e) => {
+   try {
     const file = e.target.files[0];
-
-    if (file) {
+    
+    const response = await axios.get(`${urlGet}/${user.userId}`);
+    
+    if (response.data.length>0) {
       const base64 = await convertToBase64(file);
       const userId = user.userId;
       console.log(base64);
@@ -95,6 +99,9 @@ const MyAccount = () => {
       setPostImage({ ...postImage, image: base64, userId: user.userId });
       createPost({ image: base64, userId });
     }
+   } catch (error) {
+    console.error("Error fetching data:", error);
+   }
   };
 
   const Item = styled(Paper)(({ theme }) => ({

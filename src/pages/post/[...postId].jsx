@@ -8,6 +8,10 @@ import { useToken } from '../../context/TokenContext';
 const PostId = () => {
   return (
     <Layout>
+ 
+  <div className="multi-color-gradient" style={{ marginTop: "150px" }}>
+wwwwwwwwwwwwwwwwwww
+  </div>
 
     </Layout>
   )

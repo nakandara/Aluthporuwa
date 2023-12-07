@@ -50,7 +50,7 @@ const Post = () => {
               <div className="image_postView">
                 <img
                   className="image_postView_image"
-                  src={post.PostImageUrl}
+                  src={post.PostDetails.image}
                   alt={`Image ${index + 1}`}
                 />
               </div>
