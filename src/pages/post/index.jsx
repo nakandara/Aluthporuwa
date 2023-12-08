@@ -14,7 +14,7 @@ const Post = () => {
 
   useEffect(() => {
     if (user && user.userId) {
-      const apiUrl = `${environments.BASE_HOST_LOCAL_URL}/api/getPosts/${user.userId}`;
+      const apiUrl = `${environments.BASE_HOST_URL}/api/getPosts/${user.userId}`;
 
       async function fetchPostData() {
         try {

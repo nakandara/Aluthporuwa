@@ -38,7 +38,7 @@ export async function getServerSideProps(context) {
   try {
     let loading;
     loading=false
-    const response = await axios.get(`${environments.BASE_HOST_LOCAL_URL}/api/getPost/${postId}`);
+    const response = await axios.get(`${environments.BASE_HOST_URL}/api/getPost/${postId}`);
    if (response) {
    
     loading = true
