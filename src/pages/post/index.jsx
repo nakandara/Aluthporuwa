@@ -4,6 +4,7 @@ import axios from "axios";
 import { environments } from "../../../components/environment/environments";
 import { useRouter } from "next/router";
 import { useToken } from '../../context/TokenContext';
+import LazyLoad from 'react-lazyload';
 
 const Post = () => {
   const { user } = useToken();
@@ -47,18 +48,28 @@ const Post = () => {
     <Layout>
       <div style={{ marginTop: "70px", marginBottom: "40vh" }}>
         <div className="card-container-post">
-          {loading?<> {data?.map((post, index) => (
-            <div className="card-post" key={index} onClick={() => handleClick(post.postId)}>
-              <div className="image_postView">
-                <img
-                  className="image_postView_image"
-                  src={post.image}
-                  alt={`Image ${index + 1}`}
-                />
-              </div>
-              <div className="description">{post.description.slice(0, 18)}</div>
-            </div>
-          ))}</>:<>Loading...........</>}
+          {loading ? (
+            <>
+              {data?.map((post, index) => (
+                <LazyLoad key={index} height={200} offset={100}>
+                  <div className="card-post" onClick={() => handleClick(post.postId)}>
+                    <div className="image_postView">
+                      <LazyLoad height={200} offset={100}>
+                        <img
+                          className="image_postView_image"
+                          src={post.image}
+                          alt={`Image ${index + 1}`}
+                        />
+                      </LazyLoad>
+                    </div>
+                    <div className="description">{post.description.slice(0, 18)}</div>
+                  </div>
+                </LazyLoad>
+              ))}
+            </>
+          ) : (
+            <div>Loading...........</div>
+          )}
         </div>
       </div>
     </Layout>
