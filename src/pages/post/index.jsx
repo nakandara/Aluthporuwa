@@ -9,7 +9,7 @@ import LazyLoad from 'react-lazyload';
 const Post = () => {
   const { user } = useToken();
   const router = useRouter();
-  const [data, setData] = useState('');
+  const [data, setData] = useState(''); 
   
   const [loading, setLoading] = useState(false);
 
