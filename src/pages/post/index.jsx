@@ -120,7 +120,7 @@ const Post = () => {
           {loading ? (
             <>
               {data?.map((post, index) => (
-                <LazyLoad key={index} height={200} offset={100}>
+                <div key={index} height={200} offset={100}>
                   <div
                     className="card-wrapper"
                     onClick={() => handleClick(post.postId)}
@@ -177,7 +177,7 @@ const Post = () => {
               </div>
               <div className="description">{post.description}</div>
             </div> */}
-                </LazyLoad>
+                </div>
               ))}
             </>
           ) : (
