@@ -181,7 +181,7 @@ const Post = () => {
               ))}
             </>
           ) : (
-            <div>Loading...........</div>
+            <div>Loading.............</div>
           )}
         </div>
       </div>
