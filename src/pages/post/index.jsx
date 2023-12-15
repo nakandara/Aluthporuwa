@@ -4,7 +4,7 @@ import axios from "axios";
 import { environments } from "../../../components/environment/environments";
 import { useRouter } from "next/router";
 import { useToken } from "../../context/TokenContext";
-import LazyLoad from "react-lazyload";
+
 
 const Post = () => {
   const { user } = useToken();
