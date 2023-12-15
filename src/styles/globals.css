@@ -919,8 +919,9 @@ a {
 
 /* Flexbox container for cards */
 .card-container-post {
-  display: flex;
+  display: grid;
   flex-wrap: wrap;
+  
 }
 
 /* Media query for smaller screens (mobile) */
@@ -986,4 +987,74 @@ a {
   justify-content: center;
   align-items: center;
   height: 10vh; /* 100% of the viewport height */
+}
+
+.description{
+  margin-top: 10%;
+  border: #020024;
+  background-color: #e2f18c;
+}
+
+
+/* CSS styles */
+.cardn {
+  /* Styles for the card */
+  width: 100%; /* Adjust the width as needed */
+  max-width: 300px; /* Maximum width of the card */
+  border: 1px solid #ccc; /* Border for the card */
+  border-radius: 5px; /* Rounded corners for aesthetics */
+  overflow: hidden; 
+  background: linear-gradient(45deg, #7e1a77, #6bb2f0, #70a4e4, #7b30cc);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  /* Optional: Add some spacing between the cards */
+  gap: 10px; 
+  
+  /* Hide overflow content */
+}
+
+
+.card-image {
+  /* Styles for the image */
+  margin-top: 7%;
+  width: 200px; /* Fixed width for the image */
+  height: 220px; /* Fixed height for the image */
+  object-fit: cover; /* Maintain aspect ratio while covering the space */
+ 
+}
+
+.card-content {
+  /* Styles for the content area */
+  padding: 15px;
+   /* Add padding for content */
+}
+
+.card-wrapper {
+  /* Styles for the container of the card */
+  display: grid;
+  justify-content: center; /* Horizontally center content */
+  align-items: center; /* Vertically center content */
+  height: 65vh;
+  /* Set height to full viewport height */
+}
+
+/* Responsive styles */
+@media (min-width: 768px) {
+  /* Adjustments for larger screens (e.g., tablets and desktops) */
+  .cardn {
+    max-width: 400px; /* Increase max-width for larger screens */
+  }
+}
+
+
+.social_button{
+  display:flex;
+}
+
+
+.social-image{
+  width: 30px;
+  height: 30px;
 }
