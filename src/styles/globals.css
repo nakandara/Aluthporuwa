@@ -1002,7 +1002,7 @@ a {
   width: 100%; /* Adjust the width as needed */
   max-width: 300px; /* Maximum width of the card */
   border: 1px solid #ccc; /* Border for the card */
-  border-radius: 5px; /* Rounded corners for aesthetics */
+  border-radius: 30px; /* Rounded corners for aesthetics */
   overflow: hidden; 
   background: linear-gradient(45deg, #7e1a77, #6bb2f0, #70a4e4, #7b30cc);
   display: flex;
@@ -1057,4 +1057,43 @@ a {
 .social-image{
   width: 30px;
   height: 30px;
+}
+
+
+.drop_down_filter{
+  color: rgb(92, 7, 7);
+  justify-content:flex-end;
+ 
+}
+
+
+
+.app-bar-new {
+ 
+  top: 0;
+  left: 0;
+  width: 100%;
+position: fixed;
+  
+  z-index: 999; /* Adjust the z-index as needed */
+  background-color: #fff; /* Set your desired background color */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Optional: Add shadow */
+}
+
+.drop_down_filter {
+  margin-top: 70px;
+  border-radius: 10px;
+  border: 1px solid #d40c0cdc;
+  background: linear-gradient(45deg, #fafaf8, #fcfdfd, #fbfcfd, #fdf9f7);
+  display: flex;
+  justify-content: flex-end;
+  margin-right: 10px;
+  /* Other styles */
+}
+
+.content_new {
+  margin-top: 140px; /* Adjust based on the app bar height */
+  margin-bottom: 40vh;
+  overflow-y: auto; /* Enable vertical scroll for content */
+  /* Other styles */
 }

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Layout from "../../../components/Layout";
+import SearchFilter from "../../../components/post/SearchFilter";
 import axios from "axios";
 import { environments } from "../../../components/environment/environments";
 import { useRouter } from "next/router";
@@ -115,17 +116,28 @@ const Post = () => {
 
   return (
     <Layout>
-      <div style={{ marginTop: "70px", marginBottom: "40vh" }}>
-        <div className="card-container-post">
+
+<div className="app-bar-new">
+    <div className="drop_down_filter">
+      <SearchFilter />
+    </div>
+  </div>
+      <div style={{ marginTop: "10px", marginBottom: "40vh" }}>
+      
+        <div className="card-container-post content_new ">
+       
           {loading ? (
             <>
               {data?.map((post, index) => (
                 <div key={index} height={200} offset={100}>
                   <div
                     className="card-wrapper"
-                    onClick={() => handleClick(post.postId)}
+                   
                   >
-                    <div className="cardn">
+                    <div className="cardn" 
+                     onClick={() => handleClick(post.postId)}
+                    >
+                      
                       <img
                         className="card-image"
                         src={post.image}
@@ -165,18 +177,7 @@ const Post = () => {
                     </div>
                   </div>
 
-                  {/* <div className="card-post" onClick={() => handleClick(post.postId)}>
-              <div className="image_postView">
-                <LazyLoad height={200} offset={100}>
-                  <img
-                    className="image_postView_image"
-                    src={post.image}
-                    alt={`Image ${index + 1}`}
-                  />
-                </LazyLoad>
-              </div>
-              <div className="description">{post.description}</div>
-            </div> */}
+                
                 </div>
               ))}
             </>
