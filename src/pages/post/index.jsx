@@ -6,10 +6,11 @@ import { environments } from "../../../components/environment/environments";
 import { useRouter } from "next/router";
 import { useToken } from "../../context/TokenContext";
 
-
 const Post = () => {
   const { user } = useToken();
   const router = useRouter();
+  const [selectedCategories, setSelectedCategories] = useState([]);
+  const [filteredData, setFilteredData] = useState([]);
   const [data, setData] = useState([
     {
       _id: "65741a033e9bcea69d35d74e",
@@ -73,7 +74,7 @@ const Post = () => {
       userId: "651ab367455cb0a4405755b6",
       image:
         "https://images.pexels.com/photos/1557843/pexels-photo-1557843.jpeg?auto=compress&cs=tinysrgb&w=600",
-      category: ["Vehicle"],
+      category: ["Spa"],
       postId: "65741a033e9bcea69d35d74f",
       __v: 0,
     },
@@ -82,12 +83,11 @@ const Post = () => {
       userId: "651ab367455cb0a4405755b6",
       image:
         "https://images.pexels.com/photos/341970/pexels-photo-341970.jpeg?auto=compress&cs=tinysrgb&w=600",
-      category: ["Vehicle"],
+      category: ["Spa"],
       postId: "65741a033e9bcea69d35d74f",
       __v: 0,
     },
   ]);
-
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -96,6 +96,7 @@ const Post = () => {
 
       async function fetchPostData() {
         try {
+          // Fetch data using axios or fetch here
         } catch (error) {
           console.error("Error fetching data:", error);
         }
@@ -109,35 +110,70 @@ const Post = () => {
     router.push(`/post/${postId}`); // Redirects to the specific post route
   };
 
+  const handleCategorySelect = (category) => {
+    const isCategorySelected = selectedCategories.includes(category);
+    let updatedCategories;
+
+    if (isCategorySelected) {
+      updatedCategories = selectedCategories.filter((cat) => cat !== category);
+    } else {
+      updatedCategories = [...selectedCategories, category];
+    }
+
+    setSelectedCategories(updatedCategories);
+
+    const filtered = data.filter((post) =>
+      updatedCategories.some((selectedCategory) =>
+        post.category.includes(selectedCategory)
+      )
+    );
+
+    setFilteredData(filtered);
+  };
+
   if (!user) {
     return <div>Loading user data...</div>;
   }
-  console.log(data);
+
+  const handleCategoryFilter = (input) => {
+    const filtered = data.filter((post) =>
+      post.category.some((cat) =>
+        cat.toLowerCase().includes(input.toLowerCase())
+      )
+    );
+    setFilteredData(filtered);
+  };
+  const renderPosts = filteredData.length > 0 ? filteredData : data;
 
   return (
     <Layout>
-
-<div className="app-bar-new">
-    <div className="drop_down_filter">
-      <SearchFilter />
-    </div>
-  </div>
-      <div style={{ marginTop: "10px", marginBottom: "40vh" }}>
-      
-        <div className="card-container-post content_new ">
-       
-          {loading ? (
-            <>
-              {data?.map((post, index) => (
+      <div className="app-bar-new">
+        <div className="drop_down_filter">
+          <SearchFilter
+            categories={data.reduce((acc, curr) => {
+              curr.category.forEach((cat) => {
+                if (!acc.includes(cat)) {
+                  acc.push(cat);
+                }
+              });
+              return acc;
+            }, [])}
+            handleCategorySelect={handleCategorySelect}
+            selectedCategories={selectedCategories}
+          />
+        </div>
+      </div>
+      <div className="card-container-post content_new ">
+        {loading ? (
+          <>
+            {renderPosts.map((post, index) => (
+              <div key={index} /* Add other necessary attributes */>
                 <div key={index} height={200} offset={100}>
-                  <div
-                    className="card-wrapper"
-                   
-                  >
-                    <div className="cardn" 
-                     onClick={() => handleClick(post.postId)}
+                  <div className="card-wrapper">
+                    <div
+                      className="cardn"
+                      onClick={() => handleClick(post.postId)}
                     >
-                      
                       <img
                         className="card-image"
                         src={post.image}
@@ -176,25 +212,19 @@ const Post = () => {
                       </div>
                     </div>
                   </div>
-
-                
                 </div>
-              ))}
-            </>
-          ) : (
-            <div>Loading.............</div>
-          )}
-        </div>
+              </div>
+            ))}
+          </>
+        ) : (
+          <div>Loading.............</div>
+        )}
       </div>
     </Layout>
   );
 };
 
 export default Post;
-
-
-
-
 
 // import React, { useState, useEffect } from "react";
 // import Layout from "../../../components/Layout";
@@ -207,8 +237,8 @@ export default Post;
 // const Post = () => {
 //   const { user } = useToken();
 //   const router = useRouter();
-//   const [data, setData] = useState(''); 
-  
+//   const [data, setData] = useState('');
+
 //   const [loading, setLoading] = useState(false);
 
 //   useEffect(() => {
@@ -240,7 +270,6 @@ export default Post;
 //   if (!user) {
 //     return <div>Loading user data...</div>;
 //   }
-
 
 //   return (
 //     <Layout>
