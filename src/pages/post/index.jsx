@@ -37,7 +37,7 @@ const Post = () => {
       userId: "651ab367455cb0a4405755b6",
       image:
         "https://images.pexels.com/photos/1321909/pexels-photo-1321909.jpeg?auto=compress&cs=tinysrgb&w=600",
-      category: ["Vehicle"],
+      category: ["Home"],
       postId: "65741a033e9bcea69d35d74f",
       __v: 0,
     },
