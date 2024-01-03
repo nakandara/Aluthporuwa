@@ -89,6 +89,9 @@ const Post = () => {
     },
   ]);
   const [loading, setLoading] = useState(true);
+  const [animateHeart, setAnimateHeart] = useState(false);
+  const [animateSmile, setAnimateSmile] = useState(false);
+  const [animateLike, setAnimateLike] = useState(false);
 
   useEffect(() => {
     if (user && user.userId) {
@@ -135,15 +138,28 @@ const Post = () => {
     return <div>Loading user data...</div>;
   }
 
-  const handleCategoryFilter = (input) => {
-    const filtered = data.filter((post) =>
-      post.category.some((cat) =>
-        cat.toLowerCase().includes(input.toLowerCase())
-      )
-    );
-    setFilteredData(filtered);
-  };
+ 
   const renderPosts = filteredData.length > 0 ? filteredData : data;
+
+
+  const imageReaction = (value) => {
+    if (value ==="HEART") {
+      setAnimateHeart(true);
+    }
+    else if (value ==='SMILE') {
+      setAnimateSmile(true)
+    }
+    else {
+      setAnimateLike(true)
+    }
+    
+    setTimeout(() => {
+    setAnimateHeart(false);
+     setAnimateSmile(false)
+     setAnimateLike(false)
+    }, 1000);
+  };
+
 
   return (
     <Layout>
@@ -167,20 +183,32 @@ const Post = () => {
         {loading ? (
           <>
             {renderPosts.map((post, index) => (
-              <div key={index} /* Add other necessary attributes */>
+              <div key={index} >
                 <div key={index} height={200} offset={100}>
                   <div className="card-wrapper">
                     <div
                       className="cardn"
-                      onClick={() => handleClick(post.postId)}
+                  
                     >
-                      <img
-                        className="card-image"
-                        src={post.image}
-                        alt={`Image ${index + 1}`}
-                      />
+                     <div className="card">
+  <div className="image-container">
+    <img
+      onClick={() => handleClick(post.postId)}
+      className="card-image"
+      src={post.image}
+      alt={`Image ${index + 1}`}
+    />
+    <div className="overlay-text"> <img
+                           onClick={() => imageReaction(`HEART`)}
+                           className="socialImages"
+                            src="/media/icons8-heart-48.png"
+                            alt={`Image ${index + 1}`}
+                          /></div>
+  </div>
+</div>
+                      
 
-                      <div className="card-content">
+                      <div onClick={() => handleClick(post.postId)} className="card-content">
                         <h2>Title</h2>
                         <p>Description or additional content goes here...</p>
                       </div>
@@ -188,7 +216,8 @@ const Post = () => {
                         <div>
                           {" "}
                           <img
-                            className="social-image"
+                           onClick={() => imageReaction(`HEART`)}
+                           className={`social-image ${animateHeart ? 'heart-beat' : ''}`}
                             src="/media/icons8-heart-48.png"
                             alt={`Image ${index + 1}`}
                           />
@@ -196,7 +225,8 @@ const Post = () => {
                         <div>
                           {" "}
                           <img
-                            className="social-image"
+                           onClick={() => imageReaction(`SMILE`)}
+                           className={`social-image ${animateSmile ? 'smile-beat' : ''}`}
                             src="/media/icons8-smile-48.png"
                             alt={`Image ${index + 1}`}
                           />
@@ -204,7 +234,8 @@ const Post = () => {
                         <div>
                           {" "}
                           <img
-                            className="social-image"
+                           onClick={() => imageReaction(`LIKE`)}
+                           className={`social-image ${animateLike ? 'smile-beat' : ''}`}
                             src="/media/icons8-like-48.png"
                             alt={`Image ${index + 1}`}
                           />

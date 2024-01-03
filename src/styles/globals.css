@@ -1019,10 +1019,10 @@ a {
 .card-image {
   /* Styles for the image */
   margin-top: 7%;
-  width: 200px; /* Fixed width for the image */
-  height: 220px; /* Fixed height for the image */
+  width: 230px; /* Fixed width for the image */
+  height: 240px; /* Fixed height for the image */
   object-fit: cover; /* Maintain aspect ratio while covering the space */
- 
+  border-radius: 20px
 }
 
 .card-content {
@@ -1036,15 +1036,26 @@ a {
   display: grid;
   justify-content: center; /* Horizontally center content */
   align-items: center; /* Vertically center content */
-  height: 65vh;
+  height: 40vh;
   /* Set height to full viewport height */
 }
 
 /* Responsive styles */
-@media (min-width: 768px) {
+@media (min-width: 368px) {
   /* Adjustments for larger screens (e.g., tablets and desktops) */
   .cardn {
-    max-width: 400px; /* Increase max-width for larger screens */
+    max-width: 665px; /* Increase max-width for larger screens */
+  }
+}
+@media (max-width: 550px) {
+  /* Adjustments for larger screens (e.g., tablets and desktops) */
+  .card-wrapper {
+    /* Styles for the container of the card */
+    display: grid;
+    justify-content: center; /* Horizontally center content */
+    align-items: center; /* Vertically center content */
+    height: 60vh;
+    /* Set height to full viewport height */
   }
 }
 
@@ -1059,7 +1070,10 @@ a {
   height: 30px;
 }
 
-
+.socialImages{
+  width: 45px;
+  height: 40px;
+}
 .drop_down_filter{
   color: rgb(92, 7, 7);
   justify-content:flex-end;
@@ -1096,4 +1110,57 @@ position: fixed;
   margin-bottom: 40vh;
   overflow-y: auto; /* Enable vertical scroll for content */
   /* Other styles */
+}
+/* Define animation keyframes */
+@keyframes heartBeatAnimation {
+  0% {
+    transform: scale(2);
+  }
+  50% {
+    transform: scale(4.3);
+  }
+  100% {
+    transform: scale(8);
+  }
+}
+
+/* Add a class for animation */
+.heart-beat {
+  animation: heartBeatAnimation 0.5s ease-in-out;
+}
+
+.smile-beat {
+  animation: heartBeatAnimation 0.5s ease-in-out;
+}
+
+/* CSS to hide the image after animation */
+.hide {
+  display: none;
+}
+
+.card {
+  /* Styles for the card container */
+  position: relative;
+  /* Other styles for the card */
+}
+
+.image-container {
+  position: relative;
+  /* Additional styles for the container holding the image and text */
+}
+
+.card-image {
+  display: block;
+  /* Other styles for the image */
+}
+
+.overlay-text {
+  position: absolute;
+  top: 100%; /* Adjust as needed */
+  left: 50%; /* Adjust as needed */
+  transform: translate(-50%, -50%);
+  border-radius: 200px;
+  background-color: #d5f1f7;
+  padding: 5px; /* Adjust padding as needed */
+  /* Additional styles for the overlay text */
 }

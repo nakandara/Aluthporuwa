@@ -105,6 +105,10 @@ else{
 }
 
 
+const googleSignIn =() =>{
+  window.open("http://localhost:8080/auth/google", "_self");
+}
+
   return (
     <div>
     
@@ -168,7 +172,7 @@ else{
          
           <button
             key={name}
-            onClick={handleOAuthSignIn(name)}
+            onClick={googleSignIn}
             className="btn block-cube block-cube-hover"
             type="button"
           >
