@@ -1054,7 +1054,19 @@ a {
     display: grid;
     justify-content: center; /* Horizontally center content */
     align-items: center; /* Vertically center content */
-    height: 60vh;
+    height: 50vh;
+    /* Set height to full viewport height */
+  }
+}
+
+@media (max-height: 750px) {
+  /* Adjustments for larger screens (e.g., tablets and desktops) */
+  .card-wrapper {
+    /* Styles for the container of the card */
+    display: grid;
+    justify-content: center; /* Horizontally center content */
+    align-items: center; /* Vertically center content */
+    height: 65vh;
     /* Set height to full viewport height */
   }
 }
