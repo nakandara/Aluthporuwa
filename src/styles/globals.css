@@ -1059,7 +1059,7 @@ a {
   }
 }
 
-@media (max-height: 750px) {
+@media (max-height: 850px) {
   /* Adjustments for larger screens (e.g., tablets and desktops) */
   .card-wrapper {
     /* Styles for the container of the card */
@@ -1067,6 +1067,18 @@ a {
     justify-content: center; /* Horizontally center content */
     align-items: center; /* Vertically center content */
     height: 65vh;
+    /* Set height to full viewport height */
+  }
+}
+
+@media (max-height: 660px) {
+  /* Adjustments for larger screens (e.g., tablets and desktops) */
+  .card-wrapper {
+    /* Styles for the container of the card */
+    display: grid;
+    justify-content: center; /* Horizontally center content */
+    align-items: center; /* Vertically center content */
+    height: 80vh;
     /* Set height to full viewport height */
   }
 }
