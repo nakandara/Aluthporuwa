@@ -21,6 +21,7 @@ const Post = () => {
       category: ["Vehicle"],
       postId: "65741a033e9bcea69d35d74f",
       __v: 0,
+      socialIcon:["smile"]
     },
     {
       _id: "65741a033e9bcea69d35d74e",
@@ -31,6 +32,7 @@ const Post = () => {
       category: ["Vehicle"],
       postId: "65741a033e9bcea69d35d74f",
       __v: 0,
+      socialIcon:["heart"]
     },
     {
       _id: "65741a033e9bcea69d35d74e",
@@ -40,6 +42,7 @@ const Post = () => {
       category: ["Home"],
       postId: "65741a033e9bcea69d35d74f",
       __v: 0,
+      socialIcon:["smile"]
     },
     {
       _id: "65741a033e9bcea69d35d74e",
@@ -49,6 +52,7 @@ const Post = () => {
       category: ["Vehicle"],
       postId: "65741a033e9bcea69d35d74f",
       __v: 0,
+      socialIcon:["heart"]
     },
     {
       _id: "65741a033e9bcea69d35d74e",
@@ -59,6 +63,7 @@ const Post = () => {
       category: ["Vehicle"],
       postId: "65741a033e9bcea69d35d74f",
       __v: 0,
+      socialIcon:["like"]
     },
     {
       _id: "65741a033e9bcea69d35d74e",
@@ -68,6 +73,7 @@ const Post = () => {
       category: ["Vehicle"],
       postId: "65741a033e9bcea69d35d74f",
       __v: 0,
+      socialIcon:["smile"]
     },
     {
       _id: "65741a033e9bcea69d35d74e",
@@ -77,6 +83,7 @@ const Post = () => {
       category: ["Spa"],
       postId: "65741a033e9bcea69d35d74f",
       __v: 0,
+      socialIcon:["like"]
     },
     {
       _id: "65741a033e9bcea69d35d74e",
@@ -86,12 +93,21 @@ const Post = () => {
       category: ["Spa"],
       postId: "65741a033e9bcea69d35d74f",
       __v: 0,
+      socialIcon:["heart"]
     },
   ]);
   const [loading, setLoading] = useState(true);
-  const [animateHeart, setAnimateHeart] = useState(false);
-  const [animateSmile, setAnimateSmile] = useState(false);
-  const [animateLike, setAnimateLike] = useState(false);
+  const [animateState, setAnimateState] = useState(
+    Array(data.length).fill({
+      animateHeart: false,
+      animateSmile: false,
+      animateLike: false,
+    })
+  );
+  const [coverSocialIcons, setCoverSocialIcons] = useState(
+    data.map((post) => (post.socialIcon && post.socialIcon.length > 0 ? post.socialIcon[0] : ''))
+  );
+
 
   useEffect(() => {
     if (user && user.userId) {
@@ -140,21 +156,46 @@ const Post = () => {
 
   const renderPosts = filteredData.length > 0 ? filteredData : data;
 
-  const imageReaction = (value) => {
-    if (value === "HEART") {
-      setAnimateHeart(true);
-    } else if (value === "SMILE") {
-      setAnimateSmile(true);
-    } else {
-      setAnimateLike(true);
-    }
+  const imageReaction = (value, index) => {
+    const newAnimateState = [...animateState]; 
+     newAnimateState[index] = { ...newAnimateState[index] };
+    console.log(value.toLowerCase());
+    console.log(newAnimateState[index]);
+    newAnimateState[index][value] = !newAnimateState[index][value.toLowerCase()];
 
+  setAnimateState(newAnimateState);
+  switch (value.toLowerCase()) {
+    case 'animateheart':
+      setCoverSocialIcons((prevIcons) => {
+        const updatedIcons = [...prevIcons];
+        updatedIcons[index] = newAnimateState[index][value] ? 'heart' : '';
+        return updatedIcons;
+      });
+      break;
+    case 'animatesmile':
+      setCoverSocialIcons((prevIcons) => {
+        const updatedIcons = [...prevIcons];
+        updatedIcons[index] = newAnimateState[index][value] ? 'smile' : '';
+        return updatedIcons;
+      });
+      break;
+    case 'animatelike':
+      setCoverSocialIcons((prevIcons) => {
+        const updatedIcons = [...prevIcons];
+        updatedIcons[index] = newAnimateState[index][value] ? 'like' : '';
+        return updatedIcons;
+      });
+      break;
+    default:
+      break;
+  }
     setTimeout(() => {
-      setAnimateHeart(false);
-      setAnimateSmile(false);
-      setAnimateLike(false);
-    }, 1000);
+      newAnimateState[index][value] = false;
+      setAnimateState(newAnimateState);
+    }, 700);
   };
+  
+  console.log(coverSocialIcons);
 
   return (
     <Layout>
@@ -193,11 +234,11 @@ const Post = () => {
                           <div className="overlay-text">
                             {" "}
                             <img
-                              onClick={() => imageReaction(`HEART`)}
-                              className="socialImages"
-                              src="/media/icons8-heart-48.png"
-                              alt={`Image ${index + 1}`}
-                            />
+                  onClick={() => imageReaction('animateHeart', index)}
+                  className="socialImages"
+                  src={`/media/icons8-${coverSocialIcons[index]}-48.png`}
+                  alt={`Image ${index + 1}`}
+                />
                           </div>
                         </div>
                       </div>
@@ -213,10 +254,11 @@ const Post = () => {
                         <div>
                           {" "}
                           <img
-                            onClick={() => imageReaction(`HEART`)}
-                            className={`social-image ${
-                              animateHeart ? "heart-beat" : ""
-                            }`}
+                           
+                            onClick={() => imageReaction("animateHeart", index)}
+                  className={`social-image ${
+                    animateState[index].animateHeart ? "heart-beat" : ""
+                  }`}
                             src="/media/icons8-heart-48.png"
                             alt={`Image ${index + 1}`}
                           />
@@ -224,9 +266,9 @@ const Post = () => {
                         <div>
                           {" "}
                           <img
-                            onClick={() => imageReaction(`SMILE`)}
+                            onClick={() => imageReaction("animateSmile", index)}
                             className={`social-image ${
-                              animateSmile ? "smile-beat" : ""
+                              animateState[index].animateSmile ? "smile-beat" : ""
                             }`}
                             src="/media/icons8-smile-48.png"
                             alt={`Image ${index + 1}`}
@@ -235,9 +277,9 @@ const Post = () => {
                         <div>
                           {" "}
                           <img
-                            onClick={() => imageReaction(`LIKE`)}
+                            onClick={() => imageReaction("animateLike", index)}
                             className={`social-image ${
-                              animateLike ? "smile-beat" : ""
+                              animateState[index].animateLike ? "smile-beat" : ""
                             }`}
                             src="/media/icons8-like-48.png"
                             alt={`Image ${index + 1}`}
