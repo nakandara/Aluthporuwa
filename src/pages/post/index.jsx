@@ -4,6 +4,8 @@ import SearchFilter from "../../../components/post/SearchFilter";
 import axios from "axios";
 import { environments } from "../../../components/environment/environments";
 import { useRouter } from "next/router";
+
+import LayoutSecond from '../../../components/LayoutSecond/LayoutSecond'
 import { useToken } from "../../context/TokenContext";
 
 const Post = () => {
@@ -205,9 +207,10 @@ const Post = () => {
   console.log(coverSocialIcons);
 
   return (
-    <Layout>
-      <div className="app-bar-new">
-        <div className="drop_down_filter">
+    <LayoutSecond>
+      <div  className=" "  >
+      <div className="app-bar-new " >
+        <div className="drop_down_filter ">
           <SearchFilter
             categories={data.reduce((acc, curr) => {
               curr.category.forEach((cat) => {
@@ -310,7 +313,8 @@ const Post = () => {
           <div>Loading.............</div>
         )}
       </div>
-    </Layout>
+      </div>
+    </LayoutSecond>
   );
 };
 

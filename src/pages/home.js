@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import LayOut from "../../components/Layout";
+import LayoutSecond from "../../components/LayoutSecond/LayoutSecond";
 import { useToken } from '../context/TokenContext';
 import { useRouter } from "next/router";
 import Elevation from '../../components/Home/Content';
@@ -14,11 +14,11 @@ const Home = () => {
   return (
     <div>
       <ProtectedRoute>
-      <LayOut>
+      <LayoutSecond>
         <div style={{ marginTop: "50px" }} className="bone_image">
           <Elevation />
         </div>
-      </LayOut>
+      </LayoutSecond>
       </ProtectedRoute>
     </div>
   );

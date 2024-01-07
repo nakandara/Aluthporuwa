@@ -1,19 +1,25 @@
-import React from 'react';
-import Layout from '../../components/Layout';
-import ProtectedRoute from "../../components/protect/protectedRoute";
+import Layout from "../../components/Layout";
+import React, { useState, useEffect } from "react";
+
+import LayoutSecond from '../../components/LayoutSecond/LayoutSecond'
+
 
 
 const About = () => {
+
   return (
-    <Layout>
-      <ProtectedRoute>
-        <div className='multi-color-gradient' style={{ marginTop: "50px",height:"100vh" }}>
-       <div>
-        <h1 className='header_about'>අප ගැන</h1>
-       </div>
+    <LayoutSecond>
+    <div>
+      <div
+        className="multi-color-gradient"
+        style={{ marginTop: "50px", height: "100vh" }}
+      >
+        <div>
+          <h1 className="header_about">අප ගැන</h1>
         </div>
-      </ProtectedRoute>
-    </Layout>
+      </div>
+    </div>
+    </LayoutSecond>
   );
 };
 

@@ -29,18 +29,7 @@ const isMyPostPage = router.pathname === '/myPostPage';
 
   return (
     <>
-      {/* {!isMyPostPage && (
-        <Button
-          component="label"
-          variant="contained"
-          startIcon={<CloudUploadIcon />}
-          style={buttonStyle}
-          className='YourPostColor'
-          onClick={MyPost}
-        >
-          Post Your Ad
-        </Button>
-      )} */}
+    
 
       {isMyPostPage ?  <button onClick={GoBack}>Go Home</button> :  <Button
           component="label"

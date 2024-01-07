@@ -13,7 +13,7 @@ const SearchFilter = ({
   return (
     <div>
       <Box sx={{ minWidth: 120 }}>
-        <FormControl fullWidth>
+        <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
           <InputLabel id="demo-simple-select-label">Category</InputLabel>
           <Select>
             {categories.map((category) => (
@@ -38,3 +38,5 @@ const SearchFilter = ({
 };
 
 export default SearchFilter;
+
+

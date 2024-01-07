@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import Layout from "../../components/Layout";
+import LayoutSecond from "../../components/LayoutSecond/LayoutSecond";
 import axios from "axios";
 import { Container, Paper, Typography, Avatar } from "@mui/material";
 import Box from "@mui/material/Box";
@@ -119,7 +119,7 @@ const MyAccount = () => {
     fileInputRef.current.click(); // Programmatically trigger file input click
   };
   return (
-    <Layout>
+    <LayoutSecond>
       <ProtectedRoute>
         <div className="multi-color-gradient" style={{ marginTop: "60px" }}>
           <Box sx={{ width: 1 }}>
@@ -181,7 +181,7 @@ const MyAccount = () => {
           </Box>
         </div>
       </ProtectedRoute>
-    </Layout>
+    </LayoutSecond>
   );
 };
 

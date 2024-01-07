@@ -118,6 +118,11 @@ a {
   
 }
 
+.bg_post{
+  background-color: #00d4ff;
+}
+
+
 .sidebar__menu {
   list-style: none;
   padding: 0;
@@ -774,7 +779,7 @@ background-color: #bdceca;
 }
 
 .YourPostColor{
-  background-color: greenyellow;
+  background: linear-gradient(45deg, #778f0b, #2e6291, #157234, #318a6e); /* Example multiple gradient colors */
 }
 .css-1633um2-MuiPaper-root{
   background-color: #e3e3e3fa !important;
@@ -921,7 +926,12 @@ a {
 .card-container-post {
   display: grid;
   flex-wrap: wrap;
+  margin-top: 130px;
   
+  
+}
+.margin_bottom_l{
+  margin-bottom: 100px;
 }
 
 /* Media query for smaller screens (mobile) */
@@ -1035,10 +1045,11 @@ a {
 
 .card-wrapper {
   /* Styles for the container of the card */
+  
   display: grid;
-  justify-content: center; /* Horizontally center content */
-  align-items: center; /* Vertically center content */
-  height: 40vh;
+  /* Vertically center content */
+  height: 25vh;
+  
   /* Set height to full viewport height */
 }
 
@@ -1101,8 +1112,9 @@ a {
   height: 40px;
 }
 .drop_down_filter{
-  color: rgb(92, 7, 7);
+  
   justify-content:flex-end;
+  height: 55px;
  
 }
 
@@ -1117,13 +1129,13 @@ position: fixed;
   
   z-index: 999; /* Adjust the z-index as needed */
   background-color: #fff; /* Set your desired background color */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Optional: Add shadow */
+  
 }
 
 .drop_down_filter {
   margin-top: 70px;
   border-radius: 10px;
-  border: 1px solid #d40c0cdc;
+ 
   background: linear-gradient(45deg, #fafaf8, #fcfdfd, #fbfcfd, #fdf9f7);
   display: flex;
   justify-content: flex-end;
