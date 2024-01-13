@@ -105,7 +105,7 @@ a {
 
 @media (prefers-color-scheme: dark) {
   html {
-    color-scheme: dark;
+    
   }
 }
 
@@ -1103,8 +1103,7 @@ a {
 
 
 .social-image{
-  width: 30px;
-  height: 30px;
+ 
 }
 
 .socialImages{
@@ -1170,6 +1169,10 @@ position: fixed;
 .smile-beat {
   animation: heartBeatAnimation 0.5s ease-in-out;
 }
+.like-beat {
+  animation: heartBeatAnimation 0.5s ease-in-out;
+}
+
 
 /* CSS to hide the image after animation */
 .hide {
@@ -1201,4 +1204,66 @@ position: fixed;
   background-color: #d5f1f7;
   padding: 5px; /* Adjust padding as needed */
   /* Additional styles for the overlay text */
+}
+
+.margin_b_t{
+  margin-top: 150px;
+  margin-bottom: 100px;
+}
+
+.margin_bott{
+  margin-bottom: 10px;
+}
+
+
+.socialButton {
+  background-color: #3498db;
+  color: #fff;
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+
+@media screen and (max-width: 600px) {
+  .socialButton {
+      background-color: #075f99;
+      color: #fff;
+      border: none;
+      padding: 9px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 12px;
+    }
+ 
+}
+
+
+@media screen and (max-width: 400px) {
+  .socialButton {
+      background-color: #075f99;
+      color: #fff;
+      border: none;
+      padding: 9px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 10px;
+    }
+  
+}
+
+
+@media screen and (max-width: 300px) {
+  .socialButton {
+      background-color: #075f99;
+      color: #fff;
+      border: none;
+      padding: 7px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 8px;
+    }
+   
 }
