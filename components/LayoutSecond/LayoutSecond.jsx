@@ -15,21 +15,37 @@ import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemText from "@mui/material/ListItemText";
 import MainPage from "../../components/Home/MainPage";
+import Tooltip from "@mui/material/Tooltip";
 import Footer from "../../components/footer";
 import YourPost from "../Your-post/YourPost";
+import Menu from "@mui/material/Menu";
+import MenuItem from "@mui/material/MenuItem";
+import Avatar from "@mui/material/Avatar";
 import ProtectedRoute from "../../components/protect/protectedRoute";
 
 const drawerWidth = 240;
 const navItems = ["Home", "About", "Contact", "Login","Post","MyAccount"];
-
+const settings = ["Profile", "Account", "Dashboard", "Logout"];
 const LayoutSecond = ({children}) => {
   const router = useRouter();
   const [mobileOpen, setMobileOpen] = React.useState(false);
+  const [anchorElUser, setAnchorElUser] = React.useState(null);
 
   const handleDrawerToggle = () => {
     setMobileOpen((prevState) => !prevState);
   };
   const container = typeof window !== 'undefined' ? window.document.body : undefined;
+
+
+
+  const handleCloseUserMenu = () => {
+    setAnchorElUser(null);
+  };
+
+  const handleOpenUserMenu = (event) => {
+    setAnchorElUser(event.currentTarget);
+  };
+
 
   return (
     <div>
@@ -50,9 +66,11 @@ const LayoutSecond = ({children}) => {
             sx={{ flexGrow: 1, display: { xs: "none", sm: "block" } }}
           >
             MUI
+            
           </Typography>
-
+      
           <YourPost/>
+          
           <Box sx={{ display: { xs: "none", sm: "block" } }}>
             {navItems.map((item) => (
               <Button
@@ -70,6 +88,16 @@ const LayoutSecond = ({children}) => {
               </Button>
             ))}
           </Box>
+          <Tooltip title="Open settings">
+                <IconButton
+                  onClick={handleOpenUserMenu}
+                 
+                >
+                  <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+                </IconButton>
+              </Tooltip>
+         
+          
         </Toolbar>
       </AppBar>
 

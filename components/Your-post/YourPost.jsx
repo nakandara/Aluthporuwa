@@ -17,7 +17,7 @@ export default function YourPost() {
 
 
 const MyPost = () =>{
-  router.push('/myPostPage'); 
+  router.push('/campaign'); 
 }
 
 
