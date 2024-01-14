@@ -226,94 +226,7 @@ const Post = () => {
           />
         </div>
       </div>
-      {/* <div className="card-container-post content_new ">
-        {loading ? (
-          <>
-            {renderPosts.map((post, index) => (
-              <div key={index}>
-                <div key={index} height={200} offset={100}>
-                  <div className="card-wrapper">
-                    <div className="cardn">
-                      <div className="card">
-                        <div className="image-container">
-                          <img
-                            onClick={() => handleClick(post.postId)}
-                            className="card-image"
-                            src={post.image}
-                            alt={`Image ${index + 1}`}
-                          />
-                          <div className="overlay-text">
-                            {" "}
-                            <img
-                              onClick={() =>
-                                imageReaction("animateHeart", index)
-                              }
-                              className="socialImages"
-                              src={`/media/icons8-${coverSocialIcons[index]}-48.png`}
-                              alt={`Image ${index + 1}`}
-                            />
-                          </div>
-                        </div>
-                      </div>
-
-                      <div
-                        onClick={() => handleClick(post.postId)}
-                        className="card-content"
-                      >
-                        <h2>{post.category}</h2>
-                        <p style={{ maxHeight: '100px', overflow: 'hidden' }}>{post.description}</p>
-                      </div>
-                      <div className="social_button">
-                        <div>
-                          {" "}
-                          <img
-                            onClick={() => imageReaction("animateHeart", index)}
-                            className={`social-image ${
-                              animateState[index].animateHeart
-                                ? "heart-beat"
-                                : ""
-                            }`}
-                            src="/media/icons8-heart-48.png"
-                            alt={`Image ${index + 1}`}
-                          />
-                        </div>
-                        <div>
-                          {" "}
-                          <img
-                            onClick={() => imageReaction("animateSmile", index)}
-                            className={`social-image ${
-                              animateState[index].animateSmile
-                                ? "smile-beat"
-                                : ""
-                            }`}
-                            src="/media/icons8-smile-48.png"
-                            alt={`Image ${index + 1}`}
-                          />
-                        </div>
-                        <div>
-                          {" "}
-                          <img
-                            onClick={() => imageReaction("animateLike", index)}
-                            className={`social-image ${
-                              animateState[index].animateLike
-                                ? "smile-beat"
-                                : ""
-                            }`}
-                            src="/media/icons8-like-48.png"
-                            alt={`Image ${index + 1}`}
-                          />
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </>
-        ) : (
-          <div>Loading.............</div>
-        )}
-      </div> */}
+    
       <div className="margin_b_t">
 
       {loading ? (
@@ -331,31 +244,7 @@ const Post = () => {
         )}
 
 
-        {/* <div className="margin_bott">
-        <Card/>
-        </div>
-        <div className="margin_bott">
-        <Card/>
-        </div>
-        <div className="margin_bott">
-        <Card/>
-        </div>
-        <div className="margin_bott">
-        <Card/>
-        </div>
-        <div className="margin_bott">
-        <Card/>
-        </div>
-        <div className="margin_bott">
-        <Card/>
-        </div>
-        <div className="margin_bott">
-        <Card/>
-        </div>
-        <div className="margin_bott">
-        <Card/>
-        </div> */}
-
+       
       </div>
      
       </div>

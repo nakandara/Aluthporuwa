@@ -11,6 +11,12 @@
     border: 0.5px solid #d76cec; 
     box-shadow: 30px 10px 20px rgba(0, 0, 0, 0.1);
   }
+  .card:hover {
+  
+    transform: scale(1.01);
+    cursor: pointer;
+    border: 2px solid #db6cdf;
+  }
   
 .overlayImage {
   position: absolute;

@@ -1279,6 +1279,7 @@ position: fixed;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
+  margin-bottom: 15px;
   
 }
 
@@ -1310,11 +1311,16 @@ position: fixed;
 }
 
 .payment-card-gold:hover {
+  
   transform: scale(1.11);
+  cursor: pointer;
+  border: 2px solid #db6cdf;
 }
 
 .payment-card-silver:hover {
   transform: scale(1.11);
+  cursor: pointer;
+  border: 2px solid #db6cdf; 
 }
 .payment-image {
   width: 100%;
