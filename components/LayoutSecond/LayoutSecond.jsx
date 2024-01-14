@@ -45,8 +45,17 @@ const LayoutSecond = ({children}) => {
   const handleOpenUserMenu = (event) => {
     setAnchorElUser(event.currentTarget);
   };
+  const handleLogout = () => {
+    // Clear local storage data here
+    localStorage.clear();
 
-
+    // Redirect to the home page
+    router.push("/");
+  };
+  const handleDrawerClose = () => {
+    setOpen(false);
+  };
+ 
   return (
     <div>
       <AppBar component="nav">
@@ -68,9 +77,47 @@ const LayoutSecond = ({children}) => {
             MUI
             
           </Typography>
-      
-          <YourPost/>
           
+          <YourPost/>
+          <Tooltip title="Open settings">
+                <IconButton
+                  onClick={handleOpenUserMenu}
+                 
+                >
+                  <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+                </IconButton>
+              </Tooltip>
+          <Menu
+                sx={{ mt: "45px" }}
+                id="menu-appbar"
+                anchorEl={anchorElUser}
+                anchorOrigin={{
+                  vertical: "top",
+                  horizontal: "right",
+                }}
+                keepMounted
+                transformOrigin={{
+                  vertical: "top",
+                  horizontal: "right",
+                }}
+                open={Boolean(anchorElUser)}
+                onClose={handleCloseUserMenu}
+              >
+                {settings.map((setting) => (
+                  <MenuItem
+                    key={setting}
+                    onClick={() => {
+                      if (setting === "Logout") {
+                        handleLogout(); // Call the logout function
+                      } else {
+                        handleCloseUserMenu();
+                      }
+                    }}
+                  >
+                    <Typography textAlign="center">{setting}</Typography>
+                  </MenuItem>
+                ))}
+              </Menu> 
           <Box sx={{ display: { xs: "none", sm: "block" } }}>
             {navItems.map((item) => (
               <Button
@@ -88,14 +135,7 @@ const LayoutSecond = ({children}) => {
               </Button>
             ))}
           </Box>
-          <Tooltip title="Open settings">
-                <IconButton
-                  onClick={handleOpenUserMenu}
-                 
-                >
-                  <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
-                </IconButton>
-              </Tooltip>
+         
          
           
         </Toolbar>

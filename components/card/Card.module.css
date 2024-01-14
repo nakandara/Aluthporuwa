@@ -108,7 +108,16 @@ width: 50px;
 
 
   @media screen and (max-width: 400px) {
-    
+      .socialButton {
+        background-color: #075f99;
+        color: #fff;
+        border: none;
+        padding: 5px;
+        border-radius: 200px;
+        cursor: pointer;
+        font-size: 10000px;
+      }
+      
       .description {
         margin-bottom: 10px;
         color: #333;
@@ -116,12 +125,12 @@ width: 50px;
       }
       .image {
    
-        width: 19vh;
+        width: 22vh;
        height: 230px;
         border-top-left-radius: 10px;
         
       }
-      
+    
   }
 
 
@@ -140,4 +149,17 @@ width: 50px;
       
     }
    
+}
+
+@media screen and (max-height: 620px) {
+ 
+  
+  .image {
+ 
+    width: 25vh;
+   height: 230px;
+    border-top-left-radius: 10px;
+    
+  }
+ 
 }

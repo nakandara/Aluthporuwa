@@ -1252,10 +1252,10 @@ position: fixed;
       background-color: #075f99;
       color: #fff;
       border: none;
-      padding: 9px;
-      border-radius: 5px;
+      padding: 7px;
+      border-radius: 50px;
       cursor: pointer;
-      font-size: 10px;
+      font-size: 9px;
     }
   
 }
@@ -1263,14 +1263,14 @@ position: fixed;
 
 @media screen and (max-width: 300px) {
   .socialButton {
-      background-color: #075f99;
-      color: #fff;
-      border: none;
-      padding: 7px;
-      border-radius: 5px;
-      cursor: pointer;
-      font-size: 8px;
-    }
+    background-color: #075f99;
+    color: #fff;
+    border: none;
+    padding: 6px;
+    border-radius: 50px;
+    cursor: pointer;
+    font-size: 8px;
+  }
    
 }
 
