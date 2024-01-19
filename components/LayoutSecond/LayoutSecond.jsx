@@ -24,9 +24,9 @@ import Avatar from "@mui/material/Avatar";
 import ProtectedRoute from "../../components/protect/protectedRoute";
 
 const drawerWidth = 240;
-const navItems = ["Home", "About", "Contact", "Login","Post","MyAccount"];
+const navItems = ["Home", "About", "Contact", "Login", "Post", "MyAccount"];
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
-const LayoutSecond = ({children}) => {
+const LayoutSecond = ({ children }) => {
   const router = useRouter();
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
@@ -34,9 +34,8 @@ const LayoutSecond = ({children}) => {
   const handleDrawerToggle = () => {
     setMobileOpen((prevState) => !prevState);
   };
-  const container = typeof window !== 'undefined' ? window.document.body : undefined;
-
-
+  const container =
+    typeof window !== "undefined" ? window.document.body : undefined;
 
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
@@ -55,7 +54,7 @@ const LayoutSecond = ({children}) => {
   const handleDrawerClose = () => {
     setOpen(false);
   };
- 
+
   return (
     <div>
       <AppBar component="nav">
@@ -75,49 +74,41 @@ const LayoutSecond = ({children}) => {
             sx={{ flexGrow: 1, display: { xs: "none", sm: "block" } }}
           >
             MUI
-            
           </Typography>
+
+          <YourPost />
           
-          <YourPost/>
-          <Tooltip title="Open settings">
-                <IconButton
-                  onClick={handleOpenUserMenu}
-                 
-                >
-                  <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
-                </IconButton>
-              </Tooltip>
           <Menu
-                sx={{ mt: "45px" }}
-                id="menu-appbar"
-                anchorEl={anchorElUser}
-                anchorOrigin={{
-                  vertical: "top",
-                  horizontal: "right",
+            sx={{ mt: "45px" }}
+            id="menu-appbar"
+            anchorEl={anchorElUser}
+            anchorOrigin={{
+              vertical: "top",
+              horizontal: "right",
+            }}
+            keepMounted
+            transformOrigin={{
+              vertical: "top",
+              horizontal: "right",
+            }}
+            open={Boolean(anchorElUser)}
+            onClose={handleCloseUserMenu}
+          >
+            {settings.map((setting) => (
+              <MenuItem
+                key={setting}
+                onClick={() => {
+                  if (setting === "Logout") {
+                    handleLogout(); // Call the logout function
+                  } else {
+                    handleCloseUserMenu();
+                  }
                 }}
-                keepMounted
-                transformOrigin={{
-                  vertical: "top",
-                  horizontal: "right",
-                }}
-                open={Boolean(anchorElUser)}
-                onClose={handleCloseUserMenu}
               >
-                {settings.map((setting) => (
-                  <MenuItem
-                    key={setting}
-                    onClick={() => {
-                      if (setting === "Logout") {
-                        handleLogout(); // Call the logout function
-                      } else {
-                        handleCloseUserMenu();
-                      }
-                    }}
-                  >
-                    <Typography textAlign="center">{setting}</Typography>
-                  </MenuItem>
-                ))}
-              </Menu> 
+                <Typography textAlign="center">{setting}</Typography>
+              </MenuItem>
+            ))}
+          </Menu>
           <Box sx={{ display: { xs: "none", sm: "block" } }}>
             {navItems.map((item) => (
               <Button
@@ -135,9 +126,11 @@ const LayoutSecond = ({children}) => {
               </Button>
             ))}
           </Box>
-         
-         
-          
+          <Tooltip title="Open settings">
+            <IconButton onClick={handleOpenUserMenu}>
+              <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+            </IconButton>
+          </Tooltip>
         </Toolbar>
       </AppBar>
 
@@ -179,7 +172,7 @@ const LayoutSecond = ({children}) => {
         </List>
       </Drawer>
       {children}
-      <Footer/>
+      <Footer />
     </div>
   );
 };
