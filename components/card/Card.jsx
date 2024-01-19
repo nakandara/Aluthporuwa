@@ -6,7 +6,7 @@ import { FacebookShareButton, WhatsappShareButton } from "react-share";
 import ShareIcon from "@mui/icons-material/Share";
 import Modal from "../modal/Modal"; // Import your modal component
 import {
-  EmailIcon,
+  
   FacebookIcon,
  
   WhatsappIcon,
@@ -80,7 +80,7 @@ const Card = ({
               <WhatsappShareButton url={shareUrl} quote={title}>
               <WhatsappIcon size={32} round={true} />
               </WhatsappShareButton>
-                <p>Add your social sharing buttons here</p>
+                <p>Add your social  sharing buttons here</p>
                 <button onClick={handleCloseModal}>Close</button>
               </Modal>
             </div>
