@@ -14,22 +14,24 @@ const Footer = () => {
             </p>
           </div>
           <div className="footer-column">
-            <h3>Quick Links</h3>
-            <ul>
-              <li>
+          <h3>Quick Links</h3>
+          <ul>
+            {/* Use Link component for navigation */}
+            <li>
               <Link href="/">Home</Link>
-              </li>
-              <li>
+            </li>
+            <li>
               <Link href="/about">About</Link>
-              </li>
-              <li>
-                <a href="/post">Post</a>
-              </li>
-              <li>
-                <a href="/contact">Contact</a>
-              </li>
-            </ul>
-          </div>
+            </li>
+            {/* Add more links as needed */}
+            <li>
+              <Link href="/post">Post</Link>
+            </li>
+            <li>
+              <Link href="/contact">Contact</Link>
+            </li>
+          </ul>
+        </div>
           <div className="footer-column">
             <h3>Contact Us</h3>
             <p>Email: poruwa@example.com</p>
