@@ -43,6 +43,7 @@
   --card-rgb: 180, 185, 188;
   --card-border-rgb: 131, 134, 135;
 }
+@import "~react-image-gallery/styles/css/image-gallery.css";
 
 @media (prefers-color-scheme: dark) {
   :root {
@@ -1424,3 +1425,52 @@ justify-content: center;
 }
 
 /* You can add more styles based on your design requirements */
+
+
+.postId_container {
+  /* border: 1px solid #e90505; */
+  height: 70vh;
+  display: flex;
+
+}
+
+.postId_main_image,
+.postId_main_content {
+  /* border: 2px solid #057a40; */
+  height: 42vh;
+  width: 100%; /* Take up the full width by default */
+}
+
+.postId_main_image {
+  width: 35%; /* Initial width for larger screens */
+}
+
+.postId_main_content {
+  width: 65%; /* Initial width for larger screens */
+}
+
+@media (max-width: 650px) {
+  .postId_container {
+    display: grid;
+    grid-template-columns: 1fr; /* Single column for smaller screens */
+    width: 100%;
+  }
+
+  .postId_main_image,
+  .postId_main_content {
+    width: 100%;
+  
+    justify-content: center;
+  align-items: center; /* Take up the full width for smaller screens */
+  }
+}
+
+
+.postId_main_image_sub{
+  width: 80%;
+  margin-left: 10%;
+  height: 35vh;
+  justify-content: center;
+  align-items: center;
+}
+

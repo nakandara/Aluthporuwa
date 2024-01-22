@@ -23,7 +23,7 @@ import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import { useToken } from "../../src/context/TokenContext";
 
 export default function MyInformations({ name, data }) {
-  const { user } = useToken();
+  const { user,token } = useToken();
   console.log(user.userId,'data');
   const [userData, setUserData] = React.useState({
     userId: user.userId,
@@ -35,7 +35,8 @@ export default function MyInformations({ name, data }) {
     religion: data.religion,
     birthday: data.birthday ? dayjs(data.birthday) : dayjs(),
   });
-  const GetProfileUrl = `${environments.BASE_HOST_URL}/api/getProfile`;
+  const GetProfileUrl = `${environments.BASE_HOST_LOCAL_URL}/api/getProfile`;
+  const GetUserUrl = `${environments.BASE_HOST_LOCAL_URL}/api/auth/getUserById`;
   const [step, setStep] = React.useState(1);
   const [fileInputOpen, setFileInputOpen] = useState(false);
   const [datastore, setDatastore] = useState("");
@@ -76,16 +77,27 @@ export default function MyInformations({ name, data }) {
     console.log(userData);
     
     try {
-      const AlreadyUse = await axios.get(`${GetProfileUrl}/${user.userId}`);
-      console.log(AlreadyUse);
+      const response = await axios.get(`${GetUserUrl}/${user.userId}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
 
-    if (AlreadyUse) {
+      const data = response.data;
+      console.log(data,'AlreadyUseProfile');
+
+      const AlreadyUse = await axios.get(`${GetProfileUrl}/${user.userId}`);
+     
+      console.log(AlreadyUse);
+     
+
+    if (!AlreadyUse) {
       console.log('apiUrlAlreadyUse');
-      const apiUrlAlreadyUse = `${environments.BASE_HOST_URL}/api/updateProfile/${user.userId}`;
+      const apiUrlAlreadyUse = `${environments.BASE_HOST_LOCAL_URL}/api/updateProfile/${user.userId}`;
       const response = await axios.post(apiUrlAlreadyUse, userData);
       console.log("Information Successfully Update");
     }else{
-      const apiUrl = `${environments.BASE_HOST_URL}/api/createProfile`;
+      const apiUrl = `${environments.BASE_HOST_LOCAL_URL}/api/createProfile`;
       const response = await axios.post(apiUrl, userData);
       console.log("Information Successfully Created");
     }
