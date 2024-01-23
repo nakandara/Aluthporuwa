@@ -8,7 +8,6 @@ import { useToken } from "../../context/TokenContext";
 import Typography from "@mui/material/Typography";
 import ImageGallery from "react-image-gallery";
 
-
 const images = [
   {
     original: "https://picsum.photos/id/1018/1000/600/",
@@ -29,7 +28,7 @@ const PostId = ({ postIdData }) => {
     <LayoutSecond>
       <div className="" style={{ marginTop: "70px", height: "1000px" }}>
         <div className="postId_container">
-          <div className="postId_main_image">
+          <div>
             {postIdData?.allPosts?.map((post, index) => (
               <div key={index}>
                 {/* <img
@@ -38,8 +37,7 @@ const PostId = ({ postIdData }) => {
                   alt={`Image ${index + 1}`}
                 /> */}
 
-
-<ImageGallery items={images} />
+                <ImageGallery items={images} />
               </div>
             ))}
           </div>

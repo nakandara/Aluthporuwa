@@ -1437,6 +1437,7 @@ justify-content: center;
 .postId_main_image,
 .postId_main_content {
   /* border: 2px solid #057a40; */
+  margin-top: 10px;
   height: 42vh;
   width: 100%; /* Take up the full width by default */
 }
@@ -1474,3 +1475,7 @@ justify-content: center;
   align-items: center;
 }
 
+/* .image-gallery-slide .image-gallery-image {
+  width: 80%;
+  object-fit: contain;
+} */
