@@ -26,7 +26,7 @@ const images = [
 const PostId = ({ postIdData }) => {
   return (
     <LayoutSecond>
-      <div className="" style={{ marginTop: "70px", height: "1000px" }}>
+      <div className="postIdAllContainer">
         <div className="postId_container">
           <div>
             {postIdData?.allPosts?.map((post, index) => (
@@ -42,18 +42,30 @@ const PostId = ({ postIdData }) => {
             ))}
           </div>
           <div className="postId_main_content">
-            <Typography sx={{ color: "black" }} variant="body1" gutterBottom>
+            <div className="postIdHeading">Honda Today AF61 2020</div>
+            <div className="sub-title">Posted on 24 Jan 9:57 pm, Talawa, Anuradhapura</div>
+            <div className="horizontal-line"></div>
+            <div className="postIdDescription" >Description</div>
+            <Typography className="postIdDescription_content" sx={{ color: "black" }} variant="body1" gutterBottom>
+              
               body1. Lorem ipsum dolor sit amet, consectetur adipisicing elit.
               Quos blanditiis tenetur unde suscipit, quam beatae rerum inventore
               consectetur, neque doloribus, cupiditate numquam dignissimos
               laborum fugiat deleniti? Eum quasi quidem quibusdam.
             </Typography>
           </div>
+          <div>
+
+          </div>
         </div>
       </div>
     </LayoutSecond>
   );
 };
+
+
+// marginTop: "70px", height: "1000px"
+
 
 export async function getServerSideProps(context) {
   const { postId } = context.query;

@@ -1450,7 +1450,7 @@ justify-content: center;
   width: 65%; /* Initial width for larger screens */
 }
 
-@media (max-width: 650px) {
+@media (max-width: 900px) {
   .postId_container {
     display: grid;
     grid-template-columns: 1fr; /* Single column for smaller screens */
@@ -1460,7 +1460,9 @@ justify-content: center;
   .postId_main_image,
   .postId_main_content {
     width: 100%;
-  
+    padding: 10px;
+    border: 1px solid #c6d6bb;
+    background-color: #f7f9fc;
     justify-content: center;
   align-items: center; /* Take up the full width for smaller screens */
   }
@@ -1479,3 +1481,80 @@ justify-content: center;
   width: 80%;
   object-fit: contain;
 } */
+
+.postIdAllContainer{
+ margin-top: 100px;
+ margin-left: 100px;
+ margin-right: 100px;
+ margin-bottom: 100px;
+ background-color: #f3f6f5 !important;
+ height: 1000px;
+ border: 1px solid #93c0aa;
+}
+
+@media (max-width: 900px) {
+  .postIdAllContainer{
+    border: 2px solid #057a40;
+    margin-top: 150px;
+  margin: 1px;
+  padding: 1px;
+  
+  }
+}
+
+@media (max-width: 660px) {
+  .postIdAllContainer{
+    border: 1px solid #b3f3d3;
+    margin-top: 100px;
+ 
+  
+  }
+}
+
+.postIdHeading{
+  font-size: 16px;
+  font-weight: 800;
+  margin: 0;
+  padding: 0;
+  color: #020024;
+  border: 0;
+  outline: 0;
+  background: transparent;
+
+}
+
+.sub-title{
+  color: #707676;
+  font-size: 12px;
+  font-weight: 400;
+  font-family: 'Open Sans', 'PF DinText Pro', Arial, Helvetica, sans-serif;
+  line-height: 1.71428571;
+}
+
+.horizontal-line {
+  border-bottom: 1px solid #ccc; /* Adjust the color and thickness as needed */
+  margin-top: 20px; /* Add some margin for spacing */
+}
+
+.postIdDescription{
+  font-size: 20px;
+    font-weight: 800;
+    color: #009877;
+    font-family: 'Open Sans', 'PF DinText Pro', Arial, Helvetica, sans-serif;
+    line-height: 1.71428571;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    background: transparent;
+}
+
+.postIdDescription_content{
+  color: #707676;
+    word-break: normal;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    font-family: 'Open Sans', 'PF DinText Pro', Arial, Helvetica, sans-serif;
+    line-height: 1.71428571;
+    font-size: 14px;
+}
