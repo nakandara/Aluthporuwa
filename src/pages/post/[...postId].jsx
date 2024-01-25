@@ -7,6 +7,7 @@ import { useRouter } from "next/router";
 import { useToken } from "../../context/TokenContext";
 import Typography from "@mui/material/Typography";
 import ImageGallery from "react-image-gallery";
+import styles from "./post.module.css";
 
 const images = [
   {
@@ -26,46 +27,67 @@ const images = [
 const PostId = ({ postIdData }) => {
   return (
     <LayoutSecond>
-      <div className="postIdAllContainer">
-        <div className="postId_container">
-          <div>
-            {postIdData?.allPosts?.map((post, index) => (
-              <div key={index}>
-                {/* <img
+      <div className={styles.PostIdMain}>
+        <div className={styles.FirstContent}>
+          <div className={styles.imageContainer}>
+            <div>
+              {postIdData?.allPosts?.map((post, index) => (
+                <div className="image-size" key={index}>
+                  {/* <img
                   className="postId_main_image_sub"
                   src={post.PostDetails.image}
                   alt={`Image ${index + 1}`}
                 /> */}
 
-                <ImageGallery items={images} />
+                  <ImageGallery items={images} />
+                </div>
+              ))}
+            </div>
+          </div>
+          <div className={styles.imageContainer_content}>
+            <div>
+              <div className={styles.postIdHeading}>Honda Today AF61 2020</div>
+              <div className={styles.subtitle}>
+                Posted on 24 Jan 9:57 pm, Talawa, Anuradhapura
               </div>
-            ))}
-          </div>
-          <div className="postId_main_content">
-            <div className="postIdHeading">Honda Today AF61 2020</div>
-            <div className="sub-title">Posted on 24 Jan 9:57 pm, Talawa, Anuradhapura</div>
-            <div className="horizontal-line"></div>
-            <div className="postIdDescription" >Description</div>
-            <Typography className="postIdDescription_content" sx={{ color: "black" }} variant="body1" gutterBottom>
-              
-              body1. Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-              Quos blanditiis tenetur unde suscipit, quam beatae rerum inventore
-              consectetur, neque doloribus, cupiditate numquam dignissimos
-              laborum fugiat deleniti? Eum quasi quidem quibusdam.
-            </Typography>
-          </div>
-          <div>
+              <div className={styles.horizontalLine}></div>
+              <div className={styles.postIdPhoneNumber}>Phone Number</div>
+            </div>
 
+            <div>
+              <div className={styles.postIdDescription}>Description</div>
+              <Typography className={styles.postIdDescription_content} sx={{ color: "black" }} variant="body1">
+                body1. Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                Quos blanditiis tenetur unde suscipit, quam beatae rerum
+                inventore consectetur, neque doloribus, cupiditate numquam
+                dignissimos laborum fugiat deleniti? Eum quasi quidem quibusdam.
+              </Typography>
+            </div>
           </div>
         </div>
       </div>
+      <div className={styles.SecondContent}>
+        <div className={styles.action_buttons}>
+          <div className={styles.contact_options}>
+            <div className={styles.btn}> <img
+              className="socialImages"
+              src={`/media/icons8-whatsapp-48.png`}
+              alt={`Image`}
+            /></div>
+            <div className={styles.btn}><img
+              className="socialImages"
+              src={`/media/icons8-call-64.png`}
+              alt={`Image`}
+            /></div>
+          </div>
+        </div>
+      </div>
+      <div className={styles.ThirdContent}>ThirdContent</div>
     </LayoutSecond>
   );
 };
 
-
 // marginTop: "70px", height: "1000px"
-
 
 export async function getServerSideProps(context) {
   const { postId } = context.query;
