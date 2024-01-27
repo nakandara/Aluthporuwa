@@ -87,7 +87,7 @@ const PostId = ({ postIdData }) => {
   );
 };
 
-// marginTop: "70px", height: "1000px"
+
 
 export async function getServerSideProps(context) {
   const { postId } = context.query;

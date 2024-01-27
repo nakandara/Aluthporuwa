@@ -34,23 +34,21 @@ const Campaign = () => {
                 </div>
               </div>
 
-              <div
-                className="payment-card-silver"
-                style={{ marginTop: "50px" }}
-              >
-                <img
-                  src="/path/to/silver-image.jpg" // Replace with the actual path to your Silver plan image
-                  alt="Silver Plan"
-                  className="payment-image"
-                />
+              <div className="payment-card-silver " style={{ marginTop: "50px" }}>
+                <div className="payment-image card-title ">Silver Plan</div>
                 <div className="card-content">
-                  <h2 className="card-title">Silver Plan</h2>
+                  <h6 className="golden-point">Automatic Filter Top List Your Add</h6>
+                  <h6 className="golden-point">Automatic Filter Top List Your Add</h6>
+                  <h6 className="golden-point">Automatic Filter Top List Your Add</h6>
+                  <h6 className="golden-point">Automatic Filter Top List Your Add</h6>
                   {/* Add any additional information here */}
                   <p className="card-description">
-                    Lorem ipsum dolor sit amet...
+                   __________
                   </p>
+                  <button onClick={CreatePost} className="attractive-button">Select</button>
                 </div>
               </div>
+
               
             </div>
           </div>
