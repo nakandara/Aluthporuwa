@@ -972,7 +972,8 @@ a {
 /* Basic button styles */
 .custom-button {
   justify-content: center;
-  display: inline-block;
+  margin-left: 60%;
+  margin-bottom: 10px;
   padding: 12px 24px;
   font-size: 16px;
   font-weight: bold;
@@ -1346,9 +1347,9 @@ position: fixed;
 .golden-point{
   align-items: center;
 justify-content: center;
-  border: 1px solid #850606;
+  border: 0.1px solid #e44b4b;
   margin: 10px;
-  padding: 2px;
+  padding: 10px;
   background-color: white;
   color: black;
   font-size: 10px;
@@ -1362,6 +1363,11 @@ justify-content: center;
 .card-title {
   font-size: 1.5em;
   margin-bottom: 8px;
+  margin-left: 25%;
+  font-family: Raleway,sans-serif;
+    vertical-align: baseline;
+   color: #009877;
+    font-weight: 800;
 }
 
 .card-description {
@@ -1569,3 +1575,75 @@ justify-content: center;
   padding: 5px;
 }
 
+.myPost_container{
+  height: 100vh;
+  color: #020024;
+  margin-top: 80px;
+  border: 2px solid #4de99b;
+background-color: #e7edee;
+ 
+  
+}
+.myPost_heading{
+  border: 2px solid #b818b8;
+  margin-top: 10px;
+  font-size: 24px; /* Adjust the font size as needed */
+  font-weight: bold;
+  margin-bottom: 20px;
+
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+ 
+  
+}
+
+@media (max-width: 450px) {
+  .myPostImage_uploader{
+width: 100%;
+  }
+}
+
+.myPost_secondContainer{
+  /* border: 5px solid #8b0b07; */
+  margin: 30px;
+  background: #fff;
+  background-color:white;
+  box-shadow: 100px;
+  border-radius: 2px;
+}
+
+.uploader-container {
+  text-align: center;
+}
+
+.upload-btn {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #4CAF50;
+  color: white;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+#imageInput {
+  display: none;
+}
+
+.preview-container {
+  margin-top: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  width: 15%;
+  height: 15%;
+}
+
+.preview-image {
+  max-width: 100%;
+  height: auto;
+  border-radius: 5px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}

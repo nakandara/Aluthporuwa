@@ -19,10 +19,12 @@ const Campaign = () => {
       <div>
         <div className="" style={{ marginTop: "50px" }}>
           <div>
-            <h1 className="header_campaign">Payment Option</h1>
+            <h1 className="header_campaign">Payment Method</h1>
             <div className="campaign-container">
               <div className="payment-card-gold" style={{ marginTop: "50px" }}>
-                <div className="payment-image card-title ">Gold Plan</div>
+                <div className="payment-image ">
+                <div className="card-title">Gold Plan</div>
+                </div>
                 <div className="card-content">
                   <h6 className="golden-point">Automatic Filter Top List Your Add</h6>
                   <h6 className="golden-point">Automatic Filter Top List Your Add</h6>
@@ -35,7 +37,9 @@ const Campaign = () => {
               </div>
 
               <div className="payment-card-silver " style={{ marginTop: "50px" }}>
-                <div className="payment-image card-title ">Silver Plan</div>
+                <div className="payment-image">
+                  <div className="card-title">Silver Plan</div>
+                </div>
                 <div className="card-content">
                   <h6 className="golden-point">Automatic Filter Top List Your Add</h6>
                   <h6 className="golden-point">Automatic Filter Top List Your Add</h6>
