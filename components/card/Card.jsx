@@ -92,7 +92,7 @@ const Card = ({
                 animateState[index].animateLike ? "smile-beat" : ""
               } socialButton`}
             >
-              Like👍🏻
+              👍🏻
             </button>
             <button
               onClick={() => imageReaction("animateSmile", index)}
@@ -100,7 +100,7 @@ const Card = ({
                 animateState[index].animateSmile ? "smile-beat" : ""
               } socialButton`}
             >
-              Smile 😊
+               😊
             </button>
             <button
               onClick={() => imageReaction("animateHeart", index)}
@@ -108,7 +108,7 @@ const Card = ({
                 animateState[index].animateHeart ? "heart-beat" : ""
               } socialButton`}
             >
-              Heart ❤️
+               ❤️
             </button>
           </div>
         </div>

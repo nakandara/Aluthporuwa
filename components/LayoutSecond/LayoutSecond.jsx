@@ -73,7 +73,7 @@ const LayoutSecond = ({ children }) => {
             component="div"
             sx={{ flexGrow: 1, display: { xs: "none", sm: "block" } }}
           >
-            MUI
+            QuickAds Hub
           </Typography>
 
           <YourPost />

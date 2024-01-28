@@ -192,7 +192,7 @@ import Icon from "@mui/material/Icon";
 import AddToPhotosIcon from "@mui/icons-material/AddToPhotos";
 import Swal from "sweetalert2";
 
- const url = `${environments.BASE_HOST_LOCAL_URL}/api/createPost`;
+ const url = `${environments.BASE_HOST_URL}/api/createPost`;
 const urlGet = `${environments.BASE_HOST_URL}/api/getPosts`;
 const editUrl = `${environments.BASE_HOST_URL}/api/editProfilePhoto`;
 const GetProfileUrl = `${environments.BASE_HOST_URL}/api/getProfile`;
