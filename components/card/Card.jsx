@@ -1,17 +1,9 @@
-// YourCardComponent.jsx
-
 import React, { useState } from "react";
 import styles from "./Card.module.css";
 import { FacebookShareButton, WhatsappShareButton } from "react-share";
 import ShareIcon from "@mui/icons-material/Share";
-import Modal from "../modal/Modal"; // Import your modal component
-import {
-  
-  FacebookIcon,
- 
-  WhatsappIcon,
-  
-} from "react-share";
+import Modal from "../modal/Modal";
+import { FacebookIcon, WhatsappIcon } from "react-share";
 import { useRouter } from "next/router";
 
 const Card = ({
@@ -20,6 +12,7 @@ const Card = ({
   post,
   imageReaction,
   animateState,
+  reactionCounts, // Updated prop to pass reaction counts
   coverSocialIcons,
 }) => {
   const router = useRouter();
@@ -36,8 +29,10 @@ const Card = ({
   const handleCloseModal = () => {
     setModalOpen(false);
   };
+
   const shareUrl = `https://aluthporuwa-nakandara.vercel.app/post/${post.postId}`;
   const title = "Check out this post";
+
   return (
     <div className="margin_bott">
       <div className={styles.card}>
@@ -58,7 +53,7 @@ const Card = ({
         </div>
 
         <div className={styles.contentContainer}>
-          <div className={styles.top_banner}>Top</div>
+          <div className={styles.top_banner}>Top </div>
 
           <div className={styles.container_flex}>
             <p
@@ -68,19 +63,18 @@ const Card = ({
               Hey ❤❤ Im available for you in 🌹One hour one shot 5500/= One hour
               tow shot. 8500/=
             </p>
+
             <div className={styles.share_icon}>
               <ShareIcon onClick={handleShareClick} />
               <Modal isOpen={isModalOpen} onClose={handleCloseModal}>
-                {/* Add your modal content here */}
                 <h2>Share Options</h2>
                 <FacebookShareButton url={shareUrl} quote={title}>
-              
-                <FacebookIcon size={32} round={true} />
-              </FacebookShareButton>
-              <WhatsappShareButton url={shareUrl} quote={title}>
-              <WhatsappIcon size={32} round={true} />
-              </WhatsappShareButton>
-                <p>Add your social  sharing buttons here</p>
+                  <FacebookIcon size={32} round={true} />
+                </FacebookShareButton>
+                <WhatsappShareButton url={shareUrl} quote={title}>
+                  <WhatsappIcon size={32} round={true} />
+                </WhatsappShareButton>
+                <p>Add your social sharing buttons here</p>
                 <button onClick={handleCloseModal}>Close</button>
               </Modal>
             </div>
@@ -92,23 +86,32 @@ const Card = ({
                 animateState[index].animateLike ? "smile-beat" : ""
               } socialButton`}
             >
-              👍🏻
+              👍🏻{" "}
+              {reactionCounts && reactionCounts[index]
+                ? reactionCounts[index].like || 0
+                : 0}
             </button>
             <button
-              onClick={() => imageReaction("animateSmile", index)}
+              onClick={() => imageReaction("animateLike", index)}
               className={`social-image ${
-                animateState[index].animateSmile ? "smile-beat" : ""
+                animateState[index].animateLike ? "smile-beat" : ""
               } socialButton`}
             >
-               😊
+              👍🏻{" "}
+              {reactionCounts && reactionCounts[index]
+                ? reactionCounts[index].like || 0
+                : 0}
             </button>
             <button
-              onClick={() => imageReaction("animateHeart", index)}
+              onClick={() => imageReaction("animateLike", index)}
               className={`social-image ${
-                animateState[index].animateHeart ? "heart-beat" : ""
+                animateState[index].animateLike ? "smile-beat" : ""
               } socialButton`}
             >
-               ❤️
+              👍🏻{" "}
+              {reactionCounts && reactionCounts[index]
+                ? reactionCounts[index].like || 0
+                : 0}
             </button>
           </div>
         </div>
