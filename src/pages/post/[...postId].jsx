@@ -25,6 +25,20 @@ const images = [
 ];
 
 const PostId = ({ postIdData }) => {
+  console.log(postIdData, "postIdDatapostIdData");
+
+  const handleWhatsAppClick = () => {
+    const phoneNumber = "+94715297881";
+
+    const message = "Hello! This is a pre-filled message.";
+
+    const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(
+      message
+    )}`;
+
+    window.open(url, "_blank");
+  };
+
   return (
     <LayoutSecond>
       <div className={styles.PostIdMain}>
@@ -56,7 +70,11 @@ const PostId = ({ postIdData }) => {
 
             <div>
               <div className={styles.postIdDescription}>Description</div>
-              <Typography className={styles.postIdDescription_content} sx={{ color: "black" }} variant="body1">
+              <Typography
+                className={styles.postIdDescription_content}
+                sx={{ color: "black" }}
+                variant="body1"
+              >
                 body1. Lorem ipsum dolor sit amet, consectetur adipisicing elit.
                 Quos blanditiis tenetur unde suscipit, quam beatae rerum
                 inventore consectetur, neque doloribus, cupiditate numquam
@@ -67,34 +85,37 @@ const PostId = ({ postIdData }) => {
         </div>
       </div>
       <div className={styles.SecondContent}>
-        <div className={styles.action_buttons}>
+        <button className={styles.action_buttons} onClick={handleWhatsAppClick}>
           <div className={styles.contact_options}>
-            <div className={styles.btn}> <img
-              className="socialImages"
-              src={`/media/icons8-whatsapp-48.png`}
-              alt={`Image`}
-            /></div>
-            <div className={styles.btn}><img
-              className="socialImages"
-              src={`/media/icons8-call-64.png`}
-              alt={`Image`}
-            /></div>
+            <div className={styles.btn}>
+              {" "}
+              <img
+                className="socialImages"
+                src={`/media/icons8-whatsapp-48.png`}
+                alt={`Image`}
+              />
+            </div>
+            <div className={styles.btn}>
+              <img
+                className="socialImages"
+                src={`/media/icons8-call-64.png`}
+                alt={`Image`}
+              />
+            </div>
           </div>
-        </div>
+        </button>
       </div>
       <div className={styles.ThirdContent}>ThirdContent</div>
     </LayoutSecond>
   );
 };
 
-
-
 export async function getServerSideProps(context) {
   const { postId } = context.query;
 
   try {
     const response = await axios.get(
-      `${environments.BASE_HOST_URL}/api/getPost/${postId}`
+      `${environments.BASE_HOST_LOCAL_URL}/api/getPost/${postId}`
     );
     if (response) {
     }
