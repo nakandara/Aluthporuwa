@@ -1,15 +1,18 @@
 import Layout from "../../components/Layout";
 import React, { useState, useEffect } from "react";
+import { useToken } from "../context/TokenContext";
 
 import LayoutSecond from '../../components/LayoutSecond/LayoutSecond'
-
+import ProtectedRoute from "../../components/protect/protectedRoute"; 
 
 
 const About = () => {
-
+  const { user } = useToken();
+ 
   return (
     <LayoutSecond>
-    <div>
+      <ProtectedRoute>
+      <div>
       <div
         className="multi-color-gradient"
         style={{ marginTop: "50px", height: "100vh" }}
@@ -19,6 +22,8 @@ const About = () => {
         </div>
       </div>
     </div>
+      </ProtectedRoute>
+   
     </LayoutSecond>
   );
 };

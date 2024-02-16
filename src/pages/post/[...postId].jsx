@@ -25,20 +25,22 @@ const images = [
 ];
 
 const PostId = ({ postIdData }) => {
-  console.log(postIdData, "postIdDatapostIdData");
+  console.log(postIdData.allPosts, "postIdDatapostIdData");
 
   const handleWhatsAppClick = () => {
-    const phoneNumber = "+94715297881";
-
-    const message = "Hello! This is a pre-filled message.";
-
-    const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(
-      message
-    )}`;
-
-    window.open(url, "_blank");
+    const phoneNumber = postIdData?.allPosts[0]?.PostDetails?.phoneNumber
+    console.log(phoneNumber);
+  
+    if (phoneNumber) {
+      const message = "Hello! This is a pre-filled message.";
+      const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+      window.open(url, "_blank");
+    } else {
+      // Handle case where phoneNumber is not available
+      console.error("Phone number not available");
+    }
   };
-
+  
   return (
     <LayoutSecond>
       <div className={styles.PostIdMain}>
@@ -135,3 +137,5 @@ export async function getServerSideProps(context) {
 }
 
 export default PostId;
+
+

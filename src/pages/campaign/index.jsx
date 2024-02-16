@@ -22,7 +22,7 @@ const Campaign = () => {
             <h1 className="header_campaign">Payment Method</h1>
             <div className="campaign-container">
               <div className="payment-card-gold" style={{ marginTop: "50px" }}>
-                <div className="payment-image ">
+                <div className="">
                 <div className="card-title">Gold Plan</div>
                 </div>
                 <div className="card-content">

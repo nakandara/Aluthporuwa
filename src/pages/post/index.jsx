@@ -54,6 +54,7 @@ const Post = () => {
       postId: "65741a033e9bcea69d35d74f",
       __v: 0,
       socialIcon: ["smile"],
+      phoneNumber:"0715297881"
     },
     {
       _id: "65741a033e9bcea69d35d74e",
@@ -65,6 +66,7 @@ const Post = () => {
       postId: "65741a033e9bcea69d35d74b",
       __v: 0,
       socialIcon: ["heart"],
+      phoneNumber:"0715297882"
     },
     {
       _id: "65741a033e9bcea69d35d74e",
@@ -76,6 +78,7 @@ const Post = () => {
       postId: "65741a033e9bcea69d35d74fc",
       __v: 0,
       socialIcon: ["smile"],
+      phoneNumber:"0715297883"
     },
     {
       _id: "65741a033e9bcea69d35d74e",
@@ -87,6 +90,7 @@ const Post = () => {
       __v: 0,
       description: " 111111111111111111111111111111111 1111",
       socialIcon: ["heart"],
+      phoneNumber:"0715297884"
     },
     {
       _id: "65741a033e9bcea69d35d74e",
@@ -98,6 +102,7 @@ const Post = () => {
       postId: "65741a033e9bcea69d35d74e",
       __v: 0,
       socialIcon: ["like"],
+      phoneNumber:"0715297885"
     },
     {
       _id: "65741a033e9bcea69d35d74e",
@@ -109,6 +114,7 @@ const Post = () => {
       description: " 111111111111111111111111111111111 1111",
       __v: 0,
       socialIcon: ["smile"],
+      phoneNumber:"0715297885"
     },
     {
       _id: "65741a033e9bcea69d35d74e",
@@ -120,6 +126,7 @@ const Post = () => {
       description: " 111111111111111111111111111111111 1111",
       __v: 0,
       socialIcon: ["like"],
+      phoneNumber:"0715297886"
     },
     {
       _id: "65741a033e9bcea69d35d74e",
@@ -131,6 +138,7 @@ const Post = () => {
       description: " 111111111111111111111111111111111 1111",
       __v: 0,
       socialIcon: ["heart"],
+      phoneNumber:"0715297887"
     },
   ]);
   const [loading, setLoading] = useState(true);
