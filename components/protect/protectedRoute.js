@@ -17,12 +17,11 @@ const ProtectedRoute = ({ children }) => {
         router.push("/auth/signin");
       }
     }
-  }, [router]); // Include 'router' as a dependency here
+  }, 10); 
 
-  if (isLoading) {
-    // You can show a loading spinner or any other loading indicator here
-    return <div>Loading...</div>;
-  }
+  console.log(isLoading,'ffffffffffffff');
+
+ 
 
   return <>{children}</>;
 };
