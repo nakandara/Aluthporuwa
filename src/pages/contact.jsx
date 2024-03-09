@@ -1,35 +1,85 @@
-import React from "react";
-import LayoutSecond from "../../components/LayoutSecond/LayoutSecond";
+// ContactUs.js
 
-const Contact = () => {
+import React, { useState } from 'react';
+import LayoutSecond from '../../components/LayoutSecond/LayoutSecond'
+import ProtectedRoute from "../../components/protect/protectedRoute"; 
+ // Make sure to import your global styles
+
+const ContactUs = () => {
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    message: '',
+  });
+
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // Add your logic to handle the form submission (e.g., sending an email, storing in a database, etc.)
+    console.log('Form submitted:', formData);
+    // Clear the form fields after submission
+    setFormData({ name: '', email: '', message: '' });
+  };
+
   return (
     <LayoutSecond>
-      <div className="contact-container_new">
-        <div className="multi-color-gradient">
-          <div className="contact-content">
-            <h1 className="header_contact">Contact Us</h1>
-            <p className="contact-description">
-            We&apos;d love to hear from you. Reach out to us using the form below.
-            </p>
+    <ProtectedRoute>
+    <div className="contact-us-container"  style={{ marginTop: "90px", height: "80vh" }}>
+      <h2>Contact Us</h2>
+      <form onSubmit={handleSubmit}>
+        <label htmlFor="name" className="input-label">
+          Name:
+        </label>
+        <input
+          type="text"
+          id="name"
+          name="name"
+          value={formData.name}
+          onChange={handleChange}
+          className="input-field"
+          required
+        />
 
-            {/* Your contact form goes here */}
-            <form className="contact-form">
-              <label htmlFor="name">Name:</label>
-              <input type="text" id="name" name="name" required />
+        <label htmlFor="email" className="input-label">
+          Email:
+        </label>
+        <input
+          type="email"
+          id="email"
+          name="email"
+          value={formData.email}
+          onChange={handleChange}
+          className="input-field"
+          required
+        />
 
-              <label htmlFor="email">Email:</label>
-              <input type="email" id="email" name="email" required />
+        <label htmlFor="message" className="input-label">
+          Message:
+        </label>
+        <textarea
+          id="message"
+          name="message"
+          value={formData.message}
+          onChange={handleChange}
+          className="input-field"
+          required
+        ></textarea>
 
-              <label htmlFor="message">Message:</label>
-              <textarea id="message" name="message" rows="4" required></textarea>
-
-              <button type="submit">Send Message</button>
-            </form>
-          </div>
-        </div>
-      </div>
-    </LayoutSecond>
+        <button type="submit" className="submit-button">
+          Submit
+        </button>
+      </form>
+    </div>
+    </ProtectedRoute>
+   
+   </LayoutSecond>
   );
 };
 
-export default Contact;
+export default ContactUs;
