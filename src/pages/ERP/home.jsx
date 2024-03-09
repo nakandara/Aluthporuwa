@@ -7,10 +7,10 @@ import LayoutSecond from "../../../components/LayoutSecond/LayoutSecond";
 import ProtectedRoute from "../../../components/protect/protectedRoute";
 import LoginPage from "../../../components/ERP/LoginPage";
 
-const home = () => {
-  const [userData, setUserData] = useState(null);
+const Home = () => {
 
-  const [user, setUser] = useState(null);
+
+
 
   useEffect(() => {
     const getUser = async () => {
@@ -27,7 +27,7 @@ const home = () => {
         if (response) {
           const resObject = await response.json();
           console.log(resObject, "responseresponseresponse");
-          setUser(resObject.user);
+         
         } else {
           throw new Error("Authentication failed");
         }
@@ -106,4 +106,4 @@ console.log(formData,'777777777');
   );
 };
 
-export default home;
+export default Home;

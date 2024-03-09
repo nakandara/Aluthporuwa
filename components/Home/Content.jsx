@@ -548,6 +548,7 @@ export default function Elevation() {
           <div className="main_onen">
             <div className="profile_InfoPopup_img">
               <img src="/media/chamodh.jpg" alt="girl one"/>
+              {/* <Image src="/media/chamodh.jpg" alt="girl one" width={16} height={16} /> */}
             </div>
           <div style={boxStyle}>
           {content}
