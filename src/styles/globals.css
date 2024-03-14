@@ -1710,3 +1710,81 @@ textarea {
   background-color: #0056b3;
 }
 
+
+/* SignInSignUpPage.css */
+
+/* SignInSignUpPage.css */
+
+.sign-in-sign-up-container {
+  width: 90%;
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  border-radius: 10px;
+  background-color: #ffffff;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  display: grid;
+  grid-template-rows: auto auto auto auto;
+  gap: 10px;
+  text-align: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+h2 {
+  margin-bottom: 20px;
+}
+
+input {
+  width: calc(100% - 20px);
+  margin-bottom: 10px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.buttons {
+  display: flex;
+  flex-direction: column;
+}
+
+.sign-in-btn, .google-login-btn ,.sign-up-btn{
+  margin-bottom: 10px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.sign-in-btn {
+  background-color: #007bff;
+  color: #fff;
+}
+
+.google-login-btn {
+  background-color: #ea4335;
+  color: #fff;
+}
+.sign-up-btn {
+  background-color: #28a745;
+  color: #fff;
+}
+
+.sign-in-btn:hover, .google-login-btn:hover {
+  opacity: 0.8;
+}
+
+.forgot-password {
+  margin-top: 10px;
+}
+
+.forgot-password a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.forgot-password a:hover {
+  text-decoration: underline;
+}
