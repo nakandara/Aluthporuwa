@@ -3,7 +3,7 @@ import axios from 'axios';
 import { useRouter } from "next/router";
 import { environments } from "../../components/environment/environments";
 
-const forgotPassword = () => {
+const ForgotPassword = () => {
   const router = useRouter();
   const [email, setEmail] = useState('');
   const [message, setMessage] = useState('');
@@ -16,7 +16,7 @@ const forgotPassword = () => {
     e.preventDefault();
     
     try {
-      const response = await axios.post(`${environments.BASE_HOST_LOCAL_URL}/api/forgot-password`, { email }); // Adjust this path if needed
+      const response = await axios.post(`${environments.BASE_HOST_URL}/api/forgot-password`, { email });
       setMessage(response.data);
     } catch (error) {
       setMessage('Something went wrong. Please try again later.');
@@ -44,10 +44,10 @@ const forgotPassword = () => {
       </form>
       {message && <p>{message}</p>}
       <div onClick={goBack} className="forgot-password">
-      <a href="#">GO SIGN IN PAGE</a>
-    </div>
+        <a href="#">GO SIGN IN PAGE</a>
+      </div>
     </div>
   );
 };
 
-export default forgotPassword;
+export default ForgotPassword;
