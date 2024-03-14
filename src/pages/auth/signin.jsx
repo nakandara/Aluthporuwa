@@ -10,7 +10,7 @@ import Link from 'next/link';
 
 const provider = [
   {
-    name: "google",
+    name: "google", 
   },
 ];
 
