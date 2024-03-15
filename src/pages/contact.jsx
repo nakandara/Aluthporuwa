@@ -1,12 +1,17 @@
-// ContactUs.js
 
 import React, { useState } from 'react';
+import axios from 'axios';
+import Swal from "sweetalert2";
+import { useToken } from "../context/TokenContext";
 import LayoutSecond from '../../components/LayoutSecond/LayoutSecond'
 import ProtectedRoute from "../../components/protect/protectedRoute"; 
+import { environments } from "../../components/environment/environments";
  // Make sure to import your global styles
 
 const ContactUs = () => {
+  const { user } = useToken();
   const [formData, setFormData] = useState({
+    userId:'',
     name: '',
     email: '',
     message: '',
@@ -16,15 +21,50 @@ const ContactUs = () => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value,
+      userId: user.userId,
+      
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
+  
     e.preventDefault();
-    // Add your logic to handle the form submission (e.g., sending an email, storing in a database, etc.)
-    console.log('Form submitted:', formData);
-    // Clear the form fields after submission
-    setFormData({ name: '', email: '', message: '' });
+    try {
+
+      const response = await axios.post(`${environments.BASE_HOST_LOCAL_URL}/api/createContact`, formData);
+      console.log(response.data);
+      if (response.data) {
+        setFormData({
+          userId: '',
+          name: '',
+          email: '',
+          message: '',
+        });
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: "Your work has been sent",
+          showConfirmButton: false,
+          timer: 1500
+        });
+      }else{
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Something went wrong!",
+          footer: '<a href="#">Why do I have this issue?</a>'
+        });
+      }
+    
+    } catch (error) {
+      console.error(error);
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Something went wrong!",
+        footer: '<a href="#">Why do I have this issue?</a>'
+      });
+    }
   };
 
   return (

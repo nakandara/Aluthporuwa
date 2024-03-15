@@ -18,6 +18,7 @@ const Signin = () => {
   const { token, setToken, setUser, user } = useToken();
   const router = useRouter();
   const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
 
@@ -82,7 +83,8 @@ const Signin = () => {
       const response = await axios.post(
         `${environments.BASE_HOST_URL}/api/login`,
         {
-          email: username,
+          name: username,
+          email:email,
           password: password,
         }
       );
@@ -161,144 +163,7 @@ const Signin = () => {
   }
 
   return (
-    // <div>
-    //   <form className="form" autoComplete="off" onSubmit={normalLogin}>
-    //     <div className="control">
-    //       <h1>Sign In</h1>
-    //     </div>
-    //     <div className="control block-cube block-input">
-    //       <input
-    //         name="username"
-    //         type="text"
-    //         placeholder="Username"
-    //         value={username}
-    //         onChange={(e) => setUsername(e.target.value)}
-    //       />
-    //       <div className="bg-top">
-    //         <div className="bg-inner"></div>
-    //       </div>
-    //       <div className="bg-right">
-    //         <div className="bg-inner"></div>
-    //       </div>
-    //       <div className="bg">
-    //         <div className="bg-inner"></div>
-    //       </div>
-    //     </div>
-    //     <div className="control block-cube block-input">
-    //       <input
-    //         name="password"
-    //         type="password"
-    //         placeholder="Password"
-    //         value={password}
-    //         onChange={(e) => setPassword(e.target.value)}
-    //       />
-    //       <div className="bg-top">
-    //         <div className="bg-inner"></div>
-    //       </div>
-    //       <div className="bg-right">
-    //         <div className="bg-inner"></div>
-    //       </div>
-    //       <div className="bg">
-    //         <div className="bg-inner"></div>
-    //       </div>
-    //     </div>
-
-    //     <button
-    //       onClick={normalLogin}
-    //       className="btn block-cube block-cube-hover"
-    //       type="button"
-    //     >
-    //       <div className="bg-top">
-    //         <div className="bg-inner"></div>
-    //       </div>
-    //       <div className="bg-right">
-    //         <div className="bg-inner"></div>
-    //       </div>
-    //       <div className="bg">
-    //         <div className="bg-inner"></div>
-    //       </div>
-    //       {/* .bg2 */}
-    //       <div className="text">Log In</div>
-    //     </button>
-    //     {/* GOOGLE */}
-
-    //     {provider.map(({ name }) => (
-    //       <button
-    //         key={name}
-    //         onClick={googleSignIn}
-    //         className="btn block-cube block-cube-hover"
-    //         type="button"
-    //       >
-    //         <div className="bg-top">
-    //           <div className="bg-inner"></div>
-    //         </div>
-    //         <div className="bg-right">
-    //           <div className="bg-inner"></div>
-    //         </div>
-    //         <div className="bg">
-    //           <div className="bg-inner"></div>
-    //         </div>
-    //         {/* .bg2 */}
-    //         <div className="text">{name}</div>
-    //       </button>
-    //     ))}
-
-    //     <button
-    //       onClick={RegisterUser}
-    //       className="btn block-cube block-cube-hover"
-    //       type="button"
-    //     >
-    //       <div className="bg-top">
-    //         <div className="bg-inner"></div>
-    //       </div>
-    //       <div className="bg-right">
-    //         <div className="bg-inner"></div>
-    //       </div>
-    //       <div className="bg">
-    //         <div className="bg-inner"></div>
-    //       </div>
-    //       {/* .bg2 */}
-    //       <div className="text">Register User</div>
-    //     </button>
-
-    //     <FacebookLogin
-    //       appId="2120907774936976"
-    //       autoLoad={false} // Set to true if you want to auto-load the login dialog
-    //       fields="name,email,picture" // Requested fields from Facebook profile
-    //       callback={responseFacebook} // Callback function to handle the response
-    //       icon="fa-facebook" // Optional: customize the login button with a FontAwesome icon
-    //       textButton="Login with Facebook" // Optional: customize the text of the login button
-    //     />
-    //     <button
-    //       onClick={forgotPassword}
-    //       className="btn block-cube block-cube-hover"
-    //       type="button"
-    //     >
-    //       <div className="bg-top">
-    //         <div className="bg-inner"></div>
-    //       </div>
-    //       <div className="bg-right">
-    //         <div className="bg-inner"></div>
-    //       </div>
-    //       <div className="bg">
-    //         <div className="bg-inner"></div>
-    //       </div>
-    //       {/* .bg2 */}
-    //       <div className="text">Forgot Password</div>
-    //     </button>
-
-    //     <div className="credits">
-    //       <a href="https://codepen.io/marko-zub/" target="_blank"></a>
-    //     </div>
-
-      
-    //   </form>
-    //   <div  className="btn block-cube block-cube-hover" >
-    //   <Link href="/other-page">
-    //   Forgot Password
-    //   </Link>
-    //   </div>
-    // </div>
+    
     <div>
        <div className="sign-in-sign-up-container">
     <h2>Sign In / Sign Up</h2>
@@ -309,6 +174,14 @@ const Signin = () => {
             placeholder="Username"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
+          />
+
+<input
+            name="email"
+            type="email"
+            placeholder="Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
           />
                 <input
             name="password"

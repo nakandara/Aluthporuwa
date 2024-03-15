@@ -9,14 +9,17 @@ const SignupPage = () => { // Renamed to 'SignupPage'
 
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("");
 
   const normalLogin = async () => {
     try {
       const response = await axios.post(
         `${environments.BASE_HOST_URL}/api/createUser`,
         {
-          email: username,
+          name: username,
           password: password,
+          email:email,
+          method:"NORMAL"
         }
       );
 
@@ -43,6 +46,24 @@ const SignupPage = () => { // Renamed to 'SignupPage'
             placeholder="Username"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
+          />
+          <div className="bg-top">
+            <div className="bg-inner"></div>
+          </div>
+          <div className="bg-right">
+            <div className="bg-inner"></div>
+          </div>
+          <div className="bg">
+            <div className="bg-inner"></div>
+          </div>
+        </div>
+        <div className="control block-cube block-input">
+        <input
+            name="email"
+            type="text"
+            placeholder="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
           />
           <div className="bg-top">
             <div className="bg-inner"></div>
