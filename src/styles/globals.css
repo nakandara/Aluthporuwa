@@ -1218,15 +1218,20 @@ position: fixed;
 }
 
 .margin_b_t{
-  margin-top: 150px;
+  margin-top: 135px;
   margin-bottom: 100px;
+  display: flex;
+ 
 }
 
 .margin_bott{
   margin-bottom: 10px;
 }
 
-
+.category_container{
+  background-color: #e1ebee;
+  border-radius: 10px;
+}
 .socialButton {
   background-color: #3498db;
   color: #fff;
@@ -1235,6 +1240,19 @@ position: fixed;
   border-radius: 5px;
   cursor: pointer;
   font-size: 14px;
+}
+.sub_category_container{
+  background-color: #009877;
+  font-size: smaller;
+}
+
+@media screen and (max-width: 780px) {
+  .margin_b_t{
+    margin-top: 140px;
+    margin-bottom: 100px;
+    display: grid;
+  }
+ 
 }
 
 

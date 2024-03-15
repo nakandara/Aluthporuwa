@@ -5,44 +5,51 @@ import axios from "axios";
 import { environments } from "../../../components/environment/environments";
 import { useRouter } from "next/router";
 import Card from "../../../components/card/Card";
-
+import { styled } from '@mui/material/styles';
+import Box from '@mui/material/Box';
+import Paper from '@mui/material/Paper';
+import Grid from '@mui/material/Grid';
 import LayoutSecond from "../../../components/LayoutSecond/LayoutSecond";
-import api from '../../ services/api';
+import api from "../../ services/api";
 import { useToken } from "../../context/TokenContext";
 
-
 const url = `${environments.BASE_HOST_LOCAL_URL}/api/increment`;
- 
 
 
 
-
+const Item = styled(Paper)(({ theme }) => ({
+  backgroundColor: theme.palette.mode === 'dark' ? '#009877' : '#009877',
+  ...theme.typography.body2,
+  borderRadius:"500px",
+  padding: theme.spacing(1),
+  textAlign: 'center',
+fontSize:"12px",
+  height:"40px",
+  color: theme.palette.mode === 'dark' ? '#fff' : '#fff', 
+  border: '2px solid yellow',
+}));
 export const incrementReactionCount = async (postId, reactionType) => {
-
-  console.log(postId,reactionType);
+  console.log(postId, reactionType);
   try {
-    const response = await api.post('/api/increment', {
+    const response = await api.post("/api/increment", {
       postId,
       reactionType,
     });
 
     return response.data.count;
   } catch (error) {
-    console.error('Error incrementing reaction count:', error);
-    throw new Error('Failed to increment reaction count.');
+    console.error("Error incrementing reaction count:", error);
+    throw new Error("Failed to increment reaction count.");
   }
 };
 
-
-
 const Post = () => {
-
-
   const { user } = useToken();
   const router = useRouter();
   const [selectedCategories, setSelectedCategories] = useState([]);
   const [filteredData, setFilteredData] = useState([]);
-  const [reactionCount, setReactionCount] = useState('');
+  const [reactionCount, setReactionCount] = useState("");
+  const [category, setCategory] = useState([{"category":"spa","count":"100"},{"category":"video","count":"1700"},{"category":"video","count":"1700"},{"category":"video","count":"1700"},{"category":"vehicle","count":"1700"},{"category":"vehicle","count":"1700"},{"category":"private","count":"1700"}]);
   const [data, setData] = useState([
     {
       _id: "65741a033e9bcea69d35d74e",
@@ -54,7 +61,7 @@ const Post = () => {
       postId: "65741a033e9bcea69d35d74f",
       __v: 0,
       socialIcon: ["smile"],
-      phoneNumber:"0715297881"
+      phoneNumber: "0715297881",
     },
     {
       _id: "65741a033e9bcea69d35d74e",
@@ -66,7 +73,7 @@ const Post = () => {
       postId: "65741a033e9bcea69d35d74b",
       __v: 0,
       socialIcon: ["heart"],
-      phoneNumber:"0715297882"
+      phoneNumber: "0715297882",
     },
     {
       _id: "65741a033e9bcea69d35d74e",
@@ -78,7 +85,7 @@ const Post = () => {
       postId: "65741a033e9bcea69d35d74fc",
       __v: 0,
       socialIcon: ["smile"],
-      phoneNumber:"0715297883"
+      phoneNumber: "0715297883",
     },
     {
       _id: "65741a033e9bcea69d35d74e",
@@ -90,7 +97,7 @@ const Post = () => {
       __v: 0,
       description: " 111111111111111111111111111111111 1111",
       socialIcon: ["heart"],
-      phoneNumber:"0715297884"
+      phoneNumber: "0715297884",
     },
     {
       _id: "65741a033e9bcea69d35d74e",
@@ -102,7 +109,7 @@ const Post = () => {
       postId: "65741a033e9bcea69d35d74e",
       __v: 0,
       socialIcon: ["like"],
-      phoneNumber:"0715297885"
+      phoneNumber: "0715297885",
     },
     {
       _id: "65741a033e9bcea69d35d74e",
@@ -114,7 +121,7 @@ const Post = () => {
       description: " 111111111111111111111111111111111 1111",
       __v: 0,
       socialIcon: ["smile"],
-      phoneNumber:"0715297885"
+      phoneNumber: "0715297885",
     },
     {
       _id: "65741a033e9bcea69d35d74e",
@@ -126,7 +133,7 @@ const Post = () => {
       description: " 111111111111111111111111111111111 1111",
       __v: 0,
       socialIcon: ["like"],
-      phoneNumber:"0715297886"
+      phoneNumber: "0715297886",
     },
     {
       _id: "65741a033e9bcea69d35d74e",
@@ -138,7 +145,7 @@ const Post = () => {
       description: " 111111111111111111111111111111111 1111",
       __v: 0,
       socialIcon: ["heart"],
-      phoneNumber:"0715297887"
+      phoneNumber: "0715297887",
     },
   ]);
   const [loading, setLoading] = useState(true);
@@ -197,18 +204,12 @@ const Post = () => {
   };
 
   if (!user) {
-    return <div style={{color:"black"}}>Loading user data...</div>;
+    return <div style={{ color: "black" }}>Loading user data...</div>;
   }
 
   const renderPosts = filteredData.length > 0 ? filteredData : data;
 
-  const imageReaction = async (value, index,post) => {
-
-
-  
-
-
-
+  const imageReaction = async (value, index, post) => {
     const newAnimateState = [...animateState];
     newAnimateState[index] = { ...newAnimateState[index] };
     console.log(value.toLowerCase());
@@ -216,18 +217,17 @@ const Post = () => {
     newAnimateState[index][value] =
       !newAnimateState[index][value.toLowerCase()];
 
-      if (animateState[index][value]) {
-        return;
-      }
+    if (animateState[index][value]) {
+      return;
+    }
 
-      console.log(post.postId,'ttttttttttt');
-      //const updatedCount = await incrementReactionCount(post._id, value.toLowerCase());
-      const response = await api.post('/api/increment', {
-        postId: post.postId, // Access post._id from the parameter
-        reactionType:value
-      });
-      setReactionCount(response.data.count)
-   
+    console.log(post.postId, "ttttttttttt");
+    //const updatedCount = await incrementReactionCount(post._id, value.toLowerCase());
+    const response = await api.post("/api/increment", {
+      postId: post.postId, // Access post._id from the parameter
+      reactionType: value,
+    });
+    setReactionCount(response.data.count);
 
     setAnimateState(newAnimateState);
     switch (value.toLowerCase()) {
@@ -260,18 +260,11 @@ const Post = () => {
       setAnimateState(newAnimateState);
     }, 700);
 
-
-  
-   
-   
     newAnimateState[index] = { ...newAnimateState[index], [value]: true };
     setAnimateState(newAnimateState);
-  
-  
-    
   };
 
-  console.log(coverSocialIcons);
+  console.log(data);
 
   return (
     <LayoutSecond>
@@ -294,27 +287,52 @@ const Post = () => {
         </div>
 
         <div className="margin_b_t">
-          {loading ? (
-            <>
-              {renderPosts.map((post, index) => (
-                <div key={index}>
-                  <div key={index} height={200} offset={100}>
-                    <Card
-                      src={post.image}
-                      index={index}
-                      reactionCount={reactionCount}
-                      post={post}
-                      coverSocialIcons={coverSocialIcons}
-                      imageReaction={(value) => imageReaction(value, index, post)}
-                      animateState={animateState}
-                    />
+         
+         <div style={{marginTop:"-30px"}}>
+         <Box className="category_container" component="section" sx={{ p: 2,m:5, border: '1px dashed grey'}}>
+         <Grid container  spacing={1}>
+
+         {category.map(item => (
+        // <div key={item._id}>
+         
+        //   <p>Description: {item.category}</p>
+          
+        // </div>
+         <Grid  key={item._id} item xs={3}>
+         <Item className="sub_category_container">{item.category} {item.count}</Item>
+       </Grid>
+      ))}
+    
+      </Grid>
+      
+    </Box>
+         </div>
+   
+          <div>
+            {loading ? (
+              <>
+                {renderPosts.map((post, index) => (
+                  <div key={index}>
+                    <div key={index} height={200} offset={100}>
+                      <Card
+                        src={post.image}
+                        index={index}
+                        reactionCount={reactionCount}
+                        post={post}
+                        coverSocialIcons={coverSocialIcons}
+                        imageReaction={(value) =>
+                          imageReaction(value, index, post)
+                        }
+                        animateState={animateState}
+                      />
+                    </div>
                   </div>
-                </div>
-              ))}
-            </>
-          ) : (
-            <div>Loading.............</div>
-          )}
+                ))}
+              </>
+            ) : (
+              <div>Loading.............</div>
+            )}
+          </div>
         </div>
       </div>
     </LayoutSecond>
