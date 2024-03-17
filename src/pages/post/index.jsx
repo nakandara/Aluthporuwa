@@ -49,105 +49,42 @@ const Post = () => {
   const [selectedCategories, setSelectedCategories] = useState([]);
   const [filteredData, setFilteredData] = useState([]);
   const [reactionCount, setReactionCount] = useState("");
+  const [posts, setPosts] = useState([]);
   const [category, setCategory] = useState([{"category":"spa","count":"100"},{"category":"video","count":"1700"},{"category":"video","count":"1700"},{"category":"video","count":"1700"},{"category":"vehicle","count":"1700"},{"category":"vehicle","count":"1700"},{"category":"private","count":"1700"}]);
   const [data, setData] = useState([
-    {
-      _id: "65741a033e9bcea69d35d74e",
-      userId: "651ab367455cb0a4405755b6",
-      image:
-        "https://images.pexels.com/photos/1391498/pexels-photo-1391498.jpeg?auto=compress&cs=tinysrgb&w=600",
-      description: "111111111111111111111111111111111 1111",
-      category: ["Vehicle"],
-      postId: "65741a033e9bcea69d35d74f",
-      __v: 0,
-      socialIcon: ["smile"],
-      phoneNumber: "0715297881",
-    },
-    {
-      _id: "65741a033e9bcea69d35d74e",
-      userId: "651ab367455cb0a4405755b6",
-      image:
-        "https://images.pexels.com/photos/1362724/pexels-photo-1362724.jpeg?auto=compress&cs=tinysrgb&w=600",
-      description: "111111111111111111111111111111111 1111",
-      category: ["Vehicle"],
-      postId: "65741a033e9bcea69d35d74b",
-      __v: 0,
-      socialIcon: ["heart"],
-      phoneNumber: "0715297882",
-    },
-    {
-      _id: "65741a033e9bcea69d35d74e",
-      userId: "651ab367455cb0a4405755b6",
-      image:
-        "https://images.pexels.com/photos/1321909/pexels-photo-1321909.jpeg?auto=compress&cs=tinysrgb&w=600",
-      category: ["Home"],
-      description: " 111111111111111111111111111111111 1111",
-      postId: "65741a033e9bcea69d35d74fc",
-      __v: 0,
-      socialIcon: ["smile"],
-      phoneNumber: "0715297883",
-    },
-    {
-      _id: "65741a033e9bcea69d35d74e",
-      userId: "651ab367455cb0a4405755b6",
-      image:
-        "https://images.pexels.com/photos/725458/pexels-photo-725458.jpeg?auto=compress&cs=tinysrgb&w=600",
-      category: ["Vehicle"],
-      postId: "65741a033e9bcea69d35d74d",
-      __v: 0,
-      description: " 111111111111111111111111111111111 1111",
-      socialIcon: ["heart"],
-      phoneNumber: "0715297884",
-    },
-    {
-      _id: "65741a033e9bcea69d35d74e",
-      userId: "651ab367455cb0a44057556",
-      image:
-        "https://images.pexels.com/photos/1391498/pexels-photo-1391498.jpeg?auto=compress&cs=tinysrgb&w=600",
-      description: "111111111111111111111111111111111 1111",
-      category: ["Vehicle"],
-      postId: "65741a033e9bcea69d35d74e",
-      __v: 0,
-      socialIcon: ["like"],
-      phoneNumber: "0715297885",
-    },
-    {
-      _id: "65741a033e9bcea69d35d74e",
-      userId: "651ab367455cb0a4405755b6",
-      image:
-        "https://images.pexels.com/photos/1446161/pexels-photo-1446161.jpeg?auto=compress&cs=tinysrgb&w=600",
-      category: ["Vehicle"],
-      postId: "65741a033e9bcea69d35d74f",
-      description: " 111111111111111111111111111111111 1111",
-      __v: 0,
-      socialIcon: ["smile"],
-      phoneNumber: "0715297885",
-    },
-    {
-      _id: "65741a033e9bcea69d35d74e",
-      userId: "651ab367455cb0a4405755b6",
-      image:
-        "https://images.pexels.com/photos/1557843/pexels-photo-1557843.jpeg?auto=compress&cs=tinysrgb&w=600",
-      category: ["Spa"],
-      postId: "65741a033e9bcea69d35d74g",
-      description: " 111111111111111111111111111111111 1111",
-      __v: 0,
-      socialIcon: ["like"],
-      phoneNumber: "0715297886",
-    },
-    {
-      _id: "65741a033e9bcea69d35d74e",
-      userId: "651ab367455cb0a4405755b6",
-      image:
-        "https://images.pexels.com/photos/341970/pexels-photo-341970.jpeg?auto=compress&cs=tinysrgb&w=600",
-      category: ["Spa"],
-      postId: "65741a033e9bcea69d35d74h",
-      description: " 111111111111111111111111111111111 1111",
-      __v: 0,
-      socialIcon: ["heart"],
-      phoneNumber: "0715297887",
-    },
+    // {
+    //   _id: "65741a033e9bcea69d35d74e",
+    //   userId: "651ab367455cb0a4405755b6",
+    //   image:
+    //     "https://images.pexels.com/photos/1391498/pexels-photo-1391498.jpeg?auto=compress&cs=tinysrgb&w=600",
+    //   description: "111111111111111111111111111111111 1111",
+    //   category: ["Vehicle"],
+    //   postId: "65741a033e9bcea69d35d74f",
+    //   __v: 0,
+    //   socialIcon: ["smile"],
+    //   phoneNumber: "0715297881",
+    // },
+  
   ]);
+
+  useEffect(() => {
+    const fetchPosts = async () => {
+      try {
+        const response = await axios.get(`${environments.BASE_HOST_LOCAL_URL}/api/getAllPosts`);
+        console.log(response,'response');
+        setData(response.data.data); // Assuming your API response contains the posts in the 'data' field
+      } catch (error) {
+        console.error('Error fetching posts:', error);
+      }
+    };
+
+    fetchPosts();
+  }, []); //
+
+
+  console.log(data,'data');
+  console.log(posts,'posts');
+  
   const [loading, setLoading] = useState(true);
   const [animateState, setAnimateState] = useState(
     Array(data.length).fill({
@@ -164,7 +101,7 @@ const Post = () => {
 
   useEffect(() => {
     if (user && user.userId) {
-      const apiUrl = `${environments.BASE_HOST_LOCAL_URL}/api/getPosts/${user.userId}`;
+      const apiUrl = `${environments.BASE_HOST_URL}/api/getPosts/${user.userId}`;
 
       async function fetchPostData() {
         try {
@@ -320,6 +257,7 @@ const Post = () => {
                         reactionCount={reactionCount}
                         post={post}
                         coverSocialIcons={coverSocialIcons}
+                        description={post.description}
                         imageReaction={(value) =>
                           imageReaction(value, index, post)
                         }

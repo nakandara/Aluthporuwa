@@ -10,6 +10,7 @@ const Card = ({
   src,
   index,
   post,
+  description,
   imageReaction,
   animateState,
   reactionCounts, // Updated prop to pass reaction counts
@@ -60,8 +61,7 @@ const Card = ({
               onClick={() => handleClick(post.postId)}
               className={styles.description}
             >
-              Hey ❤❤ Im available for you in 🌹One hour one shot 5500/= One hour
-              tow shot. 8500/=
+             {description}
             </p>
 
             <div className={styles.share_icon}>
@@ -82,9 +82,9 @@ const Card = ({
           <div className={styles.actions}>
             <button
               onClick={() => imageReaction("animateLike", index)}
-              className={`social-image ${
-                animateState[index].animateLike ? "smile-beat" : ""
-              } socialButton`}
+              // className={`social-image ${
+              //   animateState[index].animateLike ? "smile-beat" : ""
+              // } socialButton`}
             >
               👍🏻{" "}
               {reactionCounts && reactionCounts[index]
@@ -93,9 +93,9 @@ const Card = ({
             </button>
             <button
               onClick={() => imageReaction("animateLike", index)}
-              className={`social-image ${
-                animateState[index].animateLike ? "smile-beat" : ""
-              } socialButton`}
+              // className={`social-image ${
+              //   animateState[index].animateLike ? "smile-beat" : ""
+              // } socialButton`}
             >
               👍🏻{" "}
               {reactionCounts && reactionCounts[index]
@@ -104,9 +104,9 @@ const Card = ({
             </button>
             <button
               onClick={() => imageReaction("animateLike", index)}
-              className={`social-image ${
-                animateState[index].animateLike ? "smile-beat" : ""
-              } socialButton`}
+              // className={`social-image ${
+              //   animateState[index].animateLike ? "smile-beat" : ""
+              // } socialButton`}
             >
               👍🏻{" "}
               {reactionCounts && reactionCounts[index]

@@ -1,6 +1,8 @@
-// // Import necessary libraries and components
-// import React, { useState, useRef } from "react";
-// import Layout from "../../components/Layout";
+
+
+// import React, { useState, useEffect, useRef } from "react";
+// import LayoutSecond from "../../components/LayoutSecond/LayoutSecond";
+
 // import FormControl from "@mui/material/FormControl";
 // import axios from "axios";
 // import { Container, Paper, Typography, Avatar } from "@mui/material";
@@ -8,13 +10,21 @@
 // import Box from "@mui/material/Box";
 // import { useRouter } from "next/router";
 // import { styled } from "@mui/material/styles";
-// import Swal from "sweetalert2";
+// import TextField from "@mui/material/TextField";
+// import ProtectedRoute from "../../components/protect/protectedRoute";
+// import MyInformations from "../../components/MyInformation/MyInformations";
 // import { environments } from "../../components/environment/environments";
 // import { useToken } from "../context/TokenContext";
 // import Select from "@mui/material/Select";
 // import MenuItem from "@mui/material/MenuItem";
+// import Icon from "@mui/material/Icon";
+// import AddToPhotosIcon from "@mui/icons-material/AddToPhotos";
+// import Swal from "sweetalert2";
 
-// const url = `${environments.BASE_HOST_LOCAL_URL}/api/createPost`;
+//  const url = `${environments.BASE_HOST_URL}/api/createPost`;
+// const urlGet = `${environments.BASE_HOST_URL}/api/getPosts`;
+// const editUrl = `${environments.BASE_HOST_URL}/api/editProfilePhoto`;
+// const GetProfileUrl = `${environments.BASE_HOST_URL}/api/getProfile`;
 
 // const MyAccount = () => {
 //   const { user } = useToken();
@@ -91,39 +101,33 @@
 //   };
 
 //   return (
-//     <Layout>
-//       <>
-//         <div style={{ marginTop: "70px", marginBottom: "100vh" }}>
-//           <div style={{ marginTop: "10px", backgroundColor: "#e3e3e3fa" }}>
+//     <LayoutSecond>
+//       <div className="myPost_container">
+//         <div className="myPost_secondContainer">
+//           <div className="myPost_heading">CREATE YOUR ADD</div>
+//           <div>
 //             <Box
 //               gridColumn={{ xs: "1", md: "span 12" }}
 //               onClick={handleButtonClick}
 //               sx={{
-//                 height: "35vh",
-//                 display: "grid",
-//                 marginBottom: "100px",
+//                 height: "80px",
+//                 width: "80px",
+//                 display: "flex",
+//                 borderRadius: "10px",
+//                 marginBottom: "50px",
 //                 backgroundColor: "blue",
 //                 color: "red",
+//                 flexDirection: "column",
+//                 alignItems: "center",
+//                 justifyContent: "center",
+//                 marginLeft: "45%",
 //               }}
 //             >
-//               <Item>
+//               <AddToPhotosIcon />
+//               <>
 //                 <div className="App">
 //                   <form>
-//                     <label htmlFor="file-upload" className="custom-file-upload">
-//                       {images.map((image, index) => (
-//                         <img
-//                           key={index}
-//                           className="slider_postPage_image"
-//                           src={image}
-//                           alt={`Uploaded Image ${index + 1}`}
-//                           style={{
-//                             maxWidth: "100%",
-//                             maxHeight: "200px",
-//                             marginTop: "10px",
-//                           }}
-//                         />
-//                       ))}
-//                     </label>
+//                     <label htmlFor="file-upload" className=""></label>
 //                     <input
 //                       type="file"
 //                       ref={fileInputRef}
@@ -133,151 +137,190 @@
 //                     />
 //                   </form>
 //                 </div>
-//               </Item>
+//               </>
 //             </Box>
 //           </div>
-//           <FormControl sx={{ marginTop: "100px" }} fullWidth>
-//             <InputLabel id="demo-simple-select-label">Category.</InputLabel>
-//             <Select
-//               labelId="demo-simple-select-label"
-//               id="demo-simple-select"
-//               value={category}
-//               label="Age"
-//               onChange={(e) => setCategory(e.target.value)}
-//             >
-//               <MenuItem value="Land">Land</MenuItem>
-//               <MenuItem value="Spa">Spa</MenuItem>
-//               <MenuItem value="Vehicle">Vehicle</MenuItem>
-//             </Select>
-//           </FormControl>
 //           <div>
-//             <textarea
+//             {" "}
+//             {images.map((image, index) => (
+//               <img
+//                 key={index}
+//                 className="myPostImage_uploader"
+//                 src={image}
+//                 alt={`Uploaded Image ${index + 1}`}
+//                 style={{
+//                   maxWidth: "90%",
+//                   maxHeight: "110px",
+//                   marginLeft: "10px",
+//                   marginTop: "10px",
+//                 }}
+//               />
+//             ))}
+//           </div>
+//           <div>
+//             <FormControl
+//               sx={{ marginTop: "30px", width: "50%", marginLeft: "20%" }}
+//             >
+//               <InputLabel id="demo-simple-select-label">Category.</InputLabel>
+//               <Select
+//                 labelId="demo-simple-select-label"
+//                 id="demo-simple-select"
+//                 value={category}
+//                 label="Age"
+//                 onChange={(e) => setCategory(e.target.value)}
+//               >
+//                 <MenuItem value="Land">Land</MenuItem>
+//                 <MenuItem value="Spa">Spa</MenuItem>
+//                 <MenuItem value="Vehicle">Vehicle</MenuItem>
+//               </Select>
+//             </FormControl>
+//           </div>
+//           <div>
+//             {" "}
+//             <TextField
+//               label="Description"
+//               multiline
+//               rows={4}
+//               variant="outlined"
+//               sx={{
+//                 marginTop: "30px",
+//                 width: "50%",
+//                 marginLeft: "20%",
+//                 marginBottom: "20px",
+//               }}
 //               value={description}
 //               onChange={(e) => setDescription(e.target.value)}
 //               placeholder="Description"
-//               className="textArea_t"
-//             ></textarea>
+//             />
 //           </div>
-//           <div className="centered-view">
+//           <div>
 //             <button onClick={(e) => createPost(e)} className="custom-button">
 //               Post
 //             </button>
 //           </div>
 //         </div>
-//       </>
-//     </Layout>
+//       </div>
+//     </LayoutSecond>
 //   );
 // };
 
 // export default MyAccount;
 
-import React, { useState, useEffect, useRef } from "react";
-import LayoutSecond from "../../components/LayoutSecond/LayoutSecond";
+// function convertToBase64(file) {
+//   return new Promise((resolve, reject) => {
+//     const fileReader = new FileReader();
+//     fileReader.readAsDataURL(file);
+//     fileReader.onload = () => {
+//       resolve(fileReader.result);
+//     };
+//     fileReader.onerror = (error) => {
+//       reject(error);
+//     };
+//   });
+// }
 
-import FormControl from "@mui/material/FormControl";
-import axios from "axios";
-import { Container, Paper, Typography, Avatar } from "@mui/material";
-import InputLabel from "@mui/material/InputLabel";
+
+
+import React, { useState ,useRef} from 'react';
+import Swal from "sweetalert2";
+import { environments } from "../../components/environment/environments";
+import axios from 'axios';
+import { useToken } from "../context/TokenContext";
 import Box from "@mui/material/Box";
 import { useRouter } from "next/router";
-import { styled } from "@mui/material/styles";
-import TextField from "@mui/material/TextField";
-import ProtectedRoute from "../../components/protect/protectedRoute";
-import MyInformations from "../../components/MyInformation/MyInformations";
-import { environments } from "../../components/environment/environments";
-import { useToken } from "../context/TokenContext";
-import Select from "@mui/material/Select";
-import MenuItem from "@mui/material/MenuItem";
-import Icon from "@mui/material/Icon";
 import AddToPhotosIcon from "@mui/icons-material/AddToPhotos";
-import Swal from "sweetalert2";
-
- const url = `${environments.BASE_HOST_URL}/api/createPost`;
-const urlGet = `${environments.BASE_HOST_URL}/api/getPosts`;
-const editUrl = `${environments.BASE_HOST_URL}/api/editProfilePhoto`;
-const GetProfileUrl = `${environments.BASE_HOST_URL}/api/getProfile`;
+import LayoutSecond from "../../components/LayoutSecond/LayoutSecond";
 
 const MyAccount = () => {
-  const { user } = useToken();
-  const router = useRouter();
-
-  const [images, setImages] = useState([]);
-  const [description, setDescription] = useState("");
-  const [category, setCategory] = useState("");
-
   const fileInputRef = useRef(null);
+    const { user } = useToken();
+  const router = useRouter();
+  const [formData, setFormData] = useState({
+    userId: "",
+    description: '',
+    category: '',
+    image: null,
+  });
 
-  const handleFileUpload = async (e) => {
+
+    const handleFileUpload = async (e) => {
     try {
-      const files = Array.from(e.target.files);
-      const base64Images = await Promise.all(files.map(convertToBase64));
-      setImages([...images, ...base64Images]);
+     
+      setFormData({
+        ...images
+      });
     } catch (error) {
       console.error("Error fetching data:", error);
     }
   };
 
-  const createPost = async (e) => {
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      userId:user.userId,
+      [name]: value,
+    }));
+  };
+
+  const handleFileChange = (e) => {
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      image: e.target.files[0],
+    }));
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const data = {
-        images: images,
-        userId: user.userId,
-        description: description,
-        category: category,
-      };
-      const response = await axios.post(url, data);
+      const postData = new FormData();
+      postData.append('userId', formData.userId);
+      postData.append('description', formData.description);
+      postData.append('category', formData.category);
+      postData.append('image', formData.image);
 
-      if (response.data.success) {
-        Swal.fire("Successfully created Post");
-      } else {
+      const response = await axios.post(`${environments.BASE_HOST_URL}/api/createPost`, postData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      });
+
+      console.log(response.data);
+      if (response.data) {
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: "Create Your New Post",
+          showConfirmButton: false,
+          timer: 1500
+          
+        });
+        router.push("/post");
+      }else{
         Swal.fire({
           icon: "error",
           title: "Oops...",
-          text: "Response went wrong!",
+          text: "Something went wrong!",
+          footer: '<a href="#">Why do I have this issue?</a>'
         });
       }
+      // Handle success or redirect to another page
     } catch (error) {
-      Swal.fire({
-        icon: "error",
-        title: "Oops...",
-        text: "Something went wrong!",
-      });
+      console.error(error);
+      // Handle error
     }
   };
-
-  const Item = styled(Paper)(({ theme }) => ({
-    backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
-    ...theme.typography.body2,
-    padding: theme.spacing(1),
-    textAlign: "center",
-    color: theme.palette.text.secondary,
-  }));
-
-  const convertToBase64 = (file) => {
-    return new Promise((resolve, reject) => {
-      const fileReader = new FileReader();
-      fileReader.readAsDataURL(file);
-      fileReader.onload = () => {
-        resolve(fileReader.result);
-      };
-      fileReader.onerror = (error) => {
-        reject(error);
-      };
-    });
-  };
-
   const handleButtonClick = () => {
     fileInputRef.current.click(); // Programmatically trigger file input click
   };
-
-  return (
-    <LayoutSecond>
-      <div className="myPost_container">
-        <div className="myPost_secondContainer">
-          <div className="myPost_heading">CREATE YOUR ADD</div>
-          <div>
-            <Box
+  return ( 
+  
+  <LayoutSecond>
+    <div className="myPost_container">
+      <div className="myPost_secondContainer">
+      <div className="myPost_heading">CREATE YOUR ADD</div>
+                <div>
+           <Box
               gridColumn={{ xs: "1", md: "span 12" }}
               onClick={handleButtonClick}
               sx={{
@@ -311,81 +354,30 @@ const MyAccount = () => {
               </>
             </Box>
           </div>
-          <div>
-            {" "}
-            {images.map((image, index) => (
-              <img
-                key={index}
-                className="myPostImage_uploader"
-                src={image}
-                alt={`Uploaded Image ${index + 1}`}
-                style={{
-                  maxWidth: "90%",
-                  maxHeight: "110px",
-                  marginLeft: "10px",
-                  marginTop: "10px",
-                }}
-              />
-            ))}
-          </div>
-          <div>
-            <FormControl
-              sx={{ marginTop: "30px", width: "50%", marginLeft: "20%" }}
-            >
-              <InputLabel id="demo-simple-select-label">Category.</InputLabel>
-              <Select
-                labelId="demo-simple-select-label"
-                id="demo-simple-select"
-                value={category}
-                label="Age"
-                onChange={(e) => setCategory(e.target.value)}
-              >
-                <MenuItem value="Land">Land</MenuItem>
-                <MenuItem value="Spa">Spa</MenuItem>
-                <MenuItem value="Vehicle">Vehicle</MenuItem>
-              </Select>
-            </FormControl>
-          </div>
-          <div>
-            {" "}
-            <TextField
-              label="Description"
-              multiline
-              rows={4}
-              variant="outlined"
-              sx={{
-                marginTop: "30px",
-                width: "50%",
-                marginLeft: "20%",
-                marginBottom: "20px",
-              }}
-              value={description}
-              onChange={(e) => setDescription(e.target.value)}
-              placeholder="Description"
-            />
-          </div>
-          <div>
-            <button onClick={(e) => createPost(e)} className="custom-button">
-              Post
-            </button>
-          </div>
-        </div>
+
+
+      <form onSubmit={handleSubmit}>
+      <div>
+        <label htmlFor="description">Description:</label>
+        <input type="text" id="description" name="description" value={formData.description} onChange={handleChange} />
       </div>
+      <div>
+        <label htmlFor="category">Category:</label>
+        <input type="text" id="category" name="category" value={formData.category} onChange={handleChange} />
+      </div>
+      <div>
+        <label htmlFor="image">Image:</label>
+        <input type="file" id="image" name="image" onChange={handleFileChange} />
+      </div>
+      <button type="submit">Submit</button>
+    </form>
+      </div>
+   
+    </div>
+    
     </LayoutSecond>
   );
 };
 
 export default MyAccount;
 
-function convertToBase64(file) {
-  return new Promise((resolve, reject) => {
-    const fileReader = new FileReader();
-    fileReader.readAsDataURL(file);
-    fileReader.onload = () => {
-      resolve(fileReader.result);
-    };
-    fileReader.onerror = (error) => {
-      reject(error);
-    };
-  });
-}
