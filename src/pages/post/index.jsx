@@ -70,7 +70,7 @@ const Post = () => {
   useEffect(() => {
     const fetchPosts = async () => {
       try {
-        const response = await axios.get(`${environments.BASE_HOST_LOCAL_URL}/api/getAllPosts`);
+        const response = await axios.get(`${environments.BASE_HOST_URL}/api/getAllPosts`);
         console.log(response,'response');
         setData(response.data.data); // Assuming your API response contains the posts in the 'data' field
       } catch (error) {
