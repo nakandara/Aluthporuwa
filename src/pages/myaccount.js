@@ -3,6 +3,14 @@ import LayoutSecond from "../../components/LayoutSecond/LayoutSecond";
 import axios from "axios";
 import { Container, Paper, Typography, Avatar } from "@mui/material";
 import Box from "@mui/material/Box";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+} from "@mui/material";
 import { useRouter } from "next/router";
 import { styled } from "@mui/material/styles";
 import ProtectedRoute from "../../components/protect/protectedRoute";
@@ -60,7 +68,6 @@ const MyAccount = () => {
   }, [user]);
 
   const createPost = async (newImage) => {
-    
     try {
       await axios.post(url, newImage);
 
@@ -81,27 +88,27 @@ const MyAccount = () => {
   };
 
   const handleFileUpload = async (e) => {
-   try {
-    const file = e.target.files[0];
-    
-    const response = await axios.get(`${urlGet}/${user.userId}`);
-    
-    if (response.data.length>0) {
-      const base64 = await convertToBase64(file);
-      const userId = user.userId;
-      console.log(base64);
-      setPostImage({ ...postImage, image: base64, userId: user.userId });
-      EditPost({ image: base64, userId });
-    } else {
-      const base64 = await convertToBase64(file);
-      const userId = user.userId;
-      console.log(base64);
-      setPostImage({ ...postImage, image: base64, userId: user.userId });
-      createPost({ image: base64, userId });
+    try {
+      const file = e.target.files[0];
+
+      const response = await axios.get(`${urlGet}/${user.userId}`);
+
+      if (response.data.length > 0) {
+        const base64 = await convertToBase64(file);
+        const userId = user.userId;
+        console.log(base64);
+        setPostImage({ ...postImage, image: base64, userId: user.userId });
+        EditPost({ image: base64, userId });
+      } else {
+        const base64 = await convertToBase64(file);
+        const userId = user.userId;
+        console.log(base64);
+        setPostImage({ ...postImage, image: base64, userId: user.userId });
+        createPost({ image: base64, userId });
+      }
+    } catch (error) {
+      console.error("Error fetching data:", error);
     }
-   } catch (error) {
-    console.error("Error fetching data:", error);
-   }
   };
 
   const Item = styled(Paper)(({ theme }) => ({
@@ -140,6 +147,21 @@ const MyAccount = () => {
                         className="custom-file-upload"
                         onClick={handleButtonClick}
                       >
+                        <div
+                          style={{
+                            fontSize: "24px", // Adjust the font size as needed
+                            fontWeight: "bold", // Make the text bold
+                            color: "#333", // Set the text color
+                            backgroundColor: "#f0f0f0", // Set background color
+                            padding: "10px", // Add some padding for spacing
+                            borderRadius: "5px", // Add rounded corners
+                            boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
+                            margin: "10px", // Add a subtle shadow
+                          }}
+                        >
+                          USER INFORMATION
+                        </div>
+
                         <Avatar
                           alt=""
                           src={postImage.image || ""}
@@ -165,17 +187,67 @@ const MyAccount = () => {
                 </Item>
               </Box>
               <Box gridColumn={{ xs: "1", md: "span 4" }}>
-                <Item>
-                  <Typography>My Information Step 02</Typography>
-                  <Typography> Name : {infoData.username}</Typography>
-                  <Typography> Birthday : {infoData.birthday}</Typography>
-                  <Typography> Gender : {infoData.gender}</Typography>
-                  <Typography> Religion : {infoData.religion}</Typography>
-                  <Typography> Race : {infoData.race}</Typography>
-                  <Typography>Caste : {infoData.caste}</Typography>
-                  <Typography> District : {infoData.district}</Typography>
-                  <Typography>City : {infoData.city}</Typography>
-                </Item>
+                <TableContainer component={Paper}>
+                  <Table>
+                    <TableBody>
+                      <TableRow>
+                        <TableCell>
+                          <Typography variant="subtitle1">
+                            My Informations
+                          </Typography>
+                        </TableCell>
+                      </TableRow>
+                      <TableRow>
+                        <TableCell>
+                          <Typography variant="subtitle2">Name</Typography>
+                        </TableCell>
+                        <TableCell>{infoData.username}</TableCell>
+                      </TableRow>
+                      <TableRow>
+                        <TableCell>
+                          <Typography variant="subtitle2">Birthday</Typography>
+                        </TableCell>
+                        <TableCell>{infoData.birthday}</TableCell>
+                      </TableRow>
+                      <TableRow>
+                        <TableCell>
+                          <Typography variant="subtitle2">Gender</Typography>
+                        </TableCell>
+                        <TableCell>{infoData.gender}</TableCell>
+                      </TableRow>
+                      <TableRow>
+                        <TableCell>
+                          <Typography variant="subtitle2">Religion</Typography>
+                        </TableCell>
+                        <TableCell>{infoData.religion}</TableCell>
+                      </TableRow>
+                      <TableRow>
+                        <TableCell>
+                          <Typography variant="subtitle2">Race</Typography>
+                        </TableCell>
+                        <TableCell>{infoData.race}</TableCell>
+                      </TableRow>
+                      <TableRow>
+                        <TableCell>
+                          <Typography variant="subtitle2">Caste</Typography>
+                        </TableCell>
+                        <TableCell>{infoData.caste}</TableCell>
+                      </TableRow>
+                      <TableRow>
+                        <TableCell>
+                          <Typography variant="subtitle2">District</Typography>
+                        </TableCell>
+                        <TableCell>{infoData.district}</TableCell>
+                      </TableRow>
+                      <TableRow>
+                        <TableCell>
+                          <Typography variant="subtitle2">City</Typography>
+                        </TableCell>
+                        <TableCell>{infoData.city}</TableCell>
+                      </TableRow>
+                    </TableBody>
+                  </Table>
+                </TableContainer>
               </Box>
             </Box>
           </Box>

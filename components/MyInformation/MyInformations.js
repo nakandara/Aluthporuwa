@@ -35,8 +35,8 @@ export default function MyInformations({ name, data }) {
     religion: data.religion,
     birthday: data.birthday ? dayjs(data.birthday) : dayjs(),
   });
-  const GetProfileUrl = `${environments.BASE_HOST_LOCAL_URL}/api/getProfile`;
-  const GetUserUrl = `${environments.BASE_HOST_LOCAL_URL}/api/auth/getUserById`;
+  const GetProfileUrl = `${environments.BASE_HOST_URL}/api/getProfile`;
+  const GetUserUrl = `${environments.BASE_HOST_URL}/api/auth/getUserById`;
   const [step, setStep] = React.useState(1);
   const [fileInputOpen, setFileInputOpen] = useState(false);
   const [datastore, setDatastore] = useState("");
@@ -88,16 +88,16 @@ export default function MyInformations({ name, data }) {
 
       const AlreadyUse = await axios.get(`${GetProfileUrl}/${user.userId}`);
      
-      console.log(AlreadyUse);
+      console.log(AlreadyUse,'dddddddddddddddddddf');
      
 
     if (!AlreadyUse) {
       console.log('apiUrlAlreadyUse');
-      const apiUrlAlreadyUse = `${environments.BASE_HOST_LOCAL_URL}/api/updateProfile/${user.userId}`;
+      const apiUrlAlreadyUse = `${environments.BASE_HOST_URL}/api/updateProfile/${user.userId}`;
       const response = await axios.post(apiUrlAlreadyUse, userData);
       console.log("Information Successfully Update");
     }else{
-      const apiUrl = `${environments.BASE_HOST_LOCAL_URL}/api/createProfile`;
+      const apiUrl = `${environments.BASE_HOST_URL}/api/createProfile`;
       const response = await axios.post(apiUrl, userData);
       console.log("Information Successfully Created");
     }
@@ -123,7 +123,8 @@ export default function MyInformations({ name, data }) {
                 >
                   Enter your name
                 </Typography>
-                <TextField
+                <TextField 
+                 sx={{ m: 1, maxWidth: 300 }}
                   fullWidth
                   name="username"
                   label="Name"
@@ -185,59 +186,8 @@ export default function MyInformations({ name, data }) {
                 </FormControl>
               </Grid>
 
-              <Grid item xs={12} sm={6}>
-                <Typography
-                  style={{ marginTop: "20px" }}
-                  variant="body2"
-                  color="textSecondary"
-                >
-                  ආගම
-                </Typography>
-                <FormControl sx={{ m: 1, minWidth: 120 }}>
-                  <InputLabel id="demo-simple-select-helper-label">
-                    ආගම
-                  </InputLabel>
-                  <Select
-                    labelId="demo-simple-select-helper-label"
-                    id="demo-simple-select-helper"
-                    label="religion"
-                    name="religion"
-                    value={userData.religion || ""}
-                    onChange={handleChange}
-                  >
-                    <MenuItem value=""></MenuItem>
-                    <MenuItem value="බෞද්ධ">බෞද්ධ</MenuItem>
-                    <MenuItem value="හින්දු">හින්දු</MenuItem>
-                    <MenuItem value="ක්‍රිස්තියාන්ත">ක්‍රිස්තියාන්ත</MenuItem>
-                    <MenuItem value="ඉස්ලාම්">ඉස්ලාම්</MenuItem>
-                    <MenuItem value="රාජ්‍යයේ">රාජ්‍යයේ අනුක්ඛම් </MenuItem>
-                  </Select>
-                </FormControl>
-              </Grid>
-              <Grid item xs={12} sm={6}>
-                <Typography
-                  style={{ marginTop: "20px" }}
-                  variant="body2"
-                  color="textSecondary"
-                >
-                  Select your race
-                </Typography>
-                <FormControl sx={{ m: 1, minWidth: 120 }}>
-                  <InputLabel id="demo-simple-select-helper-label">
-                    Race
-                  </InputLabel>
-                  <Select
-                    labelId="demo-simple-select-helper-label"
-                    id="demo-simple-select-helper"
-                    label="Race"
-                    name="race"
-                    value={userData.race}
-                    onChange={handleChange}
-                  >
-                    <MenuItem value="Caucasian">Caucasian</MenuItem>
-                  </Select>
-                </FormControl>
-              </Grid>
+            
+             
             </Grid>
           </div>
         )}
@@ -314,81 +264,12 @@ export default function MyInformations({ name, data }) {
                 </LocalizationProvider>
               </Grid>
 
-              <Grid item xs={12} sm={6}>
-                <Typography
-                  style={{ marginTop: "20px" }}
-                  variant="body2"
-                  color="textSecondary"
-                >
-                  ආගම
-                </Typography>
-                <FormControl sx={{ m: 1, minWidth: 120 }}>
-                  <InputLabel id="demo-simple-select-helper-label">
-                    ආගම
-                  </InputLabel>
-                  <Select
-                    labelId="demo-simple-select-helper-label"
-                    id="demo-simple-select-helper"
-                    label="religion"
-                    name="religion"
-                    value={userData.religion || ""}
-                    onChange={handleChange}
-                  >
-                    <MenuItem value=""></MenuItem>
-                    <MenuItem value="බෞද්ධ">බෞද්ධ</MenuItem>
-                    <MenuItem value="හින්දු">හින්දු</MenuItem>
-                    <MenuItem value="ක්‍රිස්තියාන්ත">ක්‍රිස්තියාන්ත</MenuItem>
-                    <MenuItem value="ඉස්ලාම්">ඉස්ලාම්</MenuItem>
-                    <MenuItem value="රාජ්‍යයේ">රාජ්‍යයේ අනුක්ඛම් </MenuItem>
-                  </Select>
-                </FormControl>
-              </Grid>
-              <Grid item xs={12} sm={6}>
-                <Typography
-                  style={{ marginTop: "20px" }}
-                  variant="body2"
-                  color="textSecondary"
-                >
-                  Select your race
-                </Typography>
-                <FormControl sx={{ m: 1, minWidth: 120 }}>
-                  <InputLabel id="demo-simple-select-helper-label">
-                    Race
-                  </InputLabel>
-                  <Select
-                    labelId="demo-simple-select-helper-label"
-                    id="demo-simple-select-helper"
-                    label="Race"
-                    name="race"
-                    value={userData.race}
-                    onChange={handleChange}
-                  >
-                    <MenuItem value="Caucasian">Caucasian</MenuItem>
-                  </Select>
-                </FormControl>
-              </Grid>
             </Grid>
-            <button onClick={FormSubmit}>submit</button>
+           
           </div>
         )}
       </form>
-      <List
-        sx={{
-          width: "100%",
-          maxWidth: 360,
-          bgcolor: "background.paper",
-        }}
-      >
-        <Divider
-          variant="inset"
-          component="li"
-          sx={{
-            width: "100%", // Adjust the width as needed
-            marginLeft: "auto", // Center the divider
-            marginRight: "auto", // Center the divider
-          }}
-        />
-      </List>
+   
       <div style={{ marginTop: "10px" }}>
         {step > 1 && (
           // <button onClick={handlePreviousStep}>Previous Step</button>
@@ -401,7 +282,7 @@ export default function MyInformations({ name, data }) {
             Previous Step
           </Button>
         )}
-        {step < 4 ? (
+        {step < 2 ? (
           // <button onClick={handleNextStep}>Next Step</button>
           <Button
             variant="contained"
@@ -413,8 +294,9 @@ export default function MyInformations({ name, data }) {
         ) : (
           <Button
             variant="contained"
-            onClick={handleNextStep}
+            onClick={FormSubmit}
             endIcon={<SendIcon />}
+
           >
             Finish
           </Button>
