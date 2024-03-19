@@ -201,49 +201,80 @@ const MyAccount = () => {
                         <TableCell>
                           <Typography variant="subtitle2">Name</Typography>
                         </TableCell>
-                        <TableCell>{infoData.username}</TableCell>
+                        <TableCell>
+                          {infoData && infoData.username
+                            ? infoData.username
+                            : ""}
+                        </TableCell>
                       </TableRow>
                       <TableRow>
                         <TableCell>
                           <Typography variant="subtitle2">Birthday</Typography>
                         </TableCell>
-                        <TableCell>{infoData.birthday}</TableCell>
+
+                        <TableCell>
+                          {infoData && infoData.birthday
+                            ? infoData.birthday
+                            : ""}
+                        </TableCell>
                       </TableRow>
                       <TableRow>
                         <TableCell>
                           <Typography variant="subtitle2">Gender</Typography>
                         </TableCell>
-                        <TableCell>{infoData.gender}</TableCell>
+                       
+                        {infoData && infoData.gender
+                            ? infoData.gender
+                            : ""}
                       </TableRow>
                       <TableRow>
                         <TableCell>
                           <Typography variant="subtitle2">Religion</Typography>
                         </TableCell>
-                        <TableCell>{infoData.religion}</TableCell>
+
+                        <TableCell>
+                          {infoData && infoData.religion
+                            ? infoData.religion
+                            : ""}
+                        </TableCell>
                       </TableRow>
                       <TableRow>
                         <TableCell>
                           <Typography variant="subtitle2">Race</Typography>
                         </TableCell>
-                        <TableCell>{infoData.race}</TableCell>
+
+                        <TableCell>
+                          {infoData && infoData.race ? infoData.race : ""}
+                        </TableCell>
                       </TableRow>
                       <TableRow>
                         <TableCell>
                           <Typography variant="subtitle2">Caste</Typography>
                         </TableCell>
-                        <TableCell>{infoData.caste}</TableCell>
+
+                        <TableCell>
+                          {infoData && infoData.caste ? infoData.caste : ""}
+                        </TableCell>
                       </TableRow>
                       <TableRow>
                         <TableCell>
                           <Typography variant="subtitle2">District</Typography>
                         </TableCell>
-                        <TableCell>{infoData.district}</TableCell>
+
+                        <TableCell>
+                          {infoData && infoData.district
+                            ? infoData.district
+                            : ""}
+                        </TableCell>
                       </TableRow>
                       <TableRow>
                         <TableCell>
                           <Typography variant="subtitle2">City</Typography>
                         </TableCell>
-                        <TableCell>{infoData.city}</TableCell>
+
+                        <TableCell>
+                          {infoData && infoData.city ? infoData.city : ""}
+                        </TableCell>
                       </TableRow>
                     </TableBody>
                   </Table>
