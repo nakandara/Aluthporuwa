@@ -9,38 +9,40 @@ import Typography from "@mui/material/Typography";
 import ImageGallery from "react-image-gallery";
 import styles from "./post.module.css";
 
-const images = [
-  {
-    original: "https://picsum.photos/id/1018/1000/600/",
-    thumbnail: "https://picsum.photos/id/1018/250/150/",
-  },
-  {
-    original: "https://picsum.photos/id/1015/1000/600/",
-    thumbnail: "https://picsum.photos/id/1015/250/150/",
-  },
-  {
-    original: "https://picsum.photos/id/1019/1000/600/",
-    thumbnail: "https://picsum.photos/id/1019/250/150/",
-  },
-];
-
 const PostId = ({ postIdData }) => {
   console.log(postIdData.allPosts, "postIdDatapostIdData");
 
+  const images = [
+    {
+      original: "https://picsum.photos/id/1018/1000/600/",
+      thumbnail: "https://picsum.photos/id/1018/250/150/",
+    },
+    {
+      original: "https://picsum.photos/id/1015/1000/600/",
+      thumbnail: "https://picsum.photos/id/1015/250/150/",
+    },
+    {
+      original: "https://picsum.photos/id/1019/1000/600/",
+      thumbnail: "https://picsum.photos/id/1019/250/150/",
+    },
+  ];
+
   const handleWhatsAppClick = () => {
-    const phoneNumber = postIdData?.allPosts[0]?.PostDetails?.phoneNumber
+    const phoneNumber = postIdData?.allPosts[0]?.PostDetails?.phoneNumber;
     console.log(phoneNumber);
-  
+
     if (phoneNumber) {
       const message = "Hello! This is a pre-filled message.";
-      const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+      const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(
+        message
+      )}`;
       window.open(url, "_blank");
     } else {
       // Handle case where phoneNumber is not available
       console.error("Phone number not available");
     }
   };
-  
+
   return (
     <LayoutSecond>
       <div className={styles.PostIdMain}>
@@ -49,13 +51,22 @@ const PostId = ({ postIdData }) => {
             <div>
               {postIdData?.allPosts?.map((post, index) => (
                 <div className="image-size" key={index}>
-                  {/* <img
-                  className="postId_main_image_sub"
-                  src={post.PostDetails.image}
-                  alt={`Image ${index + 1}`}
-                /> */}
-
-                  <ImageGallery items={images} />
+                  <ImageGallery
+                    items={[
+                      {
+                        original: post.PostDetails.image,
+                        thumbnail: post.PostDetails.image,
+                      },
+                      {
+                        original: "https://picsum.photos/id/1015/1000/600/",
+                        thumbnail: "https://picsum.photos/id/1015/250/150/",
+                      },
+                      {
+                        original: "https://picsum.photos/id/1019/1000/600/",
+                        thumbnail: "https://picsum.photos/id/1019/250/150/",
+                      },
+                    ]}
+                  />
                 </div>
               ))}
             </div>
@@ -117,7 +128,7 @@ export async function getServerSideProps(context) {
 
   try {
     const response = await axios.get(
-      `${environments.BASE_HOST_LOCAL_URL}/api/getPost/${postId}`
+      `${environments.BASE_HOST_URL}/api/getPost/${postId}`
     );
     if (response) {
     }
@@ -137,5 +148,3 @@ export async function getServerSideProps(context) {
 }
 
 export default PostId;
-
-

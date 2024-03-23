@@ -5,7 +5,7 @@
     margin-bottom: 100000px;
     max-width: 600px;
     max-height: 230px;
-    margin: 0 auto;
+    margin: 10px;
     overflow: hidden;
     border-radius: 30px;
     border: 0.5px solid #d76cec; 
@@ -39,7 +39,7 @@
   }
   .contentContainer {
     flex: 1;
-    padding: 20px;
+   
     box-sizing: border-box;
   }
   
@@ -74,10 +74,8 @@
   
   .share_icon {
    color: #333;
-width: 50px;
 
- 
-   
+
   }
   .container_flex{
     display: flex;
@@ -86,7 +84,7 @@ width: 50px;
   .top_banner{
     color: rgb(3, 51, 35);
     background-color: rgb(248, 235, 45);
-    margin-top: -7px;
+    margin-top: 7px;
     border: 2px solid #560666; 
     border-radius: 30px;
     width: 30px;
@@ -131,8 +129,8 @@ width: 50px;
       }
       .image {
    
-        width: 22vh;
-       height: 230px;
+        width: 17vh;
+       height: 190px;
         border-top-left-radius: 10px;
         
       }
@@ -140,6 +138,23 @@ width: 50px;
   }
 
 
+
+  @media screen and (max-width: 330px) {
+ 
+    .description {
+      margin-bottom: 9px;
+      color: #333;
+      font-size: 12px;
+    }
+    .image {
+   
+      width: 13vh;
+     height: 130px;
+      border-top-left-radius: 10px;
+      
+    }
+  
+  }
 @media screen and (max-width: 300px) {
  
     .description {
@@ -149,20 +164,22 @@ width: 50px;
     }
     .image {
    
-      width: 18vh;
-     height: 230px;
+      width: 12vh;
+     height: 120px;
       border-top-left-radius: 10px;
       
     }
-   
+  
 }
+
+
 
 @media screen and (max-height: 620px) {
  
   
   .image {
  
-    width: 25vh;
+    width: 29vh;
    height: 230px;
     border-top-left-radius: 10px;
     

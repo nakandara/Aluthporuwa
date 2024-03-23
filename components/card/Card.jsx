@@ -61,7 +61,9 @@ const Card = ({
               onClick={() => handleClick(post.postId)}
               className={styles.description}
             >
-             {description}
+              {description.length > 100
+                ? `${description.substring(0, 160)}...`
+                : description}
             </p>
 
             <div className={styles.share_icon}>

@@ -1,5 +1,3 @@
-
-
 // import React, { useState, useEffect, useRef } from "react";
 // import LayoutSecond from "../../components/LayoutSecond/LayoutSecond";
 
@@ -219,12 +217,10 @@
 //   });
 // }
 
-
-
-import React, { useState ,useRef} from 'react';
+import React, { useState, useRef } from "react";
 import Swal from "sweetalert2";
 import { environments } from "../../components/environment/environments";
-import axios from 'axios';
+import axios from "axios";
 import { useToken } from "../context/TokenContext";
 import Box from "@mui/material/Box";
 import { useRouter } from "next/router";
@@ -233,40 +229,31 @@ import LayoutSecond from "../../components/LayoutSecond/LayoutSecond";
 
 const MyAccount = () => {
   const fileInputRef = useRef(null);
-    const { user } = useToken();
+  const { user } = useToken();
   const router = useRouter();
   const [formData, setFormData] = useState({
     userId: "",
-    description: '',
-    category: '',
+    description: "",
+    category: "",
     image: null,
+    imageUrl: null, // To store the URL of the selected image
   });
-
-
-    const handleFileUpload = async (e) => {
-    try {
-     
-      setFormData({
-        ...images
-      });
-    } catch (error) {
-      console.error("Error fetching data:", error);
-    }
-  };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevFormData) => ({
       ...prevFormData,
-      userId:user.userId,
+      userId: user.userId,
       [name]: value,
     }));
   };
 
   const handleFileChange = (e) => {
+    const file = e.target.files[0];
     setFormData((prevFormData) => ({
       ...prevFormData,
-      image: e.target.files[0],
+      image: file,
+      imageUrl: URL.createObjectURL(file), // Create URL for the selected image
     }));
   };
 
@@ -274,16 +261,20 @@ const MyAccount = () => {
     e.preventDefault();
     try {
       const postData = new FormData();
-      postData.append('userId', formData.userId);
-      postData.append('description', formData.description);
-      postData.append('category', formData.category);
-      postData.append('image', formData.image);
+      postData.append("userId", formData.userId);
+      postData.append("description", formData.description);
+      postData.append("category", formData.category);
+      postData.append("image", formData.image);
 
-      const response = await axios.post(`${environments.BASE_HOST_URL}/api/createPost`, postData, {
-        headers: {
-          'Content-Type': 'multipart/form-data',
-        },
-      });
+      const response = await axios.post(
+        `${environments.BASE_HOST_URL}/api/createPost`,
+        postData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
 
       console.log(response.data);
       if (response.data) {
@@ -292,16 +283,15 @@ const MyAccount = () => {
           icon: "success",
           title: "Create Your New Post",
           showConfirmButton: false,
-          timer: 1500
-          
+          timer: 1500,
         });
         router.push("/post");
-      }else{
+      } else {
         Swal.fire({
           icon: "error",
           title: "Oops...",
           text: "Something went wrong!",
-          footer: '<a href="#">Why do I have this issue?</a>'
+          footer: '<a href="#">Why do I have this issue?</a>',
         });
       }
       // Handle success or redirect to another page
@@ -310,74 +300,59 @@ const MyAccount = () => {
       // Handle error
     }
   };
+
   const handleButtonClick = () => {
     fileInputRef.current.click(); // Programmatically trigger file input click
   };
-  return ( 
-  
-  <LayoutSecond>
-    <div className="myPost_container">
-      <div className="myPost_secondContainer">
-      <div className="myPost_heading">CREATE YOUR ADD</div>
-                <div>
-           <Box
-              gridColumn={{ xs: "1", md: "span 12" }}
-              onClick={handleButtonClick}
-              sx={{
-                height: "80px",
-                width: "80px",
-                display: "flex",
-                borderRadius: "10px",
-                marginBottom: "50px",
-                backgroundColor: "blue",
-                color: "red",
-                flexDirection: "column",
-                alignItems: "center",
-                justifyContent: "center",
-                marginLeft: "45%",
-              }}
-            >
-              <AddToPhotosIcon />
-              <>
-                <div className="App">
-                  <form>
-                    <label htmlFor="file-upload" className=""></label>
-                    <input
-                      type="file"
-                      ref={fileInputRef}
-                      style={{ display: "none" }}
-                      accept=".jpeg, .png, .jpg"
-                      onChange={(e) => handleFileUpload(e)}
-                    />
-                  </form>
-                </div>
-              </>
-            </Box>
+
+  return (
+    <LayoutSecond>
+      <div className="myPost_container">
+        <div className="myPost_secondContainer">
+          <div className="myPost_heading">CREATE YOUR ADD</div>
+          <div>
+            {/* Display selected image */}
+            {formData.imageUrl && (
+              <img src={formData.imageUrl} alt="Selected" style={{ maxWidth: "100%", height: "auto" }} />
+            )}
           </div>
 
-
-      <form onSubmit={handleSubmit}>
-      <div>
-        <label htmlFor="description">Description:</label>
-        <input type="text" id="description" name="description" value={formData.description} onChange={handleChange} />
+          <form onSubmit={handleSubmit}>
+            <div>
+              <label htmlFor="description">Description:</label>
+              <input
+                type="text"
+                id="description"
+                name="description"
+                value={formData.description}
+                onChange={handleChange}
+              />
+            </div>
+            <div>
+              <label htmlFor="category">Category:</label>
+              <input
+                type="text"
+                id="category"
+                name="category"
+                value={formData.category}
+                onChange={handleChange}
+              />
+            </div>
+            <div>
+              <label htmlFor="image">Image:</label>
+              <input
+                type="file"
+                id="image"
+                name="image"
+                onChange={handleFileChange}
+              />
+            </div>
+            <button type="submit">Submit</button>
+          </form>
+        </div>
       </div>
-      <div>
-        <label htmlFor="category">Category:</label>
-        <input type="text" id="category" name="category" value={formData.category} onChange={handleChange} />
-      </div>
-      <div>
-        <label htmlFor="image">Image:</label>
-        <input type="file" id="image" name="image" onChange={handleFileChange} />
-      </div>
-      <button type="submit">Submit</button>
-    </form>
-      </div>
-   
-    </div>
-    
     </LayoutSecond>
   );
 };
 
 export default MyAccount;
-
