@@ -1,15 +1,18 @@
-import * as React from "react";
+import React, { useState, useEffect } from "react";
 import { styled } from "@mui/material/styles";
 import Paper from "@mui/material/Paper";
 import { useRouter } from "next/router";
 import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
+import Cardl from "../../components/card/Card";
 import Card from "@mui/material/Card";
 import CardMedia from "@mui/material/CardMedia";
 
 // Your Video component with text overlay and opacity
 const VideoWithTextAndOpacity = () => {
   const router = useRouter();
+
+ 
 
   const LoginPage = () => {
     router.push("/auth/signin");
@@ -69,7 +72,64 @@ const Item = styled(Paper)(({ theme }) => ({
   color: theme.palette.text.secondary,
 }));
 
+
+
 export default function BasicGrid() {
+
+  const [data, setData] = useState([
+    {
+      _id: "65741a033e9bcea69d35d74e",
+      userId: "651ab367455cb0a4405755b6",
+      image:
+        "https://images.pexels.com/photos/1391498/pexels-photo-1391498.jpeg?auto=compress&cs=tinysrgb&w=600",
+      description: "111111111111111111111111111111111 1111",
+      category: ["Vehicle"],
+      postId: "65741a033e9bcea69d35d74f",
+      __v: 0,
+      socialIcon: ["smile"],
+      phoneNumber: "0715297881",
+    },
+    {
+      _id: "65741a033e9bcea69d35d74e",
+      userId: "651ab367455cb0a4405755b6",
+      image:
+        "https://images.pexels.com/photos/1391498/pexels-photo-1391498.jpeg?auto=compress&cs=tinysrgb&w=600",
+      description: "111111111111111111111111111111111 1111",
+      category: ["Vehicle"],
+      postId: "65741a033e9bcea69d35d74f",
+      __v: 0,
+      socialIcon: ["smile"],
+      phoneNumber: "0715297881",
+    },
+  
+    {
+      _id: "65741a033e9bcea69d35d74e",
+      userId: "651ab367455cb0a4405755b6",
+      image:
+        "https://images.pexels.com/photos/1391498/pexels-photo-1391498.jpeg?auto=compress&cs=tinysrgb&w=600",
+      description: "111111111111111111111111111111111 1111",
+      category: ["Vehicle"],
+      postId: "65741a033e9bcea69d35d74f",
+      __v: 0,
+      socialIcon: ["smile"],
+      phoneNumber: "0715297881",
+    },
+  
+    {
+      _id: "65741a033e9bcea69d35d74e",
+      userId: "651ab367455cb0a4405755b6",
+      image:
+        "https://images.pexels.com/photos/1391498/pexels-photo-1391498.jpeg?auto=compress&cs=tinysrgb&w=600",
+      description: "111111111111111111111111111111111 1111",
+      category: ["Vehicle"],
+      postId: "65741a033e9bcea69d35d74f",
+      __v: 0,
+      socialIcon: ["smile"],
+      phoneNumber: "0715297881",
+    },
+  
+  
+  ]);
   return (
     <div>
       <VideoWithTextAndOpacity />
@@ -91,25 +151,13 @@ export default function BasicGrid() {
             "& > :not(style)": {
               m: 1,
               width: 328,
-              height: 150,
+             
             },
+            
           }}
         >
-          <Card sx={{ maxWidth: 300, display: "flex" }}>
-            <div className="card_b">
-              {" "}
-              <CardMedia
-                sx={{ height: "120%" }}
-                image="/media/chamodh.jpg"
-                title="green iguana"
-              />
-            </div>
-            <div className="card_info">
-              <div>නම:චලනී පබෝදා</div>
-              <div>වයස:21</div>
-              <div>ලග්නය:කටක</div>
-              <div>උපන් දිනය:1998.09.10</div>
-            </div>
+          {/* <Card sx={{ maxWidth: 300, display: "flex" }}>
+          
           </Card>
 
           <Card sx={{ maxWidth: 300, display: "flex" }}>
@@ -152,8 +200,28 @@ export default function BasicGrid() {
               image="media/mol.jpg"
               title="green iguana"
             />
-          </Card>
+          </Card> */}
 
+
+
+{data.map((post, index) => (
+                  <div key={index}>
+                    <div key={index} height={200} offset={100}>
+                      <Cardl
+                        src={post.image}
+                        index={index}
+                        reactionCount={4}
+                        post={post}
+                        coverSocialIcons={''}
+                        description={post.description}
+                        imageReaction={(value) =>
+                          imageReaction(value, index, post)
+                        }
+                        animateState={''}
+                      />
+                    </div>
+                  </div>
+                ))}
           {/* Change the background color to green */}
         </Box>
       </div>

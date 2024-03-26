@@ -310,12 +310,16 @@ const MyAccount = () => {
       <div className="myPost_container">
         <div className="myPost_secondContainer">
           <div className="myPost_heading">CREATE YOUR ADD</div>
-          <div>
-            {/* Display selected image */}
-            {formData.imageUrl && (
-              <img src={formData.imageUrl} alt="Selected" style={{ maxWidth: "100%", height: "auto" }} />
-            )}
-          </div>
+          <div className="cardContainer">
+  {/* Display selected image */}
+  {formData.imageUrl && (
+    <img
+      src={formData.imageUrl}
+      alt="Selected"
+      className="cardImage"
+    />
+  )}
+</div>
 
           <form onSubmit={handleSubmit}>
             <div>

@@ -51,6 +51,12 @@ const LayoutSecond = ({ children }) => {
     // Redirect to the home page
     router.push("/");
   };
+
+  const handleClick = () => {
+    // Handle clicking on the Typography component
+    // Navigate to the home page using Next.js router
+    router.push('/');
+  };
   const handleDrawerClose = () => {
     setOpen(false);
   };
@@ -71,7 +77,8 @@ const LayoutSecond = ({ children }) => {
           <Typography
             variant="h6"
             component="div"
-            sx={{ flexGrow: 1, display: { xs: "none", sm: "block" } }}
+            onClick={handleClick}
+            sx={{ flexGrow: 1, display: { xs: "none", sm: "block" }, cursor: "pointer"  }}
           >
             QuickAds Hub
           </Typography>
@@ -110,7 +117,9 @@ const LayoutSecond = ({ children }) => {
             ))}
           </Menu>
           <Box sx={{ display: { xs: "none", sm: "block" } }}>
+           
             {navItems.map((item) => (
+              
               <Button
                 key={item}
                 sx={{ color: "#fff" }}
@@ -122,7 +131,8 @@ const LayoutSecond = ({ children }) => {
                   }
                 }}
               >
-                {item}
+               
+                {item} 
               </Button>
             ))}
           </Box>
@@ -153,6 +163,15 @@ const LayoutSecond = ({ children }) => {
         }}
       >
         <List>
+        <Typography
+            variant="h6"
+            component="div"
+            onClick={handleClick}
+            sx={{m:3,fontFamily:"sans-serif"}}
+            
+          >
+            QuickAds Hub
+          </Typography>
           {navItems.map((item) => (
             <ListItem
               key={item}
