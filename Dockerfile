@@ -1,15 +1,9 @@
-# Step 1: Build Next.js App
-FROM node:alpine3.18 as build
+FROM node:20-alpine3.18 as builder
+
 WORKDIR /app
-COPY package.json .
-RUN npm install
+COPY package*.json ./
+RUN npm install --production
 COPY . .
 RUN npm run build
-
-# Step 2: Server With Nginx
-FROM nginx:1.23-alpine
-WORKDIR /usr/share/nginx/html
-RUN rm -rf *
-COPY --from=build /app/.next .
-EXPOSE 80
-ENTRYPOINT [ "nginx", "-g", "daemon off;" ]
+EXPOSE 3000
+CMD [ "npm","run","start" ]

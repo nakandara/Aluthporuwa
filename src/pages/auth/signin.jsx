@@ -6,11 +6,11 @@ import Swal from "sweetalert2";
 import { useToken } from "../../context/TokenContext";
 import axios from "axios";
 import { environments } from "../../../components/environment/environments";
-import Link from 'next/link';
+import Link from "next/link";
 
 const provider = [
   {
-    name: "google", 
+    name: "google",
   },
 ];
 
@@ -33,33 +33,33 @@ const Signin = () => {
       name: response.name,
       email: response.email,
       password: response.accessToken,
-      method:"FACEBOOK"
+      method: "FACEBOOK",
     };
-   
 
     try {
       const responsePost = await axios.post(
         "http://localhost:8080/api/createUser",
         formData
       );
-    
+
       if (responsePost) {
-     
         setLoading(true);
-        
+
         if (responsePost.data.newUser) {
-          
-
           localStorage.setItem("accessToken", responsePost.data.token);
-          localStorage.setItem("user", JSON.stringify(responsePost.data.newUser));
+          localStorage.setItem(
+            "user",
+            JSON.stringify(responsePost.data.newUser)
+          );
           router.push("/home");
-        }else{
-
+        } else {
           localStorage.setItem("accessToken", responsePost.data.token);
-          localStorage.setItem("user", JSON.stringify(responsePost.data.existingUser));
+          localStorage.setItem(
+            "user",
+            JSON.stringify(responsePost.data.existingUser)
+          );
           router.push("/home");
         }
-    
       } else {
         console.error("Registration failed: User ID not found in the response");
         Swal.fire({
@@ -84,7 +84,7 @@ const Signin = () => {
         `${environments.BASE_HOST_URL}/api/login`,
         {
           name: username,
-          email:email,
+          email: email,
           password: password,
         }
       );
@@ -157,17 +157,15 @@ const Signin = () => {
     window.open("http://localhost:8080/auth/google", "_self");
   };
 
-
-  const forgotPassword = () =>{
-    router.push('/forgotPassword');
-  }
+  const forgotPassword = () => {
+    router.push("/forgotPassword");
+  };
 
   return (
-    
     <div>
-       <div className="sign-in-sign-up-container">
-    <h2>Sign In / Sign Up</h2>
-    <form onSubmit={normalLogin}>
+      <div className="sign-in-sign-up-container">
+        <h2>Sign In / Sign Up</h2>
+        <form onSubmit={normalLogin}>
           <input
             name="username"
             type="text"
@@ -175,32 +173,40 @@ const Signin = () => {
             value={username}
             onChange={(e) => setUsername(e.target.value)}
           />
-
-<input
+          <input
             name="email"
             type="email"
             placeholder="Email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
-                <input
+          <input
             name="password"
             type="password"
             placeholder="Password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
-      <div className="buttons">
-      <button type="button"  onClick={normalLogin} className="sign-in-btn">Log In</button>
-          <button type="button"    onClick={RegisterUser} className="sign-up-btn">Sign Up</button>
-        <button type="button" className="google-login-btn">Google Login</button>
+          <div className="buttons">
+            <button type="button" onClick={normalLogin} className="sign-in-btn">
+              Log In
+            </button>
+            <button
+              type="button"
+              onClick={RegisterUser}
+              className="sign-up-btn"
+            >
+              Sign Up
+            </button>
+            <button type="button" className="google-login-btn">
+              Google Login
+            </button>
+          </div>
+        </form>
+        <div onClick={forgotPassword} className="forgot-password">
+          <a href="#">Forgot Password?</a>
+        </div>
       </div>
-    </form>
-    <div onClick={forgotPassword} className="forgot-password">
-      <a href="#">Forgot Password?</a>
-    </div>
-  </div>
-
     </div>
   );
 };
