@@ -12,9 +12,10 @@ const ForgotPassword = () => {
     } catch (error) {
       setMessage('Error sending email');
     }
+    
   };
 
-  
+
   return (
     <div>
       <h2>Forgot Password</h2>
