@@ -13,13 +13,12 @@ const SignupPage = () => { // Renamed to 'SignupPage'
 
   const normalLogin = async () => {
     try {
-      
+
       const response = await axios.post(
         `${environments.BASE_HOST_URL}/api/createUser`,
         {
           name: username,
           password: password,
-
           email:email,
           method:"NORMAL"
         }
