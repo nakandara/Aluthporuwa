@@ -23,7 +23,7 @@ const Campaign = () => {
             <div className="campaign-container">
               <div className="payment-card-gold" style={{ marginTop: "50px" }}>
                 <div className="">
-                <div className="card-title">Gold Plan</div>
+                <div className="card-title">Gold Plan </div>
                 </div>
                 <div className="card-content">
                   <h6 className="golden-point">Automatic Filter Top List Your Add</h6>
