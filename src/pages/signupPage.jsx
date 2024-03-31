@@ -18,6 +18,7 @@ const SignupPage = () => { // Renamed to 'SignupPage'
         {
           name: username,
           password: password,
+          
           email:email,
           method:"NORMAL"
         }
