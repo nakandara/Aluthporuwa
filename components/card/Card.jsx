@@ -24,6 +24,7 @@ const Card = ({
   };
 
 
+  
   const handleShareClick = () => {
     setModalOpen(true);
   };
