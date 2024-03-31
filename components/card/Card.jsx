@@ -23,6 +23,7 @@ const Card = ({
     router.push(`/post/${postId}`);
   };
 
+  
   const handleShareClick = () => {
     setModalOpen(true);
   };
