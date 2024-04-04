@@ -556,33 +556,82 @@ h1 {
   /* Optional: Style for the cards */
   border: 1px solid #ccc;
   color: #020024;
-  background-color: rgb(182, 232, 247);
+  background-color:rgb(224 201 255 / 96%);
   border-radius: 10px;
   padding: 10px;
   text-align: center;
-  height: 140px;
+  height: 150px;
   width: calc(33.33% - 10px); /* Adjust as needed */
 }
 .flex{
   display: flex;
   gap: 5px;
 }
-.oneinside{
-  background-color: #ebe6a3;
-  width: 60%;
-  height: 120px;
-  border-radius: 20px;
-}
-.secondside{
-  background-color: #b6b3ee;
+.oneinside {
+  background-color:  rgb(224 201 255 / 96%);
+  color: #272301;
+  display: block;
+  font-size: calc(2.7vw - var(--font-reducer));
+  font-stretch: normal;
+  font-style: normal;
+  font-weight: 900;
+  letter-spacing: normal;
+  line-height: 1.5;
+  margin-left: 2vw;
+  padding-top: 2vw;
   width: 40%;
   height: 120px;
   border-radius: 20px;
+  font-size:larger;
+  font-family: '__Barlow_20ce59', '__Barlow_Fallback_20ce59','__Noto_Sans_Sinhala_aafae4', '__Noto_Sans_Sinhala_Fallback_aafae4';
+}
+
+.secondside {
+  /* Adjust as needed */
+  width: 60%;
+ 
+}
+
+.step_images {
+  /* Make the image responsive */
+  width:100%;
+  height: 130px;
+  border-radius: 10px;
 }
 .center{
   text-align: center;
   justify-content: center;
 }
+
+@media (min-width: 1300px) {
+  .cardtemp {
+    /* Optional: Style for the cards */
+    border: 1px solid #ccc;
+    color: #020024;
+    background-color: rgb(224 201 255 / 96%);
+    border-radius: 10px;
+    padding: 10px;
+    text-align: center;
+    height: 190px;
+    width: calc(33.33% - 10px); /* Adjust as needed */
+  
+  }
+
+  .step_images {
+    /* Make the image responsive */
+    width:100%;
+    height: 160px;
+    border-radius: 10px;
+  }
+  .oneinside {
+    background-color: #f7eeee;
+    color: #fff;
+    width: 40%;
+    height: 150px;
+    border-radius: 20px;
+  }
+}
+
 
 @media screen and (max-width: 768px) {
   .cardtemp {

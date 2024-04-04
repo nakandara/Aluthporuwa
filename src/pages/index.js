@@ -17,11 +17,9 @@ import MainPage from "../../components/Home/MainPage";
 import Footer from "./../../components/footer";
 import LayoutSecond from "../../components/LayoutSecond/LayoutSecond";
 
-
 function DrawerAppBar(props) {
   const router = useRouter();
   const { window } = props;
-
 
   return (
     <LayoutSecond>
@@ -42,38 +40,77 @@ function DrawerAppBar(props) {
             <div className="card">
               <div className="cardtemp ">
                 <div className="center flex">
-                  <div className="oneinside">1</div>
-                  <div className="secondside">2</div>
+                  <div className="oneinside">Sign Up / Login</div>
+                  <div className="secondside">
+                    <img
+                      className="step_images"
+                      src={`/media/lsssssssss.avif`}
+                      alt={`Image`}
+                    />
+                  </div>
                 </div>
               </div>
               <div className="cardtemp ">
                 <div className="center flex">
-                  <div className="oneinside">1</div>
-                  <div className="secondside">2</div>
+                  <div className="oneinside">Campaign</div>
+                  <div className="secondside">
+                    <img
+                      className="step_images"
+                      src={`/media/19198948.jpg`}
+                      alt={`Image`}
+                    />
+                  </div>
                 </div>
               </div>
               <div className="cardtemp ">
                 <div className="center flex">
-                  <div className="oneinside">1</div>
-                  <div className="secondside">2</div>
+                  <div className="oneinside">Write</div>
+                  <div className="secondside">
+                    <img
+                      className="step_images"
+                      src={`/media/20943483.jpg`}
+                      alt={`Image`}
+                    />
+                  </div>
                 </div>
               </div>
+
               <div className="cardtemp ">
                 <div className="center flex">
-                  <div className="oneinside">1</div>
-                  <div className="secondside">2</div>
+                  <div className="oneinside">Payment</div>
+                  <div className="secondside">
+                    <img
+                      className="step_images"
+                      src={`/media/2903544.jpg`}
+                      alt={`Image`}
+                    />
+                  </div>
                 </div>
               </div>
+
               <div className="cardtemp ">
                 <div className="center flex">
-                  <div className="oneinside">1</div>
-                  <div className="secondside">2</div>
+                  <div className="oneinside">Filter Search</div>
+                  <div className="secondside">
+                    <img
+                      className="step_images"
+                      src={`/media/2760432.jpg`}
+                      alt={`Image`}
+                    />
+                  </div>
                 </div>
               </div>
+
               <div className="cardtemp ">
                 <div className="center flex">
-                  <div className="oneinside">1</div>
-                  <div className="secondside">2</div>
+                  <div className="oneinside">Contact</div>
+                  <div className="secondside">
+                    <img
+                      className="step_images"
+                      src={`/media/3969587.jpg`}
+                      alt={`Image`}
+                    />
+                  </div>
                 </div>
               </div>
             </div>
