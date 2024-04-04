@@ -1,0 +1,31 @@
+name: Deploy Next.js application
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps: 
+      - name: Checkout Source
+        uses: actions/checkout@v4
+      - name: Build docker image
+        run: sudo docker build -t nakandara/poruwa-frontend .
+      - name: Login to docker hub
+        run: sudo docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
+      - name: Publish image to docker hub
+        run: sudo docker push nakandara/poruwa-frontend:latest
+
+  deploy:
+    needs: build
+    runs-on: self-hosted
+    steps:
+      - name: Pull image from docker hub
+        run: sudo docker pull nakandara/poruwa-frontend:latest
+      - name: Delete old container
+        run: sudo docker rm -f nextjsContainer 
+      - name: Run docker container
+        run: sudo docker run -d -p 3000:3000 --name nextjsContainer nakandara/poruwa-frontend
+	
