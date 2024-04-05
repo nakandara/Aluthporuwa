@@ -17,7 +17,7 @@ const ProtectedRoute = ({ children }) => {
         router.push("/auth/signin");
       }
     }
-  }, 10); 
+  }, []); 
 
   console.log(isLoading,'ffffffffffffff');
 
