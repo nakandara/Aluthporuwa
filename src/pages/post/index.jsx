@@ -99,6 +99,8 @@ const Post = () => {
     )
   );
 
+
+  console.log(animateState,'animateState');
   useEffect(() => {
     if (user && user.userId) {
       const apiUrl = `${environments.BASE_HOST_URL}/api/getPosts/${user.userId}`;
@@ -145,6 +147,8 @@ const Post = () => {
   }
 
   const renderPosts = filteredData.length > 0 ? filteredData : data;
+
+  console.log(renderPosts,'renderPosts');
 
   const imageReaction = async (value, index, post) => {
     const newAnimateState = [...animateState];

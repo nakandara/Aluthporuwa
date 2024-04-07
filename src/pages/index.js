@@ -40,9 +40,9 @@ function DrawerAppBar(props) {
             <div className="card">
               <div className="cardtemp ">
                 <div className="center flex">
-                  <div className="">
+                  
                     <video
-                      className="step_images"
+                      className="step_images_count"
                       autoPlay
                       loop
                       muted
@@ -51,7 +51,7 @@ function DrawerAppBar(props) {
                       <source src="/media/one.mp4" type="video/mp4" />
                       Your browser does not support the video tag.
                     </video>
-                  </div>
+                  
                   <div className="secondside">
                     <img
                       className="step_images"
@@ -63,9 +63,9 @@ function DrawerAppBar(props) {
               </div>
               <div className="cardtemp ">
                 <div className="center flex">
-                <div className="">
+                 
                     <video
-                      className="step_images"
+                      className="step_images_count"
                       autoPlay
                       loop
                       muted
@@ -74,7 +74,7 @@ function DrawerAppBar(props) {
                       <source src="/media/two.mp4" type="video/mp4" />
                       Your browser does not support the video tag.
                     </video>
-                  </div>
+                  
                   <div className="secondside">
                     <img
                       className="step_images"
@@ -86,9 +86,9 @@ function DrawerAppBar(props) {
               </div>
               <div className="cardtemp ">
                 <div className="center flex">
-                <div className="">
+                  
                     <video
-                      className="step_images"
+                      className="step_images_count"
                       autoPlay
                       loop
                       muted
@@ -97,7 +97,7 @@ function DrawerAppBar(props) {
                       <source src="/media/three.mp4" type="video/mp4" />
                       Your browser does not support the video tag.
                     </video>
-                  </div>
+               
                   <div className="secondside">
                     <img
                       className="step_images"
@@ -110,9 +110,9 @@ function DrawerAppBar(props) {
 
               <div className="cardtemp ">
                 <div className="center flex">
-                <div className="">
+                  
                     <video
-                      className="step_images"
+                      className="step_images_count"
                       autoPlay
                       loop
                       muted
@@ -121,7 +121,7 @@ function DrawerAppBar(props) {
                       <source src="/media/four.mp4" type="video/mp4" />
                       Your browser does not support the video tag.
                     </video>
-                  </div>
+                  
                   <div className="secondside">
                     <img
                       className="step_images"
@@ -134,9 +134,9 @@ function DrawerAppBar(props) {
 
               <div className="cardtemp ">
                 <div className="center flex">
-                <div className="">
+                  
                     <video
-                      className="step_images"
+                      className="step_images_count"
                       autoPlay
                       loop
                       muted
@@ -145,7 +145,7 @@ function DrawerAppBar(props) {
                       <source src="/media/five.mp4" type="video/mp4" />
                       Your browser does not support the video tag.
                     </video>
-                  </div>
+                
                   <div className="secondside">
                     <img
                       className="step_images"
@@ -158,9 +158,9 @@ function DrawerAppBar(props) {
 
               <div className="cardtemp ">
                 <div className="center flex">
-                <div className="">
+                
                     <video
-                      className="step_images"
+                      className="step_images_count"
                       autoPlay
                       loop
                       muted
@@ -169,7 +169,7 @@ function DrawerAppBar(props) {
                       <source src="/media/six.mp4" type="video/mp4" />
                       Your browser does not support the video tag.
                     </video>
-                  </div>
+                 
                   <div className="secondside">
                     <img
                       className="step_images"

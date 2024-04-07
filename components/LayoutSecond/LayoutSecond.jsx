@@ -24,7 +24,7 @@ import Avatar from "@mui/material/Avatar";
 import ProtectedRoute from "../../components/protect/protectedRoute";
 
 const drawerWidth = 240;
-const navItems = ["Home", "About", "Contact", "Login", "Post", "MyAccount"];
+const navItems = ["Home", "About", "Contact", "Login", "Post", "MyAccount","MyAdd"];
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
 const LayoutSecond = ({ children }) => {
   const router = useRouter();
