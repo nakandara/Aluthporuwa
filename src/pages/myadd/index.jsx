@@ -13,7 +13,7 @@ import Paper from "@mui/material/Paper";
 import Typography from "@mui/material/Typography";
 import ButtonBase from "@mui/material/ButtonBase";
 
-const index = () => {
+const MyAdd = () => {
   const { user } = useToken();
   const [data, setData] = useState([]);
   const [coverSocialIcons, setCoverSocialIcons] = useState([]);
@@ -189,4 +189,4 @@ const index = () => {
   );
 };
 
-export default index;
+export default MyAdd;
