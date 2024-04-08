@@ -5,28 +5,26 @@ import axios from "axios";
 import { environments } from "../../../components/environment/environments";
 import { useRouter } from "next/router";
 import Card from "../../../components/card/Card";
-import { styled } from '@mui/material/styles';
-import Box from '@mui/material/Box';
-import Paper from '@mui/material/Paper';
-import Grid from '@mui/material/Grid';
+import { styled } from "@mui/material/styles";
+import Box from "@mui/material/Box";
+import Paper from "@mui/material/Paper";
+import Grid from "@mui/material/Grid";
 import LayoutSecond from "../../../components/LayoutSecond/LayoutSecond";
 import api from "../../ services/api";
 import { useToken } from "../../context/TokenContext";
 
 const url = `${environments.BASE_HOST_LOCAL_URL}/api/increment`;
 
-
-
 const Item = styled(Paper)(({ theme }) => ({
-  backgroundColor: theme.palette.mode === 'dark' ? '#009877' : '#009877',
+  backgroundColor: theme.palette.mode === "dark" ? "#009877" : "#009877",
   ...theme.typography.body2,
-  borderRadius:"500px",
+  borderRadius: "500px",
   padding: theme.spacing(1),
-  textAlign: 'center',
-fontSize:"12px",
-  height:"40px",
-  color: theme.palette.mode === 'dark' ? '#fff' : '#fff', 
-  border: '2px solid yellow',
+  textAlign: "center",
+  fontSize: "12px",
+  height: "40px",
+  color: theme.palette.mode === "dark" ? "#fff" : "#fff",
+  border: "2px solid yellow",
 }));
 export const incrementReactionCount = async (postId, reactionType) => {
   console.log(postId, reactionType);
@@ -50,7 +48,15 @@ const Post = () => {
   const [filteredData, setFilteredData] = useState([]);
   const [reactionCount, setReactionCount] = useState("");
   const [posts, setPosts] = useState([]);
-  const [category, setCategory] = useState([{"category":"spa","count":"100"},{"category":"video","count":"1700"},{"category":"video","count":"1700"},{"category":"video","count":"1700"},{"category":"vehicle","count":"1700"},{"category":"vehicle","count":"1700"},{"category":"private","count":"1700"}]);
+  const [category, setCategory] = useState([
+    { category: "spa", count: "100" },
+    { category: "video", count: "1700" },
+    { category: "video", count: "1700" },
+    { category: "video", count: "1700" },
+    { category: "vehicle", count: "1700" },
+    { category: "vehicle", count: "1700" },
+    { category: "private", count: "1700" },
+  ]);
   const [data, setData] = useState([
     // {
     //   _id: "65741a033e9bcea69d35d74e",
@@ -64,27 +70,27 @@ const Post = () => {
     //   socialIcon: ["smile"],
     //   phoneNumber: "0715297881",
     // },
-  
   ]);
 
   useEffect(() => {
     const fetchPosts = async () => {
       try {
-        const response = await axios.get(`${environments.BASE_HOST_URL}/api/getAllPosts`);
-        console.log(response,'response');
+        const response = await axios.get(
+          `${environments.BASE_HOST_URL}/api/getAllPosts`
+        );
+        console.log(response, "response");
         setData(response.data.data); // Assuming your API response contains the posts in the 'data' field
       } catch (error) {
-        console.error('Error fetching posts:', error);
+        console.error("Error fetching posts:", error);
       }
     };
 
     fetchPosts();
   }, []); //
 
+  console.log(data, "data");
+  console.log(posts, "posts");
 
-  console.log(data,'data');
-  console.log(posts,'posts');
-  
   const [loading, setLoading] = useState(true);
   const [animateState, setAnimateState] = useState(
     Array(data.length).fill({
@@ -99,8 +105,7 @@ const Post = () => {
     )
   );
 
-
-  console.log(animateState,'animateState');
+  console.log(animateState, "animateState");
   useEffect(() => {
     if (user && user.userId) {
       const apiUrl = `${environments.BASE_HOST_URL}/api/getPosts/${user.userId}`;
@@ -148,7 +153,7 @@ const Post = () => {
 
   const renderPosts = filteredData.length > 0 ? filteredData : data;
 
-  console.log(renderPosts,'renderPosts');
+  console.log(renderPosts, "renderPosts");
 
   const imageReaction = async (value, index, post) => {
     const newAnimateState = [...animateState];
@@ -162,10 +167,8 @@ const Post = () => {
       return;
     }
 
-    console.log(post.postId, "ttttttttttt");
-    //const updatedCount = await incrementReactionCount(post._id, value.toLowerCase());
     const response = await api.post("/api/increment", {
-      postId: post.postId, // Access post._id from the parameter
+      postId: post.postId,
       reactionType: value,
     });
     setReactionCount(response.data.count);
@@ -228,27 +231,29 @@ const Post = () => {
         </div>
 
         <div className="margin_b_t">
-         
-         <div style={{marginTop:"-30px"}}>
-         <Box className="category_container" component="section" sx={{ p: 2,m:5, border: '1px dashed grey'}}>
-         <Grid container  spacing={1}>
+          <div style={{ marginTop: "-30px" }}>
+            <Box
+              className="category_container"
+              component="section"
+              sx={{ p: 2, m: 5, border: "1px dashed grey" }}
+            >
+              <Grid container spacing={1}>
+                {category.map((item) => (
+                  // <div key={item._id}>
 
-         {category.map(item => (
-        // <div key={item._id}>
-         
-        //   <p>Description: {item.category}</p>
-          
-        // </div>
-         <Grid  key={item._id} item xs={3}>
-         <Item className="sub_category_container">{item.category} {item.count}</Item>
-       </Grid>
-      ))}
-    
-      </Grid>
-      
-    </Box>
-         </div>
-   
+                  //   <p>Description: {item.category}</p>
+
+                  // </div>
+                  <Grid key={item._id} item xs={3}>
+                    <Item className="sub_category_container">
+                      {item.category} {item.count}
+                    </Item>
+                  </Grid>
+                ))}
+              </Grid>
+            </Box>
+          </div>
+
           <div>
             {loading ? (
               <>
