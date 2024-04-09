@@ -102,8 +102,8 @@ console.log(data,'datadatadata');
                     </Grid>
                   </Grid>
                   <Grid item>
-                    <Typography variant="subtitle1" component="div">
-                      $19.00
+                    <Typography className="myaccount-profile-image-details" variant="subtitle1" component="div">
+                    Rs: 5000
                     </Typography>
                   </Grid>
                 </Grid>

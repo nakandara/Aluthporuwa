@@ -128,12 +128,13 @@ const MyAccount = () => {
   return (
     <LayoutSecond>
       <ProtectedRoute>
-        <div className="multi-color-gradient" style={{ marginTop: "60px" }}>
+        <div className="multi-color-gradient " style={{ marginTop: "60px" }}>
           <Box sx={{ width: 1 }}>
             <Box
               display="grid"
               gridTemplateColumns={{ xs: "1fr", md: "repeat(12, 1fr)" }}
               gap={2}
+              sx={{m:"5px"}}
             >
               <Box
                 gridColumn={{ xs: "1", md: "span 12" }}
@@ -161,13 +162,20 @@ const MyAccount = () => {
                         >
                           USER INFORMATION
                         </div>
-
-                        <Avatar
-                          alt=""
-                          src={postImage.image || ""}
-                          style={{ height: "250px", width: "200px" }}
-                          className="uploaded-image"
-                        />
+                        <div className="myaccount-profile-image-flex">
+                          <div>
+                            {" "}
+                            <Avatar
+                              alt=""
+                              src={postImage.image || ""}
+                              style={{ height: "250px", width: "200px" }}
+                              className="uploaded-image"
+                            />
+                          </div>
+                          <div className="myaccount-profile-image-details">
+                            RECOMMEND
+                          </div>
+                        </div>
                       </label>
                       <input
                         type="file"
@@ -180,13 +188,13 @@ const MyAccount = () => {
                   </div>
                 </Item>
               </Box>
-              <Box gridColumn={{ xs: "1", md: "span 8" }}>
+              <Box gridColumn={{ xs: "1", md: "span 8", marginTop: "50px" }}>
                 <Item>
                   <Typography>My Information Step 01</Typography>
                   <MyInformations name={user.name} data={data} />
                 </Item>
               </Box>
-              <Box gridColumn={{ xs: "1", md: "span 4" }}>
+              <Box gridColumn={{ xs: "1", md: "span 4", marginTop: "45px" }}>
                 <TableContainer component={Paper}>
                   <Table>
                     <TableBody>
@@ -222,10 +230,8 @@ const MyAccount = () => {
                         <TableCell>
                           <Typography variant="subtitle2">Gender</Typography>
                         </TableCell>
-                       
-                        {infoData && infoData.gender
-                            ? infoData.gender
-                            : ""}
+
+                        {infoData && infoData.gender ? infoData.gender : ""}
                       </TableRow>
                       <TableRow>
                         <TableCell>
