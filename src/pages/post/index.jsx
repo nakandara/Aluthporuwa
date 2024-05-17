@@ -13,7 +13,7 @@ import LayoutSecond from "../../../components/LayoutSecond/LayoutSecond";
 import api from "../../ services/api";
 import { useToken } from "../../context/TokenContext";
 
-const url = `${environments.BASE_HOST_LOCAL_URL}/api/increment`;
+const url = `${environments.BASE_HOST_URL}/api/increment`;
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#009877" : "#009877",
@@ -49,13 +49,13 @@ const Post = () => {
   const [reactionCount, setReactionCount] = useState("");
   const [posts, setPosts] = useState([]);
   const [category, setCategory] = useState([
-    { category: "spa", count: "100" },
+    { category: "Mobile", count: "100" },
+    { category: "video", count: "1600" },
+    { category: "TV", count: "1720" },
     { category: "video", count: "1700" },
-    { category: "video", count: "1700" },
-    { category: "video", count: "1700" },
-    { category: "vehicle", count: "1700" },
-    { category: "vehicle", count: "1700" },
-    { category: "private", count: "1700" },
+    { category: "vehicle", count: "1370" },
+    { category: "Beauty", count: "1890" },
+    { category: "private", count: "100" },
   ]);
   const [data, setData] = useState([
     // {
@@ -76,9 +76,9 @@ const Post = () => {
     const fetchPosts = async () => {
       try {
         const response = await axios.get(
-          `${environments.BASE_HOST_URL}/api/getAllPosts`
+          `${environments.BASE_HOST_URL}/api/getVerifyAllPosts`
         );
-        console.log(response, "response");
+        console.log(response, "responsemmmmmmmmm");
         setData(response.data.data); // Assuming your API response contains the posts in the 'data' field
       } catch (error) {
         console.error("Error fetching posts:", error);
@@ -261,7 +261,7 @@ const Post = () => {
                   <div key={index}>
                     <div key={index} height={200} offset={100}>
                       <Card
-                        src={post.image}
+                        src={post.images}
                         index={index}
                         reactionCount={reactionCount}
                         post={post}

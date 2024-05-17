@@ -4,15 +4,13 @@ import Paper from "@mui/material/Paper";
 import { useRouter } from "next/router";
 import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
-import Cardl from "../../components/card/Card";
+import Cardl from "../../components/card/HomeCard";
 import Card from "@mui/material/Card";
 import CardMedia from "@mui/material/CardMedia";
 
 // Your Video component with text overlay and opacity
 const VideoWithTextAndOpacity = () => {
   const router = useRouter();
-
- 
 
   const LoginPage = () => {
     router.push("/auth/signin");
@@ -47,7 +45,7 @@ const VideoWithTextAndOpacity = () => {
           }}
         >
           <span className="responsive-text">
-            ඔබගේ මංගල යෝජනාව දැන්ම වෙන් කරවා ගන්න.
+          Book your add today.
           </span>
           <br />
           <Button
@@ -56,11 +54,11 @@ const VideoWithTextAndOpacity = () => {
             variant="contained"
             size="large"
           >
-            ඉදිරියට යන්න.
+            Proceed.
           </Button>
         </h1>
       </div>
-    </div>
+    </div> 
   );
 };
 
@@ -72,17 +70,14 @@ const Item = styled(Paper)(({ theme }) => ({
   color: theme.palette.text.secondary,
 }));
 
-
-
 export default function BasicGrid() {
-
   const [data, setData] = useState([
     {
       _id: "65741a033e9bcea69d35d74e",
       userId: "651ab367455cb0a4405755b6",
       image:
-        "https://images.pexels.com/photos/1391498/pexels-photo-1391498.jpeg?auto=compress&cs=tinysrgb&w=600",
-      description: "111111111111111111111111111111111 1111",
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR8Ez0J_de9gB_5L3kOx8EmESc3y2vuei6SFY3jwOfwPw&s",
+      description: "Subaru XV Hybrid New Engine & Gear B",
       category: ["Vehicle"],
       postId: "65741a033e9bcea69d35d74f",
       __v: 0,
@@ -93,42 +88,40 @@ export default function BasicGrid() {
       _id: "65741a033e9bcea69d35d74e",
       userId: "651ab367455cb0a4405755b6",
       image:
-        "https://images.pexels.com/photos/1391498/pexels-photo-1391498.jpeg?auto=compress&cs=tinysrgb&w=600",
-      description: "111111111111111111111111111111111 1111",
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTQxD44fcWZAwlXgmlPmDFLICFn67WWrpF5F1pDi4_X_f2Mq7wnk5UdfA-1G3WfAWTJfCQ&usqp=CAU",
+      description: "යූස්  කරලම නෑ. එක දවසක් ට්‍රිප් එකකට ගෙනියලා එක පාරක් cook කරා එච්චරයි .. කිසිම අවුලක් නෑ.. හොඳටම තියෙනවා..",
       category: ["Vehicle"],
       postId: "65741a033e9bcea69d35d74f",
       __v: 0,
       socialIcon: ["smile"],
       phoneNumber: "0715297881",
     },
-  
+
     {
       _id: "65741a033e9bcea69d35d74e",
       userId: "651ab367455cb0a4405755b6",
       image:
-        "https://images.pexels.com/photos/1391498/pexels-photo-1391498.jpeg?auto=compress&cs=tinysrgb&w=600",
-      description: "111111111111111111111111111111111 1111",
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQFquGiS1G-uKuca_pkfMINGt1etRc3QTqTmySOc2_6nw&s",
+      description: "SELLING PRICE : 68,900/=  (For card payments additional 3%)",
       category: ["Vehicle"],
       postId: "65741a033e9bcea69d35d74f",
       __v: 0,
       socialIcon: ["smile"],
       phoneNumber: "0715297881",
     },
-  
+
     {
       _id: "65741a033e9bcea69d35d74e",
       userId: "651ab367455cb0a4405755b6",
       image:
-        "https://images.pexels.com/photos/1391498/pexels-photo-1391498.jpeg?auto=compress&cs=tinysrgb&w=600",
-      description: "111111111111111111111111111111111 1111",
+        "https://m.economictimes.com/thumb/msid-91934984,width-1200,height-900,resizemode-4,imgsize-19254/apple-always-on-mode.jpg",
+      description: "Dual SIM, Flash Charging, Android, Triple Camera, Bluetooth 12GB /256",
       category: ["Vehicle"],
       postId: "65741a033e9bcea69d35d74f",
       __v: 0,
       socialIcon: ["smile"],
       phoneNumber: "0715297881",
     },
-  
-  
   ]);
   return (
     <div>
@@ -151,9 +144,7 @@ export default function BasicGrid() {
             "& > :not(style)": {
               m: 1,
               width: 328,
-             
             },
-            
           }}
         >
           {/* <Card sx={{ maxWidth: 300, display: "flex" }}>
@@ -202,26 +193,22 @@ export default function BasicGrid() {
             />
           </Card> */}
 
-
-
-{data.map((post, index) => (
-                  <div key={index}>
-                    <div key={index} height={200} offset={100}>
-                      <Cardl
-                        src={post.image}
-                        index={index}
-                        reactionCount={4}
-                        post={post}
-                        coverSocialIcons={''}
-                        description={post.description}
-                        imageReaction={(value) =>
-                          imageReaction(value, index, post)
-                        }
-                        animateState={''}
-                      />
-                    </div>
-                  </div>
-                ))}
+          {data.map((post, index) => (
+            <div key={index}>
+              <div key={index} height={200} offset={100}>
+                <Cardl
+                  src={post.image}
+                  index={index}
+                  reactionCount={4}
+                  post={post}
+                  coverSocialIcons={""}
+                  description={post.description}
+                  imageReaction={(value) => imageReaction(value, index, post)}
+                  animateState={""}
+                />
+              </div>
+            </div>
+          ))}
           {/* Change the background color to green */}
         </Box>
       </div>

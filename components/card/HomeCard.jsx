@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import styles from "./Card.module.css";
+import styles from "./HomeCard.module.css";
 import { FacebookShareButton, WhatsappShareButton } from "react-share";
 import ShareIcon from "@mui/icons-material/Share";
 import Modal from "../modal/Modal";
@@ -23,8 +23,6 @@ const Card = ({
     router.push(`/post/${postId}`);
   };
 
-
-  
   const handleShareClick = () => {
     setModalOpen(true);
   };
@@ -32,8 +30,6 @@ const Card = ({
   const handleCloseModal = () => {
     setModalOpen(false);
   };
-
-
 
   const shareUrl = `https://aluthporuwa-nakandara.vercel.app/post/${post.postId}`;
   const title = "Check out this post";
@@ -45,7 +41,7 @@ const Card = ({
           <img
             onClick={() => handleClick(post.postId)}
             className={styles.image}
-            src={src && src.length > 0 ? src[0].imageUrl : ""} // Accessing the first image URL
+            src={src}
             alt={index}
           />
         </div>

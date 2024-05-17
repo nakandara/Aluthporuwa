@@ -36,7 +36,7 @@ function DrawerAppBar(props) {
         </div>
         <section>
           <div className="step">
-            <div className="step_heading"> අතිනත් Step</div>
+            <div className="step_heading"> QuickAds Hub Step</div>
             <div className="card">
               <div className="cardtemp ">
                 <div className="center flex">

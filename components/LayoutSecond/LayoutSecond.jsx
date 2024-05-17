@@ -24,8 +24,16 @@ import Avatar from "@mui/material/Avatar";
 import ProtectedRoute from "../../components/protect/protectedRoute";
 
 const drawerWidth = 240;
-const navItems = ["Home", "About", "Contact", "Login", "Post", "MyAccount","MyAdd"];
-const settings = ["Profile", "Account", "Dashboard", "Logout"];
+const navItems = [
+  "Home",
+  "About",
+  "Contact",
+  "Login",
+  "Post",
+  "MyAccount",
+  "MyAdd",
+];
+const settings = ["Profile", "Account", "Dashboard", "Logout","AdminPostReview"];
 const LayoutSecond = ({ children }) => {
   const router = useRouter();
   const [mobileOpen, setMobileOpen] = React.useState(false);
@@ -40,7 +48,6 @@ const LayoutSecond = ({ children }) => {
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
-  
 
   const handleOpenUserMenu = (event) => {
     setAnchorElUser(event.currentTarget);
@@ -53,10 +60,14 @@ const LayoutSecond = ({ children }) => {
     router.push("/");
   };
 
+  const loginAdminPostReview = () =>{
+    router.push("/postReview");
+  }
+
   const handleClick = () => {
     // Handle clicking on the Typography component
     // Navigate to the home page using Next.js router
-    router.push('/');
+    router.push("/");
   };
   const handleDrawerClose = () => {
     setOpen(false);
@@ -79,13 +90,17 @@ const LayoutSecond = ({ children }) => {
             variant="h6"
             component="div"
             onClick={handleClick}
-            sx={{ flexGrow: 1, display: { xs: "none", sm: "block" }, cursor: "pointer"  }}
+            sx={{
+              flexGrow: 1,
+              display: { xs: "none", sm: "block" },
+              cursor: "pointer",
+            }}
           >
             QuickAds Hub
           </Typography>
 
           <YourPost />
-          
+
           <Menu
             sx={{ mt: "45px" }}
             id="menu-appbar"
@@ -107,20 +122,21 @@ const LayoutSecond = ({ children }) => {
                 key={setting}
                 onClick={() => {
                   if (setting === "Logout") {
-                    handleLogout(); // Call the logout function
+                      handleLogout(); // Call the logout function
+                  } else if (setting === "AdminPostReview") {
+                    loginAdminPostReview()
                   } else {
-                    handleCloseUserMenu();
+                      handleCloseUserMenu();
                   }
-                }}
+              }}
+              
               >
                 <Typography textAlign="center">{setting}</Typography>
               </MenuItem>
             ))}
           </Menu>
           <Box sx={{ display: { xs: "none", sm: "block" } }}>
-           
             {navItems.map((item) => (
-              
               <Button
                 key={item}
                 sx={{ color: "#fff" }}
@@ -132,8 +148,7 @@ const LayoutSecond = ({ children }) => {
                   }
                 }}
               >
-               
-                {item} 
+                {item}
               </Button>
             ))}
           </Box>
@@ -164,12 +179,11 @@ const LayoutSecond = ({ children }) => {
         }}
       >
         <List>
-        <Typography
+          <Typography
             variant="h6"
             component="div"
             onClick={handleClick}
-            sx={{m:3,fontFamily:"sans-serif"}}
-            
+            sx={{ m: 3, fontFamily: "sans-serif" }}
           >
             QuickAds Hub
           </Typography>

@@ -37,8 +37,8 @@ const SignupPage = () => { // Renamed to 'SignupPage'
   return (
     <div>
       <form className="form" autoComplete="off" onSubmit={normalLogin}>
-      <div className="control">
-          <h1>Register Page</h1>
+      <div className="control" style={{color:"black"}}>
+          <h1 >Register Page</h1>
         </div>
         <div className="control block-cube block-input">
         <input

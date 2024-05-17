@@ -7,6 +7,7 @@
     max-height: 230px;
     margin: 10px;
     overflow: hidden;
+   
     border-radius: 30px;
     border: 0.5px solid #d76cec; 
     box-shadow: 30px 10px 20px rgba(0, 0, 0, 0.1);
@@ -29,7 +30,7 @@
 }
   .image {
    
-    width: 25vh;
+    width: 18vh;
    height: 230px;
     border-top-left-radius: 10px;
     
@@ -46,8 +47,8 @@
   
   .description {
     margin-bottom: 10px;
-    color: #333;
-    font-size: 16px;
+    color: #f8f3f3;
+    font-size: 12px;
   }
   
   .actions {
@@ -74,7 +75,7 @@
   }
   
   .share_icon {
-   color: #333;
+   color: #fdfbfb;
 
 
   }
@@ -119,7 +120,7 @@
         color: #fff;
         border: none;
         padding: 5px;
-        border-radius: 240px;
+        border-radius: 200px;
         cursor: pointer;
         font-size: 10000px;
       }
@@ -131,8 +132,8 @@
       }
       .image {
    
-        width: 20vh;
-       height: 200px;
+        width: 16vh;
+       height: 190px;
         border-top-left-radius: 10px;
         
       }
@@ -151,7 +152,7 @@
     }
     .image {
    
-      width: 18vh;
+      width: 12vh;
      height: 130px;
       border-top-left-radius: 10px;
       
@@ -167,7 +168,7 @@
     }
     .image {
    
-      width: 17vh;
+      width: 11vh;
      height: 120px;
       border-top-left-radius: 10px;
       

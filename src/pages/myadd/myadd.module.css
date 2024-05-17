@@ -1,5 +1,7 @@
 .container {
     margin-top: 135px;
+    margin-left: 10px;
+    margin-right: 10px;
     margin-bottom: 100px;
     background-color: rgb(244, 246, 248);
     display: grid;

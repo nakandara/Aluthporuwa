@@ -164,7 +164,7 @@ const Signin = () => {
   return (
     <div>
       <div className="sign-in-sign-up-container">
-        <h2>Sign In / Sign Up</h2>
+        <h2>Sign In </h2>
         <form onSubmit={normalLogin}>
           <input
             name="username"

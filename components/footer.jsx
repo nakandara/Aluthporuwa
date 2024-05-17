@@ -10,7 +10,7 @@ const Footer = () => {
           <div className="footer-column">
             <h3>About Us</h3>
             <p>
-              Your company s story, mission, or a brief description can go here.
+            Passionate team at QuickAds Hub dedicated to  with unwavering commitment to quality and innovation.
             </p>
           </div>
           <div className="footer-column">

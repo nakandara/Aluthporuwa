@@ -26,8 +26,9 @@ const Campaign = () => {
                 <div className="card-title">Gold Plan </div>
                 </div>
                 <div className="card-content">
-                  <h6 className="golden-point">Automatic Filter Top List Your Add</h6>
-                  <h6 className="golden-point">Automatic Filter Top List Your Add</h6>
+                  <h6 className="golden-point">1.Your advertisement receives premium placement for maximum visibility.</h6>
+                  <h6 className="golden-point">2. Enhanced Visibility: Highlighted listings attract more attention from potential buyers or renters.</h6>
+                  <h6 className="golden-point">3. Priority Support: Access to dedicated customer support for swift resolution of any issues.</h6>
                   {/* Add any additional information here */}
                   <p className="card-description">
                    __________
@@ -41,10 +42,10 @@ const Campaign = () => {
                   <div className="card-title">Silver Plan</div>
                 </div>
                 <div className="card-content">
-                  <h6 className="golden-point">Automatic Filter Top List Your Add</h6>
-                  <h6 className="golden-point">Automatic Filter Top List Your Add</h6>
-                  <h6 className="golden-point">Automatic Filter Top List Your Add</h6>
-                  <h6 className="golden-point">Automatic Filter Top List Your Add</h6>
+                  <h6 className="golden-point">1. Standard Placement: Your advertisement is displayed prominently among other listings.</h6>
+                  <h6 className="golden-point">2. Moderate Visibility: Listings are visible to a wide audience, ensuring decent exposure.</h6>
+                  <h6 className="golden-point">3. Basic Support: Standard assistance is available for any queries or concerns.</h6>
+                
                   {/* Add any additional information here */}
                   <p className="card-description">
                    __________

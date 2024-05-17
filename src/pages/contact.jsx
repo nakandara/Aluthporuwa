@@ -31,7 +31,7 @@ const ContactUs = () => {
     e.preventDefault();
     try {
 
-      const response = await axios.post(`${environments.BASE_HOST_LOCAL_URL}/api/createContact`, formData);
+      const response = await axios.post(`${environments.BASE_HOST_URL}/api/createContact`, formData);
       console.log(response.data);
       if (response.data) {
         setFormData({

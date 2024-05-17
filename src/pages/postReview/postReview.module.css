@@ -1,0 +1,282 @@
+@import "~react-image-gallery/styles/css/image-gallery.css";
+
+.PostIdMain{
+    /* border: 1px solid #c6d6bb; */
+    height: auto;
+  margin-top: 100px;
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-bottom: 10px;
+}
+.FirstContent{
+    /* border: 1px solid #dd551f; */
+    margin: 10px;
+    height: auto;
+    display: flex;
+}
+
+.SecondContent{
+    border: 1px solid #dd551f;
+    margin: 10px;
+    height: 40%;
+    color: black;
+}
+
+.ThirdContent{
+    /* border: 1px solid #610661; */
+    margin: 10px;
+    height: 40%;
+    color: black;
+}
+.imageContainer{
+    /* border: 1px solid #045026; */
+    height: auto;
+    margin: 10px;
+    width: 60%;
+    color: black;
+}
+.imageContainer_content{
+    /* border: 1px solid #045026; */
+    height: auto;
+    margin: 10px;
+    width: 40%;
+    color: black;
+}
+
+
+@media (max-width: 600px) {
+    .FirstContent{
+        /* border: 1px solid #dd551f; */
+        margin: 10px;
+        height: auto;
+        width: auto;
+        display: grid;
+    }
+    .imageContainer{
+        /* border: 1px solid #045026; */
+        height: auto;
+        margin: 10px;
+        width: auto;
+        color: black;
+    }
+    .imageContainer_content{
+        /* border: 1px solid #045026; */
+        height: auto;
+        margin: 10px;
+        width: auto;
+        color: black;
+    }
+  }
+
+  @media (max-width: 310px) {
+    .FirstContent{
+        /* border: 1px solid #dd551f; */
+        margin: 10px;
+        height: auto;
+        width: auto;
+        display: grid;
+    }
+    .imageContainer{
+        /* border: 1px solid #045026; */
+        height: auto;
+        margin: 10px;
+        width: auto;
+        color: black;
+    }
+    .imageContainer_content{
+        /* border: 1px solid #045026; */
+        height: auto;
+        margin: 10px;
+        width: auto;
+        color: black;
+    }
+  }
+
+  .image-size{
+    width: 10000000000000px;
+  }
+
+
+  .postIdHeading{
+    font-size: 16px;
+    font-weight: 800;
+    margin: 0;
+    padding: 0;
+    color: #020024;
+    border: 0;
+    outline: 0;
+    background: transparent;
+  
+  }
+
+  .subtitle{
+    color: #707676;
+    font-size: 12px;
+    font-weight: 400;
+    font-family: 'Open Sans', 'PF DinText Pro', Arial, Helvetica, sans-serif;
+    line-height: 1.71428571;
+  }
+
+  .horizontalLine {
+    border-bottom: 1px solid #ccc; /* Adjust the color and thickness as needed */
+    margin-top: 20px; /* Add some margin for spacing */
+  }
+  
+  .postIdDescription{
+    font-size: 20px;
+      font-weight: 800;
+      color: #009877;
+      font-family: 'Open Sans', 'PF DinText Pro', Arial, Helvetica, sans-serif;
+      line-height: 1.71428571;
+      margin: 0;
+      padding: 0;
+      outline: 0;
+      background: transparent;
+  }
+
+  .postIdDescription_content{
+    color: #707676;
+      word-break: normal;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+      font-family: 'Open Sans', 'PF DinText Pro', Arial, Helvetica, sans-serif;
+      line-height: 1.71428571;
+      font-size: 14px;
+  }
+
+  .postIdPhoneNumber{
+    border: 2px solid #4de99b;
+    margin: 10px;
+    padding: 5px;
+  }
+  
+  .action_buttons{
+    position: fixed;
+    bottom: 0;
+    width: 80%;
+    padding: 8px;
+    z-index: 3;
+    
+    background-color: #fff;
+    margin: 0;
+    padding: 25px;
+    border: 0;
+    outline: 0;
+    background: transparent;
+    font-family: 'Open Sans', 'PF DinText Pro', Arial, Helvetica, sans-serif;
+    line-height: 1.71428571;
+    font-size: 14px;
+  }
+
+  .contact_options{
+    display: flex;
+    width: 100%;
+    
+    padding: 0;
+    border: 0;
+    outline: 0;
+    margin-left: 25px;
+    background: transparent;
+    font-family: 'Open Sans', 'PF DinText Pro', Arial, Helvetica, sans-serif;
+    line-height: 1.71428571;
+    font-size: 14px;
+  }
+
+  .btn{
+    color: #424e4e;
+    border-radius: 30px;
+    border: none;
+    cursor: pointer;
+   
+    display: flex;
+    -ms-flex-pack: center;
+    justify-content: center;
+    width: 100%;
+    background: #149777;
+    font-size: 100%;
+    height: 50px;
+    font-family: inherit;
+    line-height: 1.15;
+    margin-left: 10px;
+   margin-top: -10px;
+    padding-top: 10px;
+    color: inherit;
+    overflow: visible;
+   
+  }
+
+
+  .PostIdMain {
+    padding: 20px;
+    position: relative;
+  }
+  
+  .FirstContent {
+    margin-bottom: 20px;
+  }
+  
+  .imageContainer {
+    margin-bottom: 20px;
+  }
+  
+  .imageContainer_content {
+    margin-bottom: 20px;
+  }
+  
+  .postIdHeading {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  .subtitle {
+    font-size: 16px;
+    color: gray;
+    margin-bottom: 10px;
+  }
+  
+  .horizontalLine {
+    width: 100%;
+    height: 1px;
+    background-color: #ddd;
+    margin-bottom: 10px;
+  }
+  
+  .postIdPhoneNumber {
+    font-size: 16px;
+    margin-bottom: 10px;
+  }
+  
+  .postIdDescription {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  .postIdDescription_content {
+    font-size: 16px;
+    line-height: 1.5;
+  }
+  
+  .ThirdContent {
+    margin-top: 20px;
+  }
+  
+  /* Fixed button style */
+  .fixedButton {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    z-index: 1000;
+  }
+  
+  .fixedButton:hover {
+    background-color: #0056b3;
+  }
+  

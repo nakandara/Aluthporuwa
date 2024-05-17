@@ -11,6 +11,17 @@ import styles from "./post.module.css";
 
 const PostId = ({ postIdData }) => {
   console.log(postIdData.allPosts, "postIdDatapostIdData");
+  const [mobileNumber, setMobileNumber] = useState("");
+  const [description, setDescription] = useState("");
+  const [title, setTitle] = useState("");
+  const [city, setCity] = useState("");
+
+  useEffect(() => {
+    setMobileNumber(postIdData?.allPosts[0]?.PostDetails?.mobileNumber)
+    setDescription(postIdData?.allPosts[0]?.PostDetails?.description)
+    setTitle(postIdData?.allPosts[0]?.PostDetails?.title)
+    setCity(postIdData?.allPosts[0]?.PostDetails?.city)
+  }, []);
 
   const images = [
     {
@@ -26,9 +37,10 @@ const PostId = ({ postIdData }) => {
       thumbnail: "https://picsum.photos/id/1019/250/150/",
     },
   ];
+  
 
   const handleWhatsAppClick = () => {
-    const phoneNumber = postIdData?.allPosts[0]?.PostDetails?.phoneNumber;
+    const phoneNumber = postIdData?.allPosts[0]?.PostDetails?.mobileNumber;
     console.log(phoneNumber);
 
     if (phoneNumber) {
@@ -49,23 +61,14 @@ const PostId = ({ postIdData }) => {
         <div className={styles.FirstContent}>
           <div className={styles.imageContainer}>
             <div>
-              {postIdData?.allPosts?.map((post, index) => (
+            {postIdData?.allPosts?.map((post, index) => (
                 <div className="image-size" key={index}>
                   <ImageGallery
-                    items={[
-                      {
-                        original: post.PostDetails.image,
-                        thumbnail: post.PostDetails.image,
-                      },
-                      {
-                        original: "https://picsum.photos/id/1015/1000/600/",
-                        thumbnail: "https://picsum.photos/id/1015/250/150/",
-                      },
-                      {
-                        original: "https://picsum.photos/id/1019/1000/600/",
-                        thumbnail: "https://picsum.photos/id/1019/250/150/",
-                      },
-                    ]}
+                    items={post.PostDetails.images.map((image, index) => ({
+                      original: image.imageUrl,
+                      thumbnail: image.imageUrl,
+                      // You can add other properties like caption, description, etc. if needed
+                    }))}
                   />
                 </div>
               ))}
@@ -73,12 +76,12 @@ const PostId = ({ postIdData }) => {
           </div>
           <div className={styles.imageContainer_content}>
             <div>
-              <div className={styles.postIdHeading}>Honda Today AF61 2020</div>
+              <div className={styles.postIdHeading}>{title}</div>
               <div className={styles.subtitle}>
-                Posted on 24 Jan 9:57 pm, Talawa, Anuradhapura
+              Posted on 24 Jan 9:57 pm, <strong>{city}</strong>
               </div>
               <div className={styles.horizontalLine}></div>
-              <div className={styles.postIdPhoneNumber}>Phone Number</div>
+              <div className={styles.postIdPhoneNumber}>Phone Number {mobileNumber}</div>
             </div>
 
             <div>
@@ -88,10 +91,7 @@ const PostId = ({ postIdData }) => {
                 sx={{ color: "black" }}
                 variant="body1"
               >
-                body1. Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                Quos blanditiis tenetur unde suscipit, quam beatae rerum
-                inventore consectetur, neque doloribus, cupiditate numquam
-                dignissimos laborum fugiat deleniti? Eum quasi quidem quibusdam.
+                {description}
               </Typography>
             </div>
           </div>

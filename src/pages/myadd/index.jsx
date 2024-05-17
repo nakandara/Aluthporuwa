@@ -4,34 +4,27 @@ import LayoutSecond from "../../../components/LayoutSecond/LayoutSecond";
 import { environments } from "../../../components/environment/environments";
 import { useRouter } from "next/router";
 import { useToken } from "../../context/TokenContext";
-import Card from "../../../components/card/Card";
-
+import Swal from "sweetalert2";
 import styles from "./myadd.module.css";
 import { styled } from "@mui/material/styles";
 import Grid from "@mui/material/Grid";
 import Paper from "@mui/material/Paper";
 import Typography from "@mui/material/Typography";
 import ButtonBase from "@mui/material/ButtonBase";
+import IconButton from "@mui/material/IconButton";
+import DeleteIcon from "@mui/icons-material/Delete";
+
+const Img = styled("img")({
+  margin: "auto",
+  display: "block",
+  maxWidth: "100%",
+  height: "160px",
+});
 
 const MyAdd = () => {
   const { user } = useToken();
+  const router = useRouter();
   const [data, setData] = useState([]);
-  const [coverSocialIcons, setCoverSocialIcons] = useState([]);
-
-  const Img = styled("img")({
-    margin: "auto",
-    display: "block",
-    maxWidth: "100%",
-    // maxHeight: '100%',
-    height: "160px",
-  });
-  const [animateState, setAnimateState] = useState(
-    Array(data.length).fill({
-      animateHeart: false,
-      animateSmile: false,
-      animateLike: false,
-    })
-  );
 
   useEffect(() => {
     const fetchPosts = async () => {
@@ -40,77 +33,151 @@ const MyAdd = () => {
           `${environments.BASE_HOST_URL}/api/getPosts/${user.userId}`
         );
         console.log(response.data, "response");
-        setData(response.data); // Assuming your API response contains the posts in the 'data' field
+        setData(response.data);
       } catch (error) {
         console.error("Error fetching posts:", error);
       }
     };
 
     fetchPosts();
-  }, [user]); //
+  }, [user]);
 
-console.log(data,'datadatadata');
+  const PostClick = (postId) => {
+    router.push(`/myadd/${postId}`);
+  };
+
+  const handleDelete = async (userId, postId) => {
+    try {
+      Swal.fire({
+        title: "Are you sure?",
+        text: "You won't be able to revert this!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, delete it!",
+      }).then(async (result) => {
+        if (result.isConfirmed) {
+          const response = await axios.delete(
+            `${environments.BASE_HOST_URL}/api/deletePost/${userId}/${postId}`
+          );
+          Swal.fire({
+            title: "Deleted!",
+            text: "Your file has been deleted.",
+            icon: "success",
+          });
+          if (response.data.success) {
+            setData(data.filter((post) => post.postId !== postId));
+            console.log(response.data.message);
+          } else {
+            console.log(response.data.message);
+          }
+        }
+      });
+    } catch (error) {
+      console.error("Error deleting post:", error);
+    }
+  };
 
   return (
     <LayoutSecond>
-      <div>
-        <div className={styles.container}>
-          {data.map((post, index) => (
-            <Paper
-              key={index}
-              sx={{
-                p: 2,
-                margin: "auto",
-                maxWidth: 500,
-                flexGrow: 1,
-                backgroundColor: (theme) =>
-                  theme.palette.mode === "dark" ? "#1A2027" : "#fff",
+      <div className={styles.container}>
+        {data.map((post, index) => (
+          <Paper
+            key={index}
+            sx={{
+              p: 2,
+              margin: "auto",
+              maxWidth: 500,
+              flexGrow: 1,
+              backgroundColor: (theme) =>
+                theme.palette.mode === "dark" ? "#1A2027" : "#fff",
+              position: "relative",
+            }}
+            className={styles.card}
+            onClick={() => PostClick(post.postId)}
+          >
+            {/* Status Indicator */}
+            <Typography
+              variant="subtitle2"
+              className='myaccount-profile-image-mobile'
+              style={{
+                position: "absolute",
+                top: 8,
+                right: 8,
+                backgroundColor: "rgba(0, 0, 0, 0.7)",
+                color: "#fff",
+                padding: "2px 8px",
+                borderRadius: "4px",
+                zIndex: 1,
               }}
-              className={styles.card}
             >
-              <Grid container spacing={2}>
-                <Grid item>
-                  <ButtonBase sx={{ width: 188, height: 145 }} >
-                    <Img alt="complex" src={post.image} />
-                  </ButtonBase>
-                </Grid>
-                <Grid item xs={12} sm container>
-                  <Grid item xs container direction="column" spacing={2}>
-                    <Grid item xs>
-                      <Typography
-                        gutterBottom
-                        variant="subtitle1"
-                        component="div"
-                      >
-                        Standard license
-                      </Typography>
-                      <Typography variant="body2" gutterBottom>
+              {post.verify?"POST":"PENDING"}
+            </Typography>
+            <IconButton
+              aria-label="delete"
+              style={{
+                position: "absolute",
+                bottom: 8,
+                right: 8,
+              }}
+              onClick={(e) => {
+                e.stopPropagation();
+                handleDelete(post.userId, post.postId);
+              }}
+            >
+              <DeleteIcon />
+            </IconButton>
+            <Grid container spacing={2}>
+              <Grid item>
+                <ButtonBase sx={{ width: 188, height: 145 }}>
+                  <Img alt="complex" src={post.images[0].imageUrl} />
+                </ButtonBase>
+              </Grid>
+              <Grid item xs={12} sm container>
+                <Grid item xs container direction="column" spacing={2}>
+                  <Grid item xs>
+                    <Typography gutterBottom variant="subtitle1" component="div">
+                      Standard license
+                    </Typography>
+                    <Typography variant="body2" gutterBottom>
                       {post.description.slice(0, 30)}......
-                      </Typography>
-                      <Typography variant="body2" color="text.secondary">
-                       {post.category.join(', ')}
-                      </Typography>
-                    </Grid>
-                    <Grid item>
-                      <Typography
-                        sx={{ cursor: "pointer" }}
-                        variant="body2"
-                      >
-                       {post.socialIcon.join(', ')}
-
-                      </Typography>
-                    </Grid>
+                    </Typography>
+                    <Typography variant="body2" color="text.secondary">
+                      {post.category.join(", ")}
+                    </Typography>
+                    <Typography variant="body2" color="text.secondary">
+                      Mobile: {post.mobileNumber}
+                    </Typography>
                   </Grid>
                   <Grid item>
-                    <Typography className="myaccount-profile-image-details" variant="subtitle1" component="div">
-                    Rs: 5000
+                    <Typography sx={{ cursor: "pointer" }} variant="body2">
+                      {post.socialIcon.join(", ")}
                     </Typography>
                   </Grid>
                 </Grid>
+                <Grid item>
+                  <Typography
+                    className="myaccount-profile-image-details"
+                    variant="subtitle1"
+                    component="div"
+                  >
+                    {post.price}
+                  </Typography>
+                </Grid>
+                <Grid item>
+                  <Typography
+                    className="myaccount-profile-image-mobile"
+                    variant="subtitle1"
+                    component="div"
+                  >
+                    {post.mobileNumber}
+                  </Typography>
+                </Grid>
               </Grid>
-            </Paper>
-          ))}
-        </div>
+            </Grid>
+          </Paper>
+        ))}
       </div>
     </LayoutSecond>
   );
