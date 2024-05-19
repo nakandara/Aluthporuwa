@@ -2029,7 +2029,7 @@ input {
 .paymentAproveCad{
   background-color: #b7daf4;
   border-radius: 10px;
-  font-size:medium;
+  font-size:larger;
   padding: 10px;
   font-weight: 500;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -2037,7 +2037,34 @@ input {
 .paymentAproveCadSecond{
   background-color: #e993e3;
   border-radius: 10px;
-  font-size:medium;
+  font-size:larger;
+  padding: 10px;
+  font-weight: 500;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.paymentAproveCadThird{
+  background-color: #dcebbf;
+  border-radius: 10px;
+  font-size:x-large;
+  padding: 10px;
+  font-weight: 500;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.paymentAproveCadForth{
+  background-color: #f08e83;
+  border-radius: 10px;
+  font-size:x-large;
+  padding: 10px;
+  font-weight: 500;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.paymentAproveCadFive{
+  background-color: #f4edec;
+  border-radius: 10px;
+  font-size:x-large;
   padding: 10px;
   font-weight: 500;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -2047,7 +2074,7 @@ input {
   .paymentAproveCad{
     background-color: #09af99;
     border-radius: 10px;
-    font-size:smaller;
+    font-size:larger;
     padding: 10px;
     font-weight: 500;
     font-family: Georgia, 'Times New Roman', Times, serif;
@@ -2055,9 +2082,35 @@ input {
   .paymentAproveCadSecond{
   background-color: #e993e3;
   border-radius: 10px;
-  font-size:medium;
+  font-size:larger;
   padding: 10px;
   font-weight: 500;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
+.paymentAproveCadThird{
+  background-color: #e2f6f4;
+  border-radius: 10px;
+  font-size:x-large;
+  padding: 10px;
+  font-weight: 500;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+.paymentAproveCadForth{
+  background-color: #f08e83;
+  border-radius: 10px;
+  font-size:x-large;
+  padding: 10px;
+  font-weight: 500;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+.paymentAproveCadFive{
+  background-color: #e0d9d8;
+  border-radius: 10px;
+  font-size:x-large;
+  padding: 10px;
+  font-weight: 500;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+
 }
