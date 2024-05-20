@@ -9,7 +9,6 @@ import Box from "@mui/material/Box";
 import { useRouter } from "next/router";
 import MenuItem from "@mui/material/MenuItem";
 import Select from "@mui/material/Select";
-import AddToPhotosIcon from "@mui/icons-material/AddToPhotos";
 import TextareaAutosize from "@mui/material/TextareaAutosize";
 import LayoutSecond from "../../components/LayoutSecond/LayoutSecond";
 
@@ -27,7 +26,7 @@ const MyAccount = () => {
     images: [], // Array to store multiple images
     city: [], // Array to store selected cities
     price: "",
-    verify:false
+    verify: false
   });
 
   const handleChange = (e) => {
@@ -116,8 +115,8 @@ const MyAccount = () => {
           </div>
 
           <form onSubmit={handleSubmit} className="myPostForm">
-            <div style={{marginBottom:"20px"}}>
-              <label htmlFor="description">Title:</label>
+            <div style={{ marginBottom: "20px" }}>
+              <label htmlFor="title">Title:</label>
               <TextareaAutosize
                 className="myPostFormDescription-textarea"
                 id="title"
@@ -190,7 +189,6 @@ const MyAccount = () => {
                 <MenuItem value="Kanthale">Kanthale</MenuItem>
                 <MenuItem value="polgolla">polgolla</MenuItem>
                 <MenuItem value="godagama">godagama</MenuItem>
-                {/* Add more MenuItem components for other cities */}
               </Select>
             </FormControl>
 

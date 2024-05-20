@@ -126,25 +126,19 @@ const Post = () => {
     router.push(`/post/${postId}`); // Redirects to the specific post route
   };
 
-  const handleCategorySelect = (category) => {
-    const isCategorySelected = selectedCategories.includes(category);
-    let updatedCategories;
+  const handleCategorySelect = (categories) => {
+    setSelectedCategories(categories);
 
-    if (isCategorySelected) {
-      updatedCategories = selectedCategories.filter((cat) => cat !== category);
+    if (categories.length === 0) {
+      setFilteredData(data);
     } else {
-      updatedCategories = [...selectedCategories, category];
+      const filtered = data.filter((post) =>
+        categories.some((selectedCategory) =>
+          post.category.includes(selectedCategory)
+        )
+      );
+      setFilteredData(filtered);
     }
-
-    setSelectedCategories(updatedCategories);
-
-    const filtered = data.filter((post) =>
-      updatedCategories.some((selectedCategory) =>
-        post.category.includes(selectedCategory)
-      )
-    );
-
-    setFilteredData(filtered);
   };
 
   if (!user) {

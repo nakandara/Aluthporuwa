@@ -1658,7 +1658,7 @@ justify-content: center;
 }
 
 .myPost_container{
-  height: 180vh;
+  height:auto;
   color: #020024;
   margin-top: 80px;
   margin-left: 40px;
@@ -2114,3 +2114,5 @@ input {
 
 
 }
+
+

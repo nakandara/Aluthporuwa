@@ -4,6 +4,8 @@ import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
+import Checkbox from "@mui/material/Checkbox";
+import ListItemText from "@mui/material/ListItemText";
 
 const SearchFilter = ({
   categories,
@@ -11,32 +13,30 @@ const SearchFilter = ({
   selectedCategories,
 }) => {
   return (
-    <div>
-      <Box sx={{ minWidth: 120 }}>
-        <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
-          <InputLabel id="demo-simple-select-label">Category</InputLabel>
-          <Select>
-            {categories.map((category) => (
-              <label key={category}>
-                <MenuItem value={10}>
-                  {" "}
-                  <input
-                    type="checkbox"
-                    value={category}
-                    onChange={() => handleCategorySelect(category)}
-                    checked={selectedCategories.includes(category)}
-                  />
-                  {category}
-                </MenuItem>
-              </label>
-            ))}
-          </Select>
-        </FormControl>
-      </Box>
-    </div>
+    <Box sx={{ minWidth: 120 }}>
+      <FormControl sx={{ m: 1, minWidth: 200 }} size="small">
+        <InputLabel id="category-select-label">Category</InputLabel>
+        <Select
+          labelId="category-select-label"
+          id="category-select"
+          multiple
+          value={selectedCategories}
+          onChange={(event) => {
+            const value = event.target.value;
+            handleCategorySelect(value);
+          }}
+          renderValue={(selected) => selected.join(", ")}
+        >
+          {categories.map((category) => (
+            <MenuItem key={category} value={category}>
+              <Checkbox checked={selectedCategories.includes(category)} />
+              <ListItemText primary={category} />
+            </MenuItem>
+          ))}
+        </Select>
+      </FormControl>
+    </Box>
   );
 };
 
 export default SearchFilter;
-
-
