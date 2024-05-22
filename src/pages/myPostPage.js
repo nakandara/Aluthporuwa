@@ -137,7 +137,7 @@ const MyAccount = () => {
                 >
                 Title
                 </Typography>
-                <TextField 
+                <TextareaAutosize 
                  sx={{ m: 1, maxWidth: 300 }}
                   fullWidth
                   id="title"
