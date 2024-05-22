@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
+import { useRouter } from "next/router";
 import { TextField, TextareaAutosize, Button } from '@mui/material';
 
 const MyForm = () => {
+  const router = useRouter();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -15,7 +17,7 @@ const MyForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Handle form submission logic here
+    router.push("/paymentAprove");
     console.log(formData);
   };
 
