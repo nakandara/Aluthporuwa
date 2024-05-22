@@ -4,7 +4,9 @@ import { environments } from "../../components/environment/environments";
 import axios from "axios";
 import InputLabel from "@mui/material/InputLabel";
 import { useToken } from "../context/TokenContext";
+import Typography from "@mui/material/Typography";
 import FormControl from "@mui/material/FormControl";
+import TextField from "@mui/material/TextField";
 import Box from "@mui/material/Box";
 import { useRouter } from "next/router";
 import MenuItem from "@mui/material/MenuItem";
@@ -115,7 +117,7 @@ const MyAccount = () => {
           </div>
 
           <form onSubmit={handleSubmit} className="myPostForm">
-            <div style={{ marginBottom: "20px" }}>
+            {/* <div style={{ marginBottom: "20px" }}>
               <label htmlFor="title">Title:</label>
               <TextareaAutosize
                 className="myPostFormDescription-textarea"
@@ -127,7 +129,23 @@ const MyAccount = () => {
                 minRows={3}
                 placeholder="Title"
               />
-            </div>
+            </div> */}
+             <Typography
+                  style={{ marginTop: "20px" }}
+                  variant="body2"
+                  color="textSecondary"
+                >
+                Title
+                </Typography>
+                <TextField 
+                 sx={{ m: 1, maxWidth: 300 }}
+                  fullWidth
+                  id="title"
+                  name="title"
+                  label="Name"
+                  value={formData.title}
+                onChange={handleChange}
+                />
             <div>
               <label htmlFor="description">Description:</label>
               <TextareaAutosize
