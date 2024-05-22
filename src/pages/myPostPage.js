@@ -1,8 +1,28 @@
 import React, { useState } from 'react';
 import { useRouter } from "next/router";
 import { TextField, TextareaAutosize, Button } from '@mui/material';
+import { makeStyles } from '@mui/styles';
+
+const useStyles = makeStyles({
+  form: {
+    width: '100%',
+    maxWidth: 600,
+    margin: 'auto',
+    padding: '16px',
+  },
+  textarea: {
+    width: '100%',
+    marginBottom: '16px',
+    padding: '8px',
+    fontSize: '16px',
+    '@media (max-width:600px)': {
+      fontSize: '14px',
+    },
+  },
+});
 
 const MyForm = () => {
+  const classes = useStyles();
   const router = useRouter();
   const [formData, setFormData] = useState({
     name: '',
@@ -22,7 +42,7 @@ const MyForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className={classes.form}>
       <TextField
         label="Name"
         variant="outlined"
@@ -48,7 +68,7 @@ const MyForm = () => {
         name="message"
         value={formData.message}
         onChange={handleChange}
-        style={{ width: '100%', marginBottom: '16px' }}
+        className={classes.textarea}
       />
       <Button variant="contained" type="submit" color="primary">
         Submit
