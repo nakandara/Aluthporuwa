@@ -1,28 +1,22 @@
 import React, { useState } from 'react';
 import { useRouter } from "next/router";
 import { TextField, TextareaAutosize, Button } from '@mui/material';
-import { makeStyles } from '@mui/styles';
 
-const useStyles = makeStyles({
-  form: {
-    width: '100%',
-    maxWidth: 600,
-    margin: 'auto',
-    padding: '16px',
-  },
-  textarea: {
-    width: '100%',
-    marginBottom: '16px',
-    padding: '8px',
-    fontSize: '16px',
-    '@media (max-width:600px)': {
-      fontSize: '14px',
-    },
-  },
-});
+const formStyle = {
+  width: '100%',
+  maxWidth: 600,
+  margin: 'auto',
+  padding: '16px',
+};
+
+const textareaStyle = {
+  width: '100%',
+  marginBottom: '16px',
+  padding: '8px',
+  fontSize: '16px',
+};
 
 const MyForm = () => {
-  const classes = useStyles();
   const router = useRouter();
   const [formData, setFormData] = useState({
     name: '',
@@ -42,7 +36,7 @@ const MyForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className={classes.form}>
+    <form onSubmit={handleSubmit} style={formStyle}>
       <TextField
         label="Name"
         variant="outlined"
@@ -68,7 +62,7 @@ const MyForm = () => {
         name="message"
         value={formData.message}
         onChange={handleChange}
-        className={classes.textarea}
+        style={{ ...textareaStyle, '@media (max-width:600px)': { fontSize: '14px' } }}
       />
       <Button variant="contained" type="submit" color="primary">
         Submit
