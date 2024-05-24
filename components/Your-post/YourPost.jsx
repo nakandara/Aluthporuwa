@@ -31,7 +31,7 @@ const isMyPostPage = router.pathname === '/myPostPage';
     <>
     
 
-      {isMyPostPage ?  <button onClick={GoBack}>Go Home</button> :  <Button
+      {isMyPostPage ?  null :  <Button
           component="label"
           variant="contained"
           startIcon={<CloudUploadIcon />}

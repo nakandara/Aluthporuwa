@@ -28,7 +28,7 @@ const MyAccount = () => {
     images: [], // Array to store multiple images
     city: [], // Array to store selected cities
     price: "",
-    verify: false
+    verify: false,
   });
 
   const handleChange = (e) => {
@@ -40,21 +40,19 @@ const MyAccount = () => {
     }));
   };
 
-
   const formStyle = {
-    width: '100%',
+    width: "100%",
     maxWidth: 600,
-    margin: 'auto',
-    padding: '16px',
+    margin: "auto",
+    padding: "16px",
   };
-  
+
   const textareaStyle = {
-    width: '100%',
-    marginBottom: '16px',
-    padding: '8px',
-    fontSize: '16px',
+    width: "100%",
+    marginBottom: "16px",
+    padding: "8px",
+    fontSize: "16px",
   };
-  
 
   const handleFileChange = (e) => {
     const files = e.target.files;
@@ -92,7 +90,8 @@ const MyAccount = () => {
         Swal.fire({
           position: "center",
           icon: "success",
-          title: "Add Your New Post To Pending Dashboard Please Payment after it put Live post",
+          title:
+            "Add Your New Post To Pending Dashboard Please Payment after it put Live post",
           showConfirmButton: false,
           timer: 1500,
         });
@@ -135,35 +134,36 @@ const MyAccount = () => {
           <form onSubmit={handleSubmit} className="myPostForm">
             <div style={{ marginBottom: "20px" }}>
               <label htmlFor="title">Title:</label>
-            <TextareaAutosize
-           id="title"
-          
-        aria-label="title"
-        rowsMin={4}
-        placeholder="Description"
-        name="title"
-       
-        value={formData.title}
+              <TextareaAutosize
+                id="title"
+                aria-label="title"
+                rowsMin={4}
+                placeholder="Title"
+                name="Title"
+                value={formData.title}
                 onChange={handleChange}
-        
-        style={{ ...textareaStyle, '@media (max-width:600px)': { fontSize: '14px' } }}
-      />
+                style={{
+                  ...textareaStyle,
+                  "@media (max-width:600px)": { fontSize: "14px" },
+                }}
+              />
             </div>
-           
+
             <div>
               <label htmlFor="description">Description:</label>
-           
+
               <TextareaAutosize
-        aria-label="description"
-        rowsMin={4}
-        placeholder="Description"
-        name="description"
-       
-        value={formData.description}
-        onChange={handleChange}
-        
-        style={{ ...textareaStyle, '@media (max-width:600px)': { fontSize: '14px' } }}
-      />
+                aria-label="description"
+                rowsMin={4}
+                placeholder="Description"
+                name="description"
+                value={formData.description}
+                onChange={handleChange}
+                style={{
+                  ...textareaStyle,
+                  "@media (max-width:600px)": { fontSize: "14px" },
+                }}
+              />
             </div>
 
             <div className="myPostFormDescription">
@@ -257,5 +257,3 @@ const MyAccount = () => {
 };
 
 export default MyAccount;
-
-

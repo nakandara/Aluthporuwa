@@ -233,11 +233,7 @@ const Post = () => {
             >
               <Grid container spacing={1}>
                 {category.map((item) => (
-                  // <div key={item._id}>
-
-                  //   <p>Description: {item.category}</p>
-
-                  // </div>
+                 
                   <Grid key={item._id} item xs={3}>
                     <Item className="sub_category_container">
                       {item.category} {item.count}
@@ -255,7 +251,7 @@ const Post = () => {
                   <div key={index}>
                     <div key={index} height={200} offset={100}>
                       <Card
-                        src={post.images}
+                        src={post}
                         index={index}
                         reactionCount={reactionCount}
                         post={post}
