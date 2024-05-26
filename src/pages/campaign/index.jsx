@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 
 import LayoutSecond from "../../../components/LayoutSecond/LayoutSecond";
-import ProtectedRoute from "../../../components/protect/protectedRoute"; 
+import MobileProtectedRoute from "../../../components/protect/mobileProtectRoute"; 
 import { useRouter } from 'next/router';
 
 
@@ -15,7 +15,7 @@ const Campaign = () => {
 
   return (
     <LayoutSecond>
-      <ProtectedRoute>
+      <MobileProtectedRoute>
       <div>
         <div className="" style={{ marginTop: "50px" }}>
           <div>
@@ -59,7 +59,7 @@ const Campaign = () => {
           </div>
         </div>
       </div>
-      </ProtectedRoute>
+      </MobileProtectedRoute>
     </LayoutSecond>
     
   );
