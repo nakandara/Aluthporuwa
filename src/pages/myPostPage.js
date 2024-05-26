@@ -139,7 +139,7 @@ const MyAccount = () => {
                 aria-label="title"
                 rowsMin={4}
                 placeholder="Title"
-                name="Title"
+                name="title"
                 value={formData.title}
                 onChange={handleChange}
                 style={{
