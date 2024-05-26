@@ -13,7 +13,7 @@ const MobileProtectedRoute = ({ children }) => {
   useEffect(() => {
     if (!user) {
       // If there's no user, redirect to login or a relevant page
-      router.push("/login");
+      router.push("/auth/signin");
       return;
     }
 
