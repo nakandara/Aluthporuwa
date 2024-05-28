@@ -17,10 +17,10 @@ const PostId = ({ postIdData }) => {
   const [city, setCity] = useState("");
 
   useEffect(() => {
-    setMobileNumber(postIdData?.allPosts[0]?.PostDetails?.mobileNumber)
-    setDescription(postIdData?.allPosts[0]?.PostDetails?.description)
-    setTitle(postIdData?.allPosts[0]?.PostDetails?.title)
-    setCity(postIdData?.allPosts[0]?.PostDetails?.city)
+    setMobileNumber(postIdData?.allPosts[0]?.PostDetails?.mobileNumber);
+    setDescription(postIdData?.allPosts[0]?.PostDetails?.description);
+    setTitle(postIdData?.allPosts[0]?.PostDetails?.title);
+    setCity(postIdData?.allPosts[0]?.PostDetails?.city);
   }, []);
 
   const images = [
@@ -37,7 +37,6 @@ const PostId = ({ postIdData }) => {
       thumbnail: "https://picsum.photos/id/1019/250/150/",
     },
   ];
-  
 
   const handleWhatsAppClick = () => {
     const phoneNumber = postIdData?.allPosts[0]?.PostDetails?.mobileNumber;
@@ -61,7 +60,7 @@ const PostId = ({ postIdData }) => {
         <div className={styles.FirstContent}>
           <div className={styles.imageContainer}>
             <div>
-            {postIdData?.allPosts?.map((post, index) => (
+              {postIdData?.allPosts?.map((post, index) => (
                 <div className="image-size" key={index}>
                   <ImageGallery
                     items={post.PostDetails.images.map((image, index) => ({
@@ -78,7 +77,7 @@ const PostId = ({ postIdData }) => {
             <div>
               <div className={styles.postIdHeading}>{title}</div>
               <div className={styles.subtitle}>
-              Posted on 24 Jan 9:57 pm, <strong>{city}</strong>
+                Posted on 24 Jan 9:57 pm, <strong>{city}</strong>
               </div>
               <div className={styles.horizontalLine}></div>
               <div className={styles.postIdPhoneNumber}>Phone Number {mobileNumber}</div>
@@ -86,13 +85,10 @@ const PostId = ({ postIdData }) => {
 
             <div>
               <div className={styles.postIdDescription}>Description</div>
-              <Typography
+              <div
                 className={styles.postIdDescription_content}
-                sx={{ color: "black" }}
-                variant="body1"
-              >
-                {description}
-              </Typography>
+                dangerouslySetInnerHTML={{ __html: description }}
+              />
             </div>
           </div>
         </div>

@@ -41,7 +41,7 @@ const Card = ({
 
   return (
     <div className={styles.card}>
-      <div  onClick={() => handleClick(post.postId)} className={styles.imageContainer}>
+      <div onClick={() => handleClick(post.postId)} className={styles.imageContainer}>
         {images && images.length > 0 && (
           <ImageGallery
             items={images}
@@ -72,15 +72,15 @@ const Card = ({
         <h3 onClick={() => handleClick(post.postId)} className={styles.title}>
           LIVE CAM
         </h3>
-        <p
+        <div
           onClick={() => handleClick(post.postId)}
           className={styles.description}
-        >
-          {description.length > 100
-            ? `${description.substring(0, 160)}...`
-            : description}
-          .
-        </p>
+          dangerouslySetInnerHTML={{
+            __html: description.length > 100
+              ? `${description.substring(0, 160)}...`
+              : description,
+          }}
+        />
         <div onClick={() => handleClick(post.postId)} className={styles.time}>
           9 hours ago
         </div>

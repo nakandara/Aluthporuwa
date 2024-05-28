@@ -2,17 +2,28 @@ import React, { useState, useRef } from "react";
 import Swal from "sweetalert2";
 import { environments } from "../../components/environment/environments";
 import axios from "axios";
-import InputLabel from "@mui/material/InputLabel";
 import { useToken } from "../context/TokenContext";
-import FormControl from "@mui/material/FormControl";
-import Box from "@mui/material/Box";
 import { useRouter } from "next/router";
-import MenuItem from "@mui/material/MenuItem";
-import Select from "@mui/material/Select";
-import Typography from "@mui/material/Typography";
-import TextField from "@mui/material/TextField";
-import TextareaAutosize from "@mui/material/TextareaAutosize";
+import dynamic from 'next/dynamic';
+import {
+  Box,
+  Button,
+  FormControl,
+  InputLabel,
+  MenuItem,
+  Select,
+  TextField,
+  Typography,
+  Grid,
+  Card,
+  CardMedia,
+  CardContent,
+  CardActions,
+} from "@mui/material";
 import LayoutSecond from "../../components/LayoutSecond/LayoutSecond";
+
+const ReactQuill = dynamic(() => import('react-quill'), { ssr: false });
+import 'react-quill/dist/quill.snow.css';
 
 const MyAccount = () => {
   const fileInputRef = useRef(null);
@@ -24,9 +35,9 @@ const MyAccount = () => {
     description: "",
     category: "",
     mobileNumber: "",
-    whatsappNumber: "", // Add mobileNumber field
-    images: [], // Array to store multiple images
-    city: [], // Array to store selected cities
+    whatsappNumber: "",
+    images: [],
+    city: [],
     price: "",
     verify: false,
   });
@@ -40,22 +51,15 @@ const MyAccount = () => {
     }));
   };
 
-  const formStyle = {
-    width: "100%",
-    maxWidth: 600,
-    margin: "auto",
-    padding: "16px",
-  };
-
-  const textareaStyle = {
-    width: "100%",
-    marginBottom: "16px",
-    padding: "8px",
-    fontSize: "16px",
+  const handleDescriptionChange = (value) => {
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      description: value,
+    }));
   };
 
   const handleFileChange = (e) => {
-    const files = e.target.files;
+    const files = Array.from(e.target.files);
     setFormData((prevFormData) => ({
       ...prevFormData,
       images: [...prevFormData.images, ...files],
@@ -69,9 +73,7 @@ const MyAccount = () => {
       for (const key in formData) {
         if (formData.hasOwnProperty(key)) {
           if (key === "images") {
-            formData[key].forEach((file) => {
-              postData.append("image", file);
-            });
+            formData[key].forEach((file) => postData.append("image", file));
           } else {
             postData.append(key, formData[key]);
           }
@@ -80,22 +82,16 @@ const MyAccount = () => {
       const response = await axios.post(
         `${environments.BASE_HOST_URL}/api/createPost`,
         postData,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        }
+        { headers: { "Content-Type": "multipart/form-data" } }
       );
       if (response.data) {
         Swal.fire({
           position: "center",
           icon: "success",
-          title:
-            "Add Your New Post To Pending Dashboard Please Payment after it put Live post",
+          title: "Add Your New Post To Pending Dashboard. Please complete payment to put it live.",
           showConfirmButton: false,
           timer: 1500,
         });
-        // Navigate to the new page
         router.push("/paymentAprove");
       } else {
         Swal.fire({
@@ -110,148 +106,113 @@ const MyAccount = () => {
     }
   };
 
-  const submitPayment = () => {
-    router.push("/paymentAprove");
-  };
-
   return (
     <LayoutSecond>
-      <div className="myPost_container">
-        <div className="myPost_secondContainer">
-          <div className="myPost_heading">CREATE YOUR AD</div>
-          <div className="cardContainer">
-            {/* Display selected images */}
+      <Box sx={{ maxWidth: 800, mx: "auto", p: 2 }}>
+        <Typography variant="h4" component="h1" gutterBottom>
+          Create Your Ad
+        </Typography>
+        <form onSubmit={handleSubmit} encType="multipart/form-data">
+          <TextField
+            fullWidth
+            margin="normal"
+            label="Title"
+            name="title"
+            value={formData.title}
+            onChange={handleChange}
+            variant="outlined"
+          />
+          <Box marginBottom={2}>
+            <ReactQuill value={formData.description} onChange={handleDescriptionChange} />
+          </Box>
+          <TextField
+            fullWidth
+            margin="normal"
+            label="Category"
+            name="category"
+            value={formData.category}
+            onChange={handleChange}
+            variant="outlined"
+          />
+          <TextField
+            fullWidth
+            margin="normal"
+            label="Mobile Number"
+            name="mobileNumber"
+            type="tel"
+            value={formData.mobileNumber}
+            onChange={handleChange}
+            variant="outlined"
+          />
+          <TextField
+            fullWidth
+            margin="normal"
+            label="WhatsApp Number"
+            name="whatsappNumber"
+            type="tel"
+            value={formData.whatsappNumber}
+            onChange={handleChange}
+            variant="outlined"
+          />
+          <FormControl fullWidth margin="normal" variant="outlined">
+            <InputLabel>City</InputLabel>
+            <Select
+              name="city"
+              multiple
+              value={formData.city}
+              onChange={handleChange}
+              label="City"
+            >
+              <MenuItem value="Kanthale">Kanthale</MenuItem>
+              <MenuItem value="polgolla">Polgolla</MenuItem>
+              <MenuItem value="godagama">Godagama</MenuItem>
+            </Select>
+          </FormControl>
+          <TextField
+            fullWidth
+            margin="normal"
+            label="Price"
+            name="price"
+            type="number"
+            value={formData.price}
+            onChange={handleChange}
+            variant="outlined"
+          />
+          <Button variant="contained" component="label" fullWidth sx={{ mb: 2 }}>
+            Upload Images
+            <input type="file" hidden multiple onChange={handleFileChange} />
+          </Button>
+          <Grid container spacing={2}>
             {formData.images.map((file, index) => (
-              <img
-                key={index}
-                src={URL.createObjectURL(file)}
-                alt={`Selected Image ${index}`}
-                className="cardImage"
-              />
+              <Grid item xs={6} sm={4} key={index}>
+                <Card>
+                  <CardMedia
+                    component="img"
+                    height="140"
+                    image={URL.createObjectURL(file)}
+                    alt={`Selected Image ${index}`}
+                  />
+                </Card>
+              </Grid>
             ))}
-          </div>
-
-          <form onSubmit={handleSubmit} className="myPostForm">
-            <div style={{ marginBottom: "20px" }}>
-              <label htmlFor="title">Title:</label>
-              <TextareaAutosize
-                id="title"
-                aria-label="title"
-                rowsMin={4}
-                placeholder="Title"
-                name="title"
-                value={formData.title}
-                onChange={handleChange}
-                style={{
-                  ...textareaStyle,
-                  "@media (max-width:600px)": { fontSize: "14px" },
-                }}
-              />
-            </div>
-
-            <div>
-              <label htmlFor="description">Description:</label>
-
-              <TextareaAutosize
-                aria-label="description"
-                rowsMin={4}
-                placeholder="Description"
-                name="description"
-                value={formData.description}
-                onChange={handleChange}
-                style={{
-                  ...textareaStyle,
-                  "@media (max-width:600px)": { fontSize: "14px" },
-                }}
-              />
-            </div>
-
-            <div className="myPostFormDescription">
-              <label htmlFor="category">Category:</label>
-              <input
-                type="text"
-                id="category"
-                name="category"
-                value={formData.category}
-                onChange={handleChange}
-              />
-            </div>
-
-            {/* Add input field for mobile number */}
-            <div className="myPostFormDescription">
-              <label htmlFor="mobileNumber">Mobile Number:</label>
-              <input
-                type="number"
-                id="mobileNumber"
-                name="mobileNumber"
-                value={formData.mobileNumber}
-                onChange={handleChange}
-              />
-            </div>
-            <div className="myPostFormDescription">
-              <label htmlFor="whatsappNumber">WhatsApp Number:</label>
-              <input
-                type="number"
-                id="whatsappNumber"
-                name="whatsappNumber"
-                value={formData.whatsappNumber}
-                onChange={handleChange}
-              />
-            </div>
-
-            <FormControl sx={{ m: 1, minWidth: 120 }}>
-              <InputLabel id="demo-simple-select-helper-label">City</InputLabel>
-              <Select
-                labelId="demo-simple-select-helper-label"
-                id="demo-simple-select-helper"
-                label="City"
-                name="city"
-                onChange={handleChange}
-                multiple // Enable multiple selection
-                value={formData.city ? formData.city : []} // Ensure that the value is an array
-              >
-                <MenuItem value="Kanthale">Kanthale</MenuItem>
-                <MenuItem value="polgolla">polgolla</MenuItem>
-                <MenuItem value="godagama">godagama</MenuItem>
-              </Select>
-            </FormControl>
-
-            <div className="myPostFormDescription">
-              <label htmlFor="price">Price:</label>
-              <input
-                type="number"
-                id="price"
-                name="price"
-                value={formData.price}
-                onChange={handleChange}
-              />
-            </div>
-            <div>
-              <label htmlFor="image">Image:</label>
-              <input
-                type="file"
-                id="image"
-                name="image"
-                multiple // Allow multiple file selection
-                onChange={handleFileChange}
-              />
-            </div>
-            <img
+          </Grid>
+        
+          <Button
+            type="submit"
+            variant="contained"
+            color="primary"
+            fullWidth
+            sx={{ mt: 3 }}
+          >
+            Proceed to Payment
+          </Button>
+        </form>
+        <img
               className="cardPayment"
               src={`/media/payment.png`}
               alt={`Image`}
             />
-            <button
-              type="submit"
-              style={{ margin: "10px" }}
-              className="submitBtn"
-              onClick={submitPayment}
-            >
-              PROCEED TO PAYMENT
-            </button>
-          </form>
-        </div>
-      </div>
+      </Box>
     </LayoutSecond>
   );
 };
