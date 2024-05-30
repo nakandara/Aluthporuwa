@@ -1188,6 +1188,9 @@ width: 95%;
   height: 55px;
  
 }
+.quill-editor {
+  height: 30vh;
+}
 
 .postBaseContainer{background-color: #000000;}
 

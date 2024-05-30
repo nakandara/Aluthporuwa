@@ -1,15 +1,13 @@
-// src/components/SendOtp.js
 import React, { useState } from 'react';
 import axios from 'axios';
 import { environments } from "../../components/environment/environments";
 import { useRouter } from "next/router";
 
 const SendOtp = () => {
-    const router = useRouter();
-  const [phoneNumber, setPhoneNumber] = useState('');
+  const router = useRouter();
+  const [phoneNumber, setPhoneNumber] = useState('+94');
   const [message, setMessage] = useState('');
   const [error, setError] = useState(false);
-
 
   const handleSendOtp = async () => {
     try {
@@ -24,6 +22,14 @@ const SendOtp = () => {
       setMessage('Failed to send OTP');
       setError(true);
       console.error('Error:', error);
+    }
+  };
+
+  const handleChange = (e) => {
+    const value = e.target.value;
+    // Prevent the user from removing the country code prefix
+    if (value.startsWith('+94')) {
+      setPhoneNumber(value);
     }
   };
 
@@ -82,7 +88,7 @@ const SendOtp = () => {
         type="text"
         placeholder="Enter phone number"
         value={phoneNumber}
-        onChange={(e) => setPhoneNumber(e.target.value)}
+        onChange={handleChange}
       />
       <button
         style={buttonStyle}

@@ -17,13 +17,13 @@ import {
   Grid,
   Card,
   CardMedia,
-  CardContent,
-  CardActions,
 } from "@mui/material";
 import LayoutSecond from "../../components/LayoutSecond/LayoutSecond";
 
-const ReactQuill = dynamic(() => import('react-quill'), { ssr: false });
 import 'react-quill/dist/quill.snow.css';
+
+
+const ReactQuill = dynamic(() => import('react-quill'), { ssr: false });
 
 const MyAccount = () => {
   const fileInputRef = useRef(null);
@@ -122,8 +122,13 @@ const MyAccount = () => {
             onChange={handleChange}
             variant="outlined"
           />
-          <Box marginBottom={2}>
-            <ReactQuill value={formData.description} onChange={handleDescriptionChange} />
+          <Box sx={{color:"black"}} marginBottom={10}>
+            <ReactQuill 
+              value={formData.description} 
+              onChange={handleDescriptionChange} 
+              theme="snow" 
+              className="quill-editor"
+            />
           </Box>
           <TextField
             fullWidth
@@ -196,7 +201,6 @@ const MyAccount = () => {
               </Grid>
             ))}
           </Grid>
-        
           <Button
             type="submit"
             variant="contained"
@@ -208,10 +212,10 @@ const MyAccount = () => {
           </Button>
         </form>
         <img
-              className="cardPayment"
-              src={`/media/payment.png`}
-              alt={`Image`}
-            />
+          className="cardPayment"
+          src={`/media/payment.png`}
+          alt={`Image`}
+        />
       </Box>
     </LayoutSecond>
   );
