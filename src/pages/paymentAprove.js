@@ -20,7 +20,7 @@ const Item = styled(Paper)(({ theme }) => ({
 const PaymentApprove = () => {
   return (
     <LayoutSecond>
-      <ProtectedRoute>
+     
         <Box
           sx={{
             flexGrow: 1,
@@ -173,7 +173,7 @@ const PaymentApprove = () => {
             </Grid>
           </Grid>
         </Box>
-      </ProtectedRoute>
+    
     </LayoutSecond>
   );
 };

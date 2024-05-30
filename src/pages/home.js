@@ -13,13 +13,13 @@ const Home = () => {
 
   return (
     <div>
-      <ProtectedRoute>
+    
       <LayoutSecond>
         <div style={{ marginTop: "100px"}} className="">
           <Elevation />
         </div>
       </LayoutSecond>
-      </ProtectedRoute>
+    
     </div>
   );
 };

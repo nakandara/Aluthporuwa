@@ -206,7 +206,7 @@ const Post = () => {
 
   return (
     <LayoutSecond>
-      <div className=" ">
+      <div className="postBaseContainer">
         <div className="app-bar-new ">
           <div className="drop_down_filter ">
             <SearchFilter
@@ -233,7 +233,6 @@ const Post = () => {
             >
               <Grid container spacing={1}>
                 {category.map((item) => (
-                 
                   <Grid key={item._id} item xs={3}>
                     <Item className="sub_category_container">
                       {item.category} {item.count}

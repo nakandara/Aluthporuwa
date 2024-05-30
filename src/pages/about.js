@@ -10,7 +10,7 @@ const About = () => {
 
   return (
     <LayoutSecond>
-      <ProtectedRoute>
+      
         <div className="about-container">
           <div className="about-content">
             <h1 className="header_about">About Us</h1>
@@ -50,7 +50,7 @@ const About = () => {
             </p>
           </div>
         </div>
-      </ProtectedRoute>
+     
     </LayoutSecond>
   );
 };

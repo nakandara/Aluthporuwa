@@ -80,10 +80,10 @@ export default function AdminPostReview() {
       router.push(`/postReview/${postId}`);
     };
 
-    console.log(filteredRows,'filteredRowsfilteredRows');
+    
     return (
       <LayoutSecond>
-        <ProtectedRoute>
+       
           <TableContainer component={Paper} sx={{marginTop:"20vh"}}>
             <TextField 
               label="Filter by ID"
@@ -118,7 +118,7 @@ export default function AdminPostReview() {
               </TableBody>
             </Table>
           </TableContainer>
-        </ProtectedRoute>
+        
       </LayoutSecond>
     );
   }

@@ -11,6 +11,7 @@ import Grid from "@mui/material/Grid";
 import Paper from "@mui/material/Paper";
 import Typography from "@mui/material/Typography";
 import ButtonBase from "@mui/material/ButtonBase";
+import MobileProtectedRoute from "../../../components/protect/mobileProtectRoute";
 import IconButton from "@mui/material/IconButton";
 import DeleteIcon from "@mui/icons-material/Delete";
 
@@ -79,106 +80,114 @@ const MyAdd = () => {
     }
   };
 
+  console.log(data, "ttttttttttttt");
+
   return (
     <LayoutSecond>
-      <div className={styles.container}>
-        {data.map((post, index) => (
-          <Paper
-            key={index}
-            sx={{
-              p: 2,
-              margin: "auto",
-              maxWidth: 500,
-              flexGrow: 1,
-              backgroundColor: (theme) =>
-                theme.palette.mode === "dark" ? "#1A2027" : "#fff",
-              position: "relative",
-            }}
-            className={styles.card}
-            onClick={() => PostClick(post.postId)}
-          >
-            {/* Status Indicator */}
-            <Typography
-              variant="subtitle2"
-              className='myaccount-profile-image-mobile'
-              style={{
-                position: "absolute",
-                top: 8,
-                right: 8,
-                backgroundColor: "rgba(0, 0, 0, 0.7)",
-                color: "#fff",
-                padding: "2px 8px",
-                borderRadius: "4px",
-                zIndex: 1,
+      <MobileProtectedRoute>
+        <div className={styles.container}>
+          {data.map((post, index) => (
+            <Paper
+              key={index}
+              sx={{
+                p: 2,
+                margin: "auto",
+                maxWidth: 500,
+                flexGrow: 1,
+                backgroundColor: (theme) =>
+                  theme.palette.mode === "dark" ? "#1A2027" : "#fff",
+                position: "relative",
               }}
+              className={styles.card}
+              onClick={() => PostClick(post.postId)}
             >
-              {post.verify?"POST":"PENDING"}
-            </Typography>
-            <IconButton
-              aria-label="delete"
-              style={{
-                position: "absolute",
-                bottom: 8,
-                right: 8,
-              }}
-              onClick={(e) => {
-                e.stopPropagation();
-                handleDelete(post.userId, post.postId);
-              }}
-            >
-              <DeleteIcon />
-            </IconButton>
-            <Grid container spacing={2}>
-              <Grid item>
-                <ButtonBase sx={{ width: 188, height: 145 }}>
-                  <Img alt="complex" src={post.images[0].imageUrl} />
-                </ButtonBase>
-              </Grid>
-              <Grid item xs={12} sm container>
-                <Grid item xs container direction="column" spacing={2}>
-                  <Grid item xs>
-                    <Typography gutterBottom variant="subtitle1" component="div">
-                      Standard license
-                    </Typography>
-                    <Typography variant="body2" gutterBottom>
-                      {post.description.slice(0, 30)}......
-                    </Typography>
-                    <Typography variant="body2" color="text.secondary">
-                      {post.category.join(", ")}
-                    </Typography>
-                    <Typography variant="body2" color="text.secondary">
-                      Mobile: {post.mobileNumber}
+              {/* Status Indicator */}
+              <Typography
+                variant="subtitle2"
+                className="myaccount-profile-image-mobile"
+                style={{
+                  position: "absolute",
+                  top: 8,
+                  right: 8,
+                  backgroundColor: "rgba(0, 0, 0, 0.7)",
+                  color: "#fff",
+                  padding: "2px 8px",
+                  borderRadius: "4px",
+                  zIndex: 1,
+                }}
+              >
+                {post.verify ? "POST" : "PENDING"}
+              </Typography>
+              <IconButton
+                aria-label="delete"
+                style={{
+                  position: "absolute",
+                  bottom: 8,
+                  right: 8,
+                }}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  handleDelete(post.userId, post.postId);
+                }}
+              >
+                <DeleteIcon />
+              </IconButton>
+              <Grid container spacing={2}>
+                <Grid item>
+                  <ButtonBase sx={{ width: 188, height: 145 }}>
+                    <Img alt="complex" src={post.images[0].imageUrl} />
+                  </ButtonBase>
+                </Grid>
+                <Grid item xs={12} sm container>
+                  <Grid item xs container direction="column" spacing={2}>
+                    <Grid item xs>
+                      <Typography
+                        gutterBottom
+                        variant="subtitle1"
+                        component="div"
+                      >
+                        {post.title}
+                      </Typography>
+                      <Typography variant="body2" gutterBottom>
+                        {post.description.slice(0, 30)}......
+                      </Typography>
+                      <Typography variant="body2" color="text.secondary">
+                        {post.category.join(", ")}
+                      </Typography>
+                      <Typography variant="body2" color="text.secondary">
+                        Mobile: {post.mobileNumber}
+                      </Typography>
+                    </Grid>
+                    <Grid item>
+                      <Typography sx={{ cursor: "pointer" }} variant="body2">
+                        {post.socialIcon.join(", ")}
+                      </Typography>
+                    </Grid>
+                  </Grid>
+                  <Grid item>
+                    <Typography
+                      className="myaccount-profile-image-details"
+                      variant="subtitle1"
+                      component="div"
+                    >
+                      {post.price}
                     </Typography>
                   </Grid>
                   <Grid item>
-                    <Typography sx={{ cursor: "pointer" }} variant="body2">
-                      {post.socialIcon.join(", ")}
+                    <Typography
+                      className="myaccount-profile-image-mobile"
+                      variant="subtitle1"
+                      component="div"
+                    >
+                      {post.mobileNumber}
                     </Typography>
                   </Grid>
                 </Grid>
-                <Grid item>
-                  <Typography
-                    className="myaccount-profile-image-details"
-                    variant="subtitle1"
-                    component="div"
-                  >
-                    {post.price}
-                  </Typography>
-                </Grid>
-                <Grid item>
-                  <Typography
-                    className="myaccount-profile-image-mobile"
-                    variant="subtitle1"
-                    component="div"
-                  >
-                    {post.mobileNumber}
-                  </Typography>
-                </Grid>
               </Grid>
-            </Grid>
-          </Paper>
-        ))}
-      </div>
+            </Paper>
+          ))}
+        </div>
+      </MobileProtectedRoute>
     </LayoutSecond>
   );
 };
