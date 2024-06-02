@@ -1,19 +1,29 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import Swal from "sweetalert2";
 import { environments } from "../../../components/environment/environments";
 import LayoutSecond from "../../../components/LayoutSecond/LayoutSecond";
 import styles from "./myadd.module.css";
-import Select from "@mui/material/Select";
-import InputLabel from "@mui/material/InputLabel";
-import MenuItem from "@mui/material/MenuItem";
-import FormControl from "@mui/material/FormControl";
+
+import { jsPDF } from "jspdf";
+import dynamic from "next/dynamic";
+import "react-quill/dist/quill.snow.css";
+
 import TextareaAutosize from "@mui/material/TextareaAutosize";
+
+import {
+  Box,
+  Button,
+  FormControl,
+  InputLabel,
+  MenuItem,
+  Select,
+  TextField,
+  Typography,
+  Grid,
+} from "@mui/material";
 import axios from "axios";
 
 const Myadd = ({ postIdData }) => {
-
-  console.log(postIdData.allPosts,'postIdDatapostIdDatapostIdData');
-
   const image = postIdData?.allPosts[0]?.PostDetails?.image;
   const description = postIdData?.allPosts[0]?.PostDetails?.description;
   const category = postIdData?.allPosts[0]?.PostDetails?.category;
@@ -25,198 +35,238 @@ const Myadd = ({ postIdData }) => {
   const postId = postIdData?.allPosts[0]?.PostDetails?.postId;
   const userId = postIdData?.allPosts[0]?.PostDetails?.userId;
 
-  console.log(userId,'imageimageimageimage');
+  const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
 
-    const [formData, setFormData] = useState({
-        userId:userId,
-        mobileNumber:mobileNumber,
-        title:title,
-        price:price,
-        whatsappNumber:whatsappNumber,
-        city:city,
-        description: description,
-        category: category,
-        image: null,
-        imageUrl: image, // To store the URL of the selected image
+  const generatePDF = () => {
+    const doc = new jsPDF();
+
+    // Adding title
+    doc.setFontSize(20);
+    doc.text("Payment Invoice", 10, 10);
+
+    // Accessing post data correctly
+    const postDetails = postIdData.allPosts[0].PostDetails;
+
+    let y = 20;
+    doc.setFontSize(12);
+    doc.text(`Title: ${postDetails.title || "N/A"}`, 10, y);
+    doc.text(`Invoice Post ID: ${postDetails.postId || "N/A"}`, 10, y + 10);
+    doc.text(`Mobile Number: ${postDetails.mobileNumber || "N/A"}`, 10, y + 20);
+
+    // Save the PDF
+    doc.save("payment_invoice.pdf");
+  };
+
+  const [formData, setFormData] = useState({
+    userId: userId,
+    mobileNumber: mobileNumber,
+    title: title,
+    price: price,
+    whatsappNumber: whatsappNumber,
+    city: Array.isArray(city) ? city : [], // Ensure city is an array
+    description: description,
+    category: category,
+    image: null,
+    imageUrl: image, // To store the URL of the selected image
+  });
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+  const [successMessage, setSuccessMessage] = useState("");
+
+  const handleFileChange = (e) => {
+    const file = e.target.files[0];
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      image: file,
+      imageUrl: URL.createObjectURL(file), // Create URL for the selected image
+    }));
+  };
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      [name]: value,
+    }));
+  };
+
+  const handleSelectChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      [name]: value,
+    }));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await axios.put(
+        `${environments.BASE_HOST_URL}/api/editPost/${postId}`,
+        formData
+      );
+      if (response.data.success) {
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: "Successfully Updated Post",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      } else {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Something went wrong!",
+          footer: '<a href="#">Why do I have this issue?</a>',
+        });
+      }
+    } catch (error) {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Something went wrong!",
+        footer: '<a href="#">Why do I have this issue?</a>',
       });
-      const [loading, setLoading] = useState(false);
-      const [error, setError] = useState('');
-      const [successMessage, setSuccessMessage] = useState('');
-      const handleFileChange = (e) => {
-        const file = e.target.files[0];
-        setFormData((prevFormData) => ({
-          ...prevFormData,
-          image: file,
-          imageUrl: URL.createObjectURL(file), // Create URL for the selected image
-        }));
-      };
-      const handleChange = (e) => {
-        const { name, value } = e.target;
-        setFormData((prevFormData) => ({
-          ...prevFormData,
-          userId: prevFormData.userId, // Use existing userId from formData
-          [name]: value,
-        }));
-      };
-      
-      const handleSubmit = async (e) => {
-        e.preventDefault();
-        try {
-            const response = await axios.put(`${environments.BASE_HOST_URL}/api/editPost/${postId}`, formData);
-            console.log(response.data, 'Response received successfully');
-            if (response.data.success) {
-              Swal.fire({
-                position: "center",
-                icon: "success",
-                title: "Successfully Updated Post",
-                showConfirmButton: false,
-                timer: 1500,
-              });
-            }
-            // Show success notification
-         else{
-          Swal.fire({
-            icon: "error",
-            title: "Oops...",
-            text: "Something went wrong!",
-            footer: '<a href="#">Why do I have this issue?</a>',
-          });
-         }
-           
-            // Here you can perform any other actions based on the response, such as updating UI, etc.
-        } catch (error) {
-            // Handle the error
-            Swal.fire({
-              icon: "error",
-              title: "Oops...",
-              text: "Something went wrong!",
-              footer: '<a href="#">Why do I have this issue?</a>',
-            });
-            // Show error notification
-           
-            // You can also log the error for debugging purposes or perform any other error handling logic.
-        }
-    };
-      
-      
+    }
+  };
 
   return (
     <LayoutSecond>
       <div>
-      <div className="myPost_container">
-        <div className="myPost_secondContainer">
-          <div className="myPost_heading">UPDATE YOUR ADD</div>
-          <div className="cardContainer">
-            {/* Display selected image */}
-            {formData.imageUrl && (
-              <img
-                src={formData.imageUrl}
-                alt="Selected"
-                className="cardImage"
-              />
-            )}
-          </div>
-
-          <form onSubmit={handleSubmit} >
-          <div style={{marginBottom:"20px"}}>
-              <label htmlFor="description">Title:</label>
-              <TextareaAutosize
-                className="myPostFormDescription-textarea"
-                id="title"
+        <div className="myPost_container">
+          <Grid
+            sx={{
+              marginTop: "20px",
+              display: "flex",
+              justifyContent: "center",
+            }}
+            item
+            xs={12}
+          >
+            <Button variant="contained" color="secondary" onClick={generatePDF}>
+              Download Payment Invoice
+            </Button>
+          </Grid>
+          <Box sx={{ maxWidth: 800, mx: "auto", p: 2 }}>
+            <Typography variant="h4" component="h1" gutterBottom>
+              Update Your Ad
+            </Typography>
+            <form onSubmit={handleSubmit} encType="multipart/form-data">
+              <TextField
+                fullWidth
+                margin="normal"
+                label="Title"
                 name="title"
                 value={formData.title}
                 onChange={handleChange}
-                aria-label="minimum height"
-                minRows={3}
-                placeholder="Title"
+                variant="outlined"
               />
-            </div>
-            <div>
-              <label htmlFor="description">Description:</label>
-              <TextareaAutosize
-                className="myPostFormDescription-textarea"
-                id="description"
-                name="description"
-                value={formData.description}
-                onChange={handleChange}
-                aria-label="minimum height"
-                minRows={3}
-                placeholder="Description"
-              />
-            </div>
-            <div>
-              <label htmlFor="category">Category:</label>
-              <input
-                type="text"
-                id="category"
+              <Box sx={{ color: "black" }} marginBottom={10}>
+                <ReactQuill
+                  value={formData.description}
+                  onChange={(value) => setFormData({ ...formData, description: value })}
+                  theme="snow"
+                  className="quill-editor"
+                />
+              </Box>
+              <TextField
+                fullWidth
+                margin="normal"
+                label="Category"
                 name="category"
                 value={formData.category}
                 onChange={handleChange}
+                variant="outlined"
               />
-            </div>
-            <div className="myPostFormDescription">
-              <label htmlFor="mobileNumber">Mobile Number:</label>
-              <input
-                type="number"
-                id="mobileNumber"
+              <TextField
+                fullWidth
+                margin="normal"
+                label="Mobile Number"
                 name="mobileNumber"
+                type="tel"
                 value={formData.mobileNumber}
                 onChange={handleChange}
+                variant="outlined"
               />
-            </div>
-            <div className="myPostFormDescription">
-              <label htmlFor="whatsappNumber">WhatsApp Number:</label>
-              <input
-                type="number"
-                id="whatsappNumber"
+              <TextField
+                fullWidth
+                margin="normal"
+                label="WhatsApp Number"
                 name="whatsappNumber"
+                type="tel"
                 value={formData.whatsappNumber}
                 onChange={handleChange}
+                variant="outlined"
               />
-            </div>
-            <FormControl sx={{ m: 1, minWidth: 120 }}>
-              <InputLabel id="demo-simple-select-helper-label">City</InputLabel>
-              <Select
-                labelId="demo-simple-select-helper-label"
-                id="demo-simple-select-helper"
-                label="City"
-                name="city"
-                onChange={handleChange}
-                value={formData.city ? formData.city : []} // Ensure that the value is an array
-              >
-                <MenuItem value="Kanthale">Kanthale</MenuItem>
-                <MenuItem value="polgolla">polgolla</MenuItem>
-                <MenuItem value="godagama">godagama</MenuItem>
-                {/* Add more MenuItem components for other cities */}
-              </Select>
-            </FormControl>
-            <div className="myPostFormDescription">
-              <label htmlFor="price">Price:</label>
-              <input
-                type="number"
-                id="price"
+              <FormControl fullWidth margin="normal" variant="outlined">
+                <InputLabel>City</InputLabel>
+                <Select
+                  name="city"
+                  multiple
+                  onChange={handleSelectChange}
+                  value={formData.city}
+                  label="City"
+                >
+                  <MenuItem value="Kanthale">Kanthale</MenuItem>
+                  <MenuItem value="polgolla">Polgolla</MenuItem>
+                  <MenuItem value="godagama">Godagama</MenuItem>
+                </Select>
+              </FormControl>
+              <TextField
+                fullWidth
+                margin="normal"
+                label="Price"
                 name="price"
+                type="number"
                 value={formData.price}
                 onChange={handleChange}
+                variant="outlined"
               />
-            </div>
-            <div>
-              <label htmlFor="image">Image:</label>
-              <input
-                type="file"
-                id="image"
-                name="image"
-                onChange={handleFileChange}
-              />
-            </div>
-            <button type="submit">Submit</button>
-          </form>
+              {/* <Button
+                variant="contained"
+                component="label"
+                fullWidth
+                sx={{ mb: 2 }}
+              >
+                Upload Images
+                <input
+                  type="file"
+                  hidden
+                  multiple
+                  onChange={handleFileChange}
+                />
+              </Button> */}
+              <Grid container spacing={2}>
+                <Grid item xs={6} sm={4}>
+                  {formData.imageUrl && <img src={formData.imageUrl} alt="Selected Image" style={{ width: "100%" }} />}
+                </Grid>
+              </Grid>
+              <Button
+                type="submit"
+                variant="contained"
+                color="primary"
+                fullWidth
+                sx={{ mt: 3 }}
+              >
+                Proceed to Payment
+              </Button>
+            </form>
+            <img
+              className="cardPayment"
+              src={`/media/payment.png`}
+              alt={`Image`}
+            />
+          </Box>
         </div>
-      </div>
       </div>
     </LayoutSecond>
   );
 };
+
+export default Myadd;
+
+
 
 export async function getServerSideProps(context) {
   const { myadd } = context.query;
@@ -244,7 +294,7 @@ export async function getServerSideProps(context) {
   }
 }
 
-export default Myadd;
+
 
 
 

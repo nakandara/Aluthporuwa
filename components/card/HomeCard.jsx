@@ -21,7 +21,7 @@ const Card = ({
   const [isModalOpen, setModalOpen] = useState(false);
 
   const handleClick = (postId) => {
-    router.push(`/post/${postId}`);
+    router.push(`/post`);
   };
 
   const handleShareClick = () => {

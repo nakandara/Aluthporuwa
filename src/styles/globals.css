@@ -1664,10 +1664,10 @@ justify-content: center;
   height:auto;
   color: #020024;
   margin-top: 80px;
-  margin-left: 40px;
-  margin-right: 40px;
-  border: 2px solid #4de99b;
-background-color: #e7edee;
+  margin-left: 10px;
+  margin-right: 10px;
+  /* border: 2px solid #4dabe9; */
+background-color: #e9eff0;
  
   
 }
