@@ -101,9 +101,14 @@ const Myadd = ({ postIdData }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
+      // Convert city array to comma-separated string
+      const formDataToSend = {
+        ...formData,
+        city: formData.city.join(", "), // Convert array to string
+      };
       const response = await axios.put(
         `${environments.BASE_HOST_URL}/api/editPost/${postId}`,
-        formData
+        formDataToSend
       );
       if (response.data.success) {
         Swal.fire({
@@ -144,7 +149,7 @@ const Myadd = ({ postIdData }) => {
             item
             xs={12}
           >
-            <Button variant="contained" color="secondary" onClick={generatePDF}>
+            <Button variant="contained" color="primary" onClick={generatePDF}>
               Download Payment Invoice
             </Button>
           </Grid>
@@ -249,7 +254,7 @@ const Myadd = ({ postIdData }) => {
                 fullWidth
                 sx={{ mt: 3 }}
               >
-                Proceed to Payment
+                Updated
               </Button>
             </form>
             <img
@@ -265,6 +270,7 @@ const Myadd = ({ postIdData }) => {
 };
 
 export default Myadd;
+
 
 
 
