@@ -1,8 +1,9 @@
 import React, { useState, useRef } from "react";
 import Swal from "sweetalert2";
-import { environments } from "../../components/environment/environments";
+import MobileProtectedRoute from "../../../components/protect/mobileProtectRoute";
+import { environments } from "../../../components/environment/environments";
 import axios from "axios";
-import { useToken } from "../context/TokenContext";
+import { useToken } from "../../context/TokenContext";
 import { useRouter } from "next/router";
 import dynamic from 'next/dynamic';
 import {
@@ -18,14 +19,14 @@ import {
   Card,
   CardMedia,
 } from "@mui/material";
-import LayoutSecond from "../../components/LayoutSecond/LayoutSecond";
+import LayoutSecond from "../../../components/LayoutSecond/LayoutSecond";
 
 import 'react-quill/dist/quill.snow.css';
 
 
 const ReactQuill = dynamic(() => import('react-quill'), { ssr: false });
 
-const MyAccount = () => {
+const Index = () => {
   const fileInputRef = useRef(null);
   const { user } = useToken();
   const router = useRouter();
@@ -84,6 +85,8 @@ const MyAccount = () => {
         postData,
         { headers: { "Content-Type": "multipart/form-data" } }
       );
+      console.log(response.data.post.postId);
+      console.log(JSON.stringify(response, null, 2), '44444444');
       if (response.data) {
         Swal.fire({
           position: "center",
@@ -92,7 +95,7 @@ const MyAccount = () => {
           showConfirmButton: false,
           timer: 1500,
         });
-        router.push("/paymentAprove");
+        router.push(`/mypost/${response.data.post.postId}`);
       } else {
         Swal.fire({
           icon: "error",
@@ -108,6 +111,7 @@ const MyAccount = () => {
 
   return (
     <LayoutSecond>
+      <MobileProtectedRoute>
       <Box sx={{ maxWidth: 800, mx: "auto", p: 2 }}>
         <Typography variant="h4" component="h1" gutterBottom>
           Create Your Ad
@@ -217,8 +221,10 @@ const MyAccount = () => {
           alt={`Image`}
         />
       </Box>
+      </MobileProtectedRoute>
     </LayoutSecond>
+    
   );
 };
 
-export default MyAccount;
+export default Index;

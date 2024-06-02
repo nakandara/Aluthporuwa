@@ -9,7 +9,7 @@ const Campaign = () => {
   const router = useRouter();
 
   const CreatePost = () =>{
-    router.push('/myPostPage'); 
+    router.push('/mypost'); 
   }
   
 

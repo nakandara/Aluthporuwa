@@ -141,9 +141,7 @@ const Post = () => {
     }
   };
 
-  if (!user) {
-    return <div style={{ color: "black" }}>Loading user data...</div>;
-  }
+ 
 
   const renderPosts = filteredData.length > 0 ? filteredData : data;
 

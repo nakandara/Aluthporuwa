@@ -2119,3 +2119,24 @@ input {
 }
 
 
+.top-bar {
+  display: flex;
+  justify-content: flex-start;
+  padding: 10px;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.sign-in-sign-up-container {
+  padding: 20px;
+}
+
+.buttons {
+  display: flex;
+  justify-content: space-between;
+}
+
+.forgot-password {
+  margin-top: 10px;
+  text-align: center;
+}

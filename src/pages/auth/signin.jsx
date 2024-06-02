@@ -1,18 +1,12 @@
-import { signIn, useSession } from "next-auth/react";
-import { useRouter } from "next/router";
-
 import React, { useState } from "react";
+import { useRouter } from "next/router";
 import Swal from "sweetalert2";
-import { useToken } from "../../context/TokenContext";
 import axios from "axios";
+import { useToken } from "../../context/TokenContext";
 import { environments } from "../../../components/environment/environments";
 import Link from "next/link";
-
-const provider = [
-  {
-    name: "google",
-  },
-];
+import IconButton from '@mui/material/IconButton';
+import HomeIcon from '@mui/icons-material/Home';
 
 const Signin = () => {
   const { token, setToken, setUser, user } = useToken();
@@ -23,6 +17,7 @@ const Signin = () => {
   const [loading, setLoading] = useState(false);
 
   const handleOAuthSignIn = (name) => () => signIn(name);
+  
   const google = () => {
     window.open(`/auth/google`);
   };
@@ -74,8 +69,6 @@ const Signin = () => {
         error.response ? error.response.data : error.message
       );
     }
-
-    // Handle the response data, e.g., send it to your backend for authentication
   };
 
   const normalLogin = async () => {
@@ -109,12 +102,10 @@ const Signin = () => {
           title: "Oops...",
           text: "Invalid credentials",
         });
-        // Moved the "Login failed" console log here
         console.log("Login failed");
       }
     } catch (error) {
       console.error("Error during login:", error);
-      // You can also log the error here
       Swal.fire({
         icon: "error",
         title: "Oops...",
@@ -127,32 +118,6 @@ const Signin = () => {
     router.push("/signupPage");
   };
 
-  if (loading) {
-    let timerInterval;
-    Swal.fire({
-      title: "Auto close alert!",
-      html: "I will close in <b></b> milliseconds.",
-      timer: 2000,
-      timerProgressBar: true,
-      didOpen: () => {
-        Swal.showLoading();
-        const b = Swal.getHtmlContainer().querySelector("b");
-        timerInterval = setInterval(() => {
-          b.textContent = Swal.getTimerLeft();
-        }, 1000);
-      },
-      willClose: () => {
-        clearInterval(timerInterval);
-      },
-    }).then((result) => {
-      /* Read more about handling dismissals below */
-      if (result.dismiss === Swal.DismissReason.timer) {
-        console.log("I was closed by the timer");
-      }
-    });
-  } else {
-  }
-
   const googleSignIn = () => {
     window.open("http://localhost:8080/auth/google", "_self");
   };
@@ -161,10 +126,19 @@ const Signin = () => {
     router.push("/forgotPassword");
   };
 
+  const handleHomeClick = () => {
+    router.push("/");
+  };
+
   return (
     <div>
+      <div className="top-bar">
+        <IconButton onClick={handleHomeClick} style={{ color: 'black' }}>
+          <HomeIcon />
+        </IconButton>
+      </div>
       <div className="sign-in-sign-up-container">
-        <h2>Sign In </h2>
+        <h2>Sign In</h2>
         <form onSubmit={normalLogin}>
           <input
             name="username"
