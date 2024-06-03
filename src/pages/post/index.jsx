@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Layout from "../../../components/Layout";
 import SearchFilter from "../../../components/post/SearchFilter";
+import SearchCity from "../../../components/post/SearchCity";
 import axios from "axios";
 import { environments } from "../../../components/environment/environments";
 import { useRouter } from "next/router";
@@ -45,6 +46,7 @@ const Post = () => {
   const { user } = useToken();
   const router = useRouter();
   const [selectedCategories, setSelectedCategories] = useState([]);
+  const [selectedCities, setSelectedCities] = useState([]);
   const [filteredData, setFilteredData] = useState([]);
   const [reactionCount, setReactionCount] = useState("");
   const [posts, setPosts] = useState([]);
@@ -57,20 +59,7 @@ const Post = () => {
     { category: "Beauty", count: "1890" },
     { category: "private", count: "100" },
   ]);
-  const [data, setData] = useState([
-    // {
-    //   _id: "65741a033e9bcea69d35d74e",
-    //   userId: "651ab367455cb0a4405755b6",
-    //   image:
-    //     "https://images.pexels.com/photos/1391498/pexels-photo-1391498.jpeg?auto=compress&cs=tinysrgb&w=600",
-    //   description: "111111111111111111111111111111111 1111",
-    //   category: ["Vehicle"],
-    //   postId: "65741a033e9bcea69d35d74f",
-    //   __v: 0,
-    //   socialIcon: ["smile"],
-    //   phoneNumber: "0715297881",
-    // },
-  ]);
+  const [data, setData] = useState([]);
 
   useEffect(() => {
     const fetchPosts = async () => {
@@ -78,18 +67,14 @@ const Post = () => {
         const response = await axios.get(
           `${environments.BASE_HOST_URL}/api/getVerifyAllPosts`
         );
-        console.log(response, "responsemmmmmmmmm");
-        setData(response.data.data); // Assuming your API response contains the posts in the 'data' field
+        setData(response.data.data);
       } catch (error) {
         console.error("Error fetching posts:", error);
       }
     };
 
     fetchPosts();
-  }, []); //
-
-  console.log(data, "data");
-  console.log(posts, "posts");
+  }, []);
 
   const [loading, setLoading] = useState(true);
   const [animateState, setAnimateState] = useState(
@@ -105,7 +90,6 @@ const Post = () => {
     )
   );
 
-  console.log(animateState, "animateState");
   useEffect(() => {
     if (user && user.userId) {
       const apiUrl = `${environments.BASE_HOST_URL}/api/getPosts/${user.userId}`;
@@ -123,37 +107,41 @@ const Post = () => {
   }, [user]);
 
   const handleClick = (postId) => {
-    router.push(`/post/${postId}`); // Redirects to the specific post route
+    router.push(`/post/${postId}`);
   };
 
   const handleCategorySelect = (categories) => {
     setSelectedCategories(categories);
-
-    if (categories.length === 0) {
-      setFilteredData(data);
-    } else {
-      const filtered = data.filter((post) =>
-        categories.some((selectedCategory) =>
-          post.category.includes(selectedCategory)
-        )
-      );
-      setFilteredData(filtered);
-    }
+    filterPosts(categories, selectedCities);
   };
 
- 
+  const handleCitySelect = (cities) => {
+    setSelectedCities(cities);
+    filterPosts(selectedCategories, cities);
+  };
+
+  const filterPosts = (categories, cities) => {
+    let filtered = data;
+
+    if (categories.length > 0) {
+      filtered = filtered.filter((post) =>
+        categories.some((selectedCategory) => post.category.includes(selectedCategory))
+      );
+    }
+
+    if (cities.length > 0) {
+      filtered = filtered.filter((post) => cities.includes(post.city));
+    }
+
+    setFilteredData(filtered);
+  };
 
   const renderPosts = filteredData.length > 0 ? filteredData : data;
-
-  console.log(renderPosts, "renderPosts");
 
   const imageReaction = async (value, index, post) => {
     const newAnimateState = [...animateState];
     newAnimateState[index] = { ...newAnimateState[index] };
-    console.log(value.toLowerCase());
-    console.log(newAnimateState[index]);
-    newAnimateState[index][value] =
-      !newAnimateState[index][value.toLowerCase()];
+    newAnimateState[index][value] = !newAnimateState[index][value.toLowerCase()];
 
     if (animateState[index][value]) {
       return;
@@ -200,13 +188,11 @@ const Post = () => {
     setAnimateState(newAnimateState);
   };
 
-  console.log(data);
-
   return (
     <LayoutSecond>
       <div className="postBaseContainer">
-        <div className="app-bar-new ">
-          <div className="drop_down_filter ">
+        <div className="app-bar-new">
+          <div className="drop_down_filter">
             <SearchFilter
               categories={data.reduce((acc, curr) => {
                 curr.category.forEach((cat) => {
@@ -218,6 +204,14 @@ const Post = () => {
               }, [])}
               handleCategorySelect={handleCategorySelect}
               selectedCategories={selectedCategories}
+            />
+             
+          </div>
+          <div >
+            <SearchCity
+              cities={[...new Set(data.map((post) => post.city))]} // Get unique cities
+              handleCitySelect={handleCitySelect}
+              selectedCities={selectedCities}
             />
           </div>
         </div>
@@ -231,7 +225,7 @@ const Post = () => {
             >
               <Grid container spacing={1}>
                 {category.map((item) => (
-                  <Grid key={item._id} item xs={3}>
+                  <Grid key={item.category} item xs={3}>
                     <Item className="sub_category_container">
                       {item.category} {item.count}
                     </Item>

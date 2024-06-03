@@ -1199,8 +1199,8 @@ width: 95%;
   top: 0;
   left: 0;
   width: 100%;
-position: fixed;
-  
+
+  height: 13vh;
   z-index: 999; /* Adjust the z-index as needed */
   background-color: #fff; /* Set your desired background color */
   
@@ -1209,7 +1209,7 @@ position: fixed;
 .drop_down_filter {
   margin-top: 70px;
   border-radius: 10px;
- 
+  
   background: linear-gradient(45deg, #fafaf8, #fcfdfd, #fbfcfd, #fdf9f7);
   display: flex;
   justify-content: flex-end;
@@ -1282,7 +1282,7 @@ position: fixed;
 }
 
 .margin_b_t{
-  margin-top: 135px;
+  margin-top: 45px;
   margin-bottom: 100px;
   display: flex;
  
@@ -1312,7 +1312,7 @@ position: fixed;
 
 @media screen and (max-width: 780px) {
   .margin_b_t{
-    margin-top: 140px;
+    margin-top: 10px;
     margin-bottom: 100px;
     display: grid;
   }
