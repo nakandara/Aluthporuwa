@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
-import CssBaseline from "@mui/material/CssBaseline";
+import { useToken } from "../../src/context/TokenContext";
 import Drawer from "@mui/material/Drawer";
 import IconButton from "@mui/material/IconButton";
 import Toolbar from "@mui/material/Toolbar";
@@ -14,36 +14,29 @@ import { useRouter } from "next/router";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemText from "@mui/material/ListItemText";
-import MainPage from "../../components/Home/MainPage";
 import Tooltip from "@mui/material/Tooltip";
 import Footer from "../../components/footer";
 import YourPost from "../Your-post/YourPost";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import Avatar from "@mui/material/Avatar";
-import ProtectedRoute from "../../components/protect/protectedRoute";
 
 const drawerWidth = 240;
-const navItems = [
-  "Home",
-  "About",
-  "Contact",
-  "Login",
-  "Post",
-  "MyAccount",
-  "MyAdd",
-];
-const settings = ["Profile", "Account", "Dashboard", "Logout","AdminPostReview"];
+const navItems = ["Home", "About", "Contact", "Post", "MyAccount", "MyAdd"];
+const settings = ["Profile", "Account", "Dashboard", "Logout", "AdminPostReview"];
+
 const LayoutSecond = ({ children }) => {
   const router = useRouter();
-  const [mobileOpen, setMobileOpen] = React.useState(false);
-  const [anchorElUser, setAnchorElUser] = React.useState(null);
+  const { user } = useToken();
+  const [mobileOpen, setMobileOpen] = useState(false);
+  const [anchorElUser, setAnchorElUser] = useState(null);
+
+  console.log(user, '333333333333');
 
   const handleDrawerToggle = () => {
     setMobileOpen((prevState) => !prevState);
   };
-  const container =
-    typeof window !== "undefined" ? window.document.body : undefined;
+  const container = typeof window !== "undefined" ? window.document.body : undefined;
 
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
@@ -52,6 +45,7 @@ const LayoutSecond = ({ children }) => {
   const handleOpenUserMenu = (event) => {
     setAnchorElUser(event.currentTarget);
   };
+
   const handleLogout = () => {
     // Clear local storage data here
     localStorage.clear();
@@ -60,15 +54,14 @@ const LayoutSecond = ({ children }) => {
     router.push("/");
   };
 
-  const loginAdminPostReview = () =>{
+  const loginAdminPostReview = () => {
     router.push("/postReview");
-  }
+  };
 
   const handleClick = () => {
-    // Handle clicking on the Typography component
-    // Navigate to the home page using Next.js router
     router.push("/");
   };
+
   const handleDrawerClose = () => {
     setOpen(false);
   };
@@ -122,14 +115,13 @@ const LayoutSecond = ({ children }) => {
                 key={setting}
                 onClick={() => {
                   if (setting === "Logout") {
-                      handleLogout(); // Call the logout function
+                    handleLogout(); // Call the logout function
                   } else if (setting === "AdminPostReview") {
-                    loginAdminPostReview()
+                    loginAdminPostReview();
                   } else {
-                      handleCloseUserMenu();
+                    handleCloseUserMenu();
                   }
-              }}
-              
+                }}
               >
                 <Typography textAlign="center">{setting}</Typography>
               </MenuItem>
@@ -141,16 +133,27 @@ const LayoutSecond = ({ children }) => {
                 key={item}
                 sx={{ color: "#fff" }}
                 onClick={() => {
-                  if (item === "Login") {
-                    router.push("/auth/signin");
-                  } else {
-                    router.push(`/${item.toLowerCase()}`);
-                  }
+                  router.push(`/${item.toLowerCase()}`);
                 }}
               >
                 {item}
               </Button>
             ))}
+            {user ? (
+              <Button
+                sx={{ color: "#fff" }}
+                onClick={handleLogout}
+              >
+                Logout
+              </Button>
+            ) : (
+              <Button
+                sx={{ color: "#fff" }}
+                onClick={() => router.push("/auth/signin")}
+              >
+                Login
+              </Button>
+            )}
           </Box>
           <Tooltip title="Open settings">
             <IconButton onClick={handleOpenUserMenu}>
@@ -172,7 +175,7 @@ const LayoutSecond = ({ children }) => {
         sx={{
           width: drawerWidth,
           flexShrink: 0,
-          [`& .MuiDrawer-paper`]: {
+          "& .MuiDrawer-paper": {
             width: drawerWidth,
             boxSizing: "border-box",
           },
@@ -192,17 +195,34 @@ const LayoutSecond = ({ children }) => {
               key={item}
               button
               onClick={() => {
-                if (item === "Login") {
-                  router.push("/auth/signin");
-                } else {
-                  router.push(`/${item.toLowerCase()}`);
-                }
+                router.push(`/${item.toLowerCase()}`);
                 handleDrawerToggle();
               }}
             >
               <ListItemText primary={item} />
             </ListItem>
           ))}
+          {user ? (
+            <ListItem
+              button
+              onClick={() => {
+                handleLogout();
+                handleDrawerToggle();
+              }}
+            >
+              <ListItemText primary="Logout" />
+            </ListItem>
+          ) : (
+            <ListItem
+              button
+              onClick={() => {
+                router.push("/auth/signin");
+                handleDrawerToggle();
+              }}
+            >
+              <ListItemText primary="Login" />
+            </ListItem>
+          )}
         </List>
       </Drawer>
       {children}
