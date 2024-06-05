@@ -13,6 +13,9 @@ import Grid from "@mui/material/Grid";
 import LayoutSecond from "../../../components/LayoutSecond/LayoutSecond";
 import api from "../../ services/api";
 import { useToken } from "../../context/TokenContext";
+import Drawer from '@mui/material/Drawer';
+import IconButton from '@mui/material/IconButton';
+import FilterListIcon from '@mui/icons-material/FilterList';
 
 const url = `${environments.BASE_HOST_URL}/api/increment`;
 
@@ -27,6 +30,7 @@ const Item = styled(Paper)(({ theme }) => ({
   color: theme.palette.mode === "dark" ? "#fff" : "#fff",
   border: "2px solid yellow",
 }));
+
 export const incrementReactionCount = async (postId, reactionType) => {
   console.log(postId, reactionType);
   try {
@@ -125,7 +129,9 @@ const Post = () => {
 
     if (categories.length > 0) {
       filtered = filtered.filter((post) =>
-        categories.some((selectedCategory) => post.category.includes(selectedCategory))
+        categories.some((selectedCategory) =>
+          post.category.includes(selectedCategory)
+        )
       );
     }
 
@@ -141,7 +147,9 @@ const Post = () => {
   const imageReaction = async (value, index, post) => {
     const newAnimateState = [...animateState];
     newAnimateState[index] = { ...newAnimateState[index] };
-    newAnimateState[index][value] = !newAnimateState[index][value.toLowerCase()];
+    newAnimateState[index][value] = !newAnimateState[index][
+      value.toLowerCase()
+    ];
 
     if (animateState[index][value]) {
       return;
@@ -188,32 +196,49 @@ const Post = () => {
     setAnimateState(newAnimateState);
   };
 
+  const [drawerOpen, setDrawerOpen] = useState(false);
+
+  const toggleDrawer = (open) => () => {
+    setDrawerOpen(open);
+  };
+
   return (
     <LayoutSecond>
       <div className="postBaseContainer">
         <div className="app-bar-new">
-          <div className="drop_down_filter">
-            <SearchFilter
-              categories={data.reduce((acc, curr) => {
-                curr.category.forEach((cat) => {
-                  if (!acc.includes(cat)) {
-                    acc.push(cat);
-                  }
-                });
-                return acc;
-              }, [])}
-              handleCategorySelect={handleCategorySelect}
-              selectedCategories={selectedCategories}
-            />
-             
+          <div  className="drop_down_filter">
+            
+          <IconButton onClick={toggleDrawer(true)} style={{ float: "right" }}>
+          Filter   <FilterListIcon />
+          </IconButton>
+          <Drawer anchor="right" open={drawerOpen} onClose={toggleDrawer(false)}>
+            <Box   sx={{ 
+                '& .MuiDrawer-paper': { 
+                  backgroundColor: '#333', // Dark background color
+                  color: '#fff' // White text color
+                }
+              }}>
+              <SearchFilter
+                categories={data.reduce((acc, curr) => {
+                  curr.category.forEach((cat) => {
+                    if (!acc.includes(cat)) {
+                      acc.push(cat);
+                    }
+                  });
+                  return acc;
+                }, [])}
+                handleCategorySelect={handleCategorySelect}
+                selectedCategories={selectedCategories}
+              />
+              <SearchCity
+                cities={[...new Set(data.map((post) => post.city))]} // Get unique cities
+                handleCitySelect={handleCitySelect}
+                selectedCities={selectedCities}
+              />
+            </Box>
+          </Drawer>
           </div>
-          <div >
-            <SearchCity
-              cities={[...new Set(data.map((post) => post.city))]} // Get unique cities
-              handleCitySelect={handleCitySelect}
-              selectedCities={selectedCities}
-            />
-          </div>
+         
         </div>
 
         <div className="margin_b_t">
