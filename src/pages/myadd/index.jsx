@@ -80,8 +80,6 @@ const MyAdd = () => {
     }
   };
 
-  console.log(data, "ttttttttttttt");
-
   return (
     <LayoutSecond>
       <MobileProtectedRoute>
@@ -149,7 +147,9 @@ const MyAdd = () => {
                         {post.title}
                       </Typography>
                       <Typography variant="body2" gutterBottom>
-                        {post.description.slice(0, 30)}......
+                        <div
+                          dangerouslySetInnerHTML={{ __html: post.description.substring(0, 160)}}
+                        />
                       </Typography>
                       <Typography variant="body2" color="text.secondary">
                         {post.category.join(", ")}

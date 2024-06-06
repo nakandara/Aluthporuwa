@@ -276,13 +276,13 @@ export default Myadd;
 
 export async function getServerSideProps(context) {
   const { myadd } = context.query;
-  console.log(context,'contextcontextcontextcontext');
+
 
   try {
     const response = await axios.get(
       `${environments.BASE_HOST_URL}/api/getPost/${myadd}`
     );
-    console.log(response,'responseresponse');
+
     if (response) {
     }
     return {

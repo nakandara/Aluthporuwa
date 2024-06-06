@@ -89,7 +89,7 @@ const VerifyOtp = () => {
   };
 
   return (
-    <MobileProtectedRoute>
+   
       <div style={containerStyle}>
         <h2 style={titleStyle}>Verify OTP</h2>
 
@@ -114,7 +114,7 @@ const VerifyOtp = () => {
         </button>
         {message && <p style={messageStyle}>{message}</p>}
       </div>
-    </MobileProtectedRoute>
+   
   );
 };
 

@@ -23,15 +23,12 @@ import Avatar from "@mui/material/Avatar";
 
 const drawerWidth = 240;
 const navItems = ["Home", "About", "Contact", "Post", "MyAccount", "MyAdd"];
-const settings = ["Profile", "Account", "Dashboard", "Logout", "AdminPostReview"];
 
 const LayoutSecond = ({ children }) => {
   const router = useRouter();
   const { user } = useToken();
   const [mobileOpen, setMobileOpen] = useState(false);
   const [anchorElUser, setAnchorElUser] = useState(null);
-
-  console.log(user, '333333333333');
 
   const handleDrawerToggle = () => {
     setMobileOpen((prevState) => !prevState);
@@ -47,10 +44,7 @@ const LayoutSecond = ({ children }) => {
   };
 
   const handleLogout = () => {
-    // Clear local storage data here
     localStorage.clear();
-
-    // Redirect to the home page
     router.push("/");
   };
 
@@ -62,9 +56,10 @@ const LayoutSecond = ({ children }) => {
     router.push("/");
   };
 
-  const handleDrawerClose = () => {
-    setOpen(false);
-  };
+  const settings = ["Profile", "Account", "Dashboard", "Logout"];
+  if (user && user.email === "pramodnakandara@gmail.com") {
+    settings.push("AdminPostReview");
+  }
 
   return (
     <div>
