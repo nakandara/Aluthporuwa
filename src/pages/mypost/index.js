@@ -172,9 +172,32 @@ const Index = () => {
               onChange={handleChange}
               label="City"
             >
-              <MenuItem value="Kanthale">Kanthale</MenuItem>
-              <MenuItem value="polgolla">Polgolla</MenuItem>
-              <MenuItem value="godagama">Godagama</MenuItem>
+<MenuItem value="Kolamba">Colombo</MenuItem>
+<MenuItem value="Gampaha">Gampaha</MenuItem>
+<MenuItem value="Kalutara">Kalutara</MenuItem>
+<MenuItem value="Maha Nuvara">Maha Nuvara</MenuItem>
+<MenuItem value="Matale">Matale</MenuItem>
+<MenuItem value="Nuwara Eliya">Nuwara Eliya</MenuItem>
+<MenuItem value="Galle">Galle</MenuItem>
+<MenuItem value="Matara">Matara</MenuItem>
+<MenuItem value="Hambantota">Hambantota</MenuItem>
+<MenuItem value="Yapanaya">Yapanaya</MenuItem>
+<MenuItem value="Kilinochchi">Kilinochchi</MenuItem>
+<MenuItem value="Mannaram">Mannaram</MenuItem>
+<MenuItem value="Vavuniya">Vavuniya</MenuItem>
+<MenuItem value="Mullaitivu">Mullaitivu</MenuItem>
+<MenuItem value="Maddakalapuwa">Maddakalapuwa</MenuItem>
+<MenuItem value="Ampara">Ampara</MenuItem>
+<MenuItem value="Trincomalee">Trincomalee</MenuItem>
+<MenuItem value="Kurunegala">Kurunegala</MenuItem>
+<MenuItem value="Puttalama">Puttalama</MenuItem>
+<MenuItem value="Anuradhapura">Anuradhapura</MenuItem>
+<MenuItem value="Polonnaruwa">Polonnaruwa</MenuItem>
+<MenuItem value="Badulla">Badulla</MenuItem>
+<MenuItem value="Monaragala">Monaragala</MenuItem>
+<MenuItem value="Ratnapura">Ratnapura</MenuItem>
+<MenuItem value="Kegalle">Kegalle</MenuItem>
+
             </Select>
           </FormControl>
           <TextField

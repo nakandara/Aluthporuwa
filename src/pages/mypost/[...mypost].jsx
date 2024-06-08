@@ -16,8 +16,6 @@ const MyPost = ({ postIdData }) => {
   const [description, setDescription] = useState("");
   const [title, setTitle] = useState("");
 
-  
-
   const Item = styled(Paper)(({ theme }) => ({
     backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
     ...theme.typography.body2,
@@ -39,20 +37,18 @@ const MyPost = ({ postIdData }) => {
     let y = 20;
     doc.setFontSize(12);
     doc.text(`Title: Payment per Invoice '}`, 10, y);
-    doc.text(`invoice post ID: ${postDetails.postId || 'N/A'}`, 10, y + 10);
-    doc.text(`Mobile Number: ${postDetails.mobileNumber || 'N/A'}`, 10, y + 20);
-   
+    doc.text(`invoice post ID: ${postDetails.postId || "N/A"}`, 10, y + 10);
+    doc.text(`Mobile Number: ${postDetails.mobileNumber || "N/A"}`, 10, y + 20);
 
     // Save the PDF
     doc.save("payment_invoice.pdf");
   };
   return (
     <LayoutSecond>
-        <MobileProtectedRoute>
       <Box
         sx={{
           flexGrow: 1,
-          height: "100vh",
+          height: "auto",
           margin: "100px",
           "@media (max-width: 600px)": {
             // Adjust the max-width value as needed
@@ -72,7 +68,7 @@ const MyPost = ({ postIdData }) => {
             sx={{ color: "black", margin: "10px" }}
           >
             ස්තුතියි ඔබගේ දැන්වීම අපට සාර්ථකව ලැබී ඇත. ඔබගේ දැන්වීම LIVE
-            කිරීමට කරුණාකර අදාල මුදල ගෙවා රිසිට් පත WhatsApp කරන්න.
+            කිරීමට කරුණාකර අදාල මුදල ගෙවා රිසිට් පත සහ පහත ඇති payment invoice එක  downlod  කර එය සමග watsapp  කරන්න.
           </Grid>
           <Grid
             className="paymentAproveCadSecond"
@@ -134,6 +130,10 @@ const MyPost = ({ postIdData }) => {
                 fontSize: { xs: "20px", sm: "22px", md: "26px" },
                 fontWeight: "500",
               }}
+              component="a"
+              href="whatsapp://send?phone=+94715297881"
+              target="_blank"
+              rel="noopener noreferrer"
             >
               +94715297881
             </Typography>
@@ -161,7 +161,8 @@ const MyPost = ({ postIdData }) => {
                 fontWeight: "500",
               }}
             >
-              Remarks සදහා ඔබගේ දැන්වීමට අදාළ දුරකථන අංකය පමණක් යොදන්න
+              Remarks සදහා ඔබගේ දැන්වීමට අදාළ දුරකථන අංකය පමණක් යොදන්න.<br/>
+              For remarks, please provide only the phone number related to your advertisement.
             </Typography>
           </Grid>
           <Grid
@@ -196,17 +197,12 @@ const MyPost = ({ postIdData }) => {
             item
             xs={12}
           >
-            <Button
-              variant="contained"
-              color="primary"
-              onClick={generatePDF}
-            >
+            <Button variant="contained" color="primary" onClick={generatePDF}>
               Download Payment Invoice
             </Button>
           </Grid>
         </Grid>
       </Box>
-      </MobileProtectedRoute>
     </LayoutSecond>
   );
 };
