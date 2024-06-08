@@ -40,16 +40,7 @@ function DrawerAppBar(props) {
             <div className="card">
               <div className="cardtemp ">
                 <div className="center flex">
-                  <video
-                    className="step_images_count"
-                    autoPlay
-                    loop
-                    muted
-                    // Change this value to set the desired opacity (0 to 1)
-                  >
-                    <source src="/media/one.mp4" type="video/mp4" />
-                    Your browser does not support the video tag.
-                  </video>
+                 
 
                   <div className="secondside">
                     <img
@@ -62,16 +53,7 @@ function DrawerAppBar(props) {
               </div>
               <div className="cardtemp ">
                 <div className="center flex">
-                  <video
-                    className="step_images_count"
-                    autoPlay
-                    loop
-                    muted
-                    // Change this value to set the desired opacity (0 to 1)
-                  >
-                    <source src="/media/two.mp4" type="video/mp4" />
-                    Your browser does not support the video tag.
-                  </video>
+              
 
                   <div className="secondside">
                     <img
@@ -84,16 +66,7 @@ function DrawerAppBar(props) {
               </div>
               <div className="cardtemp ">
                 <div className="center flex">
-                  <video
-                    className="step_images_count"
-                    autoPlay
-                    loop
-                    muted
-                    // Change this value to set the desired opacity (0 to 1)
-                  >
-                    <source src="/media/three.mp4" type="video/mp4" />
-                    Your browser does not support the video tag.
-                  </video>
+                
 
                   <div className="secondside">
                     <img
@@ -107,16 +80,7 @@ function DrawerAppBar(props) {
 
               <div className="cardtemp ">
                 <div className="center flex">
-                  <video
-                    className="step_images_count"
-                    autoPlay
-                    loop
-                    muted
-                    // Change this value to set the desired opacity (0 to 1)
-                  >
-                    <source src="/media/four.mp4" type="video/mp4" />
-                    Your browser does not support the video tag.
-                  </video>
+              
 
                   <div className="secondside">
                     <img
@@ -130,16 +94,7 @@ function DrawerAppBar(props) {
 
               <div className="cardtemp ">
                 <div className="center flex">
-                  <video
-                    className="step_images_count"
-                    autoPlay
-                    loop
-                    muted
-                    // Change this value to set the desired opacity (0 to 1)
-                  >
-                    <source src="/media/five.mp4" type="video/mp4" />
-                    Your browser does not support the video tag.
-                  </video>
+                 
 
                   <div className="secondside">
                     <img
@@ -153,16 +108,7 @@ function DrawerAppBar(props) {
 
               <div className="cardtemp ">
                 <div className="center flex">
-                  <video
-                    className="step_images_count"
-                    autoPlay
-                    loop
-                    muted
-                    // Change this value to set the desired opacity (0 to 1)
-                  >
-                    <source src="/media/six.mp4" type="video/mp4" />
-                    Your browser does not support the video tag.
-                  </video>
+                 
 
                   <div className="secondside">
                     <img

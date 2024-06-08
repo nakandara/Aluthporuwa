@@ -32,12 +32,26 @@ const Card = ({
     setModalOpen(false);
   };
 
+  post,
+  console.log(post,'vvvvvvv');
+
   const shareUrl = `https://aluthporuwa-nakandara.vercel.app/post/${post.postId}`;
   const title = "Check out this post";
 
   const images = src.images?.map((image) => ({
     original: image.imageUrl,
   }));
+
+  const formatDate = (dateString) => {
+    const options = {
+    
+      day: "numeric",
+      hour: "2-digit",
+      minute: "2-digit",
+    };
+    return new Date(dateString).toLocaleDateString(undefined, options);
+  };
+
 
   return (
     <div className={styles.card}>
@@ -82,7 +96,7 @@ const Card = ({
           }}
         />
         <div onClick={() => handleClick(post.postId)} className={styles.time}>
-          9 hours ago
+          {formatDate(post.createdAt)}
         </div>
       </div>
     </div>

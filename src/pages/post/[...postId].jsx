@@ -13,34 +13,32 @@ const PostId = ({ postIdData }) => {
   console.log(postIdData.allPosts, "postIdDatapostIdData");
   const [mobileNumber, setMobileNumber] = useState("");
   const [description, setDescription] = useState("");
+  const [createdAt, setCreatedAt] = useState("");
   const [title, setTitle] = useState("");
   const [city, setCity] = useState("");
 
   useEffect(() => {
     setMobileNumber(postIdData?.allPosts[0]?.PostDetails?.mobileNumber);
+    setCreatedAt(formatDate(postIdData?.allPosts[0]?.PostDetails?.createdAt));
     setDescription(postIdData?.allPosts[0]?.PostDetails?.description);
     setTitle(postIdData?.allPosts[0]?.PostDetails?.title);
     setCity(postIdData?.allPosts[0]?.PostDetails?.city);
   }, []);
 
-  const images = [
-    {
-      original: "https://picsum.photos/id/1018/1000/600/",
-      thumbnail: "https://picsum.photos/id/1018/250/150/",
-    },
-    {
-      original: "https://picsum.photos/id/1015/1000/600/",
-      thumbnail: "https://picsum.photos/id/1015/250/150/",
-    },
-    {
-      original: "https://picsum.photos/id/1019/1000/600/",
-      thumbnail: "https://picsum.photos/id/1019/250/150/",
-    },
-  ];
+  const formatDate = (dateString) => {
+    const options = {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+      hour: "2-digit",
+      minute: "2-digit",
+    };
+    return new Date(dateString).toLocaleDateString(undefined, options);
+  };
 
   const handleWhatsAppClick = () => {
-    const phoneNumber = postIdData?.allPosts[0]?.PostDetails?.mobileNumber;
-    console.log(phoneNumber);
+    const phoneNumber = postIdData?.allPosts[0]?.PostDetails?.whatsappNumber;
+
 
     if (phoneNumber) {
       const message = "Hello! This is a pre-filled message.";
@@ -77,7 +75,7 @@ const PostId = ({ postIdData }) => {
             <div>
               <div className={styles.postIdHeading}>{title}</div>
               <div className={styles.subtitle}>
-                Posted on 24 Jan 9:57 pm, <strong>{city}</strong>
+                Posted on {createdAt}, <strong>{city}</strong>
               </div>
               <div className={styles.horizontalLine}></div>
               <div className={styles.postIdPhoneNumber}>Phone Number {mobileNumber}</div>

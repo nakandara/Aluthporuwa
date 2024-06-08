@@ -5,7 +5,7 @@ import { environments } from "../../../components/environment/environments";
 import axios from "axios";
 import { useToken } from "../../context/TokenContext";
 import { useRouter } from "next/router";
-import dynamic from 'next/dynamic';
+import dynamic from "next/dynamic";
 import {
   Box,
   Button,
@@ -21,10 +21,9 @@ import {
 } from "@mui/material";
 import LayoutSecond from "../../../components/LayoutSecond/LayoutSecond";
 
-import 'react-quill/dist/quill.snow.css';
+import "react-quill/dist/quill.snow.css";
 
-
-const ReactQuill = dynamic(() => import('react-quill'), { ssr: false });
+const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
 
 const Index = () => {
   const fileInputRef = useRef(null);
@@ -61,6 +60,17 @@ const Index = () => {
 
   const handleFileChange = (e) => {
     const files = Array.from(e.target.files);
+    const totalImages = formData.images.length + files.length;
+
+    if (totalImages > 2) {
+      Swal.fire({
+        icon: "warning",
+        title: "Image Upload Limit",
+        text: "You can only upload a maximum of 2 images.",
+      });
+      return;
+    }
+
     setFormData((prevFormData) => ({
       ...prevFormData,
       images: [...prevFormData.images, ...files],
@@ -86,12 +96,13 @@ const Index = () => {
         { headers: { "Content-Type": "multipart/form-data" } }
       );
       console.log(response.data.post.postId);
-      console.log(JSON.stringify(response, null, 2), '44444444');
+      console.log(JSON.stringify(response, null, 2), "44444444");
       if (response.data) {
         Swal.fire({
           position: "center",
           icon: "success",
-          title: "Add Your New Post To Pending Dashboard. Please complete payment to put it live.",
+          title:
+            "Add Your New Post To Pending Dashboard. Please complete payment to put it live.",
           showConfirmButton: false,
           timer: 1500,
         });
@@ -112,141 +123,151 @@ const Index = () => {
   return (
     <LayoutSecond>
       <MobileProtectedRoute>
-      <Box sx={{ maxWidth: 800, mx: "auto", p: 2 }}>
-        <Typography variant="h4" component="h1" gutterBottom>
-          Create Your Ad
-        </Typography>
-        <form onSubmit={handleSubmit} encType="multipart/form-data">
-          <TextField
-            fullWidth
-            margin="normal"
-            label="Title"
-            name="title"
-            value={formData.title}
-            onChange={handleChange}
-            variant="outlined"
-          />
-          <Box sx={{color:"black"}} marginBottom={10}>
-            <ReactQuill 
-              value={formData.description} 
-              onChange={handleDescriptionChange} 
-              theme="snow" 
-              className="quill-editor"
-            />
-          </Box>
-          <TextField
-            fullWidth
-            margin="normal"
-            label="Category"
-            name="category"
-            value={formData.category}
-            onChange={handleChange}
-            variant="outlined"
-          />
-          <TextField
-            fullWidth
-            margin="normal"
-            label="Mobile Number"
-            name="mobileNumber"
-            type="tel"
-            value={formData.mobileNumber}
-            onChange={handleChange}
-            variant="outlined"
-          />
-          <TextField
-            fullWidth
-            margin="normal"
-            label="WhatsApp Number"
-            name="whatsappNumber"
-            type="tel"
-            value={formData.whatsappNumber}
-            onChange={handleChange}
-            variant="outlined"
-          />
-          <FormControl fullWidth margin="normal" variant="outlined">
-            <InputLabel>City</InputLabel>
-            <Select
-              name="city"
-              multiple
-              value={formData.city}
+        <Box sx={{ maxWidth: 800, mx: "auto", p: 2 }}>
+          <Typography variant="h4" component="h1" gutterBottom>
+            Create Your Ad
+          </Typography>
+          <form onSubmit={handleSubmit} encType="multipart/form-data">
+            <TextField
+              fullWidth
+              margin="normal"
+              label="Title"
+              name="title"
+              value={formData.title}
               onChange={handleChange}
-              label="City"
+              variant="outlined"
+            />
+            <Box sx={{ color: "black" }} marginBottom={10}>
+              <ReactQuill
+                value={formData.description}
+                onChange={handleDescriptionChange}
+                theme="snow"
+                className="quill-editor"
+              />
+            </Box>
+            <FormControl fullWidth margin="normal" variant="outlined">
+              <InputLabel>Category</InputLabel>
+              <Select
+                name="category"
+                value={formData.category}
+                onChange={handleChange}
+                label="Category"
+              >
+                <MenuItem value="Spa">Spa</MenuItem>
+                <MenuItem value="Full Service">Full Service</MenuItem>
+                <MenuItem value="Video call">Video call</MenuItem>
+                <MenuItem value="Couple service">Couple service</MenuItem>
+                <MenuItem value="jobs">Jobs</MenuItem>
+                <MenuItem value="Others">Others</MenuItem>
+              </Select>
+            </FormControl>
+            <TextField
+              fullWidth
+              margin="normal"
+              label="Mobile Number"
+              name="mobileNumber"
+              type="tel"
+              value={formData.mobileNumber}
+              onChange={handleChange}
+              variant="outlined"
+            />
+            <TextField
+              fullWidth
+              margin="normal"
+              label="WhatsApp Number"
+              name="whatsappNumber"
+              type="tel"
+              value={formData.whatsappNumber}
+              onChange={handleChange}
+              variant="outlined"
+            />
+            <FormControl fullWidth margin="normal" variant="outlined">
+              <InputLabel>City</InputLabel>
+              <Select
+                name="city"
+                multiple
+                value={formData.city}
+                onChange={handleChange}
+                label="City"
+              >
+                <MenuItem value="Kolamba">Colombo</MenuItem>
+                <MenuItem value="Gampaha">Gampaha</MenuItem>
+                <MenuItem value="Kalutara">Kalutara</MenuItem>
+                <MenuItem value="Maha Nuvara">Maha Nuvara</MenuItem>
+                <MenuItem value="Matale">Matale</MenuItem>
+                <MenuItem value="Nuwara Eliya">Nuwara Eliya</MenuItem>
+                <MenuItem value="Galle">Galle</MenuItem>
+                <MenuItem value="Matara">Matara</MenuItem>
+                <MenuItem value="Hambantota">Hambantota</MenuItem>
+                <MenuItem value="Yapanaya">Yapanaya</MenuItem>
+                <MenuItem value="Kilinochchi">Kilinochchi</MenuItem>
+                <MenuItem value="Mannaram">Mannaram</MenuItem>
+                <MenuItem value="Vavuniya">Vavuniya</MenuItem>
+                <MenuItem value="Mullaitivu">Mullaitivu</MenuItem>
+                <MenuItem value="Maddakalapuwa">Maddakalapuwa</MenuItem>
+                <MenuItem value="Ampara">Ampara</MenuItem>
+                <MenuItem value="Trincomalee">Trincomalee</MenuItem>
+                <MenuItem value="Kurunegala">Kurunegala</MenuItem>
+                <MenuItem value="Puttalama">Puttalama</MenuItem>
+                <MenuItem value="Anuradhapura">Anuradhapura</MenuItem>
+                <MenuItem value="Polonnaruwa">Polonnaruwa</MenuItem>
+                <MenuItem value="Badulla">Badulla</MenuItem>
+                <MenuItem value="Monaragala">Monaragala</MenuItem>
+                <MenuItem value="Ratnapura">Ratnapura</MenuItem>
+                <MenuItem value="Kegalle">Kegalle</MenuItem>
+              </Select>
+            </FormControl>
+            <TextField
+              fullWidth
+              margin="normal"
+              label="Price"
+              name="price"
+              type="number"
+              value={formData.price}
+              onChange={handleChange}
+              variant="outlined"
+            />
+            <Button
+              variant="contained"
+              component="label"
+              fullWidth
+              sx={{ mb: 2 }}
             >
-<MenuItem value="Kolamba">Colombo</MenuItem>
-<MenuItem value="Gampaha">Gampaha</MenuItem>
-<MenuItem value="Kalutara">Kalutara</MenuItem>
-<MenuItem value="Maha Nuvara">Maha Nuvara</MenuItem>
-<MenuItem value="Matale">Matale</MenuItem>
-<MenuItem value="Nuwara Eliya">Nuwara Eliya</MenuItem>
-<MenuItem value="Galle">Galle</MenuItem>
-<MenuItem value="Matara">Matara</MenuItem>
-<MenuItem value="Hambantota">Hambantota</MenuItem>
-<MenuItem value="Yapanaya">Yapanaya</MenuItem>
-<MenuItem value="Kilinochchi">Kilinochchi</MenuItem>
-<MenuItem value="Mannaram">Mannaram</MenuItem>
-<MenuItem value="Vavuniya">Vavuniya</MenuItem>
-<MenuItem value="Mullaitivu">Mullaitivu</MenuItem>
-<MenuItem value="Maddakalapuwa">Maddakalapuwa</MenuItem>
-<MenuItem value="Ampara">Ampara</MenuItem>
-<MenuItem value="Trincomalee">Trincomalee</MenuItem>
-<MenuItem value="Kurunegala">Kurunegala</MenuItem>
-<MenuItem value="Puttalama">Puttalama</MenuItem>
-<MenuItem value="Anuradhapura">Anuradhapura</MenuItem>
-<MenuItem value="Polonnaruwa">Polonnaruwa</MenuItem>
-<MenuItem value="Badulla">Badulla</MenuItem>
-<MenuItem value="Monaragala">Monaragala</MenuItem>
-<MenuItem value="Ratnapura">Ratnapura</MenuItem>
-<MenuItem value="Kegalle">Kegalle</MenuItem>
-
-            </Select>
-          </FormControl>
-          <TextField
-            fullWidth
-            margin="normal"
-            label="Price"
-            name="price"
-            type="number"
-            value={formData.price}
-            onChange={handleChange}
-            variant="outlined"
+              Upload Images
+              <input type="file" hidden multiple onChange={handleFileChange} />
+            </Button>
+            <Grid container spacing={2}>
+              {formData.images.map((file, index) => (
+                <Grid item xs={6} sm={4} key={index}>
+                  <Card>
+                    <CardMedia
+                      component="img"
+                      height="140"
+                      image={URL.createObjectURL(file)}
+                      alt={`Selected Image ${index}`}
+                    />
+                  </Card>
+                </Grid>
+              ))}
+            </Grid>
+            <Button
+              type="submit"
+              variant="contained"
+              color="primary"
+              fullWidth
+              sx={{ mt: 3 }}
+            >
+              Proceed to Payment
+            </Button>
+          </form>
+          <img
+            className="cardPayment"
+            src={`/media/payment.png`}
+            alt={`Image`}
           />
-          <Button variant="contained" component="label" fullWidth sx={{ mb: 2 }}>
-            Upload Images
-            <input type="file" hidden multiple onChange={handleFileChange} />
-          </Button>
-          <Grid container spacing={2}>
-            {formData.images.map((file, index) => (
-              <Grid item xs={6} sm={4} key={index}>
-                <Card>
-                  <CardMedia
-                    component="img"
-                    height="140"
-                    image={URL.createObjectURL(file)}
-                    alt={`Selected Image ${index}`}
-                  />
-                </Card>
-              </Grid>
-            ))}
-          </Grid>
-          <Button
-            type="submit"
-            variant="contained"
-            color="primary"
-            fullWidth
-            sx={{ mt: 3 }}
-          >
-            Proceed to Payment
-          </Button>
-        </form>
-        <img
-          className="cardPayment"
-          src={`/media/payment.png`}
-          alt={`Image`}
-        />
-      </Box>
+        </Box>
       </MobileProtectedRoute>
     </LayoutSecond>
-    
   );
 };
 
