@@ -20,11 +20,22 @@
 }
 
 .badge {
-  background-color: orange;
-  color: white;
   padding: 2px 6px;
   border-radius: 4px;
   font-size: 12px;
+  color: white;
+}
+
+.goldBadge {
+  background-color: gold;
+}
+
+.silverBadge {
+  background-color: red;
+}
+
+.defaultBadge {
+  background-color: orange;
 }
 
 .imageContainer {
@@ -61,7 +72,7 @@
   color: #f8f8f8;
   font-size: smaller;
   margin-bottom: 20px;
- width:200px; /* Ensure long words break correctly */
+  width: 200px;
 }
 
 .time {
@@ -112,6 +123,7 @@
     width: 160px;
   }
 }
+
 @media (max-width: 350px) {
   .card {
     max-width: 100%;

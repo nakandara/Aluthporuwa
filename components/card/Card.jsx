@@ -44,7 +44,6 @@ const Card = ({
 
   const formatDate = (dateString) => {
     const options = {
-    
       day: "numeric",
       hour: "2-digit",
       minute: "2-digit",
@@ -52,6 +51,16 @@ const Card = ({
     return new Date(dateString).toLocaleDateString(undefined, options);
   };
 
+  const getBadgeClass = (plane) => {
+    switch (plane) {
+      case "Gold":
+        return styles.goldBadge;
+      case "Silver":
+        return styles.silverBadge;
+      default:
+        return styles.defaultBadge;
+    }
+  };
 
   return (
     <div className={styles.card}>
@@ -69,7 +78,9 @@ const Card = ({
       </div>
       <div className={styles.content}>
         <div className={styles.header}>
-          <div className={styles.badge}>TOP ADD</div>
+          <div className={`${styles.badge} ${getBadgeClass(post.plane)}`}>
+            {post.plane} ADD
+          </div>
           <ShareIcon onClick={handleShareClick} className={styles.shareIcon} />
           <Modal isOpen={isModalOpen} onClose={handleCloseModal}>
             <h2>Share Options</h2>
@@ -90,8 +101,8 @@ const Card = ({
           onClick={() => handleClick(post.postId)}
           className={styles.description}
           dangerouslySetInnerHTML={{
-            __html: description.length > 100
-              ? `${description.substring(0, 160)}...`
+            __html: description.length > 50
+              ? `${description.substring(0, 110)}...`
               : description,
           }}
         />

@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import Swal from "sweetalert2";
 import MobileProtectedRoute from "../../../components/protect/mobileProtectRoute";
 import { environments } from "../../../components/environment/environments";
@@ -31,6 +31,7 @@ const Index = () => {
   const router = useRouter();
   const [formData, setFormData] = useState({
     userId: "",
+    plane: "",
     title: "",
     description: "",
     category: "",
@@ -50,6 +51,18 @@ const Index = () => {
       [name]: value,
     }));
   };
+
+  const { plan } = router.query;
+
+  useEffect(() => {
+    if (plan) {
+      setFormData((prevFormData) => ({
+        ...prevFormData,
+        plane: plan,
+      }));
+      console.log(`Selected Plan: ${plan}`);
+    }
+  }, [plan]);
 
   const handleDescriptionChange = (value) => {
     setFormData((prevFormData) => ({
@@ -131,6 +144,16 @@ const Index = () => {
             <TextField
               fullWidth
               margin="normal"
+              label="Plane"
+              name="plane"
+              value={formData.plane}
+              onChange={handleChange}
+              variant="outlined"
+              disabled
+            />
+            <TextField
+              fullWidth
+              margin="normal"
               label="Title"
               name="title"
               value={formData.title}
@@ -190,7 +213,7 @@ const Index = () => {
                 onChange={handleChange}
                 label="City"
               >
-                <MenuItem value="Kolamba">Colombo</MenuItem>
+                <MenuItem value="Colamba">Colombo</MenuItem>
                 <MenuItem value="Gampaha">Gampaha</MenuItem>
                 <MenuItem value="Kalutara">Kalutara</MenuItem>
                 <MenuItem value="Maha Nuvara">Maha Nuvara</MenuItem>
