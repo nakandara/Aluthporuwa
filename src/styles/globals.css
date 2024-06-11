@@ -1294,7 +1294,7 @@ width: 95%;
 
 .category_container{
   background-color: #e1ebee;
-  border-radius: 10px;
+  border-radius: 8px;
 }
 .socialButton {
   background-color: #3498db;
@@ -1307,7 +1307,7 @@ width: 95%;
 }
 .sub_category_container{
   background-color: #009877;
-  font-size: smaller;
+  font-size:small;
 }
 
 @media screen and (max-width: 780px) {
@@ -1315,6 +1315,11 @@ width: 95%;
     margin-top: 10px;
     margin-bottom: 100px;
     display: grid;
+  }
+
+  .sub_category_container{
+    background-color: #009877;
+    font-size:x-small;
   }
  
 }
@@ -1369,40 +1374,46 @@ width: 95%;
   margin: 30px;
   margin-top: 100px;
   margin-bottom: 20vh;
+  gap: 20px; /* Add space between the cards */
 }
 
 /* Shared styles for the payment cards */
 .payment-card {
   width: 100%;
-  max-width: 300px; /* Maximum width of the card */
-  background-color: #f8f8f8; /* Default background color */
+  max-width: 350px; /* Maximum width of the card */
+  background: linear-gradient(145deg, #e0e0e0, #f9f9f9); /* Gradient background */
   height: auto; /* Auto height to adjust based on content */
   margin: 16px;
-  border-radius: 8px;
+  border-radius: 12px; /* Rounded corners */
   overflow: hidden;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease-in-out;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1); /* Larger shadow for depth */
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
   display: flex;
   flex-direction: column;
+  padding: 20px;
 }
-
+.price {
+  font-size: 1.5em; /* Larger font size */
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 10px;
+}
 .payment-card:hover {
   transform: scale(1.05); /* Slightly increase the size on hover */
-  cursor: pointer;
-  border: 2px solid #db6cdf; /* Border color on hover */
+  box-shadow: 0 15px 25px rgba(0, 0, 0, 0.2); /* More pronounced shadow on hover */
 }
 
 .payment-card.gold {
-  background-color: rgb(238, 206, 61); /* Gold background color */
+  background: linear-gradient(145deg, #ffd700, #ffecb3); /* Gold gradient background */
 }
 
 .payment-card.silver {
-  background-color: rgb(221, 220, 214); /* Silver background color */
+  background: linear-gradient(145deg, #c0c0c0, #dcdcdc); /* Silver gradient background */
 }
 
 .card-title {
-  font-size: 1.5em;
-  margin: 16px;
+  font-size: 1.8em; /* Larger title font size */
+  margin-bottom: 16px; /* Space below the title */
   text-align: center;
   font-family: 'Raleway', sans-serif;
   color: #009877;
@@ -1425,26 +1436,26 @@ width: 95%;
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 0.1px solid #e44b4b;
+  border: 1px solid #e44b4b; /* Border for emphasis */
   margin: 8px 0; /* Reduced margin */
   padding: 8px; /* Reduced padding */
-  background-color: white;
-  color: black;
-  font-size: 0.675em; /* Smaller font size */
-  border-radius: 20px; /* Reduced border radius */
+  background-color: #fff;
+  color: #000;
+  font-size: 0.875em; /* Smaller font size */
+  border-radius: 12px; /* Rounded corners */
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
   text-align: center; /* Center the text */
 }
 
 .attractive-button {
   display: inline-block;
-  padding: 10px 20px;
-  font-size: 16px;
+  padding: 12px 24px; /* Larger padding for a more substantial button */
+  font-size: 1em;
   font-weight: bold;
   text-align: center;
   text-decoration: none;
   cursor: pointer;
-  border-radius: 15px;
+  border-radius: 25px; /* More rounded button */
   background-color: #3133c7; /* Button background color */
   color: #fff; /* Button text color */
   transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
@@ -1453,8 +1464,19 @@ width: 95%;
 }
 
 .attractive-button:hover {
-  background-color: #3133c7; /* Background color on hover */
+  background-color: #1d1fbf; /* Darker background color on hover */
   color: #fff; /* Text color on hover */
+}
+
+@media (min-width: 768px) {
+  .campaign-container {
+    flex-direction: row;
+    justify-content: space-around;
+  }
+
+  .payment-card {
+    width: 45%;
+  }
 }
 
 

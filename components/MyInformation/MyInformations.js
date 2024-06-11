@@ -139,33 +139,6 @@ export default function MyInformations({ name, data }) {
                   variant="body2"
                   color="textSecondary"
                 >
-                  City
-                </Typography>
-                <FormControl sx={{ m: 1, minWidth: 120 }}>
-                  <InputLabel id="demo-simple-select-helper-label">
-                    City
-                  </InputLabel>
-                  <Select
-                    labelId="demo-simple-select-helper-label"
-                    id="demo-simple-select-helper"
-                    label="City"
-                    name="city"
-                    value={userData.city}
-                    onChange={handleChange}
-                  >
-                    <MenuItem value="Kanthale">Kanthale</MenuItem>
-                    <MenuItem value="polgolla">polgolla</MenuItem>
-                    <MenuItem value="godagama">godagama</MenuItem>
-                  </Select>
-                </FormControl>
-              </Grid>
-
-              <Grid item xs={12} sm={6}>
-                <Typography
-                  style={{ marginTop: "20px" }}
-                  variant="body2"
-                  color="textSecondary"
-                >
                   ස්ත්‍රී/පුරුෂ
                 </Typography>
                 <FormControl sx={{ m: 1, minWidth: 120 }}>

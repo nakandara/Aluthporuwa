@@ -246,7 +246,7 @@ const Post = () => {
             <Box
               className="category_container"
               component="section"
-              sx={{ p: 2, m: 5, border: "1px dashed grey" }}
+              sx={{ p: 1, m: 5, border: "1px dashed grey" }}
             >
               <Grid container spacing={1}>
                 {category.map((item) => (

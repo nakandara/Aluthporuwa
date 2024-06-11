@@ -26,6 +26,7 @@ const Campaign = () => {
               <h6 className="golden-point">2. Enhanced Visibility: Highlighted listings attract more attention from potential buyers or renters.</h6>
               <h6 className="golden-point">3. Priority Support: Access to dedicated customer support for swift resolution of any issues.</h6>
               <p className="card-description">__________</p>
+              <div className="price">රු 699/=</div> {/* Price added */}
               <button onClick={() => handleSelect('Gold')} className="attractive-button">Select</button>
             </div>
           </div>
@@ -38,6 +39,7 @@ const Campaign = () => {
               <h6 className="golden-point">2. Moderate Visibility: Listings are visible to a wide audience, ensuring decent exposure.</h6>
               <h6 className="golden-point">3. Basic Support: Standard assistance is available for any queries or concerns.</h6>
               <p className="card-description">__________</p>
+              <div className="price">රු 599/=</div> {/* Price added */}
               <button onClick={() => handleSelect('Silver')} className="attractive-button">Select</button>
             </div>
           </div>
