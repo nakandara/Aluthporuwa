@@ -1374,47 +1374,42 @@ width: 95%;
   margin: 30px;
   margin-top: 100px;
   margin-bottom: 20vh;
-  gap: 20px; /* Add space between the cards */
 }
 
 /* Shared styles for the payment cards */
 .payment-card {
   width: 100%;
-  max-width: 350px; /* Maximum width of the card */
-  background: linear-gradient(145deg, #e0e0e0, #f9f9f9); /* Gradient background */
+  max-width: 300px; /* Maximum width of the card */
+  background-color: #f8f8f8; /* Default background color */
   height: auto; /* Auto height to adjust based on content */
   margin: 16px;
-  border-radius: 12px; /* Rounded corners */
+  border-radius: 8px;
   overflow: hidden;
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1); /* Larger shadow for depth */
-  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease-in-out;
   display: flex;
   flex-direction: column;
-  padding: 20px;
+  align-items: center; /* Center content horizontally */
+  text-align: center; /* Center text */
 }
-.price {
-  font-size: 1.5em; /* Larger font size */
-  font-weight: bold;
-  color: #333;
-  margin-bottom: 10px;
-}
+
 .payment-card:hover {
   transform: scale(1.05); /* Slightly increase the size on hover */
-  box-shadow: 0 15px 25px rgba(0, 0, 0, 0.2); /* More pronounced shadow on hover */
+  cursor: pointer;
+  border: 2px solid #db6cdf; /* Border color on hover */
 }
 
 .payment-card.gold {
-  background: linear-gradient(145deg, #ffd700, #ffecb3); /* Gold gradient background */
+  background-color: rgb(238, 206, 61); /* Gold background color */
 }
 
 .payment-card.silver {
-  background: linear-gradient(145deg, #c0c0c0, #dcdcdc); /* Silver gradient background */
+  background-color: rgb(221, 220, 214); /* Silver background color */
 }
 
 .card-title {
-  font-size: 1.8em; /* Larger title font size */
-  margin-bottom: 16px; /* Space below the title */
-  text-align: center;
+  font-size: 1.5em;
+  margin: 16px;
   font-family: 'Raleway', sans-serif;
   color: #009877;
   font-weight: 800;
@@ -1423,6 +1418,16 @@ width: 95%;
 .card-content {
   padding: 16px;
   flex: 1; /* Make the content area flexible */
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center content vertically */
+  text-align: center; /* Center text */
+}
+
+.card-icon {
+  width: 50px; /* Icon size */
+  height: 50px;
+  margin-bottom: 10px; /* Space between icon and content */
 }
 
 .card-description {
@@ -1436,26 +1441,33 @@ width: 95%;
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 1px solid #e44b4b; /* Border for emphasis */
+  border: 0.1px solid #e44b4b;
   margin: 8px 0; /* Reduced margin */
   padding: 8px; /* Reduced padding */
-  background-color: #fff;
-  color: #000;
-  font-size: 0.875em; /* Smaller font size */
-  border-radius: 12px; /* Rounded corners */
+  background-color: white;
+  color: black;
+  font-size: 0.675em; /* Smaller font size */
+  border-radius: 20px; /* Reduced border radius */
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
   text-align: center; /* Center the text */
 }
 
+.price {
+  font-size: 1.2em;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 10px;
+}
+
 .attractive-button {
   display: inline-block;
-  padding: 12px 24px; /* Larger padding for a more substantial button */
-  font-size: 1em;
+  padding: 10px 20px;
+  font-size: 16px;
   font-weight: bold;
   text-align: center;
   text-decoration: none;
   cursor: pointer;
-  border-radius: 25px; /* More rounded button */
+  border-radius: 15px;
   background-color: #3133c7; /* Button background color */
   color: #fff; /* Button text color */
   transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
@@ -1464,7 +1476,7 @@ width: 95%;
 }
 
 .attractive-button:hover {
-  background-color: #1d1fbf; /* Darker background color on hover */
+  background-color: #3133c7; /* Background color on hover */
   color: #fff; /* Text color on hover */
 }
 

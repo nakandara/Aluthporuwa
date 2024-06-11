@@ -7,12 +7,12 @@ const Campaign = () => {
   const router = useRouter();
 
   const handleSelect = (option) =>{
-    console.log(option,'1111111');
+    console.log(option, '1111111');
     router.push({
       pathname: '/mypost',
       query: { plan: option },
     });
-  }
+  } 
 
   return (
     <LayoutSecond>
@@ -20,8 +20,9 @@ const Campaign = () => {
         <div className="campaign-container">
           {/* Gold Plan Card */}
           <div className="payment-card gold">
-            <div className="card-title">Gold Plan</div>
+            <div className="card-title">Gold Add</div>
             <div className="card-content">
+              <img style={{width:"80px",height:"80px"}} src="/media/gold-ingots.png" alt="Gold Icon" className="card-icon" />
               <h6 className="golden-point">1. Your advertisement receives premium placement for maximum visibility.</h6>
               <h6 className="golden-point">2. Enhanced Visibility: Highlighted listings attract more attention from potential buyers or renters.</h6>
               <h6 className="golden-point">3. Priority Support: Access to dedicated customer support for swift resolution of any issues.</h6>
@@ -33,8 +34,9 @@ const Campaign = () => {
 
           {/* Silver Plan Card */}
           <div className="payment-card silver">
-            <div className="card-title">Silver Plan</div>
+            <div className="card-title">Silver Add</div>
             <div className="card-content">
+              <img style={{width:"80px",height:"80px"}}  src="/media/diamond.png" alt="Silver Icon" className="card-icon" />
               <h6 className="golden-point">1. Standard Placement: Your advertisement is displayed prominently among other listings.</h6>
               <h6 className="golden-point">2. Moderate Visibility: Listings are visible to a wide audience, ensuring decent exposure.</h6>
               <h6 className="golden-point">3. Basic Support: Standard assistance is available for any queries or concerns.</h6>

@@ -20,24 +20,28 @@ export default function Elevation() {
       title: "Total Advertisements",
       text: "Explore our extensive collection of ads. With over 11,234 advertisements, we provide a vast range of choices to meet your needs.",
       backgroundColor: "#f8d7da", // Light red
+      icon: "/media/all.png", // Icon for this card
     },
     {
       header: "Users +34567",
       title: "Active Users",
       text: "Join a thriving community of over 34,567 active users. Connect, share, and engage with like-minded individuals.",
       backgroundColor: "#d1ecf1", // Light blue
+      icon: "/media/active-user.png", // Icon for this card
     },
     {
       header: "Gold Adds 3834+",
       title: "Premium Advertisements",
       text: "Discover exclusive deals and offers with our premium advertisements. Over 3,834 high-value listings await your attention.",
       backgroundColor: "#d4edda", // Light green
+      icon: "/media/diamond.png", // Icon for this card
     },
     {
       header: "Silver Adds 4874+",
       title: "Silver Plan Advertisements",
       text: "Access exclusive deals and offers with our Silver Plan advertisements. Over 4,874 quality listings are available for you.",
       backgroundColor: "#e2e3e5", // Light gray
+      icon: "/media/small.png", // Icon for this card
     },
   ];
 
@@ -72,9 +76,14 @@ export default function Elevation() {
                     </div>
                     <div
                       className="card-footer bg-transparent border-success"
-                      style={{ backgroundColor: card.backgroundColor }}
+                      style={{
+                        backgroundColor: card.backgroundColor,
+                        display: 'flex',
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                      }}
                     >
-                      Footer
+                      <img src={card.icon} alt="icon" style={{ width: '64px', height: '64px' }} />
                     </div>
                   </div>
                 </div>
@@ -82,15 +91,6 @@ export default function Elevation() {
             </div>
           </div>
         </Grid>
-        {/* <Grid item xs={12} sm={4}>
-          <Item>Additional Content</Item>
-        </Grid>
-        <Grid item xs={12} sm={4}>
-          <Item>Additional Content</Item>
-        </Grid>
-        <Grid item xs={12} sm={8}>
-          <Item>Additional Content</Item>
-        </Grid> */}
       </Grid>
     </Box>
   );
