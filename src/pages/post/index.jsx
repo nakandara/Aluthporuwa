@@ -206,39 +206,41 @@ const Post = () => {
     <LayoutSecond>
       <div className="postBaseContainer">
         <div className="app-bar-new">
-          <div  className="drop_down_filter">
-            
-          <IconButton onClick={toggleDrawer(true)} style={{ float: "right" }}>
-          Filter   <FilterListIcon />
-          </IconButton>
-          <Drawer anchor="right" open={drawerOpen} onClose={toggleDrawer(false)}>
-            <Box   sx={{ 
-                '& .MuiDrawer-paper': { 
-                  backgroundColor: '#333', // Dark background color
-                  color: '#fff' // White text color
-                }
-              }}>
-              <SearchFilter
-                categories={data.reduce((acc, curr) => {
-                  curr.category.forEach((cat) => {
-                    if (!acc.includes(cat)) {
-                      acc.push(cat);
-                    }
-                  });
-                  return acc;
-                }, [])}
-                handleCategorySelect={handleCategorySelect}
-                selectedCategories={selectedCategories}
-              />
-              <SearchCity
-                cities={[...new Set(data.map((post) => post.city))]} // Get unique cities
-                handleCitySelect={handleCitySelect}
-                selectedCities={selectedCities}
-              />
-            </Box>
-          </Drawer>
+          <div className="drop_down_filter">
+            <IconButton onClick={toggleDrawer(true)} style={{ float: "right" }}>
+              Filter <FilterListIcon />
+            </IconButton>
+            <Drawer anchor="right" open={drawerOpen} onClose={toggleDrawer(false)}>
+              <Box
+                sx={{
+                  '& .MuiDrawer-paper': {
+                    backgroundColor: '#333', // Dark background color
+                    color: '#fff' // White text color
+                  }
+                }}
+              >
+                <SearchFilter
+                  categories={data.reduce((acc, curr) => {
+                    curr.category.forEach((cat) => {
+                      if (!acc.includes(cat)) {
+                        acc.push(cat);
+                      }
+                    });
+                    return acc;
+                  }, [])}
+                  handleCategorySelect={handleCategorySelect}
+                  selectedCategories={selectedCategories}
+                  closeSidebar={toggleDrawer(false)}
+                />
+                <SearchCity
+                  cities={[...new Set(data.map((post) => post.city))]} // Get unique cities
+                  handleCitySelect={handleCitySelect}
+                  selectedCities={selectedCities}
+                  closeSidebar={toggleDrawer(false)} // Pass the function to close the sidebar
+                />
+              </Box>
+            </Drawer>
           </div>
-         
         </div>
 
         <div className="margin_b_t">

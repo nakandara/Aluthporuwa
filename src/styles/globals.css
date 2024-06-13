@@ -2137,3 +2137,40 @@ input {
   margin-top: 10px;
   text-align: center;
 }
+
+
+@keyframes lightningAnimation {
+  0% {
+    border-color: #ff0000;
+    box-shadow: 0 0 10px #ff0000, 0 0 20px #ff0000, 0 0 30px #ff0000;
+  }
+  25% {
+    border-color: #00ff00;
+    box-shadow: 0 0 10px #00ff00, 0 0 20px #00ff00, 0 0 30px #00ff00;
+  }
+  50% {
+    border-color: #0000ff;
+    box-shadow: 0 0 10px #0000ff, 0 0 20px #0000ff, 0 0 30px #0000ff;
+  }
+  75% {
+    border-color: #ffff00;
+    box-shadow: 0 0 10px #ffff00, 0 0 20px #ffff00, 0 0 30px #ffff00;
+  }
+  100% {
+    border-color: #ff00ff;
+    box-shadow: 0 0 10px #ff00ff, 0 0 20px #ff00ff, 0 0 30px #ff00ff;
+  }
+}
+
+.lightning-border {
+  position: relative;
+  border: 3px solid;
+  padding: 10px;
+  border-radius: 500px;
+  animation: lightningAnimation 2s linear infinite;
+}
+
+.lightning-border:hover {
+  animation: lightningAnimation 1s linear infinite;
+}
+

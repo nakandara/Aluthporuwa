@@ -95,7 +95,7 @@ const Signin = () => {
         setToken(accessToken);
         setUser(user);
 
-        router.push("/home");
+        router.push("/post");
       } else {
         Swal.fire({
           icon: "error",

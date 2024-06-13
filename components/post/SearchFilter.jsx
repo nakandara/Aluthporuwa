@@ -11,6 +11,7 @@ const SearchFilter = ({
   categories,
   handleCategorySelect,
   selectedCategories,
+  closeSidebar
 }) => {
   return (
     <Box sx={{ minWidth: 120 }}>
@@ -24,6 +25,7 @@ const SearchFilter = ({
           onChange={(event) => {
             const value = event.target.value;
             handleCategorySelect(value);
+            closeSidebar(); 
           }}
           renderValue={(selected) => selected.join(", ")}
         >

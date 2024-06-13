@@ -26,7 +26,7 @@ const navItems = ["Home", "About", "Contact", "Post", "MyAccount", "MyAdd"];
 
 const LayoutSecond = ({ children }) => {
   const router = useRouter();
-  const { user } = useToken();
+  const { user, setUser } = useToken();
   const [mobileOpen, setMobileOpen] = useState(false);
   const [anchorElUser, setAnchorElUser] = useState(null);
 
@@ -45,6 +45,7 @@ const LayoutSecond = ({ children }) => {
 
   const handleLogout = () => {
     localStorage.clear();
+    setUser(null);
     router.push("/");
   };
 
@@ -56,14 +57,20 @@ const LayoutSecond = ({ children }) => {
     router.push("/");
   };
 
-  const settings = ["Profile", "Account", "Dashboard", "Logout"];
+  const settings = ["Profile", "MyAccount"];
   if (user && user.email === "pramodnakandara@gmail.com") {
     settings.push("AdminPostReview");
   }
 
   return (
     <div>
-      <AppBar component="nav">
+      <AppBar
+        component="nav"
+        sx={{
+          backgroundColor: "#333", // Dark background color
+          color: "#fff", // White text color
+        }}
+      >
         <Toolbar>
           <IconButton
             color="inherit"
@@ -113,6 +120,8 @@ const LayoutSecond = ({ children }) => {
                     handleLogout(); // Call the logout function
                   } else if (setting === "AdminPostReview") {
                     loginAdminPostReview();
+                  } else if (setting === "MyAccount") {
+                    router.push(`myaccount`);
                   } else {
                     handleCloseUserMenu();
                   }
@@ -173,6 +182,8 @@ const LayoutSecond = ({ children }) => {
           "& .MuiDrawer-paper": {
             width: drawerWidth,
             boxSizing: "border-box",
+            backgroundColor: { xs: "#333", sm: "white" }, // Dark background on mobile
+            color: { xs: "#fff", sm: "inherit" }, // Light text on mobile
           },
         }}
       >
@@ -181,6 +192,7 @@ const LayoutSecond = ({ children }) => {
             variant="h6"
             component="div"
             onClick={handleClick}
+            className="lightning-border"
             sx={{ m: 3, fontFamily: "sans-serif" }}
           >
             QuickAds Hub
@@ -193,6 +205,7 @@ const LayoutSecond = ({ children }) => {
                 router.push(`/${item.toLowerCase()}`);
                 handleDrawerToggle();
               }}
+              sx={{ color: { xs: "#fff", sm: "inherit" } }} // Light text color on mobile
             >
               <ListItemText primary={item} />
             </ListItem>
@@ -204,6 +217,7 @@ const LayoutSecond = ({ children }) => {
                 handleLogout();
                 handleDrawerToggle();
               }}
+              sx={{ color: { xs: "#fff", sm: "inherit" } }} // Light text color on mobile
             >
               <ListItemText primary="Logout" />
             </ListItem>
@@ -214,6 +228,7 @@ const LayoutSecond = ({ children }) => {
                 router.push("/auth/signin");
                 handleDrawerToggle();
               }}
+              sx={{ color: { xs: "#fff", sm: "inherit" } }} // Light text color on mobile
             >
               <ListItemText primary="Login" />
             </ListItem>

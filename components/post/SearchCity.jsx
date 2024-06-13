@@ -7,7 +7,7 @@ import Select from "@mui/material/Select";
 import Checkbox from "@mui/material/Checkbox";
 import ListItemText from "@mui/material/ListItemText";
 
-const SearchCity = ({ cities, handleCitySelect, selectedCities }) => {
+const SearchCity = ({ cities, handleCitySelect, selectedCities, closeSidebar }) => {
   return (
     <Box sx={{ minWidth: 120 }}>
       <FormControl sx={{ m: 1, minWidth: 200 }} size="small">
@@ -20,6 +20,7 @@ const SearchCity = ({ cities, handleCitySelect, selectedCities }) => {
           onChange={(event) => {
             const value = event.target.value;
             handleCitySelect(value);
+            closeSidebar(); // Call the function to close the sidebar
           }}
           renderValue={(selected) => selected.join(", ")}
         >

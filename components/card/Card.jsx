@@ -11,7 +11,7 @@ const Card = ({
   src,
   index,
   post,
-  description = "Default description", // Set default value
+  description = "Default description",
   imageReaction,
   animateState,
   reactionCounts,
@@ -19,9 +19,12 @@ const Card = ({
 }) => {
   const router = useRouter();
   const [isModalOpen, setModalOpen] = useState(false);
+  const [isLoading, setIsLoading] = useState(false); // Loading state
 
-  const handleClick = (postId) => {
-    router.push(`/post/${postId}`);
+  const handleClick = async (postId) => {
+    setIsLoading(true); // Set loading state to true
+    await router.push(`/post/${postId}`);
+    setIsLoading(false); // Set loading state to false after redirection
   };
 
   const handleShareClick = () => {
@@ -31,9 +34,6 @@ const Card = ({
   const handleCloseModal = () => {
     setModalOpen(false);
   };
-
-  post,
-  console.log(post,'vvvvvvv');
 
   const shareUrl = `https://aluthporuwa-nakandara.vercel.app/post/${post.postId}`;
   const title = "Check out this post";
@@ -110,6 +110,7 @@ const Card = ({
           {formatDate(post.createdAt)}
         </div>
       </div>
+      {isLoading && <div className={styles.loading}>Loading...</div>}
     </div>
   );
 };
