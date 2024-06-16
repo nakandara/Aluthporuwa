@@ -1,11 +1,26 @@
 import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { useRouter } from 'next/router';
 import { styled } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Grid";
 
 export default function Elevation() {
+
+  const router = useRouter();
+
+  const handleButtonClick = () => {
+    const socketUser = localStorage.getItem("userone");
+    const query = new URLSearchParams(socketUser);
+
+ 
+    const targetUrl = `https://sokettest-second-frontend.vercel.app/messenger?${socketUser}`;
+    window.location.href = targetUrl;
+    
+  };
+
+
   const Item = styled(Paper)(({ theme }) => ({
     backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
     ...theme.typography.body2,
@@ -13,6 +28,8 @@ export default function Elevation() {
     textAlign: "center",
     color: theme.palette.text.secondary,
   }));
+
+
 
   const cards = [
     {
@@ -92,6 +109,9 @@ export default function Elevation() {
           </div>
         </Grid>
       </Grid>
+      <div>
+      <button onClick={handleButtonClick}>Go to Second Project</button>
+    </div>
     </Box>
   );
 }

@@ -6,7 +6,8 @@ import { useToken } from "../context/TokenContext";
 import { useRouter } from "next/router";
 import { environments } from "../../components/environment/environments";
 
-const SignupPage = () => { // Renamed to 'SignupPage'
+const SignupPage = () => {
+  // Renamed to 'SignupPage'
   const router = useRouter();
   const { token, setToken, setUser, user } = useToken();
   const [username, setUsername] = useState("");
@@ -22,7 +23,16 @@ const SignupPage = () => { // Renamed to 'SignupPage'
           name: username,
           password: password,
           email: email,
-          method: "NORMAL"
+          method: "NORMAL",
+        }
+      );
+
+      const chatResponse = await axios.post(
+        "https://socketio-api.vercel.app/api/auth/register",
+        {
+          username: username,
+          email: email,
+          password: password,
         }
       );
 
@@ -47,6 +57,23 @@ const SignupPage = () => { // Renamed to 'SignupPage'
           setUser(user);
 
           router.push("/home");
+          const response2 = await axios.post(
+            `https://socketio-api.vercel.app/api/auth/login`,
+            {
+              name: username,
+              email: email,
+              password: password,
+            }
+          );
+
+          console.log(response2.data, "yyyyyyyyyyyyyy");
+
+          const socketUser = response2.data;
+
+          console.log(socketUser,'3333333');
+          localStorage.setItem("userone", JSON.stringify(socketUser));
+          const getsocketUser = localStorage.getItem("userone");
+          console.log(getsocketUser,'wwwwwwwwwwwwwwww');
         } else {
           Swal.fire({
             icon: "error",
@@ -67,7 +94,7 @@ const SignupPage = () => { // Renamed to 'SignupPage'
   return (
     <div>
       <form className="form" autoComplete="off" onSubmit={normalLogin}>
-        <div className="control" style={{color:"black"}}>
+        <div className="control" style={{ color: "black" }}>
           <h1>Register Page</h1>
         </div>
         <div className="control block-cube block-input">
@@ -147,3 +174,15 @@ const SignupPage = () => { // Renamed to 'SignupPage'
 };
 
 export default SignupPage; // Updated component name
+
+// const response2 = await axios.post(
+//   `https://socketio-api.vercel.app/api/auth/login`,
+//   {
+//     name: username,
+//     email: email,
+//     password: password,
+//   }
+
+// );
+
+// console.log(response2.data.data,'eeeeeeeee');

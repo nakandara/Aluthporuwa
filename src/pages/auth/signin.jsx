@@ -31,12 +31,29 @@ const Signin = () => {
       method: "FACEBOOK",
     };
 
+    const chatData = {
+ 
+
+      username: response.name,
+      email: response.email,
+      password: response.accessToken,
+    };
+
+
+    
+
     try {
       const responsePost = await axios.post(
         "http://localhost:8080/api/createUser",
         formData
       );
 
+    const chatResponse = await axios.post(
+        "https://socketio-api.vercel.app/api/auth/register",
+        chatData
+      );
+
+      console.log(chatResponse,'ffffffffffffffff');
       if (responsePost) {
         setLoading(true);
 
@@ -47,6 +64,7 @@ const Signin = () => {
             JSON.stringify(responsePost.data.newUser)
           );
           router.push("/home");
+          
         } else {
           localStorage.setItem("accessToken", responsePost.data.token);
           localStorage.setItem(
@@ -91,11 +109,30 @@ const Signin = () => {
 
         localStorage.setItem("accessToken", accessToken);
         localStorage.setItem("user", JSON.stringify(user));
+        
 
         setToken(accessToken);
         setUser(user);
 
         router.push("/post");
+        const response2 = await axios.post(
+          `https://socketio-api.vercel.app/api/auth/login`,
+          {
+            name: username,
+            email: email,
+            password: password,
+          }
+        );
+
+        console.log(response2.data, "yyyyyyyyyyyyyy");
+
+        const socketUser = response2.data;
+
+        console.log(socketUser,'3333333');
+        localStorage.setItem("userone", JSON.stringify(socketUser));
+        const getsocketUser = localStorage.getItem("userone");
+        console.log(getsocketUser,'wwwwwwwwwwwwwwww');
+        
       } else {
         Swal.fire({
           icon: "error",

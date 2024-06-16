@@ -1,15 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Swal from "sweetalert2";
 import { environments } from "../../../components/environment/environments";
 import LayoutSecond from "../../../components/LayoutSecond/LayoutSecond";
 import styles from "./myadd.module.css";
-
 import { jsPDF } from "jspdf";
 import dynamic from "next/dynamic";
 import "react-quill/dist/quill.snow.css";
-
-import TextareaAutosize from "@mui/material/TextareaAutosize";
-
 import {
   Box,
   Button,
@@ -23,6 +19,9 @@ import {
 } from "@mui/material";
 import axios from "axios";
 
+// Dynamically import ReactQuill
+const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
+
 const Myadd = ({ postIdData }) => {
   const image = postIdData?.allPosts[0]?.PostDetails?.image;
   const description = postIdData?.allPosts[0]?.PostDetails?.description;
@@ -34,8 +33,6 @@ const Myadd = ({ postIdData }) => {
   const price = postIdData?.allPosts[0]?.PostDetails?.price;
   const postId = postIdData?.allPosts[0]?.PostDetails?.postId;
   const userId = postIdData?.allPosts[0]?.PostDetails?.userId;
-
-  const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
 
   const generatePDF = () => {
     const doc = new jsPDF();
@@ -228,20 +225,6 @@ const Myadd = ({ postIdData }) => {
                 onChange={handleChange}
                 variant="outlined"
               />
-              {/* <Button
-                variant="contained"
-                component="label"
-                fullWidth
-                sx={{ mb: 2 }}
-              >
-                Upload Images
-                <input
-                  type="file"
-                  hidden
-                  multiple
-                  onChange={handleFileChange}
-                />
-              </Button> */}
               <Grid container spacing={2}>
                 <Grid item xs={6} sm={4}>
                   {formData.imageUrl && <img src={formData.imageUrl} alt="Selected Image" style={{ width: "100%" }} />}
@@ -271,20 +254,14 @@ const Myadd = ({ postIdData }) => {
 
 export default Myadd;
 
-
-
-
 export async function getServerSideProps(context) {
   const { myadd } = context.query;
-
 
   try {
     const response = await axios.get(
       `${environments.BASE_HOST_URL}/api/getPost/${myadd}`
     );
 
-    if (response) {
-    }
     return {
       props: {
         postIdData: response.data,
@@ -299,10 +276,3 @@ export async function getServerSideProps(context) {
     };
   }
 }
-
-
-
-
-
-
-
