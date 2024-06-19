@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import Layout from "../../../components/Layout";
+import LayoutSecond from "../../../components/LayoutSecond/LayoutSecond";
 import SearchFilter from "../../../components/post/SearchFilter";
 import SearchCity from "../../../components/post/SearchCity";
 import axios from "axios";
@@ -10,12 +10,13 @@ import { styled } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Grid";
-import LayoutSecond from "../../../components/LayoutSecond/LayoutSecond";
 import api from "../../ services/api";
 import { useToken } from "../../context/TokenContext";
 import Drawer from '@mui/material/Drawer';
 import IconButton from '@mui/material/IconButton';
 import FilterListIcon from '@mui/icons-material/FilterList';
+import Modal from '@mui/material/Modal';
+import CircularProgress from '@mui/material/CircularProgress';
 
 const url = `${environments.BASE_HOST_URL}/api/increment`;
 
@@ -64,22 +65,6 @@ const Post = () => {
     { category: "private", count: "100" },
   ]);
   const [data, setData] = useState([]);
-
-  useEffect(() => {
-    const fetchPosts = async () => {
-      try {
-        const response = await axios.get(
-          `${environments.BASE_HOST_URL}/api/getVerifyAllPosts`
-        );
-        setData(response.data.data);
-      } catch (error) {
-        console.error("Error fetching posts:", error);
-      }
-    };
-
-    fetchPosts();
-  }, []);
-
   const [loading, setLoading] = useState(true);
   const [animateState, setAnimateState] = useState(
     Array(data.length).fill({
@@ -93,18 +78,37 @@ const Post = () => {
       post.socialIcon && post.socialIcon.length > 0 ? post.socialIcon[0] : ""
     )
   );
+  const [drawerOpen, setDrawerOpen] = useState(false);
+
+  useEffect(() => {
+    const fetchPosts = async () => {
+      try {
+        const response = await axios.get(
+          `${environments.BASE_HOST_URL}/api/getVerifyAllPosts`
+        );
+        setData(response.data.data);
+        setLoading(false);
+      } catch (error) {
+        console.error("Error fetching posts:", error);
+      }
+    };
+
+    fetchPosts();
+  }, []);
 
   useEffect(() => {
     if (user && user.userId) {
       const apiUrl = `${environments.BASE_HOST_URL}/api/getPosts/${user.userId}`;
 
-      async function fetchPostData() {
+      const fetchPostData = async () => {
         try {
-          // Fetch data using axios or fetch here
+          const response = await axios.get(apiUrl);
+          setPosts(response.data.posts);
+          setLoading(false);
         } catch (error) {
           console.error("Error fetching data:", error);
         }
-      }
+      };
 
       fetchPostData();
     }
@@ -147,9 +151,7 @@ const Post = () => {
   const imageReaction = async (value, index, post) => {
     const newAnimateState = [...animateState];
     newAnimateState[index] = { ...newAnimateState[index] };
-    newAnimateState[index][value] = !newAnimateState[index][
-      value.toLowerCase()
-    ];
+    newAnimateState[index][value] = !newAnimateState[index][value.toLowerCase()];
 
     if (animateState[index][value]) {
       return;
@@ -195,8 +197,6 @@ const Post = () => {
     newAnimateState[index] = { ...newAnimateState[index], [value]: true };
     setAnimateState(newAnimateState);
   };
-
-  const [drawerOpen, setDrawerOpen] = useState(false);
 
   const toggleDrawer = (open) => () => {
     setDrawerOpen(open);
@@ -264,6 +264,33 @@ const Post = () => {
 
           <div>
             {loading ? (
+              <Modal
+                open={loading}
+                aria-labelledby="loading-modal-title"
+                aria-describedby="loading-modal-description"
+              >
+                <Box
+                  sx={{
+                    position: 'absolute',
+                    top: '50%',
+                    left: '50%',
+                    transform: 'translate(-50%, -50%)',
+                    width: 400,
+                    bgcolor: 'background.paper',
+                    border: '2px solid #000',
+                    boxShadow: 24,
+                    p: 4,
+                    display: 'flex',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    flexDirection: 'column',
+                  }}
+                >
+                  <CircularProgress />
+             
+                </Box>
+              </Modal>
+            ) : (
               <>
                 {renderPosts.map((post, index) => (
                   <div key={index}>
@@ -284,8 +311,6 @@ const Post = () => {
                   </div>
                 ))}
               </>
-            ) : (
-              <div>Loading.............</div>
             )}
           </div>
         </div>

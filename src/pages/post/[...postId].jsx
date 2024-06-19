@@ -1,29 +1,32 @@
 import React, { useState, useEffect } from "react";
-import Layout from "../../../components/Layout";
+import LayoutSecond from "../../../components/LayoutSecond/LayoutSecond";
 import axios from "axios";
 import { environments } from "../../../components/environment/environments";
-import LayoutSecond from "../../../components/LayoutSecond/LayoutSecond";
-import { useRouter } from "next/router";
-import { useToken } from "../../context/TokenContext";
-import Typography from "@mui/material/Typography";
 import ImageGallery from "react-image-gallery";
 import styles from "./post.module.css";
+import Modal from '@mui/material/Modal';
+import CircularProgress from '@mui/material/CircularProgress';
+import Box from '@mui/material/Box';
 
 const PostId = ({ postIdData }) => {
-  console.log(postIdData.allPosts, "postIdDatapostIdData");
   const [mobileNumber, setMobileNumber] = useState("");
   const [description, setDescription] = useState("");
   const [createdAt, setCreatedAt] = useState("");
   const [title, setTitle] = useState("");
   const [city, setCity] = useState("");
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    setMobileNumber(postIdData?.allPosts[0]?.PostDetails?.mobileNumber);
-    setCreatedAt(formatDate(postIdData?.allPosts[0]?.PostDetails?.createdAt));
-    setDescription(postIdData?.allPosts[0]?.PostDetails?.description);
-    setTitle(postIdData?.allPosts[0]?.PostDetails?.title);
-    setCity(postIdData?.allPosts[0]?.PostDetails?.city);
-  }, []);
+    if (postIdData?.allPosts?.[0]?.PostDetails) {
+      const postDetails = postIdData.allPosts[0].PostDetails;
+      setMobileNumber(postDetails.mobileNumber);
+      setCreatedAt(formatDate(postDetails.createdAt));
+      setDescription(postDetails.description);
+      setTitle(postDetails.title);
+      setCity(postDetails.city);
+      setLoading(false); // Data fetching complete
+    }
+  }, [postIdData]);
 
   const formatDate = (dateString) => {
     const options = {
@@ -37,108 +40,129 @@ const PostId = ({ postIdData }) => {
   };
 
   const handleWhatsAppClick = () => {
-    const phoneNumber = postIdData?.allPosts[0]?.PostDetails?.whatsappNumber;
-
-
+    const phoneNumber = postIdData?.allPosts?.[0]?.PostDetails?.whatsappNumber;
     if (phoneNumber) {
       const message = "Hello! This is a pre-filled message.";
-      const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(
-        message
-      )}`;
+      const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
       window.open(url, "_blank");
     } else {
-      // Handle case where phoneNumber is not available
       console.error("Phone number not available");
     }
   };
 
+  const handleCallClick = () => {
+    window.location.href = `tel:${mobileNumber}`;
+  };
+
   return (
     <LayoutSecond>
-      <div className={styles.PostIdMain}>
-        <div className={styles.FirstContent}>
-          <div className={styles.imageContainer}>
-            <div>
-              {postIdData?.allPosts?.map((post, index) => (
-                <div className="image-size" key={index}>
-                  <ImageGallery
-                    items={post.PostDetails.images.map((image, index) => ({
-                      original: image.imageUrl,
-                      thumbnail: image.imageUrl,
-                      // You can add other properties like caption, description, etc. if needed
-                    }))}
+      {loading ? (
+        <Modal
+          open={loading}
+          aria-labelledby="loading-modal-title"
+          aria-describedby="loading-modal-description"
+        >
+          <Box
+            sx={{
+              position: 'absolute',
+              top: '50%',
+              left: '50%',
+              transform: 'translate(-50%, -50%)',
+              width: 400,
+              bgcolor: 'background.paper',
+              border: '2px solid #000',
+              boxShadow: 24,
+              p: 4,
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+              flexDirection: 'column',
+            }}
+          >
+            <CircularProgress />
+            <p>Loading...</p>
+          </Box>
+        </Modal>
+      ) : (
+        <div className={styles.PostIdMain}>
+          <div className={styles.FirstContent}>
+            <div className={styles.imageContainer}>
+              <div>
+                {postIdData?.allPosts?.map((post, index) => (
+                  <div className="image-size" key={index}>
+                    <ImageGallery
+                      items={post.PostDetails.images.map((image, index) => ({
+                        original: image.imageUrl,
+                        thumbnail: image.imageUrl,
+                      }))}
+                    />
+                  </div>
+                ))}
+              </div>
+            </div>
+            <div className={styles.imageContainer_content}>
+              <div>
+                <div className={styles.postIdHeading}>{title}</div>
+                <div className={styles.subtitle}>
+                  Posted on {createdAt}, <strong>{city}</strong>
+                </div>
+                <div className={styles.horizontalLine}></div>
+                <div className={styles.postIdPhoneNumber}>Phone Number {mobileNumber}</div>
+              </div>
+              <div>
+                <div className={styles.postIdDescription}>Description</div>
+                <div
+                  className={styles.postIdDescription_content}
+                  dangerouslySetInnerHTML={{ __html: description }}
+                />
+              </div>
+            </div>
+          </div>
+          <div className={styles.SecondContent}>
+            <button className={styles.action_buttons} onClick={handleWhatsAppClick}>
+              <div className={styles.contact_options}>
+                <div className={styles.btn}>
+                  <img
+                    className="socialImages"
+                    src={`/media/icons8-whatsapp-48.png`}
+                    alt="WhatsApp"
                   />
                 </div>
-              ))}
-            </div>
-          </div>
-          <div className={styles.imageContainer_content}>
-            <div>
-              <div className={styles.postIdHeading}>{title}</div>
-              <div className={styles.subtitle}>
-                Posted on {createdAt}, <strong>{city}</strong>
+                <div className={styles.btn} onClick={handleCallClick}>
+                  <img
+                    className="socialImages"
+                    src={`/media/icons8-call-64.png`}
+                    alt="Call"
+                  />
+                </div>
               </div>
-              <div className={styles.horizontalLine}></div>
-              <div className={styles.postIdPhoneNumber}>Phone Number {mobileNumber}</div>
-            </div>
-
-            <div>
-              <div className={styles.postIdDescription}>Description</div>
-              <div
-                className={styles.postIdDescription_content}
-                dangerouslySetInnerHTML={{ __html: description }}
-              />
-            </div>
+            </button>
           </div>
+          <div className={styles.ThirdContent}></div>
         </div>
-      </div>
-      <div className={styles.SecondContent}>
-        <button className={styles.action_buttons} onClick={handleWhatsAppClick}>
-          <div className={styles.contact_options}>
-            <div className={styles.btn}>
-              {" "}
-              <img
-                className="socialImages"
-                src={`/media/icons8-whatsapp-48.png`}
-                alt={`Image`}
-              />
-            </div>
-            <div className={styles.btn}>
-              <img
-                className="socialImages"
-                src={`/media/icons8-call-64.png`}
-                alt={`Image`}
-              />
-            </div>
-          </div>
-        </button>
-      </div>
-      <div className={styles.ThirdContent}>ThirdContent</div>
+      )}
     </LayoutSecond>
   );
 };
 
 export async function getServerSideProps(context) {
   const { postId } = context.query;
+  let postIdData = {};
 
   try {
-    const response = await axios.get(
-      `${environments.BASE_HOST_URL}/api/getPost/${postId}`
-    );
-    if (response) {
+    const response = await axios.get(`${environments.BASE_HOST_URL}/api/getPost/${postId}`);
+    if (response.data) {
+      postIdData = response.data;
     }
-    return {
-      props: {
-        postIdData: response.data,
-      },
-    };
   } catch (error) {
     console.error("Error fetching data:", error);
-    return {
-      props: {
-        postIdData: {},
-      },
-    };
   }
+
+  return {
+    props: {
+      postIdData,
+    },
+  };
 }
 
 export default PostId;

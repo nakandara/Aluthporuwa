@@ -23,9 +23,9 @@ import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import { useToken } from "../../src/context/TokenContext";
 
 export default function MyInformations({ name, data }) {
-  const { user,token } = useToken();
-  console.log(user.userId,'data');
-  const [userData, setUserData] = React.useState({
+  const { user, token } = useToken();
+  console.log(user.userId, 'data');
+  const [userData, setUserData] = useState({
     userId: user.userId,
     username: data.username,
     city: data.city,
@@ -37,10 +37,11 @@ export default function MyInformations({ name, data }) {
   });
   const GetProfileUrl = `${environments.BASE_HOST_URL}/api/getProfile`;
   const GetUserUrl = `${environments.BASE_HOST_URL}/api/auth/getUserById`;
-  const [step, setStep] = React.useState(1);
+  const [step, setStep] = useState(1);
+  const [heading, setHeading] = useState("My Information Step 01");
+
   const [fileInputOpen, setFileInputOpen] = useState(false);
   const [datastore, setDatastore] = useState("");
-
   const [selectedDate, setSelectedDate] = useState(dayjs());
 
   const handleDateChange = (date) => {
@@ -61,21 +62,22 @@ export default function MyInformations({ name, data }) {
         alert("Please enter your name before proceeding.");
         return;
       }
+      setHeading("My Information Step 02");
     }
 
     setStep(step + 1);
   };
 
   const handlePreviousStep = () => {
-    // Ensure that we don't go below step 1
     if (step > 1) {
       setStep(step - 1);
+      setHeading("My Information Step 01");
     }
   };
 
   const FormSubmit = async () => {
     console.log(userData);
-    
+
     try {
       const response = await axios.get(`${GetUserUrl}/${user.userId}`, {
         headers: {
@@ -84,47 +86,38 @@ export default function MyInformations({ name, data }) {
       });
 
       const data = response.data;
-      console.log(data,'AlreadyUseProfile');
+      console.log(data, 'AlreadyUseProfile');
 
       const AlreadyUse = await axios.get(`${GetProfileUrl}/${user.userId}`);
-     
-      console.log(AlreadyUse,'dddddddddddddddddddf');
-     
+      console.log(AlreadyUse, 'AlreadyUseProfileData');
 
-    if (!AlreadyUse) {
-      console.log('apiUrlAlreadyUse');
-      const apiUrlAlreadyUse = `${environments.BASE_HOST_URL}/api/updateProfile/${user.userId}`;
-      const response = await axios.post(apiUrlAlreadyUse, userData);
-      console.log("Information Successfully Update");
-    }else{
-      const apiUrl = `${environments.BASE_HOST_URL}/api/createProfile`;
-      const response = await axios.post(apiUrl, userData);
-      console.log("Information Successfully Created");
-    }
-      
-     
+      if (!AlreadyUse.data) {
+        const apiUrl = `${environments.BASE_HOST_URL}/api/createProfile`;
+        await axios.post(apiUrl, userData);
+        console.log("Information Successfully Created");
+      } else {
+        const apiUrlAlreadyUse = `${environments.BASE_HOST_URL}/api/updateProfile/${user.userId}`;
+        await axios.post(apiUrlAlreadyUse, userData);
+        console.log("Information Successfully Update");
+      }
     } catch (error) {
       console.error("Error fetching data:", error);
-    
     }
   };
 
   return (
     <div>
+      <Typography variant="h6">{heading}</Typography>
       <form onSubmit={(event) => event.preventDefault()}>
         {step === 1 && (
           <div>
             <Grid style={{ marginTop: "20px" }} container spacing={2}>
               <Grid item xs={12} sm={6}>
-                <Typography
-                  style={{ marginTop: "20px" }}
-                  variant="body2"
-                  color="textSecondary"
-                >
+                <Typography style={{ marginTop: "20px" }} variant="body2" color="textSecondary">
                   Enter your name
                 </Typography>
-                <TextField 
-                 sx={{ m: 1, maxWidth: 300 }}
+                <TextField
+                  sx={{ m: 1, maxWidth: 300 }}
                   fullWidth
                   name="username"
                   label="Name"
@@ -134,17 +127,11 @@ export default function MyInformations({ name, data }) {
               </Grid>
 
               <Grid item xs={12} sm={6}>
-                <Typography
-                  style={{ marginTop: "20px" }}
-                  variant="body2"
-                  color="textSecondary"
-                >
+                <Typography style={{ marginTop: "20px" }} variant="body2" color="textSecondary">
                   ස්ත්‍රී/පුරුෂ
                 </Typography>
                 <FormControl sx={{ m: 1, minWidth: 120 }}>
-                  <InputLabel id="demo-simple-select-helper-label">
-                    ස්ත්‍රී/පුරුෂ
-                  </InputLabel>
+                  <InputLabel id="demo-simple-select-helper-label">ස්ත්‍රී/පුරුෂ</InputLabel>
                   <Select
                     labelId="demo-simple-select-helper-label"
                     id="demo-simple-select-helper"
@@ -158,9 +145,6 @@ export default function MyInformations({ name, data }) {
                   </Select>
                 </FormControl>
               </Grid>
-
-            
-             
             </Grid>
           </div>
         )}
@@ -169,17 +153,11 @@ export default function MyInformations({ name, data }) {
           <div>
             <Grid style={{ marginTop: "20px" }} container spacing={2}>
               <Grid item xs={12} sm={6}>
-                <Typography
-                  style={{ marginTop: "20px" }}
-                  variant="body2"
-                  color="textSecondary"
-                >
+                <Typography style={{ marginTop: "20px" }} variant="body2" color="textSecondary">
                   Select your District
                 </Typography>
                 <FormControl sx={{ m: 1, minWidth: 120 }}>
-                  <InputLabel id="demo-simple-select-helper-label">
-                    District
-                  </InputLabel>
+                  <InputLabel id="demo-simple-select-helper-label">District</InputLabel>
                   <Select
                     fullWidth
                     name="district"
@@ -219,19 +197,15 @@ export default function MyInformations({ name, data }) {
               </Grid>
 
               <Grid item xs={12} sm={6}>
-                <Typography
-                  style={{ marginTop: "20px" }}
-                  variant="body2"
-                  color="textSecondary"
-                >
+                <Typography style={{ marginTop: "20px" }} variant="body2" color="textSecondary">
                   උපන්දිනය
                 </Typography>
                 <LocalizationProvider dateAdapter={AdapterDayjs}>
                   <DatePicker
                     label="Select Date"
                     value={userData.birthday}
-                    onChange={(date) =>
-                      setUserData({ ...userData, birthday: dayjs(date) })
+                    onChange={(date) => setUserData({
+...userData, birthday: dayjs(date) })
                     }
                   />
                 </LocalizationProvider>

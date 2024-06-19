@@ -11,17 +11,20 @@ const Card = ({
   src,
   index,
   post,
-  description,
+  description = "Default description",
   imageReaction,
   animateState,
-  reactionCounts, // Updated prop to pass reaction counts
+  reactionCounts,
   coverSocialIcons,
 }) => {
   const router = useRouter();
   const [isModalOpen, setModalOpen] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
-  const handleClick = (postId) => {
-    router.push(`/post`);
+  const handleClick = async (postId) => {
+    setIsLoading(true);
+    await router.push(`/post`);
+    setIsLoading(false);
   };
 
   const handleShareClick = () => {
@@ -31,15 +34,36 @@ const Card = ({
   const handleCloseModal = () => {
     setModalOpen(false);
   };
-  const images = src.images?.map((image) => ({
-    original: image.imageUrl,
-  }));
+
   const shareUrl = `https://aluthporuwa-nakandara.vercel.app/post/${post.postId}`;
   const title = "Check out this post";
 
+  const images = src.images?.map((image) => ({
+    original: image.imageUrl,
+  }));
+
+  const formatDate = (dateString) => {
+    const options = {
+      day: "numeric",
+      hour: "2-digit",
+      minute: "2-digit",
+    };
+    return new Date(dateString).toLocaleDateString(undefined, options);
+  };
+
+  const getBadgeClass = (plane) => {
+    switch (plane) {
+      case "Gold":
+        return styles.goldBadge;
+      case "Silver":
+        return styles.silverBadge;
+      default:
+        return styles.defaultBadge;
+    }
+  };
+
   return (
-   
-   <div className={styles.card}>
+    <div className={styles.card}>
       <div onClick={() => handleClick(post.postId)} className={styles.imageContainer}>
         {images && images.length > 0 && (
           <ImageGallery
@@ -54,38 +78,28 @@ const Card = ({
       </div>
       <div className={styles.content}>
         <div className={styles.header}>
-          <div className={styles.badge}>TOP ADD</div>
+          <div onClick={() => handleClick(post.postId)} className={`${styles.badge} ${getBadgeClass(post.plane)}`}>
+            {post.plane} ADD
+          </div>
           <ShareIcon onClick={handleShareClick} className={styles.shareIcon} />
           <Modal isOpen={isModalOpen} onClose={handleCloseModal}>
             <h2>Share Options</h2>
             <FacebookShareButton url={shareUrl} quote={title}>
-              <FacebookIcon size={32} round={true} />
+              <FacebookIcon size={32} round />
             </FacebookShareButton>
-            <WhatsappShareButton url={shareUrl} quote={title}>
-              <WhatsappIcon size={32} round={true} />
+            <WhatsappShareButton url={shareUrl} title={title}>
+              <WhatsappIcon size={32} round />
             </WhatsappShareButton>
-            <p>Add your social sharing buttons here</p>
-            <button onClick={handleCloseModal}>Close</button>
           </Modal>
         </div>
-        <h3 onClick={() => handleClick(post.postId)} className={styles.title}>
-          LIVE CAM
-        </h3>
-        <div
-          onClick={() => handleClick(post.postId)}
-          className={styles.description}
-          dangerouslySetInnerHTML={{
-            __html: description.length > 100
-              ? `${description.substring(0, 160)}...`
-              : description,
-          }}
-        />
-        <div onClick={() => handleClick(post.postId)} className={styles.time}>
-          9 hours ago
+        <div onClick={() => handleClick(post.postId)}>
+          <p className={styles.title}>{post.title}</p>
+          <p className={styles.description}>{description}</p>
+          <p className={styles.date}>{formatDate(post.createdAt)}</p>
         </div>
+        <div className={styles.reactionContainer}></div>
       </div>
     </div>
-   
   );
 };
 

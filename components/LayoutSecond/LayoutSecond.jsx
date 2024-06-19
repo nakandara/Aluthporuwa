@@ -62,6 +62,8 @@ const LayoutSecond = ({ children }) => {
     settings.push("AdminPostReview");
   }
 
+  console.log(user?.name,'rrrrrrrrrrrrrrrr');
+
   return (
     <div>
       <AppBar
@@ -161,7 +163,7 @@ const LayoutSecond = ({ children }) => {
           </Box>
           <Tooltip title="Open settings">
             <IconButton onClick={handleOpenUserMenu}>
-              <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+            <Avatar alt={user?.name?.toUpperCase()} src="/static/images/avatar/2.jpg" />
             </IconButton>
           </Tooltip>
         </Toolbar>

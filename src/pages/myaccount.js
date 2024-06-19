@@ -37,6 +37,12 @@ const MyAccount = () => {
 
   const fileInputRef = useRef(null);
 
+  const formatDate = (dateString) => {
+    if (!dateString) return "";
+    const date = new Date(dateString);
+    return date.toLocaleDateString();
+  };
+
   const fetchProfile = async () => {
     try {
       const response = await axios.get(`${GetProfileUrl}/${user.userId}`);
@@ -190,7 +196,7 @@ const MyAccount = () => {
               </Box>
               <Box gridColumn={{ xs: "1", md: "span 8", marginTop: "50px" }}>
                 <Item>
-                  <Typography>My Information Step 01</Typography>
+                  
                   <MyInformations name={user.name} data={data} />
                 </Item>
               </Box>
@@ -221,9 +227,7 @@ const MyAccount = () => {
                         </TableCell>
 
                         <TableCell>
-                          {infoData && infoData.birthday
-                            ? infoData.birthday
-                            : ""}
+                        {infoData && infoData.birthday ? formatDate(infoData.birthday) : ""}
                         </TableCell>
                       </TableRow>
                       <TableRow>
@@ -242,24 +246,6 @@ const MyAccount = () => {
                           {infoData && infoData.religion
                             ? infoData.religion
                             : ""}
-                        </TableCell>
-                      </TableRow>
-                      <TableRow>
-                        <TableCell>
-                          <Typography variant="subtitle2">Race</Typography>
-                        </TableCell>
-
-                        <TableCell>
-                          {infoData && infoData.race ? infoData.race : ""}
-                        </TableCell>
-                      </TableRow>
-                      <TableRow>
-                        <TableCell>
-                          <Typography variant="subtitle2">Caste</Typography>
-                        </TableCell>
-
-                        <TableCell>
-                          {infoData && infoData.caste ? infoData.caste : ""}
                         </TableCell>
                       </TableRow>
                       <TableRow>

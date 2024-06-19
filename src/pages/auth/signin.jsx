@@ -7,6 +7,7 @@ import { environments } from "../../../components/environment/environments";
 import Link from "next/link";
 import IconButton from '@mui/material/IconButton';
 import HomeIcon from '@mui/icons-material/Home';
+import CircularProgress from '@mui/material/CircularProgress';
 
 const Signin = () => {
   const { token, setToken, setUser, user } = useToken();
@@ -16,80 +17,8 @@ const Signin = () => {
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
 
-  const handleOAuthSignIn = (name) => () => signIn(name);
-  
-  const google = () => {
-    window.open(`/auth/google`);
-  };
-
-  const responseFacebook = async (response) => {
-    console.log(response);
-    const formData = {
-      name: response.name,
-      email: response.email,
-      password: response.accessToken,
-      method: "FACEBOOK",
-    };
-
-    const chatData = {
- 
-
-      username: response.name,
-      email: response.email,
-      password: response.accessToken,
-    };
-
-
-    
-
-    try {
-      const responsePost = await axios.post(
-        "http://localhost:8080/api/createUser",
-        formData
-      );
-
-    const chatResponse = await axios.post(
-        "https://socketio-api.vercel.app/api/auth/register",
-        chatData
-      );
-
-      console.log(chatResponse,'ffffffffffffffff');
-      if (responsePost) {
-        setLoading(true);
-
-        if (responsePost.data.newUser) {
-          localStorage.setItem("accessToken", responsePost.data.token);
-          localStorage.setItem(
-            "user",
-            JSON.stringify(responsePost.data.newUser)
-          );
-          router.push("/home");
-          
-        } else {
-          localStorage.setItem("accessToken", responsePost.data.token);
-          localStorage.setItem(
-            "user",
-            JSON.stringify(responsePost.data.existingUser)
-          );
-          router.push("/home");
-        }
-      } else {
-        console.error("Registration failed: User ID not found in the response");
-        Swal.fire({
-          icon: "error",
-          title: "Oops...",
-          text: "Invalid",
-        });
-      }
-    } catch (error) {
-      console.error(
-        "Registration failed:",
-        error.response ? error.response.data : error.message
-      );
-    }
-  };
-
   const normalLogin = async () => {
+    setLoading(true); // Start loading
     try {
       const response = await axios.post(
         `${environments.BASE_HOST_URL}/api/login`,
@@ -102,7 +31,6 @@ const Signin = () => {
       console.log(response);
 
       if (response.data && response.data.token && response.data.user) {
-        setLoading(true);
         const accessToken = response.data.token;
         const user = response.data.user;
         console.log(user);
@@ -110,11 +38,11 @@ const Signin = () => {
         localStorage.setItem("accessToken", accessToken);
         localStorage.setItem("user", JSON.stringify(user));
         
-
         setToken(accessToken);
         setUser(user);
 
         router.push("/post");
+
         const response2 = await axios.post(
           `https://socketio-api.vercel.app/api/auth/login`,
           {
@@ -128,10 +56,10 @@ const Signin = () => {
 
         const socketUser = response2.data;
 
-        console.log(socketUser,'3333333');
+        console.log(socketUser, '3333333');
         localStorage.setItem("userone", JSON.stringify(socketUser));
         const getsocketUser = localStorage.getItem("userone");
-        console.log(getsocketUser,'wwwwwwwwwwwwwwww');
+        console.log(getsocketUser, 'wwwwwwwwwwwwwwww');
         
       } else {
         Swal.fire({
@@ -148,6 +76,8 @@ const Signin = () => {
         title: "Oops...",
         text: "Invalid credentials",
       });
+    } finally {
+      setLoading(false); // Stop loading
     }
   };
 
@@ -176,7 +106,7 @@ const Signin = () => {
       </div>
       <div className="sign-in-sign-up-container">
         <h2>Sign In</h2>
-        <form onSubmit={normalLogin}>
+        <form onSubmit={(e) => { e.preventDefault(); normalLogin(); }}>
           <input
             name="username"
             type="text"
@@ -199,17 +129,18 @@ const Signin = () => {
             onChange={(e) => setPassword(e.target.value)}
           />
           <div className="buttons">
-            <button type="button" onClick={normalLogin} className="sign-in-btn">
-              Log In
+            <button type="button" onClick={normalLogin} className="sign-in-btn" disabled={loading}>
+              {loading ? <CircularProgress size={24} /> : "Log In"}
             </button>
             <button
               type="button"
               onClick={RegisterUser}
               className="sign-up-btn"
+              disabled={loading}
             >
               Sign Up
             </button>
-            <button type="button" className="google-login-btn">
+            <button type="button" className="google-login-btn" disabled={loading}>
               Google Login
             </button>
           </div>
