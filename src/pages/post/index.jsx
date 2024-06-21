@@ -17,6 +17,7 @@ import IconButton from '@mui/material/IconButton';
 import FilterListIcon from '@mui/icons-material/FilterList';
 import Modal from '@mui/material/Modal';
 import CircularProgress from '@mui/material/CircularProgress';
+import TextField from "@mui/material/TextField"; // Import TextField for search bar
 
 const url = `${environments.BASE_HOST_URL}/api/increment`;
 
@@ -79,6 +80,7 @@ const Post = () => {
     )
   );
   const [drawerOpen, setDrawerOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState(""); // State for search query
 
   useEffect(() => {
     const fetchPosts = async () => {
@@ -120,15 +122,21 @@ const Post = () => {
 
   const handleCategorySelect = (categories) => {
     setSelectedCategories(categories);
-    filterPosts(categories, selectedCities);
+    filterPosts(categories, selectedCities, searchQuery);
   };
 
   const handleCitySelect = (cities) => {
     setSelectedCities(cities);
-    filterPosts(selectedCategories, cities);
+    filterPosts(selectedCategories, cities, searchQuery);
   };
 
-  const filterPosts = (categories, cities) => {
+  const handleSearchChange = (event) => {
+    const query = event.target.value;
+    setSearchQuery(query);
+    filterPosts(selectedCategories, selectedCities, query);
+  };
+
+  const filterPosts = (categories, cities, query) => {
     let filtered = data;
 
     if (categories.length > 0) {
@@ -141,6 +149,12 @@ const Post = () => {
 
     if (cities.length > 0) {
       filtered = filtered.filter((post) => cities.includes(post.city));
+    }
+
+    if (query) {
+      filtered = filtered.filter((post) =>
+        post.title.toLowerCase().includes(query.toLowerCase())
+      );
     }
 
     setFilteredData(filtered);
@@ -207,8 +221,18 @@ const Post = () => {
       <div className="postBaseContainer">
         <div className="app-bar-new">
           <div className="drop_down_filter">
+          <TextField
+              label="Search by title"
+              variant="outlined"
+              fullWidth
+              value={searchQuery}
+              onChange={handleSearchChange}
+              style={{ marginBottom: "30px",marginTop:"6px" }}
+            />
             <IconButton onClick={toggleDrawer(true)} style={{ float: "right" }}>
-              Filter <FilterListIcon />
+           
+               <FilterListIcon />
+              
             </IconButton>
             <Drawer anchor="right" open={drawerOpen} onClose={toggleDrawer(false)}>
               <Box
@@ -263,6 +287,8 @@ const Post = () => {
           </div>
 
           <div>
+      
+
             {loading ? (
               <Modal
                 open={loading}

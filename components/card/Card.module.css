@@ -63,14 +63,14 @@
 
 .title {
   margin: 0;
-  font-size: 14px;
+  font-size: 10px;
   color: #f4f1f1;
 }
 
 .description {
-  margin: 3px 0 0;
+  margin: 0px 0 0;
   color: #f8f8f8;
-  font-size: smaller;
+  font-size: 10px;
   margin-bottom: 20px;
   width: 200px;
 }
@@ -118,7 +118,7 @@
   .description {
     margin: 3px 0 0;
     color: #fdf6f6;
-    font-size: xx-small;
+    font-size:1px;
     margin-bottom: 20px;
     width: 160px;
   }
@@ -148,7 +148,7 @@
   .description {
     margin: 3px 0 0;
     color: #f8f5f5;
-    font-size: xx-small;
+    font-size: 10px;
     margin-bottom: 20px;
     width: 130px;
   }

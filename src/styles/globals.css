@@ -1185,8 +1185,9 @@ width: 95%;
 .drop_down_filter{
   
   justify-content:flex-end;
-  height: 55px;
- 
+  height: 68px;
+
+margin: 10px;
 }
 .quill-editor {
   height: 30vh;

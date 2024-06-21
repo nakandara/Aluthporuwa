@@ -62,6 +62,14 @@ const Card = ({
     }
   };
 
+  const truncateDescription = (text, wordLimit) => {
+    const words = text.split(" ");
+    if (words.length > wordLimit) {
+      return `${words.slice(0, wordLimit).join(" ")}...`;
+    }
+    return text;
+  };
+
   return (
     <div className={styles.card}>
       <div onClick={() => handleClick(post.postId)} className={styles.imageContainer}>
@@ -95,15 +103,13 @@ const Card = ({
           </Modal>
         </div>
         <h3 onClick={() => handleClick(post.postId)} className={styles.title}>
-         {post.category}
+          {post.category}
         </h3>
         <div
           onClick={() => handleClick(post.postId)}
           className={styles.description}
           dangerouslySetInnerHTML={{
-            __html: description.length > 50
-              ? `${description.substring(0, 110)}...`
-              : description,
+            __html: truncateDescription(description, 10), // Truncate description to 50 words
           }}
         />
         <div onClick={() => handleClick(post.postId)} className={styles.time}>
