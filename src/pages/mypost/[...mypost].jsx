@@ -3,6 +3,10 @@ import LayoutSecond from "../../../components/LayoutSecond/LayoutSecond";
 import axios from "axios";
 import { environments } from "../../../components/environment/environments";
 import Typography from "@mui/material/Typography";
+import ContentCopyIcon from "@mui/icons-material/ContentCopy";
+import CardMedia from "@mui/material/CardMedia";
+import IconButton from "@mui/material/CardMedia";
+import Tooltip from "@mui/material/CardMedia";
 import MobileProtectedRoute from "../../../components/protect/mobileProtectRoute";
 import { styled } from "@mui/material/styles";
 import Box from "@mui/material/Box";
@@ -39,9 +43,16 @@ const MyPost = ({ postIdData }) => {
     doc.text(`Title: Payment per Invoice '}`, 10, y);
     doc.text(`invoice post ID: ${postDetails.postId || "N/A"}`, 10, y + 10);
     doc.text(`Mobile Number: ${postDetails.mobileNumber || "N/A"}`, 10, y + 20);
+    doc.text(`Mobile Number: ${postDetails.plane || "N/A"}`, 10, y + 20);
 
     // Save the PDF
     doc.save("payment_invoice.pdf");
+  };
+
+  const handleCopy = (text) => {
+    navigator.clipboard.writeText(text).then(() => {
+      console.log(`${text} copied to clipboard`);
+    });
   };
   return (
     <LayoutSecond>
@@ -67,8 +78,9 @@ const MyPost = ({ postIdData }) => {
             md={8}
             sx={{ color: "black", margin: "10px" }}
           >
-            ස්තුතියි ඔබගේ දැන්වීම අපට සාර්ථකව ලැබී ඇත. ඔබගේ දැන්වීම LIVE
-            කිරීමට කරුණාකර අදාල මුදල ගෙවා රිසිට් පත සහ පහත ඇති payment invoice එක  downlod  කර එය සමග watsapp  කරන්න.
+            ස්තුතියි ඔබගේ දැන්වීම අපට සාර්ථකව ලැබී ඇත. ඔබගේ දැන්වීම LIVE කිරීමට
+            කරුණාකර අදාල මුදල ගෙවා රිසිට් පත සහ පහත ඇති payment invoice එක
+            downlod කර එය සමග watsapp කරන්න.
           </Grid>
           <Grid
             className="paymentAproveCadSecond"
@@ -161,31 +173,78 @@ const MyPost = ({ postIdData }) => {
                 fontWeight: "500",
               }}
             >
-              Remarks සදහා ඔබගේ දැන්වීමට අදාළ දුරකථන අංකය පමණක් යොදන්න.<br/>
-              For remarks, please provide only the phone number related to your advertisement.
+              Remarks සදහා ඔබගේ දැන්වීමට අදාළ දුරකථන අංකය පමණක් යොදන්න.
+              <br />
+              For remarks, please provide only the phone number related to your
+              advertisement.
             </Typography>
           </Grid>
           <Grid
             className="paymentAproveCadFive"
             sx={{
-              color: "black",
               margin: "10px",
               padding: "10px",
               borderRadius: "8px",
               boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
               backgroundColor: "white",
-              display: "flex",
-              alignItems: "center",
+              color: "black",
+              display: "grid",
+              flexDirection: { xs: "column", sm: "row" },
+              alignItems: { xs: "center", sm: "flex-start" },
+              gap: "10px",
             }}
             item
             xs={12}
             sm={6}
             md={8}
           >
-            <img
-              className="cardPayment"
-              src={`/media/payment.png`}
-              alt={`Image`}
+            <Box sx={{ display: "flex", flexDirection: "column", flexGrow: 1 }}>
+              <Box sx={{ display: "flex", alignItems: "center" }}>
+                <Typography
+                  variant="h6"
+                  component="div"
+                  sx={{ fontWeight: "bold" }}
+                >
+                  Account Num: 8022368054
+                </Typography>
+                <Tooltip title="Copy">
+                  <IconButton
+                    onClick={() => handleCopy("8022368054")}
+                    sx={{ ml: 1 }}
+                  >
+                    <ContentCopyIcon />
+                  </IconButton>
+                </Tooltip>
+              </Box>
+              <Box sx={{ display: "flex", alignItems: "center" }}>
+                <Typography variant="body1" component="div">
+                  W.G Pramod Niroshan Nakandara
+                </Typography>
+                <Tooltip title="Copy">
+                  <IconButton
+                    onClick={() => handleCopy("W.G Pramod Niroshan Nakandara")}
+                    sx={{ ml: 1 }}
+                  >
+                    <ContentCopyIcon />
+                  </IconButton>
+                </Tooltip>
+              </Box>
+              <Typography variant="body1" component="div">
+                BOC
+              </Typography>
+              <Typography variant="body1" component="div">
+                Ibbagamuwa
+              </Typography>
+            </Box>
+            <CardMedia
+              component="img"
+              sx={{
+                width: { xs: "100%", sm: "auto" },
+                height: "100px",
+                objectFit: "contain",
+              }}
+              image="/media/payment.png"
+              alt="Payment Image"
             />
           </Grid>
           <Grid

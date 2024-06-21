@@ -6,6 +6,7 @@ import axios from "axios";
 import { useToken } from "../../context/TokenContext";
 import { useRouter } from "next/router";
 import dynamic from "next/dynamic";
+import imageCompression from "browser-image-compression";
 import {
   Box,
   Button,
@@ -71,11 +72,11 @@ const Index = () => {
     }));
   };
 
-  const handleFileChange = (e) => {
+  const handleFileChange = async (e) => {
     const files = Array.from(e.target.files);
     const totalImages = formData.images.length + files.length;
 
-    if (totalImages > 2) {
+    if (totalImages > 4) {
       Swal.fire({
         icon: "warning",
         title: "Image Upload Limit",
@@ -84,9 +85,26 @@ const Index = () => {
       return;
     }
 
+    const compressedImages = await Promise.all(
+      files.map(async (file) => {
+        const options = {
+          maxSizeMB: 2,
+          maxWidthOrHeight: 1024,
+          useWebWorker: true,
+        };
+        try {
+          const compressedFile = await imageCompression(file, options);
+          return compressedFile;
+        } catch (error) {
+          console.error("Error compressing file:", error);
+          return file;
+        }
+      })
+    );
+
     setFormData((prevFormData) => ({
       ...prevFormData,
-      images: [...prevFormData.images, ...files],
+      images: [...prevFormData.images, ...compressedImages],
     }));
   };
 
@@ -111,6 +129,7 @@ const Index = () => {
       console.log(response.data.post.postId);
       console.log(JSON.stringify(response, null, 2), "44444444");
       if (response.data) {
+        router.push(`/mypost/${response.data.post.postId}`);
         Swal.fire({
           position: "center",
           icon: "success",
@@ -119,7 +138,7 @@ const Index = () => {
           showConfirmButton: false,
           timer: 1500,
         });
-        router.push(`/mypost/${response.data.post.postId}`);
+       
       } else {
         Swal.fire({
           icon: "error",
@@ -137,8 +156,20 @@ const Index = () => {
     <LayoutSecond>
       <MobileProtectedRoute>
         <Box sx={{ maxWidth: 800, mx: "auto", p: 2 }}>
-          <Typography variant="h4" component="h1" gutterBottom>
-            Create Your Ad
+          <Typography
+            variant="h4"
+            component="h1"
+            gutterBottom
+            sx={{
+              fontSize: { xs: "24px", sm: "28px", md: "32px" },
+              textAlign: "center",
+              fontWeight: "bold",
+              marginBottom: "20px",
+              color:"black",
+              marginTop:"80px"
+            }}
+          >
+            Create Your Add / ඔබේ වෙළඳ දැන්වීම සාදන්න
           </Typography>
           <form onSubmit={handleSubmit} encType="multipart/form-data">
             <TextField
@@ -178,6 +209,7 @@ const Index = () => {
               >
                 <MenuItem value="Spa">Spa</MenuItem>
                 <MenuItem value="Full Service">Full Service</MenuItem>
+                \  <MenuItem value="Full Service">Vehicles</MenuItem>
                 <MenuItem value="Video call">Video call</MenuItem>
                 <MenuItem value="Couple service">Couple service</MenuItem>
                 <MenuItem value="jobs">Jobs</MenuItem>

@@ -95,7 +95,7 @@ const Card = ({
           </Modal>
         </div>
         <h3 onClick={() => handleClick(post.postId)} className={styles.title}>
-          LIVE CAM
+         {post.category}
         </h3>
         <div
           onClick={() => handleClick(post.postId)}
