@@ -53,17 +53,19 @@ const Index = () => {
     }));
   };
 
-  const { plan } = router.query;
+  const { selectedPlan, vehicle, location, subLocation } = router.query;
+
+  console.log(router.query, "router.query");
 
   useEffect(() => {
-    if (plan) {
+    if (selectedPlan) {
       setFormData((prevFormData) => ({
         ...prevFormData,
-        plane: plan,
+        plane: selectedPlan,
       }));
-      console.log(`Selected Plan: ${plan}`);
+      console.log(`Selected Plan: ${selectedPlan}`);
     }
-  }, [plan]);
+  }, [selectedPlan]);
 
   const handleDescriptionChange = (value) => {
     setFormData((prevFormData) => ({
@@ -115,7 +117,9 @@ const Index = () => {
       for (const key in formData) {
         if (formData.hasOwnProperty(key)) {
           if (key === "images") {
-            formData[key].forEach((file) => postData.append("image", file));
+            formData[key].forEach((file) =>
+              postData.append("image", file)
+            );
           } else {
             postData.append(key, formData[key]);
           }
@@ -138,7 +142,6 @@ const Index = () => {
           showConfirmButton: false,
           timer: 1500,
         });
-       
       } else {
         Swal.fire({
           icon: "error",
@@ -154,176 +157,195 @@ const Index = () => {
 
   return (
     <LayoutSecond>
-      <MobileProtectedRoute>
-        <Box sx={{ maxWidth: 800, mx: "auto", p: 2 }}>
-          <Typography
-            variant="h4"
-            component="h1"
-            gutterBottom
-            sx={{
-              fontSize: { xs: "24px", sm: "28px", md: "32px" },
-              textAlign: "center",
-              fontWeight: "bold",
-              marginBottom: "20px",
-              color:"black",
-              marginTop:"80px"
-            }}
-          >
-            Create Your Add / ඔබේ වෙළඳ දැන්වීම සාදන්න
-          </Typography>
-          <form onSubmit={handleSubmit} encType="multipart/form-data">
-            <TextField
-              fullWidth
-              margin="normal"
-              label="Plane"
-              name="plane"
-              value={formData.plane}
-              onChange={handleChange}
-              variant="outlined"
-              disabled
-            />
-            <TextField
-              fullWidth
-              margin="normal"
-              label="Title"
-              name="title"
-              value={formData.title}
-              onChange={handleChange}
-              variant="outlined"
-            />
-            <Box sx={{ color: "black" }} marginBottom={10}>
-              <ReactQuill
-                value={formData.description}
-                onChange={handleDescriptionChange}
-                theme="snow"
-                className="quill-editor"
+      <Box sx={{ maxWidth: 800, mx: "auto", p: 2 }}>
+        <Grid container direction="column" spacing={2}>
+          <Grid item xs={12}>
+            <Typography
+              variant="h4"
+              component="h1"
+              gutterBottom
+              sx={{
+                fontSize: { xs: "24px", sm: "28px", md: "32px" },
+                textAlign: "center",
+                fontWeight: "bold",
+               
+                color: "black",
+                marginTop: "80px",
+              }}
+            >
+              Create Your Add / ඔබේ වෙළඳ දැන්වීම සාදන්න
+            </Typography>
+          </Grid>
+          <Grid     sx={{
+                fontSize: { xs: "14px", sm: "18px", md: "22px" },
+                color: "black",
+                textAlign: "right",
+              }} item xs={12}>
+            <Typography
+              variant="h4"
+              component="h4"
+              gutterBottom
+          
+            >
+            <img style={{width:"30px",height:"30px"}}  src="/media/placeholder_117967.png" alt="Silver Icon" className="card-icon" />  location
+            </Typography>
+          </Grid>
+          <Grid item xs={12}>
+            <form onSubmit={handleSubmit} encType="multipart/form-data">
+              <TextField
+                fullWidth
+                margin="normal"
+                label="Plane"
+                name="plane"
+                value={formData.plane}
+                onChange={handleChange}
+                variant="outlined"
+                disabled
               />
-            </Box>
-            <FormControl fullWidth margin="normal" variant="outlined">
-              <InputLabel>Category</InputLabel>
-              <Select
-                name="category"
-                value={formData.category}
+              <TextField
+                fullWidth
+                margin="normal"
+                label="Title"
+                name="title"
+                value={formData.title}
                 onChange={handleChange}
-                label="Category"
-              >
-                <MenuItem value="Spa">Spa</MenuItem>
-                <MenuItem value="Full Service">Full Service</MenuItem>
-                \  <MenuItem value="Full Service">Vehicles</MenuItem>
-                <MenuItem value="Video call">Video call</MenuItem>
-                <MenuItem value="Couple service">Couple service</MenuItem>
-                <MenuItem value="jobs">Jobs</MenuItem>
-                <MenuItem value="Others">Others</MenuItem>
-              </Select>
-            </FormControl>
-            <TextField
-              fullWidth
-              margin="normal"
-              label="Mobile Number"
-              name="mobileNumber"
-              type="tel"
-              value={formData.mobileNumber}
-              onChange={handleChange}
-              variant="outlined"
-            />
-            <TextField
-              fullWidth
-              margin="normal"
-              label="WhatsApp Number"
-              name="whatsappNumber"
-              type="tel"
-              value={formData.whatsappNumber}
-              onChange={handleChange}
-              variant="outlined"
-            />
-            <FormControl fullWidth margin="normal" variant="outlined">
-              <InputLabel>City</InputLabel>
-              <Select
-                name="city"
-                multiple
-                value={formData.city}
+                variant="outlined"
+              />
+              <Box sx={{ color: "black" }} marginBottom={10}>
+                <ReactQuill
+                  value={formData.description}
+                  onChange={handleDescriptionChange}
+                  theme="snow"
+                  className="quill-editor"
+                />
+              </Box>
+              <FormControl fullWidth margin="normal" variant="outlined">
+                <InputLabel>Category</InputLabel>
+                <Select
+                  name="category"
+                  value={formData.category}
+                  onChange={handleChange}
+                  label="Category"
+                >
+                  <MenuItem value="Spa">Spa</MenuItem>
+                  <MenuItem value="Full Service">Full Service</MenuItem>
+                  <MenuItem value="Vehicles">Vehicles</MenuItem>
+                  <MenuItem value="Video call">Video call</MenuItem>
+                  <MenuItem value="Couple service">Couple service</MenuItem>
+                  <MenuItem value="jobs">Jobs</MenuItem>
+                  <MenuItem value="Others">Others</MenuItem>
+                </Select>
+              </FormControl>
+              <TextField
+                fullWidth
+                margin="normal"
+                label="Mobile Number"
+                name="mobileNumber"
+                type="tel"
+                value={formData.mobileNumber}
                 onChange={handleChange}
-                label="City"
+                variant="outlined"
+              />
+              <TextField
+                fullWidth
+                margin="normal"
+                label="WhatsApp Number"
+                name="whatsappNumber"
+                type="tel"
+                value={formData.whatsappNumber}
+                onChange={handleChange}
+                variant="outlined"
+              />
+              <FormControl fullWidth margin="normal" variant="outlined">
+                <InputLabel>City</InputLabel>
+                <Select
+                  name="city"
+                  multiple
+                  value={formData.city}
+                  onChange={handleChange}
+                  label="City"
+                >
+                  <MenuItem value="Colamba">Colombo</MenuItem>
+                  <MenuItem value="Gampaha">Gampaha</MenuItem>
+                  <MenuItem value="Kalutara">Kalutara</MenuItem>
+                  <MenuItem value="Maha Nuvara">Maha Nuvara</MenuItem>
+                  <MenuItem value="Matale">Matale</MenuItem>
+                  <MenuItem value="Nuwara Eliya">Nuwara Eliya</MenuItem>
+                  <MenuItem value="Galle">Galle</MenuItem>
+                  <MenuItem value="Matara">Matara</MenuItem>
+                  <MenuItem value="Hambantota">Hambantota</MenuItem>
+                  <MenuItem value="Yapanaya">Yapanaya</MenuItem>
+                  <MenuItem value="Kilinochchi">Kilinochchi</MenuItem>
+                  <MenuItem value="Mannaram">Mannaram</MenuItem>
+                  <MenuItem value="Vavuniya">Vavuniya</MenuItem>
+                  <MenuItem value="Mullaitivu">Mullaitivu</MenuItem>
+                  <MenuItem value="Maddakalapuwa">Maddakalapuwa</MenuItem>
+                  <MenuItem value="Ampara">Ampara</MenuItem>
+                  <MenuItem value="Trincomalee">Trincomalee</MenuItem>
+                  <MenuItem value="Kurunegala">Kurunegala</MenuItem>
+                  <MenuItem value="Puttalama">Puttalama</MenuItem>
+                  <MenuItem value="Anuradhapura">Anuradhapura</MenuItem>
+                  <MenuItem value="Polonnaruwa">Polonnaruwa</MenuItem>
+                  <MenuItem value="Badulla">Badulla</MenuItem>
+                  <MenuItem value="Monaragala">Monaragala</MenuItem>
+                  <MenuItem value="Ratnapura">Ratnapura</MenuItem>
+                  <MenuItem value="Kegalle">Kegalle</MenuItem>
+                </Select>
+              </FormControl>
+              <TextField
+                fullWidth
+                margin="normal"
+                label="Price"
+                name="price"
+                type="number"
+                value={formData.price}
+                onChange={handleChange}
+                variant="outlined"
+              />
+              <Button
+                variant="contained"
+                component="label"
+                fullWidth
+                sx={{ mb: 2 }}
               >
-                <MenuItem value="Colamba">Colombo</MenuItem>
-                <MenuItem value="Gampaha">Gampaha</MenuItem>
-                <MenuItem value="Kalutara">Kalutara</MenuItem>
-                <MenuItem value="Maha Nuvara">Maha Nuvara</MenuItem>
-                <MenuItem value="Matale">Matale</MenuItem>
-                <MenuItem value="Nuwara Eliya">Nuwara Eliya</MenuItem>
-                <MenuItem value="Galle">Galle</MenuItem>
-                <MenuItem value="Matara">Matara</MenuItem>
-                <MenuItem value="Hambantota">Hambantota</MenuItem>
-                <MenuItem value="Yapanaya">Yapanaya</MenuItem>
-                <MenuItem value="Kilinochchi">Kilinochchi</MenuItem>
-                <MenuItem value="Mannaram">Mannaram</MenuItem>
-                <MenuItem value="Vavuniya">Vavuniya</MenuItem>
-                <MenuItem value="Mullaitivu">Mullaitivu</MenuItem>
-                <MenuItem value="Maddakalapuwa">Maddakalapuwa</MenuItem>
-                <MenuItem value="Ampara">Ampara</MenuItem>
-                <MenuItem value="Trincomalee">Trincomalee</MenuItem>
-                <MenuItem value="Kurunegala">Kurunegala</MenuItem>
-                <MenuItem value="Puttalama">Puttalama</MenuItem>
-                <MenuItem value="Anuradhapura">Anuradhapura</MenuItem>
-                <MenuItem value="Polonnaruwa">Polonnaruwa</MenuItem>
-                <MenuItem value="Badulla">Badulla</MenuItem>
-                <MenuItem value="Monaragala">Monaragala</MenuItem>
-                <MenuItem value="Ratnapura">Ratnapura</MenuItem>
-                <MenuItem value="Kegalle">Kegalle</MenuItem>
-              </Select>
-            </FormControl>
-            <TextField
-              fullWidth
-              margin="normal"
-              label="Price"
-              name="price"
-              type="number"
-              value={formData.price}
-              onChange={handleChange}
-              variant="outlined"
+                Upload Images
+                <input type="file" hidden multiple onChange={handleFileChange} />
+              </Button>
+              <Grid container spacing={2}>
+                {formData.images.map((file, index) => (
+                  <Grid item xs={6} sm={4} key={index}>
+                    <Card>
+                      <CardMedia
+                        component="img"
+                        height="140"
+                        image={URL.createObjectURL(file)}
+                        alt={`Selected Image ${index}`}
+                      />
+                    </Card>
+                  </Grid>
+                ))}
+              </Grid>
+              <Button
+                type="submit"
+                variant="contained"
+                color="primary"
+                fullWidth
+                sx={{ mt: 3 }}
+              >
+                Proceed to Payment
+              </Button>
+            </form>
+            <img
+              className="cardPayment"
+              src={`/media/payment.png`}
+              alt={`Image`}
             />
-            <Button
-              variant="contained"
-              component="label"
-              fullWidth
-              sx={{ mb: 2 }}
-            >
-              Upload Images
-              <input type="file" hidden multiple onChange={handleFileChange} />
-            </Button>
-            <Grid container spacing={2}>
-              {formData.images.map((file, index) => (
-                <Grid item xs={6} sm={4} key={index}>
-                  <Card>
-                    <CardMedia
-                      component="img"
-                      height="140"
-                      image={URL.createObjectURL(file)}
-                      alt={`Selected Image ${index}`}
-                    />
-                  </Card>
-                </Grid>
-              ))}
-            </Grid>
-            <Button
-              type="submit"
-              variant="contained"
-              color="primary"
-              fullWidth
-              sx={{ mt: 3 }}
-            >
-              Proceed to Payment
-            </Button>
-          </form>
-          <img
-            className="cardPayment"
-            src={`/media/payment.png`}
-            alt={`Image`}
-          />
-        </Box>
-      </MobileProtectedRoute>
+          </Grid>
+        </Grid>
+      </Box>
     </LayoutSecond>
   );
 };
 
 export default Index;
+

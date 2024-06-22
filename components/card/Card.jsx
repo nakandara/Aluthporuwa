@@ -107,9 +107,9 @@ const Card = ({
         </h3>
         <div
           onClick={() => handleClick(post.postId)}
-          className={styles.description}
+          
           dangerouslySetInnerHTML={{
-            __html: truncateDescription(description, 10), // Truncate description to 50 words
+            __html: truncateDescription(description, 8), // Truncate description to 50 words
           }}
         />
         <div onClick={() => handleClick(post.postId)} className={styles.time}>

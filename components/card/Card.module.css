@@ -47,7 +47,7 @@
 
 .image {
   display: block;
-  width: 100%;
+  width: 120%;
   height: 100%;
   object-fit: cover;
 }
@@ -70,13 +70,13 @@
 .description {
   margin: 0px 0 0;
   color: #f8f8f8;
-  font-size: 10px;
+  font-size: 2px;
   margin-bottom: 20px;
   width: 200px;
 }
 
 .time {
-  font-size: 8px;
+  font-size: 2px;
   color: #fcf7f7;
   position: absolute;
   bottom: 10px;
@@ -99,8 +99,8 @@
   }
 
   .imageContainer {
-    width: 120px;
-    height: 150px;
+    width: 170px;
+    height: 190px;
   }
 
   .shareIcon {
@@ -130,8 +130,8 @@
   }
 
   .imageContainer {
-    width: 120px;
-    height: 150px;
+    width: 140px;
+    height: 160px;
   }
 
   .shareIcon {
@@ -159,3 +159,5 @@
   flex-wrap: wrap;
   justify-content: center;
 }
+
+
