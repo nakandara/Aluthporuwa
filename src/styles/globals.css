@@ -2198,10 +2198,10 @@ input {
 
 .lightning-border {
   position: relative;
-  border: 3px solid;
+
   padding: 10px;
-  border-radius: 500px;
-  animation: lightningAnimation 2s linear infinite;
+
+  
 }
 
 .lightning-border:hover {

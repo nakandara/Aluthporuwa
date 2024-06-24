@@ -20,6 +20,7 @@ import YourPost from "../Your-post/YourPost";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import Avatar from "@mui/material/Avatar";
+import Image from 'next/image'; // Import Image from next/image if using Next.js
 
 const drawerWidth = 240;
 const navItems = ["Home", "About", "Contact", "Post", "MyAccount", "MyAdd"];
@@ -69,7 +70,7 @@ const LayoutSecond = ({ children }) => {
       <AppBar
         component="nav"
         sx={{
-          backgroundColor: "#333", // Dark background color
+          backgroundColor: "#022c17", // Dark background color
           color: "#fff", // White text color
         }}
       >
@@ -83,18 +84,70 @@ const LayoutSecond = ({ children }) => {
           >
             <MenuIcon />
           </IconButton>
-          <Typography
-            variant="h6"
-            component="div"
-            onClick={handleClick}
-            sx={{
-              flexGrow: 1,
-              display: { xs: "none", sm: "block" },
-              cursor: "pointer",
-            }}
-          >
-            QuickAds Hub
-          </Typography>
+          {/* Replace Typography with Image */}
+          <Box
+  component="div"
+  onClick={handleClick}
+  sx={{
+    flexGrow: 1,
+    display: { xs: "none", sm: "block" },
+    cursor: "pointer",
+   
+    alignItems: 'center', // Vertically align images
+    gap: 0.5 // Adjusts the gap between images
+  }}
+>
+  <Image 
+    src="/media/letter-q_7548487.png" 
+    alt="QuickAds Hub"
+    width={25} // Adjust width as necessary
+    height={25} // Adjust height as necessary
+  />
+  <Image 
+    src="/media/letter-u_9511521.png" 
+    alt="QuickAds Hub"
+    width={15} // Adjust width as necessary
+    height={15} // Adjust height as necessary
+  />
+    <Image 
+    src="/media/letter-i_9511556.png" 
+    alt="QuickAds Hub"
+    width={15} // Adjust width as necessary
+    height={15} // Adjust height as necessary
+  />
+    <Image 
+    src="/media/letter-c_9511541.png" 
+    alt="QuickAds Hub"
+    width={15} // Adjust width as necessary
+    height={15} // Adjust height as necessary
+  />
+    <Image 
+    src="/media/letter-k_9511489.png" 
+    alt="QuickAds Hub"
+    width={15} // Adjust width as necessary
+    height={15} // Adjust height as necessary
+  />
+   <Image 
+    src="/media/letter-a_9511496.png" 
+    alt="QuickAds Hub"
+    width={15} // Adjust width as necessary
+    height={15} // Adjust height as necessary
+  />
+   <Image 
+    src="/media/letter-d_9511555.png" 
+    alt="QuickAds Hub"
+    width={15} // Adjust width as necessary
+    height={15} // Adjust height as necessary
+  />
+   <Image 
+    src="/media/letter-s_9511527.png" 
+    alt="QuickAds Hub"
+    width={15} // Adjust width as necessary
+    height={15} // Adjust height as necessary
+  />
+</Box>
+
+
 
           <YourPost />
 
@@ -190,15 +243,62 @@ const LayoutSecond = ({ children }) => {
         }}
       >
         <List>
-          <Typography
-            variant="h6"
+          {/* Replace Typography with Image */}
+          <Box
             component="div"
             onClick={handleClick}
             className="lightning-border"
-            sx={{ m: 3, fontFamily: "sans-serif" }}
+            sx={{ m: 3, fontFamily: "sans-serif", cursor: 'pointer' }}
           >
-            QuickAds Hub
-          </Typography>
+            <Image 
+    src="/media/letter-q_7548487.png" 
+    alt="QuickAds Hub"
+    width={25} // Adjust width as necessary
+    height={25} // Adjust height as necessary
+  />
+  <Image 
+    src="/media/letter-u_9511521.png" 
+    alt="QuickAds Hub"
+    width={15} // Adjust width as necessary
+    height={15} // Adjust height as necessary
+  />
+    <Image 
+    src="/media/letter-i_9511556.png" 
+    alt="QuickAds Hub"
+    width={15} // Adjust width as necessary
+    height={15} // Adjust height as necessary
+  />
+    <Image 
+    src="/media/letter-c_9511541.png" 
+    alt="QuickAds Hub"
+    width={15} // Adjust width as necessary
+    height={15} // Adjust height as necessary
+  />
+    <Image 
+    src="/media/letter-k_9511489.png" 
+    alt="QuickAds Hub"
+    width={15} // Adjust width as necessary
+    height={15} // Adjust height as necessary
+  />
+   <Image 
+    src="/media/letter-a_9511496.png" 
+    alt="QuickAds Hub"
+    width={15} // Adjust width as necessary
+    height={15} // Adjust height as necessary
+  />
+   <Image 
+    src="/media/letter-d_9511555.png" 
+    alt="QuickAds Hub"
+    width={15} // Adjust width as necessary
+    height={15} // Adjust height as necessary
+  />
+   <Image 
+    src="/media/letter-s_9511527.png" 
+    alt="QuickAds Hub"
+    width={15} // Adjust width as necessary
+    height={15} // Adjust height as necessary
+  />
+          </Box>
           {navItems.map((item) => (
             <ListItem
               key={item}

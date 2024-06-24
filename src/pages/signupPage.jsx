@@ -7,15 +7,18 @@ import { useRouter } from "next/router";
 import { environments } from "../../components/environment/environments";
 
 const SignupPage = () => {
-  // Renamed to 'SignupPage'
   const router = useRouter();
   const { token, setToken, setUser, user } = useToken();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
 
   const normalLogin = async (e) => {
     e.preventDefault(); // Prevent form submission
+    setLoading(true); // Start loading
+    setError(null); // Clear previous error
     try {
       const response = await axios.post(
         `${environments.BASE_HOST_URL}/api/createUser`,
@@ -66,21 +69,17 @@ const SignupPage = () => {
             }
           );
 
-          console.log(response2.data, "yyyyyyyyyyyyyy");
-
           const socketUser = response2.data;
 
-          console.log(socketUser,'3333333');
+          console.log(socketUser, "3333333");
           localStorage.setItem("userone", JSON.stringify(socketUser));
           const getsocketUser = localStorage.getItem("userone");
-          console.log(getsocketUser,'wwwwwwwwwwwwwwww');
         } else {
           Swal.fire({
             icon: "error",
             title: "Oops...",
             text: "Invalid credentials",
           });
-          // Moved the "Login failed" console log here
           console.log("Login failed");
         }
       } else {
@@ -88,6 +87,9 @@ const SignupPage = () => {
       }
     } catch (error) {
       console.error("Error during login:", error);
+      setError("An error occurred during registration. Please try again.");
+    } finally {
+      setLoading(false); // End loading
     }
   };
 
@@ -97,6 +99,7 @@ const SignupPage = () => {
         <div className="control" style={{ color: "black" }}>
           <h1>Register Page</h1>
         </div>
+        {error && <p style={{ color: "red" }}>{error}</p>}
         <div className="control block-cube block-input">
           <input
             name="username"
@@ -151,7 +154,7 @@ const SignupPage = () => {
             <div className="bg-inner"></div>
           </div>
         </div>
-        <button className="btn block-cube block-cube-hover" type="submit">
+        <button className="btn block-cube block-cube-hover" type="submit" disabled={loading}>
           <div className="bg-top">
             <div className="bg-inner"></div>
           </div>
@@ -161,8 +164,7 @@ const SignupPage = () => {
           <div className="bg">
             <div className="bg-inner"></div>
           </div>
-          {/* .bg2 */}
-          <div className="text">Register User</div>
+          <div className="text">{loading ? "Registering..." : "Register User"}</div>
         </button>
 
         <div className="credits">
@@ -173,16 +175,4 @@ const SignupPage = () => {
   );
 };
 
-export default SignupPage; // Updated component name
-
-// const response2 = await axios.post(
-//   `https://socketio-api.vercel.app/api/auth/login`,
-//   {
-//     name: username,
-//     email: email,
-//     password: password,
-//   }
-
-// );
-
-// console.log(response2.data.data,'eeeeeeeee');
+export default SignupPage
