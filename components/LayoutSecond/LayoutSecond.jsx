@@ -247,7 +247,7 @@ const LayoutSecond = ({ children }) => {
           <Box
             component="div"
             onClick={handleClick}
-            className="lightning-border"
+          
             sx={{ m: 3, fontFamily: "sans-serif", cursor: 'pointer' }}
           >
             <Image 

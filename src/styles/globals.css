@@ -2201,7 +2201,7 @@ input {
 
   padding: 10px;
 
-  
+  animation: lightningAnimation 2s linear infinite;
 }
 
 .lightning-border:hover {
