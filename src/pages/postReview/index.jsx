@@ -74,8 +74,9 @@ export default function AdminPostReview() {
     }, [user]);
   
     const filteredRows = data.filter(post => {
-      return post.postId.includes(filterId) && post.title.toLowerCase().includes(filterTitle.toLowerCase());
+      return post.postId.includes(filterId) && (post.title || '').toLowerCase().includes(filterTitle.toLowerCase());
     });
+
     const PostClick = (postId) => {
       router.push(`/postReview/${postId}`);
     };
@@ -107,7 +108,7 @@ export default function AdminPostReview() {
               </TableHead>
               <TableBody>
                 {filteredRows.map((row) => (
-                  <StyledTableRow key={row.postId }     onClick={() => PostClick(row.postId)} >
+                  <StyledTableRow key={row.postId} onClick={() => PostClick(row.postId)} >
                     <StyledTableCell component="th" scope="row">
                       {row.postId}
                     </StyledTableCell>
@@ -122,4 +123,3 @@ export default function AdminPostReview() {
       </LayoutSecond>
     );
   }
-  

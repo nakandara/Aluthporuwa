@@ -1,14 +1,15 @@
-import { signIn, useSession } from "next-auth/react";
+import { useState } from "react";
+import { useRouter } from "next/router";
 import axios from "axios";
 import Swal from "sweetalert2";
-import React, { useState } from "react";
+import { TextField, Button, Typography, Container, Box, CircularProgress } from "@mui/material";
 import { useToken } from "../context/TokenContext";
-import { useRouter } from "next/router";
 import { environments } from "../../components/environment/environments";
+import Link from "next/link";
 
 const SignupPage = () => {
   const router = useRouter();
-  const { token, setToken, setUser, user } = useToken();
+  const { setToken, setUser } = useToken();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
@@ -16,9 +17,10 @@ const SignupPage = () => {
   const [error, setError] = useState(null);
 
   const normalLogin = async (e) => {
-    e.preventDefault(); // Prevent form submission
-    setLoading(true); // Start loading
-    setError(null); // Clear previous error
+    e.preventDefault();
+    setLoading(true);
+    setError(null);
+
     try {
       const response = await axios.post(
         `${environments.BASE_HOST_URL}/api/createUser`,
@@ -48,10 +50,10 @@ const SignupPage = () => {
             password: password,
           }
         );
+
         if (responsel.data && responsel.data.token && responsel.data.user) {
           const accessToken = responsel.data.token;
           const user = responsel.data.user;
-          console.log(user);
 
           localStorage.setItem("accessToken", accessToken);
           localStorage.setItem("user", JSON.stringify(user));
@@ -60,6 +62,7 @@ const SignupPage = () => {
           setUser(user);
 
           router.push("/home");
+
           const response2 = await axios.post(
             `https://socketio-api.vercel.app/api/auth/login`,
             {
@@ -70,109 +73,84 @@ const SignupPage = () => {
           );
 
           const socketUser = response2.data;
-
-          console.log(socketUser, "3333333");
           localStorage.setItem("userone", JSON.stringify(socketUser));
-          const getsocketUser = localStorage.getItem("userone");
         } else {
           Swal.fire({
             icon: "error",
             title: "Oops...",
             text: "Invalid credentials",
           });
-          console.log("Login failed");
         }
-      } else {
-        console.log("Login failed");
       }
     } catch (error) {
-      console.error("Error during login:", error);
-      setError("An error occurred during registration. Please try again.");
+      setError("An error occurred during registration. Please try again. / ලියාපදිංචි වීමේ දෝෂයක් සිදු විය. කරුණාකර නැවත උත්සාහ කරන්න.");
     } finally {
-      setLoading(false); // End loading
+      setLoading(false);
     }
   };
 
   return (
-    <div>
-      <form className="form" autoComplete="off" onSubmit={normalLogin}>
-        <div className="control" style={{ color: "black" }}>
-          <h1>Register Page</h1>
-        </div>
-        {error && <p style={{ color: "red" }}>{error}</p>}
-        <div className="control block-cube block-input">
-          <input
-            name="username"
-            type="text"
-            placeholder="Username"
+    <Container maxWidth="sm">
+      <Box
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          mt: 8,
+        }}
+      >
+        <Typography sx={{color:"black"}} variant="h4" component="h1" gutterBottom>
+          Register Page / ලියාපදිංචි පිටුව
+        </Typography>
+        <form onSubmit={normalLogin} style={{ width: "100%" }}>
+          {error && <Typography color="error">{error}</Typography>}
+          <TextField
+            label="Username / පරිශීලක නාමය"
+            variant="outlined"
+            fullWidth
+            margin="normal"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
           />
-          <div className="bg-top">
-            <div className="bg-inner"></div>
-          </div>
-          <div className="bg-right">
-            <div className="bg-inner"></div>
-          </div>
-          <div className="bg">
-            <div className="bg-inner"></div>
-          </div>
-        </div>
-        <div className="control block-cube block-input">
-          <input
-            name="email"
-            type="text"
-            placeholder="Email"
+          <TextField
+            label="Email / ඊමේල්"
+            variant="outlined"
+            fullWidth
+            margin="normal"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
-          <div className="bg-top">
-            <div className="bg-inner"></div>
-          </div>
-          <div className="bg-right">
-            <div className="bg-inner"></div>
-          </div>
-          <div className="bg">
-            <div className="bg-inner"></div>
-          </div>
-        </div>
-        <div className="control block-cube block-input">
-          <input
-            name="password"
+          <TextField
+            label="Password / මුරපදය"
             type="password"
-            placeholder="Password"
+            variant="outlined"
+            fullWidth
+            margin="normal"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
-          <div className="bg-top">
-            <div className="bg-inner"></div>
-          </div>
-          <div className="bg-right">
-            <div className="bg-inner"></div>
-          </div>
-          <div className="bg">
-            <div className="bg-inner"></div>
-          </div>
-        </div>
-        <button className="btn block-cube block-cube-hover" type="submit" disabled={loading}>
-          <div className="bg-top">
-            <div className="bg-inner"></div>
-          </div>
-          <div className="bg-right">
-            <div className="bg-inner"></div>
-          </div>
-          <div className="bg">
-            <div className="bg-inner"></div>
-          </div>
-          <div className="text">{loading ? "Registering..." : "Register User"}</div>
-        </button>
-
-        <div className="credits">
-          <a href="https://codepen.io/marko-zub/" target="_blank"></a>
-        </div>
-      </form>
-    </div>
+          <Box sx={{ mt: 2 }}>
+            <Button
+              type="submit"
+              variant="contained"
+              color="primary"
+              fullWidth
+              disabled={loading}
+            >
+              {loading ? <CircularProgress size={24} /> : "Register User / පරිශීලකයා ලියාපදිංචි කරන්න"}
+            </Button>
+          </Box>
+        </form>
+        <Box sx={{ mt: 2 }}>
+          <Link href="/auth/signin" passHref>
+            <Button variant="text" color="primary">
+              Go to Login Page / ප්‍රවිශ්ට වීමේ පිටුවට යන්න
+            </Button>
+          </Link>
+        </Box>
+      </Box>
+    </Container>
   );
 };
 
-export default SignupPage
+export default SignupPage;

@@ -65,7 +65,7 @@ const Signin = () => {
         Swal.fire({
           icon: "error",
           title: "Oops...",
-          text: "Invalid credentials",
+          text: "Invalid credentials ඇතුල් වීමේ දෝෂයක් සිදු විය. කරුණාකර නැවත උත්සාහ කරන්න.",
         });
         console.log("Login failed");
       }
@@ -74,7 +74,7 @@ const Signin = () => {
       Swal.fire({
         icon: "error",
         title: "Oops...",
-        text: "Invalid credentials",
+        text: "Invalid credentials / ඇතුල් වීමේ දෝෂයක් සිදු විය. කරුණාකර නැවත උත්සාහ කරන්න.",
       });
     } finally {
       setLoading(false); // Stop loading
@@ -105,32 +105,32 @@ const Signin = () => {
         </IconButton>
       </div>
       <div className="sign-in-sign-up-container">
-        <h2>Sign In</h2>
+        <h2>Sign In/ඇතුල් වන්න</h2>
         <form onSubmit={(e) => { e.preventDefault(); normalLogin(); }}>
           <input
             name="username"
             type="text"
-            placeholder="Username"
+            placeholder="Username / පරිශීලක නාමය"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
           />
           <input
             name="email"
             type="email"
-            placeholder="Email"
+            placeholder="Email / ඊමේල්"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
           <input
             name="password"
             type="password"
-            placeholder="Password"
+            placeholder="Password / මුරපදය"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
           <div className="buttons">
             <button type="button" onClick={normalLogin} className="sign-in-btn" disabled={loading}>
-              {loading ? <CircularProgress size={24} /> : "Log In"}
+              {loading ? <CircularProgress size={24} /> : "Log In / ඇතුල් වන්න"}
             </button>
             <button
               type="button"
@@ -138,15 +138,15 @@ const Signin = () => {
               className="sign-up-btn"
               disabled={loading}
             >
-              Sign Up
+              Sign Up / ලියාපදිංචි වන්න
             </button>
             <button type="button" className="google-login-btn" disabled={loading}>
-              Google Login
+              Google Login / Google Login
             </button>
           </div>
         </form>
         <div onClick={forgotPassword} className="forgot-password">
-          <a href="#">Forgot Password?</a>
+          <a href="#">Forgot Password? / මුරපදය අමතකද? </a>
         </div>
       </div>
     </div>

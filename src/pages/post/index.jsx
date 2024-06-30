@@ -88,6 +88,8 @@ const Post = () => {
         const response = await axios.get(
           `${environments.BASE_HOST_URL}/api/getVerifyAllPosts`
         );
+
+        console.log(response,'responseresponseresponseresponse');
         setData(response.data.data);
         setLoading(false);
       } catch (error) {

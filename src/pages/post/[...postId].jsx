@@ -14,6 +14,15 @@ const PostId = ({ postIdData }) => {
   const [createdAt, setCreatedAt] = useState("");
   const [title, setTitle] = useState("");
   const [city, setCity] = useState("");
+  const [bodyType, setBodyType] = useState("");
+  const [brand, setBrand] = useState("");
+  const [engineCapacity, setEngineCapacity] = useState("");
+  const [fuelType, setFuelType] = useState("");
+  const [mileage, setMileage] = useState("");
+  const [model, setModel] = useState("");
+  const [transmission, setTransmission] = useState("");
+  const [trimEdition, setTrimEdition] = useState("");
+  const [yearOfManufacture, setYearOfManufacture] = useState("");
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -24,6 +33,15 @@ const PostId = ({ postIdData }) => {
       setDescription(postDetails.description);
       setTitle(postDetails.title);
       setCity(postDetails.city);
+      setBodyType(postDetails.bodyType);
+      setBrand(postDetails.brand);
+      setEngineCapacity(postDetails.engineCapacity);
+      setFuelType(postDetails.fuelType);
+      setMileage(postDetails.mileage);
+      setModel(postDetails.model);
+      setTransmission(postDetails.transmission);
+      setTrimEdition(postDetails.trimEdition);
+      setYearOfManufacture(postDetails.yearOfManufacture);
       setLoading(false); // Data fetching complete
     }
   }, [postIdData]);
@@ -108,6 +126,17 @@ const PostId = ({ postIdData }) => {
                 </div>
                 <div className={styles.horizontalLine}></div>
                 <div className={styles.postIdPhoneNumber}>Phone Number {mobileNumber}</div>
+                <div className={styles.postIdDetails}>
+                  <div><strong>Body Type:</strong> {bodyType}</div>
+                  <div><strong>Brand:</strong> {brand}</div>
+                  <div><strong>Engine Capacity:</strong> {engineCapacity}</div>
+                  <div><strong>Fuel Type:</strong> {fuelType}</div>
+                  <div><strong>Mileage:</strong> {mileage}</div>
+                  <div><strong>Model:</strong> {model}</div>
+                  <div><strong>Transmission:</strong> {transmission}</div>
+                  <div><strong>Trim Edition:</strong> {trimEdition}</div>
+                  <div><strong>Year of Manufacture:</strong> {yearOfManufacture}</div>
+                </div>
               </div>
               <div>
                 <div className={styles.postIdDescription}>Description</div>

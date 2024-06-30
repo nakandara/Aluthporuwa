@@ -69,27 +69,7 @@ export default function BasicGrid() {
 
   useEffect(() => {
     setData([
-      {
-        "_id": "666b41f977537b14669a159d",
-        "userId": "6661f7790b2cabbbaa60ed27",
-        "images": [
-          {
-            "imageUrl": "https://world-api-demo.s3.amazonaws.com/1718305273431-IMG_6452.png",
-            "_id": "666b41f977537b14669a159e"
-          }
-        ],
-        "description": "welcome 🙏...",
-        "title": "Real Live Cam Show 📷 Live Cam Show | Live Cam",
-        "mobileNumber": " 0768034662",
-        "whatsappNumber": " 0768034662",
-        "price": "1000",
-        "category": ["Video call"],
-        "socialIcon": ["heart"],
-        "postId": "666b41f977537b14669a159f",
-        "createdAt": "2024-06-13T19:01:13.609Z",
-        "updatedAt": "2024-06-18T20:16:20.909Z",
-        "verify": true
-      },
+     
       {
         "_id": "6668af2647a5e7d722d4eb89",
         "userId": "66437d4055b327e8eaf7b6db",

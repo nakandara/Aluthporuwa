@@ -1,3 +1,26 @@
+/* Card.module.css */
+
+.brand {
+  color: #faf7f6; /* Example color for brand */
+  font-weight: bold;
+}
+
+.bodyType {
+  color: #4682b4; /* Example color for body type */
+  font-weight: bold;
+}
+
+.engineCapacity {
+  color: #32cd32; /* Example color for engine capacity */
+  font-weight: bold;
+}
+
+.model {
+  color: #ff8c00; /* Example color for model */
+  font-weight: bold;
+}
+
+/* Other existing styles */
 .card {
   border: 1px solid #ddd;
   border-radius: 8px;
@@ -31,7 +54,7 @@
 }
 
 .silverBadge {
-  background-color: red;
+  background-color: rgb(254, 254, 254);
 }
 
 .defaultBadge {
@@ -63,21 +86,13 @@
 
 .title {
   margin: 0;
-  font-size: 10px;
-  color: #f4f1f1;
-}
-
-.description {
-  margin: 0px 0 0;
-  color: #f8f8f8;
-  font-size: 2px;
-  margin-bottom: 20px;
-  width: 200px;
+  font-size: 18px;
+  color: #333;
 }
 
 .time {
-  font-size: 2px;
-  color: #fcf7f7;
+  font-size: 12px;
+  color: #777;
   position: absolute;
   bottom: 10px;
   right: 12px;
@@ -117,8 +132,8 @@
 
   .description {
     margin: 3px 0 0;
-    color: #fdf6f6;
-    font-size:1px;
+    color: #555;
+    font-size: 12px;
     margin-bottom: 20px;
     width: 160px;
   }
@@ -147,7 +162,7 @@
 
   .description {
     margin: 3px 0 0;
-    color: #f8f5f5;
+    color: #555;
     font-size: 10px;
     margin-bottom: 20px;
     width: 130px;
@@ -159,5 +174,3 @@
   flex-wrap: wrap;
   justify-content: center;
 }
-
-

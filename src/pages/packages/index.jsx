@@ -18,7 +18,20 @@ const Campaign = () => {
     setShowModal(false);
   }
 
-  const vehicles = ['Car', 'Truck', 'Motorcycle', 'Bicycle'];
+  const vehicles = ["Cars",
+  "Motorbikes",
+  "Three Wheelers",
+  "Bicycles",
+  "Vans",
+  "Buses",
+  "Lorries & Trucks",
+  "Heavy Duty",
+  "Tractors",
+  "Auto Services",
+  "Rentals",
+  "Auto Parts & Accessories",
+  "Maintenance and Repair",
+  "Boats & Water Transport"];
 
   const { category} = router.query;
 

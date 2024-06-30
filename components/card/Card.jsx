@@ -71,8 +71,8 @@ const Card = ({
   };
 
   return (
-    <div className={styles.card}>
-      <div onClick={() => handleClick(post.postId)} className={styles.imageContainer}>
+    <div className={styles.card} onClick={() => handleClick(post.postId)}>
+      <div className={styles.imageContainer}>
         {images && images.length > 0 && (
           <ImageGallery
             items={images}
@@ -89,7 +89,7 @@ const Card = ({
           <div className={`${styles.badge} ${getBadgeClass(post.plane)}`}>
             {post.plane} ADD
           </div>
-          <ShareIcon onClick={handleShareClick} className={styles.shareIcon} />
+          <ShareIcon onClick={(e) => { e.stopPropagation(); handleShareClick(); }} className={styles.shareIcon} />
           <Modal isOpen={isModalOpen} onClose={handleCloseModal}>
             <h2>Share Options</h2>
             <FacebookShareButton url={shareUrl} quote={title}>
@@ -102,17 +102,16 @@ const Card = ({
             <button onClick={handleCloseModal}>Close</button>
           </Modal>
         </div>
-        <h3 onClick={() => handleClick(post.postId)} className={styles.title}>
-          {post.category}
+        <h3 className={styles.title}>
+          {post.category.join(", ")}
         </h3>
-        <div
-          onClick={() => handleClick(post.postId)}
-          
-          dangerouslySetInnerHTML={{
-            __html: truncateDescription(description, 8), // Truncate description to 50 words
-          }}
-        />
-        <div onClick={() => handleClick(post.postId)} className={styles.time}>
+        <p className={styles.brand}>Brand: {post.brand}</p>
+        <p className={styles.bodyType}>Body Type: {post.bodyType}</p>
+        <p className={styles.engineCapacity}>Engine Capacity: {post.engineCapacity}</p>
+        <p className={styles.model}>Model: {post.model}</p>
+        <br />
+        <br />
+        <div className={styles.time}>
           {formatDate(post.createdAt)}
         </div>
       </div>

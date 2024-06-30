@@ -11,11 +11,76 @@ const ModalPackage = ({ show, onClose, vehicles,selectedPlan,category}) => {
   const router = useRouter();
 
   const subLocations = {
-    'කොළඹ': ['Maharagama', 'Dehiwela'],
-    'ගම්පහ': ['Nittambuwa', 'Yakalla'],
-    'කුරුණෑගල': ['Ibbagamuwa', 'Mawathagama', 'Kuliyapitiya'],
-    // Add other locations and their sub-locations here
+    'Colombo': ["Angoda",
+    "Athurugiriya",
+    "Avissawella",
+    "Battaramulla",
+    "Boralesgamuwa",
+    "Colombo 1",
+    "Colombo 10",
+    "Colombo 11",
+    "Colombo 12",
+    "Colombo 13",
+    "Colombo 14",
+    "Colombo 15",
+    "Colombo 2",
+    "Colombo 3",
+    "Colombo 4",
+    "Colombo 5",
+    "Colombo 6",
+    "Colombo 7",
+    "Colombo 8",
+    "Colombo 9",
+    "Godagama",
+    "Hanwella",
+    "Homagama",
+    "Kaduwela",
+    "Kesbewa",
+    "Kohuwala",
+    "Kolonnawa",
+    "Kottawa",
+    "Kotte",
+    "Malabe",
+    "Meegoda",
+    "Moratuwa",
+    "Mount Lavinia",
+    "Nawala",
+    "Padukka",
+    "Pannipitiya",
+    "Rajagiriya",
+    "Ratmalana",
+    "Talawatugoda",
+    "Wellampitiya",
+    "Maharagama",
+    "Nugegoda",
+    "Piliyandala",
+    "Dehiwala"],
+    'Gampaha': ['Nittambuwa', 'Negombo', 'Kadawatha', 'Kiribathgoda', 'Ragama', 'Wattala', 'Ja-Ela'],
+  'Kalutara': ['Panadura', 'Kalutara South', 'Beruwala', 'Wadduwa', 'Horana', 'Aluthgama', 'Matugama'],
+  'Kandy': ['Peradeniya', 'Katugastota', 'Digana', 'Gampola', 'Nawalapitiya', 'Pilimathalawa', 'Kadugannawa'],
+  'Matale': ['Dambulla', 'Ukuwela', 'Rattota', 'Galewela', 'Pallepola', 'Sigiriya', 'Yatawatta'],
+  'Nuwara Eliya': ['Hatton', 'Nanu Oya', 'Talawakele', 'Ragala', 'Walapane', 'Maskeliya', 'Haputale'],
+  'Galle': ['Hikkaduwa', 'Unawatuna', 'Karapitiya', 'Baddegama', 'Ambalangoda', 'Bentota', 'Elpitiya'],
+  'Matara': ['Weligama', 'Akurugoda', 'Athuraliya', 'Hakmana', 'Devinuwara', 'Kamburupitiya', 'Dickwella'],
+  'Hambantota': ['Tangalle', 'Tissamaharama', 'Ambalantota', 'Weeraketiya', 'Beliatta', 'Walasmulla', 'Sooriyawewa'],
+  'Jaffna': ['Chavakachcheri', 'Point Pedro', 'Nallur', 'Kopay', 'Karainagar', 'Velanai', 'Kankesanthurai'],
+  'Kilinochchi': ['Poonakari', 'Karachchi', 'Pallai', 'Kandawalai', 'Paranthan', 'Murukandy', 'Kilinochchi Town'],
+  'Mannar': ['Madhu', 'Musali', 'Nanattan', 'Manthai West', 'Manthai East', 'Vavuniya South', 'Adampan'],
+  'Vavuniya': ['Nedunkerny', 'Vavuniya South', 'Vavuniya North', 'Vengalacheddikulam', 'Settikulam', 'Omanthai', 'Cheddikulam'],
+  'Mullaitivu': ['Puthukkudiyiruppu', 'Thunukkai', 'Oddusuddan', 'Mallavi', 'Mullaitivu Town', 'Maritimepattu', 'Manthai East'],
+  'Batticaloa': ['Kattankudy', 'Eravur', 'Valaichchenai', 'Kaluwanchikudy', 'Arayampathy', 'Vavunathivu', 'Oddamavadi'],
+  'Trincomalee': ['Kinniya', 'Muttur', 'Kuchchaveli', 'Kantalai', 'Seruvila', 'Pulmoddai', 'Sampur'],
+  'Ampara': ['Akkaraipattu', 'Sammanthurai', 'Kalmunai', 'Uhana', 'Dehiattakandiya', 'Pottuvil', 'Addalachchenai'],
+  'Badulla': ['Bandarawela', 'Welimada', 'Ella', 'Hali-Ela', 'Mahiyanganaya', 'Passara', 'Haputale'],
+  'Monaragala': ['Wellawaya', 'Bibile', 'Medagama', 'Madulla', 'Siyambalanduwa', 'Buttala', 'Kataragama'],
+  'Anuradhapura': ['Kekirawa', 'Eppawala', 'Mihintale', 'Medawachchiya', 'Tambuttegama', 'Thirappane', 'Nochchiyagama'],
+  'Polonnaruwa': ['Medirigiriya', 'Hingurakgoda', 'Dimbulagala', 'Elahera', 'Welikanda', 'Giritale', 'Aralaganwila'],
+  'Puttalam': ['Chilaw', 'Wennappuwa', 'Anamaduwa', 'Marawila', 'Nattandiya', 'Pallama', 'Dankotuwa'],
+  'Kurunegala': ['Ibbagamuwa', 'Mawathagama', 'Kuliyapitiya', 'Pannala', 'Polgahawela', 'Alawwa', 'Narammala'],
+  'Ratnapura': ['Pelmadulla', 'Kuruwita', 'Balangoda', 'Embilipitiya', 'Godakawela', 'Kalawana', 'Eheliyagoda'],
+  'Kegalle': ['Mawanella', 'Warakapola', 'Rambukkana', 'Deraniyagala', 'Bulathkohupitiya', 'Aranayaka', 'Yatiyanthota']
   };
+  
 
   if (!show) {
     return null;
@@ -57,13 +122,13 @@ const ModalPackage = ({ show, onClose, vehicles,selectedPlan,category}) => {
 
   // List of Sri Lankan districts in Sinhalese
   const locations = [
-    'කොළඹ', 'ගම්පහ', 'කලුතර', 'මහනුවර', 'මාතලේ', 'නුවර එළිය',
-    'ගාල්ල', 'මාතර', 'හම්බන්තොට', 'යාපනය', 'කිලිනොච්චි', 'මන්නාරම',
-    'වවුනියාව', 'මුලතිව්', 'මඩකලපුව', 'ත්‍රිකුණාමලය', 'අම්පාර', 'බදුල්ල',
-    'මොණරාගල', 'අනුරාධපුර', 'පොළොන්නරුව', 'පූනාරීන්', 'කුරුණෑගල',
-    'පුත්තලම', 'රත්නපුර', 'කෑගල්ල'
+    'Colombo', 'Gampaha', 'Kalutara', 'Maha Nuwara', 'Matale', 'Nuwara Eliya',
+    'Galle', 'Matara', 'Hambantota', 'Jaffna', 'Kilinochchi', 'Mannar',
+    'Vavuniya', 'Mullaitivu', 'Batticaloa', 'Trincomalee', 'Ampara', 'Badulla',
+    'Monaragala', 'Anuradhapura', 'Polonnaruwa', 'Poonakari', 'Kurunegala',
+    'Puttalam', 'Ratnapura', 'Kegalle'
   ];
-
+  
   return (
     <div className={styles.modalOverlay}>
       <div className={styles.modalContent}>
