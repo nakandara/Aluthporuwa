@@ -6,6 +6,7 @@ import ImageGallery from "react-image-gallery";
 import Modal from "../modal/Modal";
 import { FacebookIcon, WhatsappIcon } from "react-share";
 import { useRouter } from "next/router";
+import CircularProgress from "@mui/material/CircularProgress"; // Import CircularProgress
 
 const Card = ({
   src,
@@ -72,6 +73,11 @@ const Card = ({
 
   return (
     <div className={styles.card} onClick={() => handleClick(post.postId)}>
+      {isLoading && (
+        <div className={styles.loading}>
+          <CircularProgress />
+        </div>
+      )}
       <div className={styles.imageContainer}>
         {images && images.length > 0 && (
           <ImageGallery
@@ -89,7 +95,13 @@ const Card = ({
           <div className={`${styles.badge} ${getBadgeClass(post.plane)}`}>
             {post.plane} ADD
           </div>
-          <ShareIcon onClick={(e) => { e.stopPropagation(); handleShareClick(); }} className={styles.shareIcon} />
+          <ShareIcon
+            onClick={(e) => {
+              e.stopPropagation();
+              handleShareClick();
+            }}
+            className={styles.shareIcon}
+          />
           <Modal isOpen={isModalOpen} onClose={handleCloseModal}>
             <h2>Share Options</h2>
             <FacebookShareButton url={shareUrl} quote={title}>
@@ -103,7 +115,7 @@ const Card = ({
           </Modal>
         </div>
         <h3 className={styles.title}>
-          {post.category.join(", ")}
+          {Array.isArray(post.category) ? post.category.join(", ") : post.category}
         </h3>
         <p className={styles.brand}>Brand: {post.brand}</p>
         <p className={styles.bodyType}>Body Type: {post.bodyType}</p>
@@ -115,7 +127,6 @@ const Card = ({
           {formatDate(post.createdAt)}
         </div>
       </div>
-      {isLoading && <div className={styles.loading}>Loading...</div>}
     </div>
   );
 };

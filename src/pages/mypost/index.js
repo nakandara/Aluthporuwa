@@ -44,6 +44,7 @@ const Index = () => {
     mileage: '',
     engineCapacity: '',
     fuelType: '',
+    category:'',
     transmission: '',
     bodyType: '',
     description: '',
@@ -51,7 +52,7 @@ const Index = () => {
     negotiable: false,
     images: [],
   });
-
+  const { selectedPlan, vehicle, location, subLocation } = router.query;
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevFormData) => ({
@@ -61,7 +62,7 @@ const Index = () => {
     }));
   };
 
-  const { selectedPlan, vehicle, location, subLocation } = router.query;
+  
 
   console.log(router.query, "router.query");
 
@@ -70,6 +71,7 @@ const Index = () => {
       setFormData((prevFormData) => ({
         ...prevFormData,
         plane: selectedPlan,
+        category:vehicle,
       }));
       console.log(`Selected Plan: ${selectedPlan}`);
     }
@@ -243,6 +245,16 @@ const Index = () => {
               label='Brand'
               name='brand'
               value={formData.brand}
+              onChange={handleChange}
+              variant='outlined'
+              placeholder='Enter your brand'
+            />
+             <TextField
+              fullWidth
+              margin='normal'
+              label='Category'
+              name='category'
+              value={formData.category}
               onChange={handleChange}
               variant='outlined'
               placeholder='Enter your brand'

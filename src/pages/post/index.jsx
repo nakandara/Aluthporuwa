@@ -155,7 +155,7 @@ const Post = () => {
 
     if (query) {
       filtered = filtered.filter((post) =>
-        post.title.toLowerCase().includes(query.toLowerCase())
+        post.brand.toLowerCase().includes(query.toLowerCase())
       );
     }
 
@@ -247,11 +247,13 @@ const Post = () => {
               >
                 <SearchFilter
                   categories={data.reduce((acc, curr) => {
-                    curr.category.forEach((cat) => {
-                      if (!acc.includes(cat)) {
-                        acc.push(cat);
-                      }
-                    });
+                    if (Array.isArray(curr.category)) {
+                      curr.category.forEach((cat) => {
+                        if (!acc.includes(cat)) {
+                          acc.push(cat);
+                        }
+                      });
+                    }
                     return acc;
                   }, [])}
                   handleCategorySelect={handleCategorySelect}

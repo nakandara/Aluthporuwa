@@ -41,6 +41,7 @@ const PostReview = ({ postIdData }) => {
 
   const acceptAdd = async (e) =>{
     e.preventDefault();
+    console.log(updatedNewPost,'updatedNewPostupdatedNewPost');
     try {
       const response = await axios.put(`${environments.BASE_HOST_URL}/api/editPost/${postId}`, updatedNewPost);
       console.log(response);
