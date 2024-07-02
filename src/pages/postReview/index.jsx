@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import axios from "axios";
 import { styled } from '@mui/material/styles';
 import Table from '@mui/material/Table';
@@ -9,7 +9,6 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import LayoutSecond from "../../../components/LayoutSecond/LayoutSecond";
-import ProtectedRoute from "../../../components/protect/protectedRoute";
 import { environments } from "../../../components/environment/environments";
 import { useRouter } from "next/router";
 import { useToken } from "../../context/TokenContext";
@@ -31,95 +30,77 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   },
 }));
 
-function createData(
-  id,
-  title,
-  status,
-) {
-  return { id, title, status };
-}
 
-const rows = [
-  createData('663f8d89e69f4d1b51329366', 'Frozen yoghurt', "true"),
-  createData('663f8d89e69f4d1b56464646', 'Ice cream sandwich', "true"),
-  createData('663f8d89e69f4d1b51353534', 'Eclair', "true"),
-  createData('663f8d89e69f4d1b58732439', 'Cupcake', "false"),
-  createData('663f8d89e69f4d1b51324793', 'Gingerbread', "false"),
-];
 
 export default function AdminPostReview() {
-    const { user } = useToken();
-    const router = useRouter();
-    const [filterId, setFilterId] = useState('');
-    const [filterTitle, setFilterTitle] = useState('');
-    const [data, setData] = useState([]);
-  
-    const fetchPosts = async () => {
-      try {
-        if (!user) return;
-        const response = await axios.get(
-          `${environments.BASE_HOST_URL}/api/getAllPosts`
-        );
-    
-        console.log(response, '333333333333');
-        setData(response.data.data); // Extract the array from the response
-      } catch (error) {
-        console.error("Error fetching posts:", error);
-      }
-    };
-    
-  
-    useEffect(() => {
-      fetchPosts();
-    }, [user]);
-  
-    const filteredRows = data.filter(post => {
-      return post.postId.includes(filterId) && (post.title || '').toLowerCase().includes(filterTitle.toLowerCase());
-    });
+  const { user } = useToken();
+  const router = useRouter();
+  const [filterId, setFilterId] = useState('');
+  const [filterTitle, setFilterTitle] = useState('');
+  const [data, setData] = useState([]);
 
-    const PostClick = (postId) => {
-      router.push(`/postReview/${postId}`);
-    };
+  const fetchPosts = useCallback(async () => {
+    try {
+      if (!user) return;
+      const response = await axios.get(
+        `${environments.BASE_HOST_URL}/api/getAllPosts`
+      );
 
-    
-    return (
-      <LayoutSecond>
-       
-          <TableContainer component={Paper} sx={{marginTop:"20vh"}}>
-            <TextField 
-              label="Filter by ID"
-              value={filterId}
-              onChange={(e) => setFilterId(e.target.value)}
-              sx={{ margin: '0 10px', marginBottom: '20px' }}
-            />
-            <TextField 
-              label="Filter by Title"
-              value={filterTitle}
-              onChange={(e) => setFilterTitle(e.target.value)}
-              sx={{ margin: '0 10px', marginBottom: '20px' }}
-            />
-            <Table aria-label="customized table">
-              <TableHead>
-                <TableRow>
-                  <StyledTableCell>Post ID</StyledTableCell>
-                  <StyledTableCell align="right">Title</StyledTableCell>
-                  <StyledTableCell align="right">Status</StyledTableCell>
-                </TableRow>
-              </TableHead>
-              <TableBody>
-                {filteredRows.map((row) => (
-                  <StyledTableRow key={row.postId} onClick={() => PostClick(row.postId)} >
-                    <StyledTableCell component="th" scope="row">
-                      {row.postId}
-                    </StyledTableCell>
-                    <StyledTableCell align="right">{row.title}</StyledTableCell>
-                    <StyledTableCell align="right">{row.verify ? "true" : "false"}</StyledTableCell>
-                  </StyledTableRow>
-                ))}
-              </TableBody>
-            </Table>
-          </TableContainer>
-        
-      </LayoutSecond>
-    );
-  }
+      console.log(response, '333333333333');
+      setData(response.data.data); // Extract the array from the response
+    } catch (error) {
+      console.error("Error fetching posts:", error);
+    }
+  }, [user]);
+
+  useEffect(() => {
+    fetchPosts();
+  }, [fetchPosts]);
+
+  const filteredRows = data.filter(post => {
+    return post.postId.includes(filterId) && (post.title || '').toLowerCase().includes(filterTitle.toLowerCase());
+  });
+
+  const PostClick = (postId) => {
+    router.push(`/postReview/${postId}`);
+  };
+
+  return (
+    <LayoutSecond>
+      <TableContainer component={Paper} sx={{ marginTop: "20vh" }}>
+        <TextField
+          label="Filter by ID"
+          value={filterId}
+          onChange={(e) => setFilterId(e.target.value)}
+          sx={{ margin: '0 10px', marginBottom: '20px' }}
+        />
+        <TextField
+          label="Filter by Title"
+          value={filterTitle}
+          onChange={(e) => setFilterTitle(e.target.value)}
+          sx={{ margin: '0 10px', marginBottom: '20px' }}
+        />
+        <Table aria-label="customized table">
+          <TableHead>
+            <TableRow>
+              <StyledTableCell>Post ID</StyledTableCell>
+              <StyledTableCell align="right">Title</StyledTableCell>
+              <StyledTableCell align="right">Status</StyledTableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {filteredRows.map((row) => (
+              <StyledTableRow key={row.postId} onClick={() => PostClick(row.postId)}>
+                <StyledTableCell component="th" scope="row">
+                  {row.postId}
+                </StyledTableCell>
+                <StyledTableCell align="right">{row.title}</StyledTableCell>
+                <StyledTableCell align="right">{row.verify ? "true" : "false"}</StyledTableCell>
+              </StyledTableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </TableContainer>
+    </LayoutSecond>
+  );
+}

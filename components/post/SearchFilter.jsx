@@ -13,6 +13,8 @@ const SearchFilter = ({
   selectedCategories,
   closeSidebar
 }) => {
+
+  console.log(categories,'categoriescategoriescategories');
   return (
     <Box sx={{ minWidth: 120 }}>
       <FormControl sx={{ m: 1, minWidth: 200 }} size="small">

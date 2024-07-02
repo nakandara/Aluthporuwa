@@ -6,18 +6,31 @@ import axios from "axios";
 import { environments } from "../../../components/environment/environments";
 import { useRouter } from "next/router";
 import Card from "../../../components/card/Card";
+import styles from "../myadd/myadd.module.css";
 import { styled } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Grid";
 import api from "../../ services/api";
 import { useToken } from "../../context/TokenContext";
-import Drawer from '@mui/material/Drawer';
-import IconButton from '@mui/material/IconButton';
-import FilterListIcon from '@mui/icons-material/FilterList';
-import Modal from '@mui/material/Modal';
-import CircularProgress from '@mui/material/CircularProgress';
-import TextField from "@mui/material/TextField"; // Import TextField for search bar
+import Drawer from "@mui/material/Drawer";
+import IconButton from "@mui/material/IconButton";
+import FilterListIcon from "@mui/icons-material/FilterList";
+import Modal from "@mui/material/Modal";
+import CircularProgress from "@mui/material/CircularProgress";
+import TextField from "@mui/material/TextField";
+import Typography from "@mui/material/Typography";
+import ButtonBase from "@mui/material/ButtonBase";
+import ShareIcon from "@mui/icons-material/Share";
+import WhatsAppIcon from "@mui/icons-material/WhatsApp";
+import FacebookIcon from "@mui/icons-material/Facebook";
+
+const Img = styled("img")({
+  margin: "auto",
+  display: "block",
+  maxWidth: "100%",
+  height: "160px",
+});
 
 const url = `${environments.BASE_HOST_URL}/api/increment`;
 
@@ -46,6 +59,60 @@ export const incrementReactionCount = async (postId, reactionType) => {
     console.error("Error incrementing reaction count:", error);
     throw new Error("Failed to increment reaction count.");
   }
+};
+
+const ShareModal = ({ open, handleClose, post }) => {
+
+  console.log(post,'ddddddddddddddd');
+  if (!post) return null;
+
+  const shareUrl = `https://www.quickadshub.com/post/${post.postId}`;
+
+  return (
+    <Modal open={open} onClose={handleClose}>
+      <Box
+        sx={{
+          position: "absolute",
+          top: "50%",
+          left: "50%",
+          transform: "translate(-50%, -50%)",
+          width: 300,
+          bgcolor: "background.paper",
+          border: "2px solid #000",
+          boxShadow: 24,
+          p: 4,
+        }}
+      >
+        <Typography variant="h6" component="h2">
+          Share this post
+        </Typography>
+        <Box mt={2}>
+          <IconButton
+            aria-label="share on WhatsApp"
+            onClick={() => {
+              window.open(
+                `https://wa.me/?text=${encodeURIComponent(shareUrl)}`,
+                "_blank"
+              );
+            }}
+          >
+            <WhatsAppIcon fontSize="large" />
+          </IconButton>
+          <IconButton
+            aria-label="share on Facebook Messenger"
+            onClick={() => {
+              window.open(
+                `fb-messenger://share?link=${encodeURIComponent(shareUrl)}`,
+                "_blank"
+              );
+            }}
+          >
+            <FacebookIcon fontSize="large" />
+          </IconButton>
+        </Box>
+      </Box>
+    </Modal>
+  );
 };
 
 const Post = () => {
@@ -81,6 +148,10 @@ const Post = () => {
   );
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState(""); // State for search query
+  const [shareModalOpen, setShareModalOpen] = useState(false);
+  const [selectedPost, setSelectedPost] = useState(null);
+
+  console.log(data,'5555555555555');
 
   useEffect(() => {
     const fetchPosts = async () => {
@@ -89,7 +160,7 @@ const Post = () => {
           `${environments.BASE_HOST_URL}/api/getVerifyAllPosts`
         );
 
-        console.log(response,'responseresponseresponseresponse');
+        console.log(response, "responseresponseresponseresponse");
         setData(response.data.data);
         setLoading(false);
       } catch (error) {
@@ -167,7 +238,9 @@ const Post = () => {
   const imageReaction = async (value, index, post) => {
     const newAnimateState = [...animateState];
     newAnimateState[index] = { ...newAnimateState[index] };
-    newAnimateState[index][value] = !newAnimateState[index][value.toLowerCase()];
+    newAnimateState[index][value] = !newAnimateState[index][
+      value.toLowerCase()
+    ];
 
     if (animateState[index][value]) {
       return;
@@ -218,31 +291,40 @@ const Post = () => {
     setDrawerOpen(open);
   };
 
+  const handleShareClick = (post) => {
+    console.log(post,'ttttttttttttt');
+    setSelectedPost(post);
+    setShareModalOpen(true);
+  };
+
+  const handleShareModalClose = () => {
+    setShareModalOpen(false);
+    setSelectedPost(null);
+  };
+
   return (
     <LayoutSecond>
       <div className="postBaseContainer">
         <div className="app-bar-new">
           <div className="drop_down_filter">
-          <TextField
+            <TextField
               label="Search by title"
               variant="outlined"
               fullWidth
               value={searchQuery}
               onChange={handleSearchChange}
-              style={{ marginBottom: "30px",marginTop:"6px" }}
+              style={{ marginBottom: "30px", marginTop: "6px" }}
             />
             <IconButton onClick={toggleDrawer(true)} style={{ float: "right" }}>
-           
-               <FilterListIcon />
-              
+              <FilterListIcon />
             </IconButton>
             <Drawer anchor="right" open={drawerOpen} onClose={toggleDrawer(false)}>
               <Box
                 sx={{
-                  '& .MuiDrawer-paper': {
-                    backgroundColor: '#333', // Dark background color
-                    color: '#fff' // White text color
-                  }
+                  "& .MuiDrawer-paper": {
+                    backgroundColor: "#333",
+                    color: "#fff",
+                  },
                 }}
               >
                 <SearchFilter
@@ -261,10 +343,10 @@ const Post = () => {
                   closeSidebar={toggleDrawer(false)}
                 />
                 <SearchCity
-                  cities={[...new Set(data.map((post) => post.city))]} // Get unique cities
+                  cities={[...new Set(data.map((post) => post.city))]}
                   handleCitySelect={handleCitySelect}
                   selectedCities={selectedCities}
-                  closeSidebar={toggleDrawer(false)} // Pass the function to close the sidebar
+                  closeSidebar={toggleDrawer(false)}
                 />
               </Box>
             </Drawer>
@@ -291,8 +373,6 @@ const Post = () => {
           </div>
 
           <div>
-      
-
             {loading ? (
               <Modal
                 open={loading}
@@ -301,50 +381,134 @@ const Post = () => {
               >
                 <Box
                   sx={{
-                    position: 'absolute',
-                    top: '50%',
-                    left: '50%',
-                    transform: 'translate(-50%, -50%)',
+                    position: "absolute",
+                    top: "50%",
+                    left: "50%",
+                    transform: "translate(-50%, -50%)",
                     width: 400,
-                    bgcolor: 'background.paper',
-                    border: '2px solid #000',
+                    bgcolor: "background.paper",
+                    border: "2px solid #000",
                     boxShadow: 24,
                     p: 4,
-                    display: 'flex',
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    flexDirection: 'column',
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    flexDirection: "column",
                   }}
                 >
                   <CircularProgress />
-             
                 </Box>
               </Modal>
             ) : (
               <>
                 {renderPosts.map((post, index) => (
-                  <div key={index}>
-                    <div key={index} height={200} offset={100}>
-                      <Card
-                        src={post}
-                        index={index}
-                        reactionCount={reactionCount}
-                        post={post}
-                        coverSocialIcons={coverSocialIcons}
-                        description={post.description}
-                        imageReaction={(value) =>
-                          imageReaction(value, index, post)
-                        }
-                        animateState={animateState}
-                      />
-                    </div>
-                  </div>
+                  <Paper
+                    key={index}
+                    className={styles.card}
+                    onClick={() => handleClick(post.postId)}
+                  >
+                    <Typography
+                      variant="subtitle2"
+                      className="myaccount-profile-image-mobile"
+                      style={{
+                        position: "absolute",
+                        top: 8,
+                        right: 8,
+                        backgroundColor: "rgba(0, 0, 0, 0.7)",
+                        color: "#fff",
+                        padding: "2px 8px",
+                        borderRadius: "4px",
+                        zIndex: 1,
+                      }}
+                    >
+                      {post.verify ? "POST" : "PENDING"}
+                    </Typography>
+                    <IconButton
+                      aria-label="share"
+                      style={{
+                        position: "absolute",
+                        bottom: 8,
+                        right: 8,
+                      }}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        handleShareClick(post);
+                      }}
+                    >
+                      <ShareIcon />
+                    </IconButton>
+                    <Grid container spacing={2}>
+                      <Grid item>
+                        <ButtonBase sx={{ width: 188, height: 145 }}>
+                          <Img alt="complex" src={post.images[0].imageUrl} />
+                        </ButtonBase>
+                      </Grid>
+                      <Grid item xs={12} sm container>
+                        <Grid item xs container direction="column" spacing={2}>
+                          <Grid item xs>
+                            <Typography
+                              gutterBottom
+                              variant="subtitle1"
+                              component="div"
+                            >
+                              {post.title}
+                            </Typography>
+                            <Typography variant="body2" gutterBottom>
+                              <div
+                                dangerouslySetInnerHTML={{
+                                  __html: post.description.substring(0, 160),
+                                }}
+                              />
+                            </Typography>
+                            <Typography variant="body2" color="text.secondary">
+                              {Array.isArray(post.category)
+                                ? post.category.join(", ")
+                                : post.category}
+                            </Typography>
+                            <Typography variant="body2" color="text.secondary">
+                              Mobile: {post.mobileNumber}
+                            </Typography>
+                          </Grid>
+                          <Grid item>
+                            <Typography sx={{ cursor: "pointer" }} variant="body2">
+                              {Array.isArray(post.socialIcon)
+                                ? post.socialIcon.join(", ")
+                                : post.socialIcon}
+                            </Typography>
+                          </Grid>
+                        </Grid>
+                        <Grid item>
+                          <Typography
+                            className="myaccount-profile-image-details"
+                            variant="subtitle1"
+                            component="div"
+                          >
+                            {post.price}
+                          </Typography>
+                        </Grid>
+                        <Grid item>
+                          <Typography
+                            className="myaccount-profile-image-mobile"
+                            variant="subtitle1"
+                            component="div"
+                          >
+                            {post.mobileNumber}
+                          </Typography>
+                        </Grid>
+                      </Grid>
+                    </Grid>
+                  </Paper>
                 ))}
               </>
             )}
           </div>
         </div>
       </div>
+      <ShareModal
+        open={shareModalOpen}
+        handleClose={handleShareModalClose}
+        post={selectedPost}
+      />
     </LayoutSecond>
   );
 };

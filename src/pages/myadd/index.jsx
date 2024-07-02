@@ -148,11 +148,15 @@ const MyAdd = () => {
                       </Typography>
                       <Typography variant="body2" gutterBottom>
                         <div
-                          dangerouslySetInnerHTML={{ __html: post.description.substring(0, 160)}}
+                          dangerouslySetInnerHTML={{
+                            __html: post.description.substring(0, 160),
+                          }}
                         />
                       </Typography>
                       <Typography variant="body2" color="text.secondary">
-                        {post.category.join(", ")}
+                        {Array.isArray(post.category)
+                          ? post.category.join(", ")
+                          : post.category}
                       </Typography>
                       <Typography variant="body2" color="text.secondary">
                         Mobile: {post.mobileNumber}
@@ -160,7 +164,9 @@ const MyAdd = () => {
                     </Grid>
                     <Grid item>
                       <Typography sx={{ cursor: "pointer" }} variant="body2">
-                        {post.socialIcon.join(", ")}
+                        {Array.isArray(post.socialIcon)
+                          ? post.socialIcon.join(", ")
+                          : post.socialIcon}
                       </Typography>
                     </Grid>
                   </Grid>
