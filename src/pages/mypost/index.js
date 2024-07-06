@@ -1,4 +1,4 @@
-import React, { useState, useEffect,useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Swal from 'sweetalert2';
 import MobileProtectedRoute from '../../../components/protect/mobileProtectRoute';
 import { environments } from '../../../components/environment/environments';
@@ -22,13 +22,16 @@ import {
   RadioGroup,
   FormControlLabel,
   Radio,
-    IconButton,
+  IconButton,
 } from '@mui/material';
 import LayoutSecond from '../../../components/LayoutSecond/LayoutSecond';
 import DeleteIcon from '@mui/icons-material/Delete';
 import 'react-quill/dist/quill.snow.css';
 
 const ReactQuill = dynamic(() => import('react-quill'), { ssr: false });
+
+const fuelTypes = ['Petrol', 'Diesel', 'Electric', 'Hybrid'];
+const transmissions = ['Manual', 'Automatic', 'Semi-Automatic'];
 
 const Index = () => {
   const fileInputRef = useRef(null);
@@ -44,7 +47,7 @@ const Index = () => {
     mileage: '',
     engineCapacity: '',
     fuelType: '',
-    category:'',
+    category: '',
     transmission: '',
     bodyType: '',
     description: '',
@@ -62,16 +65,14 @@ const Index = () => {
     }));
   };
 
-  
-
-  console.log(router.query, "router.query");
+  console.log(router.query, 'router.query');
 
   useEffect(() => {
     if (selectedPlan) {
       setFormData((prevFormData) => ({
         ...prevFormData,
         plane: selectedPlan,
-        category:vehicle,
+        category: vehicle,
       }));
       console.log(`Selected Plan: ${selectedPlan}`);
     }
@@ -170,282 +171,292 @@ const Index = () => {
 
   return (
     <LayoutSecond>
-    <Box sx={{ maxWidth: 800, mx: 'auto', p: 2 }}>
-      <Grid container direction='column' spacing={2}>
-        <Grid item xs={12}>
-          <Typography
-            variant='h4'
-            component='h1'
-            gutterBottom
+      <Box sx={{ maxWidth: 800, mx: 'auto', p: 2 }}>
+        <Grid container direction='column' spacing={2}>
+          <Grid item xs={12}>
+            <Typography
+              variant='h4'
+              component='h1'
+              gutterBottom
+              sx={{
+                fontSize: { xs: '24px', sm: '28px', md: '32px' },
+                textAlign: 'center',
+                fontWeight: 'bold',
+                color: 'black',
+                marginTop: '80px',
+              }}
+            >
+              Create Your Ad / ඔබේ වෙළඳ දැන්වීම සාදන්න
+            </Typography>
+          </Grid>
+          <Grid
             sx={{
-              fontSize: { xs: '24px', sm: '28px', md: '32px' },
-              textAlign: 'center',
-              fontWeight: 'bold',
+              fontSize: { xs: '14px', sm: '18px', md: '22px' },
               color: 'black',
-              marginTop: '80px',
+              textAlign: 'right',
             }}
+            item
+            xs={12}
           >
-            Create Your Ad / ඔබේ වෙළඳ දැන්වීම සාදන්න
-          </Typography>
-        </Grid>
-        <Grid
-          sx={{
-            fontSize: { xs: '14px', sm: '18px', md: '22px' },
-            color: 'black',
-            textAlign: 'right',
-          }}
-          item
-          xs={12}
-        >
-          <Typography
-            variant='h4'
-            component='h4'
-            gutterBottom
-            sx={{ fontSize: { xs: '12px', sm: '16px', md: '20px' } }} // Adjust font size here
-          >
-            <img
-              style={{ width: '30px', height: '30px' }}
-              src='/media/placeholder_117967.png'
-              alt='Location Icon'
-              className='card-icon'
-            />{' '}
-            {location}/{subLocation}
-          </Typography>
-        </Grid>
-        <Grid item xs={12}>
-          <form onSubmit={handleSubmit} encType='multipart/form-data'>
-            <FormControl component='fieldset'>
-              <div style={{ color: 'black' }}> Condition</div>
-              <RadioGroup
-                row
-                name='condition'
-                value={formData.condition}
+            <Typography
+              variant='h4'
+              component='h4'
+              gutterBottom
+              sx={{ fontSize: { xs: '12px', sm: '16px', md: '20px' } }} // Adjust font size here
+            >
+              <img
+                style={{ width: '30px', height: '30px' }}
+                src='/media/placeholder_117967.png'
+                alt='Location Icon'
+                className='card-icon'
+              />{' '}
+              {location}/{subLocation}
+            </Typography>
+          </Grid>
+          <Grid item xs={12}>
+            <form onSubmit={handleSubmit} encType='multipart/form-data'>
+              <FormControl style={{ color: 'black' }} component='fieldset'>
+                <div style={{ color: 'black' }}>Condition</div>
+                <RadioGroup
+                  row
+                  name='condition'
+                  value={formData.condition}
+                  onChange={handleChange}
+                >
+                  <FormControlLabel
+                    value='New'
+                    control={<Radio />}
+                    label='New'
+                  />
+                  <FormControlLabel
+                    value='Used'
+                    control={<Radio />}
+                    label='Used'
+                  />
+                  <FormControlLabel
+                    value='Reconditioned'
+                    control={<Radio />}
+                    label='Reconditioned'
+                  />
+                </RadioGroup>
+              </FormControl>
+              <TextField
+                fullWidth
+                margin='normal'
+                label='Brand'
+                name='brand'
+                value={formData.brand}
                 onChange={handleChange}
-              >
-                <FormControlLabel
-                  value='New'
-                  control={<Radio />}
-                  label='New'
+                variant='outlined'
+                placeholder='Enter your brand'
+              />
+              <TextField
+                fullWidth
+                margin='normal'
+                label='Category'
+                name='category'
+                value={formData.category}
+                onChange={handleChange}
+                variant='outlined'
+                placeholder='Enter your brand'
+              />
+              <TextField
+                fullWidth
+                margin='normal'
+                label='Model'
+                name='model'
+                value={formData.model}
+                onChange={handleChange}
+                variant='outlined'
+                placeholder='Enter your model'
+              />
+              <TextField
+                fullWidth
+                margin='normal'
+                label='Trim/Edition'
+                name='trimEdition'
+                value={formData.trimEdition}
+                onChange={handleChange}
+                variant='outlined'
+                placeholder='Enter your trim/edition'
+              />
+              <TextField
+                fullWidth
+                margin='normal'
+                label='Year of Manufacture'
+                name='yearOfManufacture'
+                value={formData.yearOfManufacture}
+                onChange={handleChange}
+                variant='outlined'
+                placeholder='Enter your year of manufacture'
+              />
+              <TextField
+                fullWidth
+                margin='normal'
+                label='Mileage'
+                name='mileage'
+                value={formData.mileage}
+                onChange={handleChange}
+                variant='outlined'
+                placeholder='Enter your mileage'
+              />
+              <TextField
+                fullWidth
+                margin='normal'
+                label='Engine Capacity'
+                name='engineCapacity'
+                value={formData.engineCapacity}
+                onChange={handleChange}
+                variant='outlined'
+                placeholder='Enter your engine capacity'
+              />
+              <FormControl fullWidth margin='normal'>
+                <InputLabel id='fuel-type-label'>Fuel Type</InputLabel>
+                <Select
+                  labelId='fuel-type-label'
+                  name='fuelType'
+                  value={formData.fuelType}
+                  onChange={handleChange}
+                >
+                  {fuelTypes.map((type) => (
+                    <MenuItem key={type} value={type}>
+                      {type}
+                    </MenuItem>
+                  ))}
+                </Select>
+              </FormControl>
+              <FormControl fullWidth margin='normal'>
+                <InputLabel id='transmission-label'>Transmission</InputLabel>
+                <Select
+                  labelId='transmission-label'
+                  name='transmission'
+                  value={formData.transmission}
+                  onChange={handleChange}
+                >
+                  {transmissions.map((type) => (
+                    <MenuItem key={type} value={type}>
+                      {type}
+                    </MenuItem>
+                  ))}
+                </Select>
+              </FormControl>
+              <TextField
+                fullWidth
+                margin='normal'
+                label='Body Type'
+                name='bodyType'
+                value={formData.bodyType}
+                onChange={handleChange}
+                variant='outlined'
+                placeholder='Enter your body type'
+              />
+              <ReactQuill
+                value={formData.description}
+                onChange={handleDescriptionChange}
+                theme='snow'
+                placeholder='Enter your description'
+                style={{ marginBottom: '16px',color:"black" }}
+              />
+              <TextField
+                fullWidth
+                margin='normal'
+                label='Price'
+                name='price'
+                value={formData.price}
+                onChange={handleChange}
+                variant='outlined'
+                placeholder='Enter your price'
+              />
+              <FormControlLabel
+              sx={{color:"black"}}
+                control={
+                  <Radio
+                    checked={formData.negotiable}
+                    onChange={(e) =>
+                      setFormData((prevFormData) => ({
+                        ...prevFormData,
+                        negotiable: e.target.checked,
+                      }))
+                    }
+                    name='negotiable'
+                    color='primary'
+                  />
+                }
+                label='Negotiable'
+              />
+              <Box my={2}>
+                <input
+                  type='file'
+                  accept='image/*'
+                  multiple
+                  onChange={handleFileChange}
+                  ref={fileInputRef}
+                  style={{ display: 'none' }}
                 />
-                <FormControlLabel
-                  value='Used'
-                  control={<Radio />}
-                  label='Used'
-                />
-                <FormControlLabel
-                  value='Reconditioned'
-                  control={<Radio />}
-                  label='Reconditioned'
-                />
-              </RadioGroup>
-            </FormControl>
-            <TextField
-              fullWidth
-              margin='normal'
-              label='Brand'
-              name='brand'
-              value={formData.brand}
-              onChange={handleChange}
-              variant='outlined'
-              placeholder='Enter your brand'
-            />
-             <TextField
-              fullWidth
-              margin='normal'
-              label='Category'
-              name='category'
-              value={formData.category}
-              onChange={handleChange}
-              variant='outlined'
-              placeholder='Enter your brand'
-            />
-            <TextField
-              fullWidth
-              margin='normal'
-              label='Model'
-              name='model'
-              value={formData.model}
-              onChange={handleChange}
-              variant='outlined'
-              placeholder='Enter your model'
-            />
-            <TextField
-              fullWidth
-              margin='normal'
-              label='Trim/Edition'
-              name='trimEdition'
-              value={formData.trimEdition}
-              onChange={handleChange}
-              variant='outlined'
-              placeholder='Enter your trim/edition'
-            />
-            <TextField
-              fullWidth
-              margin='normal'
-              label='Year of Manufacture'
-              name='yearOfManufacture'
-              value={formData.yearOfManufacture}
-              onChange={handleChange}
-              variant='outlined'
-              placeholder='Enter your year of manufacture'
-            />
-            <TextField
-              fullWidth
-              margin='normal'
-              label='Mileage'
-              name='mileage'
-              value={formData.mileage}
-              onChange={handleChange}
-              variant='outlined'
-              placeholder='Enter your mileage'
-            />
-            <TextField
-              fullWidth
-              margin='normal'
-              label='Engine Capacity'
-              name='engineCapacity'
-              value={formData.engineCapacity}
-              onChange={handleChange}
-              variant='outlined'
-              placeholder='Enter your engine capacity'
-            />
-            <TextField
-              fullWidth
-              margin='normal'
-              label='Fuel Type'
-              name='fuelType'
-              value={formData.fuelType}
-              onChange={handleChange}
-              variant='outlined'
-              placeholder='Enter your fuel type'
-            />
-            <TextField
-              fullWidth
-              margin='normal'
-              label='Transmission'
-              name='transmission'
-              value={formData.transmission}
-              onChange={handleChange}
-              variant='outlined'
-              placeholder='Enter your transmission'
-            />
-            <TextField
-              fullWidth
-              margin='normal'
-              label='Body Type'
-              name='bodyType'
-              value={formData.bodyType}
-              onChange={handleChange}
-              variant='outlined'
-              placeholder='Enter your body type'
-            />
-            <ReactQuill
-              value={formData.description}
-              onChange={handleDescriptionChange}
-              theme='snow'
-              placeholder='Enter your description'
-              style={{ marginBottom: '16px' }}
-            />
-            <TextField
-              fullWidth
-              margin='normal'
-              label='Price'
-              name='price'
-              value={formData.price}
-              onChange={handleChange}
-              variant='outlined'
-              placeholder='Enter your price'
-            />
-            <FormControlLabel
-              control={
-                <Radio
-                  checked={formData.negotiable}
-                  onChange={(e) =>
-                    setFormData((prevFormData) => ({
-                      ...prevFormData,
-                      negotiable: e.target.checked,
-                    }))
-                  }
-                  name='negotiable'
-                  color='primary'
-                />
-              }
-              label='Negotiable'
-            />
-            <Box my={2}>
-              <input
-                type='file'
-                accept='image/*'
-                multiple
-                onChange={handleFileChange}
-                ref={fileInputRef}
-                style={{ display: 'none' }}
+                <Button
+                  variant='outlined'
+                  onClick={() => fileInputRef.current.click()}
+                >
+                  Upload Images
+                </Button>
+                <Box mt={2}>
+                  <Grid container spacing={2} sx={{ marginTop: '20px' }}>
+                    {formData.images.map((image, index) => (
+                      <Grid item xs={6} key={index}>
+                        <Card>
+                          <CardMedia
+                            component='img'
+                            height='140'
+                            image={URL.createObjectURL(image)}
+                            alt={`Image ${index + 1}`}
+                          />
+                          <IconButton
+                            aria-label='delete'
+                            onClick={() => handleRemoveImage(index)}
+                          >
+                            <DeleteIcon />
+                          </IconButton>
+                        </Card>
+                      </Grid>
+                    ))}
+                  </Grid>
+                </Box>
+              </Box>
+              <TextField
+                fullWidth
+                margin='normal'
+                label='Mobile Number'
+                name='mobileNumber'
+                value={formData.mobileNumber}
+                onChange={handleChange}
+                variant='outlined'
+                placeholder='Enter your mobile number'
+              />
+              <TextField
+                fullWidth
+                margin='normal'
+                label='WhatsApp Number'
+                name='whatsappNumber'
+                value={formData.whatsappNumber}
+                onChange={handleChange}
+                variant='outlined'
+                placeholder='Enter your WhatsApp number'
               />
               <Button
-                variant='outlined'
-                onClick={() => fileInputRef.current.click()}
+                type='submit'
+                variant='contained'
+                color='primary'
+                fullWidth
+                sx={{ mt: 2 }}
               >
-                Upload Images
+                Submit
               </Button>
-              <Box mt={2}>
-              <Grid container spacing={2} sx={{ marginTop: '20px' }}>
-                {formData.images.map((image, index) => (
-                  <Grid item xs={6} key={index}>
-                    <Card>
-                      <CardMedia
-                        component='img'
-                        height='140'
-                        image={URL.createObjectURL(image)}
-                        alt={`Image ${index + 1}`}
-                      />
-                      <IconButton
-                        aria-label='delete'
-                        onClick={() => handleRemoveImage(index)}
-                      >
-                        <DeleteIcon />
-                      </IconButton>
-                    </Card>
-                  </Grid>
-                ))}
-              </Grid>
-              </Box>
-            </Box>
-            <TextField
-              fullWidth
-              margin='normal'
-              label='Mobile Number'
-              name='mobileNumber'
-              value={formData.mobileNumber}
-              onChange={handleChange}
-              variant='outlined'
-              placeholder='Enter your mobile number'
-            />
-            <TextField
-              fullWidth
-              margin='normal'
-              label='WhatsApp Number'
-              name='whatsappNumber'
-              value={formData.whatsappNumber}
-              onChange={handleChange}
-              variant='outlined'
-              placeholder='Enter your WhatsApp number'
-            />
-            <Button
-              type='submit'
-              variant='contained'
-              color='primary'
-              fullWidth
-              sx={{ mt: 2 }}
-            >
-              Submit
-            </Button>
-          </form>
+            </form>
+          </Grid>
         </Grid>
-      </Grid>
-    </Box>
-  </LayoutSecond>
+      </Box>
+    </LayoutSecond>
   );
 };
 
 export default Index;
-

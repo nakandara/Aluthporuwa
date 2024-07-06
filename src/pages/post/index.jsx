@@ -151,7 +151,7 @@ const Post = () => {
   const [shareModalOpen, setShareModalOpen] = useState(false);
   const [selectedPost, setSelectedPost] = useState(null);
 
-  console.log(data,'5555555555555');
+
 
   useEffect(() => {
     const fetchPosts = async () => {
@@ -443,7 +443,7 @@ const Post = () => {
                           <Img alt="complex" src={post.images[0].imageUrl} />
                         </ButtonBase>
                       </Grid>
-                      <Grid item xs={12} sm container>
+                      <Grid sx={{ml:1}} item xs={12} sm container>
                         <Grid item xs container direction="column" spacing={2}>
                           <Grid item xs>
                             <Typography

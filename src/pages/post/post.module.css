@@ -138,6 +138,7 @@
   .postIdDescription_content{
     color: #707676;
       word-break: normal;
+      margin: 15px;
       white-space: pre-wrap;
       word-wrap: break-word;
       font-family: 'Open Sans', 'PF DinText Pro', Arial, Helvetica, sans-serif;
@@ -205,3 +206,35 @@
     overflow: visible;
    
   }
+
+  .postIdDetails {
+    margin: 20px 0;
+    font-family: 'Open Sans', 'PF DinText Pro', Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    line-height: 1.6;
+  }
+  
+  .postIdDetails div {
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    transition: background-color 0.3s ease;
+  }
+  
+  .postIdDetails div:hover {
+    background-color: #e9e9e9;
+  }
+  
+  .postIdDetails strong {
+    font-weight: 600;
+    color: #333;
+  }
+  
+  @media (max-width: 600px) {
+    .postIdDetails {
+      font-size: 12px;
+    }
+  }
+  

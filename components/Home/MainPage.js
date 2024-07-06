@@ -20,7 +20,7 @@ const VideoWithTextAndOpacity = ({ onLogin }) => {
         muted
         style={{ opacity: 0.25 }}
       >
-        <source src="/media/poruwaimage.webm" type="video/webm" />
+        <source src="/media/ssssssssss.mp4" type="video/webm" />
         Your browser does not support the video tag.
       </video>
       <div
@@ -70,29 +70,79 @@ export default function BasicGrid() {
   useEffect(() => {
     setData([
      
-      {
-        "_id": "6668af2647a5e7d722d4eb89",
-        "userId": "66437d4055b327e8eaf7b6db",
-        "images": [
-          {
-            "imageUrl": "https://world-api-demo.s3.amazonaws.com/1718136613836-IMG_6423.png",
-            "_id": "6668af2647a5e7d722d4eb8a"
-          }
+      
+    {
+        "_id": "66865d66016454c3719fed41",
+        "userId": "6661f7790b2cabbbaa60ed27",
+        "brand": "Wagon",
+        "model": "Piaggio ape",
+        "trimEdition": "Manual",
+        "yearOfManufacture": "2011",
+        "mileage": "80000 km",
+        "engineCapacity": "355",
+        "fuelType": "Diesel",
+        "transmission": "Manual",
+        "bodyType": "Wagon",
+        "category": [
+            "Three Wheelers"
         ],
-        "description": "PLEASE LIKE & SHARE ME 👍...",
+        "images": [
+            {
+                "imageUrl": "https://world-api-demo.s3.amazonaws.com/1720081764048-blob",
+                "_id": "66865d66016454c3719fed42"
+            }
+        ],
+        "negotiable": true,
+        "description": "<p>Additional Information</p><p>වැඩි විස්තර සදහා අමතන්න</p><p>0775605970</p>",
         "plane": "Gold",
-        "title": "Lihini 🦋 Shemale Live Cam & Full Service 🥰",
-        "city": "Colamba",
-        "mobileNumber": " 0768034662",
-        "whatsappNumber": " 0768034662",
-        "price": "1000",
-        "category": ["Full Service"],
-        "socialIcon": ["heart"],
+        "mobileNumber": " (077) 560-5970",
+        "whatsappNumber": " (077) 560-5970",
+        "price": "Rs 975,000",
+        "socialIcon": [
+            "heart"
+        ],
         "verify": true,
-        "postId": "6668af2647a5e7d722d4eb8b",
-        "createdAt": "2024-06-11T20:10:14.147Z",
-        "updatedAt": "2024-06-11T20:14:37.233Z",
-      },
+        "postId": "66865d66016454c3719fed43",
+        "createdAt": "2024-07-04T08:29:26.864Z",
+        "updatedAt": "2024-07-04T08:29:53.836Z",
+        "__v": 0
+    },
+    {
+        "_id": "668658504de8104461b2f1de",
+        "userId": "6661f7790b2cabbbaa60ed27",
+        "brand": "2015 Toyota Premio G superior",
+        "model": "Sedan",
+        "trimEdition": "Automatic",
+        "yearOfManufacture": "2015",
+        "mileage": " 109000 km",
+        "engineCapacity": "-",
+        "fuelType": "Petrol",
+        "transmission": "Automatic",
+        "bodyType": "Sedan",
+        "category": [
+            "Cars"
+        ],
+        "images": [
+            {
+                "imageUrl": "https://world-api-demo.s3.amazonaws.com/1720080460428-blob",
+                "_id": "668658504de8104461b2f1df"
+            }
+        ],
+        "negotiable": true,
+        "description": "<p><span style=\"background-color: rgb(255, 255, 255); color: rgb(136, 136, 136);\">Additional Information</span></p><p><span style=\"background-color: rgb(255, 255, 255); color: rgb(17, 17, 17);\">Mint Condition</span></p><p><span style=\"background-color: rgb(255, 255, 255); color: rgb(17, 17, 17);\">All 3M tinted glasses</span></p><p><span style=\"background-color: rgb(255, 255, 255); color: rgb(17, 17, 17);\">Full option</span></p><p><span style=\"background-color: rgb(255, 255, 255); color: rgb(17, 17, 17);\">Alloy wheels</span></p><p><span style=\"background-color: rgb(255, 255, 255); color: rgb(17, 17, 17);\">2nd Owner</span></p><p><span style=\"background-color: rgb(255, 255, 255); color: rgb(17, 17, 17);\">Urgent Sale</span></p><p><span style=\"background-color: rgb(255, 255, 255); color: rgb(17, 17, 17);\">Call for more information</span></p>",
+        "plane": "Silver",
+        "mobileNumber": "(070) 193-9116",
+        "whatsappNumber": "(070) 193-9116",
+        "price": "Rs 15,500,000",
+        "socialIcon": [
+            "heart"
+        ],
+        "verify": true,
+        "postId": "668658504de8104461b2f1e0",
+        "createdAt": "2024-07-04T08:07:44.939Z",
+        "updatedAt": "2024-07-04T08:08:21.587Z",
+        "__v": 0
+    },
     ]);
   }, []);
 

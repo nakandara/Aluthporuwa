@@ -1,10 +1,8 @@
 import React, { useState } from "react";
 import styles from "./HomeCard.module.css";
-import { FacebookShareButton, WhatsappShareButton } from "react-share";
+import { IconButton, Grid, Typography, Paper, ButtonBase } from "@mui/material";
 import ShareIcon from "@mui/icons-material/Share";
-import ImageGallery from "react-image-gallery";
-import Modal from "../modal/Modal";
-import { FacebookIcon, WhatsappIcon } from "react-share";
+
 import { useRouter } from "next/router";
 
 const Card = ({
@@ -38,69 +36,92 @@ const Card = ({
   const shareUrl = `https://aluthporuwa-nakandara.vercel.app/post/${post.postId}`;
   const title = "Check out this post";
 
-  const images = src.images?.map((image) => ({
-    original: image.imageUrl,
-  }));
-
-  const formatDate = (dateString) => {
-    const options = {
-      day: "numeric",
-      hour: "2-digit",
-      minute: "2-digit",
-    };
-    return new Date(dateString).toLocaleDateString(undefined, options);
-  };
-
-  const getBadgeClass = (plane) => {
-    switch (plane) {
-      case "Gold":
-        return styles.goldBadge;
-      case "Silver":
-        return styles.silverBadge;
-      default:
-        return styles.defaultBadge;
-    }
-  };
-
   return (
     <div className={styles.card}>
-      <div onClick={() => handleClick(post.postId)} className={styles.imageContainer}>
-        {images && images.length > 0 && (
-          <ImageGallery
-            items={images}
-            showThumbnails={false}
-            showPlayButton={false}
-            showNav={false}
-            autoPlay={true}
-            slideInterval={3000}
-          />
-        )}
-      </div>
-      <div className={styles.content}>
-        <div className={styles.header}>
-          <div onClick={() => handleClick(post.postId)} className={`${styles.badge} ${getBadgeClass(post.plane)}`}>
-            {post.plane} ADD
-          </div>
-          <ShareIcon onClick={handleShareClick} className={styles.shareIcon} />
-          <Modal isOpen={isModalOpen} onClose={handleCloseModal}>
-            <h2>Share Options</h2>
-            <FacebookShareButton url={shareUrl} quote={title}>
-              <FacebookIcon size={32} round />
-            </FacebookShareButton>
-            <WhatsappShareButton url={shareUrl} title={title}>
-              <WhatsappIcon size={32} round />
-            </WhatsappShareButton>
-          </Modal>
-        </div>
-        <div onClick={() => handleClick(post.postId)}>
-          <p className={styles.title}>{post.title}</p>
-          <p className={styles.description}>{description}</p>
-          <p className={styles.date}>{formatDate(post.createdAt)}</p>
-        </div>
-        <div className={styles.reactionContainer}></div>
-      </div>
+      <Paper
+        key={index}
+   
+        onClick={() => handleClick(post.postId)}
+      >
+        <Typography
+          variant="subtitle2"
+          className="myaccount-profile-image-mobile"
+          style={{
+            position: "absolute",
+            top: 8,
+            right: 8,
+            backgroundColor: "rgba(0, 0, 0, 0.7)",
+            color: "#fff",
+            padding: "2px 8px",
+            borderRadius: "4px",
+            zIndex: 1,
+          }}
+        >
+          {post.verify ? "POST" : "PENDING"}
+        </Typography>
+        <IconButton
+          aria-label="share"
+          style={{
+            position: "absolute",
+            bottom: 8,
+            right: 8,
+          }}
+          onClick={(e) => {
+            e.stopPropagation();
+            handleShareClick(post);
+          }}
+        >
+          <ShareIcon />
+        </IconButton>
+        <Grid container spacing={2}>
+          <Grid item xs={12} sm={6} md={4}>
+            <ButtonBase sx={{ width: "100%" }}>
+              <img
+                alt="complex"
+                src={post.images[0].imageUrl}
+                className={styles.image}
+              />
+            </ButtonBase>
+          </Grid>
+          <Grid item xs={12} sm={6} md={8} sx={{ display: "flex", flexDirection: "column" }}>
+            <Typography gutterBottom variant="subtitle1" component="div">
+              {post.title}
+            </Typography>
+            <Typography variant="body2" gutterBottom>
+              <div
+                dangerouslySetInnerHTML={{
+                  __html: post.description.substring(0, 160),
+                }}
+              />
+            </Typography>
+            <Typography variant="body2" color="text.secondary">
+              {Array.isArray(post.category)
+                ? post.category.join(", ")
+                : post.category}
+            </Typography>
+            <Typography variant="body2" color="text.secondary">
+              Mobile: {post.mobileNumber}
+            </Typography>
+            <Typography
+              className="myaccount-profile-image-details"
+              variant="subtitle1"
+              component="div"
+            >
+              {post.price}
+            </Typography>
+            <Typography
+              className="myaccount-profile-image-mobile"
+              variant="subtitle1"
+              component="div"
+            >
+              {post.mobileNumber}
+            </Typography>
+          </Grid>
+        </Grid>
+      </Paper>
     </div>
   );
 };
 
 export default Card;
+
