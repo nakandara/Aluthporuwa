@@ -124,11 +124,11 @@ const Post = () => {
   const [reactionCount, setReactionCount] = useState("");
   const [posts, setPosts] = useState([]);
   const [category, setCategory] = useState([
-    { category: "Mobile", count: "100" },
-    { category: "video", count: "1600" },
+    { category: "Vehicles", count: "10780" },
+    { category: "Property", count: "1600" },
     { category: "TV", count: "1720" },
-    { category: "video", count: "1700" },
-    { category: "vehicle", count: "1370" },
+    { category: "Home", count: "1700" },
+    { category: "E items", count: "1370" },
     { category: "Beauty", count: "1890" },
     { category: "private", count: "100" },
   ]);

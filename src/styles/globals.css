@@ -1307,6 +1307,7 @@ margin: 10px;
 .sub_category_container{
   background-color: #009877;
   font-size:small;
+  height: 50px;
 }
 
 @media screen and (max-width: 780px) {
@@ -1314,11 +1315,14 @@ margin: 10px;
     margin-top: 10px;
     margin-bottom: 100px;
     display: grid;
+    align-items: center;
+
   }
 
   .sub_category_container{
     background-color: #009877;
     font-size:x-small;
+    align-items: center;
   }
  
 }
@@ -2206,3 +2210,14 @@ input {
   animation: lightningAnimation 1s linear infinite;
 }
 
+
+@media screen and (max-width: 950px) {
+  .lightning-border {
+    position: relative;
+  font-size: small;
+    padding: 10px;
+  
+  
+    animation: lightningAnimation 2s linear infinite;
+  }
+}

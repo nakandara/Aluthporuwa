@@ -34,7 +34,7 @@ const Footer = () => {
         </div>
           <div className="footer-column">
             <h3>Contact Us</h3>
-            <p>Email: poruwa@example.com</p>
+            <p>Email:quickadshub@gmail.com</p>
             <p>Phone: +94715297881</p>
           </div>
         </div>
