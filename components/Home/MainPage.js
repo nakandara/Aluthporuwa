@@ -8,21 +8,15 @@ import Cardl from "../../components/card/HomeCard";
 import Card from "@mui/material/Card";
 import CardMedia from "@mui/material/CardMedia";
 
-// Your Video component with text overlay and opacity
-const VideoWithTextAndOpacity = ({ onLogin }) => {
+// Your Image component with text overlay and opacity
+const ImageWithTextAndOpacity = ({ onLogin }) => {
   return (
     <div style={{ position: "relative" }}>
-      <video
-        width="100%"
-        height="auto"
-        autoPlay
-        loop
-        muted
-        style={{ opacity: 0.25 }}
-      >
-        <source src="/media/ssssssssss.mp4" type="video/webm" />
-        Your browser does not support the video tag.
-      </video>
+      <img
+        src="/media/pexels-luisphotogram-3551469.jpg"
+        alt="Cover"
+        style={{ width: "100%", height: "auto", opacity: 0.25 }}
+      />
       <div
         style={{
           position: "absolute",
@@ -38,7 +32,7 @@ const VideoWithTextAndOpacity = ({ onLogin }) => {
             textShadow: "2px 2px 4px rgba(128, 128, 128, 0.5)",
           }}
         >
-          <span className="responsive-text">Book your add today.</span>
+          <span className="responsive-text">Book your ad today.</span>
           <br />
           <Button
             onClick={onLogin}
@@ -46,7 +40,7 @@ const VideoWithTextAndOpacity = ({ onLogin }) => {
             variant="contained"
             size="large"
           >
-            Proceed.
+            Proceed
           </Button>
         </h1>
       </div>
@@ -69,9 +63,7 @@ export default function BasicGrid() {
 
   useEffect(() => {
     setData([
-     
-      
-    {
+      {
         "_id": "66865d66016454c3719fed41",
         "userId": "6661f7790b2cabbbaa60ed27",
         "brand": "Wagon",
@@ -84,13 +76,13 @@ export default function BasicGrid() {
         "transmission": "Manual",
         "bodyType": "Wagon",
         "category": [
-            "Three Wheelers"
+          "Three Wheelers"
         ],
         "images": [
-            {
-                "imageUrl": "https://world-api-demo.s3.amazonaws.com/1720081764048-blob",
-                "_id": "66865d66016454c3719fed42"
-            }
+          {
+            "imageUrl": "https://world-api-demo.s3.amazonaws.com/1720081764048-blob",
+            "_id": "66865d66016454c3719fed42"
+          }
         ],
         "negotiable": true,
         "description": "<p>Additional Information</p><p>වැඩි විස්තර සදහා අමතන්න</p><p>0775605970</p>",
@@ -99,15 +91,15 @@ export default function BasicGrid() {
         "whatsappNumber": " (077) 560-5970",
         "price": "Rs 975,000",
         "socialIcon": [
-            "heart"
+          "heart"
         ],
         "verify": true,
         "postId": "66865d66016454c3719fed43",
         "createdAt": "2024-07-04T08:29:26.864Z",
         "updatedAt": "2024-07-04T08:29:53.836Z",
         "__v": 0
-    },
-    {
+      },
+      {
         "_id": "668658504de8104461b2f1de",
         "userId": "6661f7790b2cabbbaa60ed27",
         "brand": "2015 Toyota Premio G superior",
@@ -120,13 +112,13 @@ export default function BasicGrid() {
         "transmission": "Automatic",
         "bodyType": "Sedan",
         "category": [
-            "Cars"
+          "Cars"
         ],
         "images": [
-            {
-                "imageUrl": "https://world-api-demo.s3.amazonaws.com/1720080460428-blob",
-                "_id": "668658504de8104461b2f1df"
-            }
+          {
+            "imageUrl": "https://world-api-demo.s3.amazonaws.com/1720080460428-blob",
+            "_id": "668658504de8104461b2f1df"
+          }
         ],
         "negotiable": true,
         "description": "<p><span style=\"background-color: rgb(255, 255, 255); color: rgb(136, 136, 136);\">Additional Information</span></p><p><span style=\"background-color: rgb(255, 255, 255); color: rgb(17, 17, 17);\">Mint Condition</span></p><p><span style=\"background-color: rgb(255, 255, 255); color: rgb(17, 17, 17);\">All 3M tinted glasses</span></p><p><span style=\"background-color: rgb(255, 255, 255); color: rgb(17, 17, 17);\">Full option</span></p><p><span style=\"background-color: rgb(255, 255, 255); color: rgb(17, 17, 17);\">Alloy wheels</span></p><p><span style=\"background-color: rgb(255, 255, 255); color: rgb(17, 17, 17);\">2nd Owner</span></p><p><span style=\"background-color: rgb(255, 255, 255); color: rgb(17, 17, 17);\">Urgent Sale</span></p><p><span style=\"background-color: rgb(255, 255, 255); color: rgb(17, 17, 17);\">Call for more information</span></p>",
@@ -135,14 +127,14 @@ export default function BasicGrid() {
         "whatsappNumber": "(070) 193-9116",
         "price": "Rs 15,500,000",
         "socialIcon": [
-            "heart"
+          "heart"
         ],
         "verify": true,
         "postId": "668658504de8104461b2f1e0",
         "createdAt": "2024-07-04T08:07:44.939Z",
         "updatedAt": "2024-07-04T08:08:21.587Z",
         "__v": 0
-    },
+      },
     ]);
   }, []);
 
@@ -152,7 +144,7 @@ export default function BasicGrid() {
 
   return (
     <div>
-      <VideoWithTextAndOpacity onLogin={handleLogin} />
+      <ImageWithTextAndOpacity onLogin={handleLogin} />
       <div
         style={{
           display: "flex",
