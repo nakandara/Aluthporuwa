@@ -1,9 +1,9 @@
 import "@/styles/globals.css";
 import { SessionProvider } from "next-auth/react";
-import { ToggleProvider } from '../../contex/ToggleContext';
-import { TokenProvider } from '../context/TokenContext';
-import { LocalizationProvider } from '@mui/x-date-pickers';
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
+import { ToggleProvider } from "../../contex/ToggleContext";
+import { TokenProvider } from "../context/TokenContext";
+import { LocalizationProvider } from "@mui/x-date-pickers";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 
 export default function App({
   Component,
@@ -11,14 +11,11 @@ export default function App({
 }) {
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
-    <TokenProvider>
-       <ToggleProvider>
-       <Component {...pageProps} />
-       </ToggleProvider>
-       </TokenProvider>
-        </LocalizationProvider>
-       
-    
-   
+      <TokenProvider>
+        <ToggleProvider>
+          <Component {...pageProps} />
+        </ToggleProvider>
+      </TokenProvider>
+    </LocalizationProvider>
   );
 }
