@@ -14,13 +14,19 @@ const Item = styled(Paper)(({ theme }) => ({
 }));
 
 export default function HomeStep() {
-  const [width, setWidth] = useState(window.innerWidth);
+  const [width, setWidth] = useState(0);
 
   useEffect(() => {
+    // Function to update the width state
     const handleResize = () => setWidth(window.innerWidth);
 
+    // Set initial width
+    setWidth(window.innerWidth);
+
+    // Add event listener for resize
     window.addEventListener("resize", handleResize);
 
+    // Cleanup event listener on unmount
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
@@ -39,10 +45,10 @@ export default function HomeStep() {
             </Item>
           </Grid>
           <Grid item xs={12} sm={6} order={{ xs: 1, sm: 2 }}>
-            <Item sx={{ color: "white" }}>Re-checking your home address for postage is the best way to ensure your certificate is not lost in transit and you are not delayed in receiving it.</Item>
+            <Item sx={{ color: "white" }}>Content 1</Item>
           </Grid>
           <Grid item xs={12} sm={4} order={{ xs: 4, sm: 3 }}>
-            <Item sx={{ color: "white" }}>If you studied at one of our partner institutions outside of the UK, your certificate will be dispatched to the central office of your institution and dispatch/collection of your certificate will be arranged by them directly</Item>
+            <Item sx={{ color: "white" }}>Content 2</Item>
           </Grid>
           <Grid item xs={12} sm={8} order={{ xs: 3, sm: 4 }}>
             <Item>
@@ -84,7 +90,7 @@ export default function HomeStep() {
       ) : (
         <Grid container spacing={2}>
           <Grid item xs={12} sm={6} order={{ xs: 2, sm: 1 }}>
-            <Item sx={{ color: "white" }}>Re-checking your home address for postage is the best way to ensure your certificate is not lost in transit and you are not delayed in receiving it.</Item>
+            <Item sx={{ color: "white" }}>Content 1</Item>
           </Grid>
           <Grid item xs={12} sm={6} order={{ xs: 1, sm: 2 }}>
             <Item>
@@ -97,7 +103,7 @@ export default function HomeStep() {
             </Item>
           </Grid>
           <Grid item xs={12} sm={6} order={{ xs: 4, sm: 3 }}>
-            <Item sx={{ color: "white" }}>If you studied at one of our partner institutions outside of the UK, your certificate will be dispatched to the central office of your institution and dispatch/collection of your certificate will be arranged by them directly</Item>
+            <Item sx={{ color: "white" }}>Content 2</Item>
           </Grid>
           <Grid item xs={12} sm={6} order={{ xs: 3, sm: 4 }}>
             <Item>
