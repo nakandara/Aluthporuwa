@@ -8,6 +8,8 @@ import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemText from "@mui/material/ListItemText";
 import MainPage from "../../components/Home/MainPage";
+import HomeStep from "../../components/Home/HomeStep";
+import HomeContact from "../../components/Home/HomeContact";
 import Footer from "./../../components/footer";
 import LayoutSecond from "../../components/LayoutSecond/LayoutSecond";
 
@@ -31,95 +33,13 @@ function DrawerAppBar(props) {
         <section>
           <div className="step">
             <div className="step_heading"> QuickAds Hub Step</div>
-            <div className="card">
-              <div className="cardtemp ">
-                <div className="center flex">
-                 
-
-                  <div className="secondside">
-                    <img
-                      className="step_images"
-                      src={`/media/lsssssssss.avif`}
-                      alt={`Image`}
-                    />
-                  </div>
-                </div>
-              </div>
-              <div className="cardtemp ">
-                <div className="center flex">
-              
-
-                  <div className="secondside">
-                    <img
-                      className="step_images"
-                      src={`/media/19198948.jpg`}
-                      alt={`Image`}
-                    />
-                  </div>
-                </div>
-              </div>
-              <div className="cardtemp ">
-                <div className="center flex">
-                
-
-                  <div className="secondside">
-                    <img
-                      className="step_images"
-                      src={`/media/20943483.jpg`}
-                      alt={`Image`}
-                    />
-                  </div>
-                </div>
-              </div>
-
-              <div className="cardtemp ">
-                <div className="center flex">
-              
-
-                  <div className="secondside">
-                    <img
-                      className="step_images"
-                      src={`/media/2903544.jpg`}
-                      alt={`Image`}
-                    />
-                  </div>
-                </div>
-              </div>
-
-              <div className="cardtemp ">
-                <div className="center flex">
-                 
-
-                  <div className="secondside">
-                    <img
-                      className="step_images"
-                      src={`/media/2760432.jpg`}
-                      alt={`Image`}
-                    />
-                  </div>
-                </div>
-              </div>
-
-              <div className="cardtemp ">
-                <div className="center flex">
-                 
-
-                  <div className="secondside">
-                    <img
-                      className="step_images"
-                      src={`/media/3969587.jpg`}
-                      alt={`Image`}
-                    />
-                  </div>
-                </div>
-              </div>
-            </div>
+           <HomeStep/>
           </div>
         </section>
         <section>
           <div className="contact-container">
             <div className="contact_topic">අපව සම්බන්ධ කරගන්න</div>
-            <div></div>
+            <HomeContact/>
           </div>
         </section>
       </Box>

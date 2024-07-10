@@ -97,8 +97,9 @@ const LayoutSecond = ({ children }) => {
     gap: 0.5 // Adjusts the gap between images
   }}
 >
-  <Image 
-    src="/media/letter-q_7548487.png" 
+
+     <Image 
+    src="/media/icons8-q-50 (1).png" 
     alt="QuickAds Hub"
     width={25} // Adjust width as necessary
     height={25} // Adjust height as necessary
@@ -250,8 +251,8 @@ const LayoutSecond = ({ children }) => {
           
             sx={{ m: 3, fontFamily: "sans-serif", cursor: 'pointer' }}
           >
-            <Image 
-    src="/media/letter-q_7548487.png" 
+     <Image 
+    src="/media/icons8-q-50 (1).png" 
     alt="QuickAds Hub"
     width={25} // Adjust width as necessary
     height={25} // Adjust height as necessary
