@@ -435,7 +435,7 @@ const Post = () => {
                         handleShareClick(post);
                       }}
                     >
-                      <ShareIcon />
+                      <ShareIcon sx={{color:"white"}}/>
                     </IconButton>
                     <Grid container spacing={2}>
                       <Grid item>

@@ -32,6 +32,20 @@
   max-width: 100%;
   position: relative;
 }
+
+.transparentBackground {
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+  color: #ffffff; /* Light text color */
+}
+
+.lightText {
+  color: #ffffff; /* Light text color */
+}
+
+.myaccount-profile-image-details,
+.myaccount-profile-image-mobile {
+  color: #ffffff; /* Light text color for these specific elements */
+}
 .loading {
   position: absolute;
   top: 50%;

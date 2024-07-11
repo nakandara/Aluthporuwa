@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import styles from "./HomeCard.module.css";
 import { IconButton, Grid, Typography, Paper, ButtonBase } from "@mui/material";
 import ShareIcon from "@mui/icons-material/Share";
-
 import { useRouter } from "next/router";
 
 const Card = ({
@@ -40,12 +39,12 @@ const Card = ({
     <div className={styles.card}>
       <Paper
         key={index}
-   
+        className={styles.transparentBackground}
         onClick={() => handleClick(post.postId)}
       >
         <Typography
           variant="subtitle2"
-          className="myaccount-profile-image-mobile"
+          className={`${styles.lightText} myaccount-profile-image-mobile`}
           style={{
             position: "absolute",
             top: 8,
@@ -71,7 +70,7 @@ const Card = ({
             handleShareClick(post);
           }}
         >
-          <ShareIcon />
+          <ShareIcon sx={{color:"white"}} />
         </IconButton>
         <Grid container spacing={2}>
           <Grid item xs={12} sm={6} md={4}>
@@ -84,33 +83,33 @@ const Card = ({
             </ButtonBase>
           </Grid>
           <Grid item xs={12} sm={6} md={8} sx={{ display: "flex", flexDirection: "column" }}>
-            <Typography gutterBottom variant="subtitle1" component="div">
+            <Typography gutterBottom variant="subtitle1" component="div" className={styles.lightText}>
               {post.title}
             </Typography>
-            <Typography variant="body2" gutterBottom>
+            <Typography variant="body2" gutterBottom className={styles.lightText}>
               <div
                 dangerouslySetInnerHTML={{
                   __html: post.description.substring(0, 160),
                 }}
               />
             </Typography>
-            <Typography variant="body2" color="text.secondary">
+            <Typography variant="body2" color="text.secondary" className={styles.lightText}>
               {Array.isArray(post.category)
                 ? post.category.join(", ")
                 : post.category}
             </Typography>
-            <Typography variant="body2" color="text.secondary">
+            <Typography variant="body2" color="text.secondary" className={styles.lightText}>
               Mobile: {post.mobileNumber}
             </Typography>
             <Typography
-              className="myaccount-profile-image-details"
+              className={`${styles.lightText} myaccount-profile-image-details`}
               variant="subtitle1"
               component="div"
             >
               {post.price}
             </Typography>
             <Typography
-              className="myaccount-profile-image-mobile"
+              className={`${styles.lightText} myaccount-profile-image-mobile`}
               variant="subtitle1"
               component="div"
             >
@@ -124,4 +123,3 @@ const Card = ({
 };
 
 export default Card;
-

@@ -1,17 +1,44 @@
 import React, { useState, useEffect } from "react";
-import { styled } from "@mui/material/styles";
+import { styled, keyframes } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Grid";
 import Image from "next/image";
+import useInView from "./useInView"; // Import the custom hook
 
-const Item = styled(Paper)(({ theme }) => ({
+// Define the keyframes for the animation
+const slideIn = keyframes`
+  from {
+    opacity: 0;
+    transform: translateY(100px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+`;
+
+const Item = styled(Paper)(({ theme, isContent, inView }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#000000" : "#000000",
   ...theme.typography.body2,
   padding: theme.spacing(1),
   textAlign: "center",
   color: theme.palette.text.secondary,
+  border: isContent ? "1px solid white" : "none",
+  animation: isContent && inView ? `${slideIn} 1s ease-out` : "none", // Apply animation only for content items
 }));
+
+const ContentItem = ({ children }) => {
+  const [setRef, inView] = useInView({
+    threshold: 0.1, // Adjust threshold as needed
+  });
+
+  return (
+    <Item ref={setRef} isContent inView={inView} sx={{ color: "white" }}>
+      {children}
+    </Item>
+  );
+};
 
 export default function HomeStep() {
   const [width, setWidth] = useState(0);
@@ -45,10 +72,13 @@ export default function HomeStep() {
             </Item>
           </Grid>
           <Grid item xs={12} sm={6} order={{ xs: 1, sm: 2 }}>
-            <Item sx={{ color: "white" }}>Content 1</Item>
+            <ContentItem>
+            පලමුව ඔබ Account එකක් නිර්මාණය කර එයින් log වෙන්න.<br/>
+          
+            </ContentItem>
           </Grid>
           <Grid item xs={12} sm={4} order={{ xs: 4, sm: 3 }}>
-            <Item sx={{ color: "white" }}>Content 2</Item>
+            <ContentItem>ඔබගේ දුරකථන අංකය යොදා account  එක verify කරගන්න.</ContentItem>
           </Grid>
           <Grid item xs={12} sm={8} order={{ xs: 3, sm: 4 }}>
             <Item>
@@ -71,10 +101,10 @@ export default function HomeStep() {
             </Item>
           </Grid>
           <Grid item xs={12} sm={6} order={{ xs: 5, sm: 6 }}>
-            <Item sx={{ color: "white" }}>Content 3</Item>
+            <ContentItem>Content 3</ContentItem>
           </Grid>
           <Grid item xs={12} sm={4} order={{ xs: 8, sm: 7 }}>
-            <Item sx={{ color: "white" }}>Content 4</Item>
+            <ContentItem>Content 4</ContentItem>
           </Grid>
           <Grid item xs={12} sm={8} order={{ xs: 7, sm: 8 }}>
             <Item>
@@ -90,7 +120,10 @@ export default function HomeStep() {
       ) : (
         <Grid container spacing={2}>
           <Grid item xs={12} sm={6} order={{ xs: 2, sm: 1 }}>
-            <Item sx={{ color: "white" }}>Content 1</Item>
+            <ContentItem>
+            පලමුව ඔබ Account එකක් නිර්මාණය කර එයින් log වෙන්න.<br/>
+           
+            </ContentItem>
           </Grid>
           <Grid item xs={12} sm={6} order={{ xs: 1, sm: 2 }}>
             <Item>
@@ -103,7 +136,7 @@ export default function HomeStep() {
             </Item>
           </Grid>
           <Grid item xs={12} sm={6} order={{ xs: 4, sm: 3 }}>
-            <Item sx={{ color: "white" }}>Content 2</Item>
+            <ContentItem>ඔබගේ දුරකථන අංකය යොදා account  එක verify කරගන්න.</ContentItem>
           </Grid>
           <Grid item xs={12} sm={6} order={{ xs: 3, sm: 4 }}>
             <Item>
@@ -116,7 +149,7 @@ export default function HomeStep() {
             </Item>
           </Grid>
           <Grid item xs={12} sm={6} order={{ xs: 6, sm: 5 }}>
-            <Item sx={{ color: "white" }}>Content 3</Item>
+            <ContentItem>Content 3</ContentItem>
           </Grid>
           <Grid item xs={12} sm={6} order={{ xs: 5, sm: 6 }}>
             <Item>
@@ -129,7 +162,7 @@ export default function HomeStep() {
             </Item>
           </Grid>
           <Grid item xs={12} sm={6} order={{ xs: 8, sm: 7 }}>
-            <Item sx={{ color: "white" }}>Content 4</Item>
+            <ContentItem>Content 4</ContentItem>
           </Grid>
           <Grid item xs={12} sm={6} order={{ xs: 7, sm: 8 }}>
             <Item>

@@ -5,6 +5,7 @@
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   margin: 16px;
   display: flex;
+  padding: 15px;
   flex-direction: row;
   max-width: 100%;
   position: relative;
@@ -18,7 +19,19 @@
   background: #f8f8f8;
   width: 100%;
 }
+.transparentBackground {
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+  color: #ffffff; /* Light text color */
+}
 
+.lightText {
+  color: #ffffff; /* Light text color */
+}
+
+.myaccount-profile-image-details,
+.myaccount-profile-image-mobile {
+  color: #ffffff; /* Light text color for these specific elements */
+}
 .badge {
   padding: 2px 6px;
   border-radius: 4px;
@@ -89,7 +102,7 @@
   cursor: pointer;
   position: absolute;
   top: 12px;
-  color: #333;
+  color: #ffffff;
   right: 12px;
 }
 
@@ -106,7 +119,7 @@
   .shareIcon {
     width: 20px;
     height: 20px;
-    color: #333;
+    color: #ffffff;
   }
 
   .time {
@@ -137,6 +150,7 @@
   .shareIcon {
     width: 20px;
     height: 20px;
+    color: #ffffff;
   }
 
   .time {
