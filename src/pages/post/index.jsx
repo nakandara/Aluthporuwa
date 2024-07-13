@@ -421,7 +421,8 @@ const Post = () => {
                         zIndex: 1,
                       }}
                     >
-                      {post.verify ? "POST" : "PENDING"}
+                      {/* {post.verify ? "POST" : "PENDING"} */}
+                      SAVE
                     </Typography>
                     <IconButton
                       aria-label="share"
@@ -464,22 +465,9 @@ const Post = () => {
                             {post.transmission}
                           </Typography>
                         </Grid>
-                            <Typography variant="body2" color="text.secondary">
-                              {Array.isArray(post.category)
-                                ? post.category.join(", ")
-                                : post.category}
-                            </Typography>
-                            <Typography variant="body2" color="text.secondary">
-                              Mobile: {post.mobileNumber}
-                            </Typography>
+                            
                           </Grid>
-                          <Grid item>
-                            <Typography sx={{ cursor: "pointer" }} variant="body2">
-                              {Array.isArray(post.socialIcon)
-                                ? post.socialIcon.join(", ")
-                                : post.socialIcon}
-                            </Typography>
-                          </Grid>
+                       
                         </Grid>
                         <Grid item>
                           <Typography
