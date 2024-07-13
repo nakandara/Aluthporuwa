@@ -23,6 +23,8 @@ import {
   FormControlLabel,
   Radio,
   IconButton,
+  CircularProgress,
+  Modal,
 } from '@mui/material';
 import LayoutSecond from '../../../components/LayoutSecond/LayoutSecond';
 import DeleteIcon from '@mui/icons-material/Delete';
@@ -37,6 +39,7 @@ const Index = () => {
   const fileInputRef = useRef(null);
   const { user } = useToken();
   const router = useRouter();
+  const [loading, setLoading] = useState(false); // Loading state
   const [formData, setFormData] = useState({
     userId: '',
     condition: '',
@@ -128,6 +131,7 @@ const Index = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true); // Start loading
     try {
       const postData = new FormData();
       for (const key in formData) {
@@ -166,6 +170,8 @@ const Index = () => {
       }
     } catch (error) {
       console.error(error);
+    } finally {
+      setLoading(false); // End loading
     }
   };
 
@@ -310,32 +316,36 @@ const Index = () => {
                 variant='outlined'
                 placeholder='Enter your engine capacity'
               />
-              <FormControl fullWidth margin='normal'>
-                <InputLabel id='fuel-type-label'>Fuel Type</InputLabel>
+              <FormControl fullWidth margin='normal' variant='outlined'>
+                <InputLabel id='fuelTypeLabel'>Fuel Type</InputLabel>
                 <Select
-                  labelId='fuel-type-label'
+                  labelId='fuelTypeLabel'
+                  id='fuelType'
                   name='fuelType'
                   value={formData.fuelType}
                   onChange={handleChange}
+                  label='Fuel Type'
                 >
-                  {fuelTypes.map((type) => (
-                    <MenuItem key={type} value={type}>
-                      {type}
+                  {fuelTypes.map((fuelType) => (
+                    <MenuItem key={fuelType} value={fuelType}>
+                      {fuelType}
                     </MenuItem>
                   ))}
                 </Select>
               </FormControl>
-              <FormControl fullWidth margin='normal'>
-                <InputLabel id='transmission-label'>Transmission</InputLabel>
+              <FormControl fullWidth margin='normal' variant='outlined'>
+                <InputLabel id='transmissionLabel'>Transmission</InputLabel>
                 <Select
-                  labelId='transmission-label'
+                  labelId='transmissionLabel'
+                  id='transmission'
                   name='transmission'
                   value={formData.transmission}
                   onChange={handleChange}
+                  label='Transmission'
                 >
-                  {transmissions.map((type) => (
-                    <MenuItem key={type} value={type}>
-                      {type}
+                  {transmissions.map((transmission) => (
+                    <MenuItem key={transmission} value={transmission}>
+                      {transmission}
                     </MenuItem>
                   ))}
                 </Select>
@@ -350,13 +360,12 @@ const Index = () => {
                 variant='outlined'
                 placeholder='Enter your body type'
               />
+              <Typography variant='body1'>Description</Typography>
               <ReactQuill
+                theme='snow'
                 value={formData.description}
                 onChange={handleDescriptionChange}
-                theme='snow'
-                placeholder='Enter your description'
-                style={{ marginBottom: '16px',color:"black" }}
-              />
+                style={{ marginBottom: '16px',color:"black" }}              />
               <TextField
                 fullWidth
                 margin='normal'
@@ -447,14 +456,33 @@ const Index = () => {
                 variant='contained'
                 color='primary'
                 fullWidth
-                sx={{ mt: 2 }}
+                sx={{ marginTop: '1rem' }}
+                disabled={loading} // Disable button when loading
               >
-                Submit
+                {loading ? 'Submitting...' : 'Submit'}
               </Button>
             </form>
           </Grid>
         </Grid>
       </Box>
+
+      <Modal
+        open={loading}
+        onClose={() => setLoading(false)}
+        aria-labelledby='loading-modal'
+        aria-describedby='loading-modal-description'
+      >
+        <Box
+          sx={{
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            height: '100vh',
+          }}
+        >
+          <CircularProgress />
+        </Box>
+      </Modal>
     </LayoutSecond>
   );
 };

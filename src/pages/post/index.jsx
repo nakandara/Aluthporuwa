@@ -160,7 +160,6 @@ const Post = () => {
           `${environments.BASE_HOST_URL}/api/getVerifyAllPosts`
         );
 
-        console.log(response, "responseresponseresponseresponse");
         setData(response.data.data);
         setLoading(false);
       } catch (error) {
@@ -234,6 +233,7 @@ const Post = () => {
   };
 
   const renderPosts = filteredData.length > 0 ? filteredData : data;
+  console.log(renderPosts,'renderPostsrenderPosts');
 
   const imageReaction = async (value, index, post) => {
     const newAnimateState = [...animateState];
@@ -292,7 +292,7 @@ const Post = () => {
   };
 
   const handleShareClick = (post) => {
-    console.log(post,'ttttttttttttt');
+   
     setSelectedPost(post);
     setShareModalOpen(true);
   };
@@ -450,16 +450,20 @@ const Post = () => {
                               gutterBottom
                               variant="subtitle1"
                               component="div"
+                           sx={{fontWeight:"700"}}
                             >
-                              {post.title}
+                              {post.brand}
                             </Typography>
-                            <Typography variant="body2" gutterBottom>
-                              <div
-                                dangerouslySetInnerHTML={{
-                                  __html: post.description.substring(0, 160),
-                                }}
-                              />
-                            </Typography>
+                          
+                            <Grid item>
+                          <Typography
+                            className="myaccount-profile-brand-details"
+                            variant="subtitle1"
+                            component="div"
+                          >
+                            {post.transmission}
+                          </Typography>
+                        </Grid>
                             <Typography variant="body2" color="text.secondary">
                               {Array.isArray(post.category)
                                 ? post.category.join(", ")

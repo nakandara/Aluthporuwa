@@ -1961,6 +1961,50 @@ input {
     color: rgb(17, 141, 87);
     background-color: rgba(34, 197, 94, 0.16);
 }
+.myaccount-profile-transmission-details{
+  margin: 5px;
+  height: 24px;
+    min-width: 24px;
+    line-height: 0;
+    border-radius: 6px;
+    cursor: default;
+    -webkit-box-align: center;
+    align-items: center;
+    white-space: nowrap;
+    display: inline-flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    text-transform: capitalize;
+    padding: 0px 6px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    transition: all 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+    color: rgb(226, 0, 151);
+    background-color: rgba(34, 197, 94, 0.16);
+}
+
+.myaccount-profile-brand-details{
+  margin: 5px;
+  height: 24px;
+    min-width: 24px;
+    line-height: 0;
+    border-radius: 6px;
+    cursor: default;
+    -webkit-box-align: center;
+    align-items: center;
+    white-space: nowrap;
+    display: inline-flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    text-transform: capitalize;
+    padding: 0px 6px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    transition: all 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+    color: rgb(218, 0, 226);
+    background-color: rgba(34, 197, 94, 0.16);
+}
+
 
 .myaccount-profile-image-mobile{
   margin: 5px;
