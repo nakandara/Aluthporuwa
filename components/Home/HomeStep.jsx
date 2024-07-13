@@ -101,10 +101,10 @@ export default function HomeStep() {
             </Item>
           </Grid>
           <Grid item xs={12} sm={6} order={{ xs: 5, sm: 6 }}>
-            <ContentItem>Content 3</ContentItem>
+            <ContentItem>ඔබගේ Advertisement එක නිර්මාණය කිරීම</ContentItem>
           </Grid>
           <Grid item xs={12} sm={4} order={{ xs: 8, sm: 7 }}>
-            <ContentItem>Content 4</ContentItem>
+            <ContentItem>ගෙවීම් (PAYMENT) සිදු කිරීම.</ContentItem>
           </Grid>
           <Grid item xs={12} sm={8} order={{ xs: 7, sm: 8 }}>
             <Item>
@@ -149,7 +149,7 @@ export default function HomeStep() {
             </Item>
           </Grid>
           <Grid item xs={12} sm={6} order={{ xs: 6, sm: 5 }}>
-            <ContentItem>Content 3</ContentItem>
+            <ContentItem>ඔබගේ Advertisement එක නිර්මාණය කිරීම</ContentItem>
           </Grid>
           <Grid item xs={12} sm={6} order={{ xs: 5, sm: 6 }}>
             <Item>
@@ -162,7 +162,7 @@ export default function HomeStep() {
             </Item>
           </Grid>
           <Grid item xs={12} sm={6} order={{ xs: 8, sm: 7 }}>
-            <ContentItem>Content 4</ContentItem>
+            <ContentItem>ගෙවීම් (PAYMENT) සිදු කිරීම.</ContentItem>
           </Grid>
           <Grid item xs={12} sm={6} order={{ xs: 7, sm: 8 }}>
             <Item>

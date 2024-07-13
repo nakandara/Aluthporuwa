@@ -64,6 +64,46 @@ export default function BasicGrid() {
   useEffect(() => {
     setData([
       {
+        "_id": "66921e9a222fe75b8e3b9700",
+        "userId": "6661f7790b2cabbbaa60ed27",
+        "brand": "Honda N-Box for sale",
+        "model": "Hatchback",
+        "trimEdition": "Honda",
+        "yearOfManufacture": "2018",
+        "mileage": "30000 km",
+        "engineCapacity": "660",
+        "fuelType": "Petrol",
+        "transmission": "Automatic",
+        "bodyType": "Hatchback",
+        "category": [
+            "Cars"
+        ],
+        "images": [
+            {
+                "imageUrl": "https://world-api-demo.s3.amazonaws.com/1720852122086-blob",
+                "_id": "66921e9a222fe75b8e3b9701"
+            },
+            {
+                "imageUrl": "https://world-api-demo.s3.amazonaws.com/1720852122089-blob",
+                "_id": "66921e9a222fe75b8e3b9702"
+            }
+        ],
+        "negotiable": true,
+        "description": "<p>Automatic</p><p>Engine Cylinders</p><p>660</p><p>Fuel</p><p>Petrol</p><p>Mileage</p><p>30000 km</p><p>Comfort</p><ul><li><span style=\"background-color: initial;\"><img src=\"https://www.autolanka.com/templates/auto_nova/img/blank.gif\"></span>A/C: Front</li><li><span style=\"background-color: initial;\"><img src=\"https://www.autolanka.com/templates/auto_nova/img/blank.gif\"></span>A/C: Rear</li><li><span style=\"background-color: initial;\"><img src=\"https://www.autolanka.com/templates/auto_nova/img/blank.gif\"></span>Cruise Control</li><li><span style=\"background-color: initial;\"><img src=\"https://www.autolanka.com/templates/auto_nova/img/blank.gif\"></span>Navigation System</li><li><span style=\"background-color: initial;\"><img src=\"https://www.autolanka.com/templates/auto_nova/img/blank.gif\"></span>Power Locks</li><li><span style=\"background-color: initial;\"><img src=\"https://www.autolanka.com/templates/auto_nova/img/blank.gif\"></span>Power Steering</li><li><span style=\"background-color: initial;\"><img src=\"https://www.autolanka.com/templates/auto_nova/img/blank.gif\"></span>Remote Keyless Entry</li><li><img src=\"https://www.autolanka.com/templates/auto_nova/img/blank.gif\">TV/VCR</li></ul><p>Safety</p><ul><li><span style=\"background-color: initial;\"><img src=\"https://www.autolanka.com/templates/auto_nova/img/blank.gif\"></span>Airbag: Driver</li><li><span style=\"background-color: initial;\"><img src=\"https://www.autolanka.com/templates/auto_nova/img/blank.gif\"></span>Airbag: Passenger</li><li><span style=\"background-color: initial;\"><img src=\"https://www.autolanka.com/templates/auto_nova/img/blank.gif\"></span>Airbag: Side</li><li><span style=\"background-color: initial;\"><img src=\"https://www.autolanka.com/templates/auto_nova/img/blank.gif\"></span>Alarm</li><li><span style=\"background-color: initial;\"><img src=\"https://www.autolanka.com/templates/auto_nova/img/blank.gif\"></span>Anti-Lock Brakes</li><li><span style=\"background-color: initial;\"><img src=\"https://www.autolanka.com/templates/auto_nova/img/blank.gif\"></span>Fog Lights</li></ul><p>Windows</p><ul><li><span style=\"background-color: initial;\"><img src=\"https://www.autolanka.com/templates/auto_nova/img/blank.gif\"></span>Power Windows</li><li><img src=\"https://www.autolanka.com/templates/auto_nova/img/blank.gif\">Rear Window Defroster</li><li><span style=\"background-color: initial;\"><img src=\"https://www.autolanka.com/templates/auto_nova/img/blank.gif\"></span>Rear Window Wiper</li><li><span style=\"background-color: initial;\"><img src=\"https://www.autolanka.com/templates/auto_nova/img/blank.gif\"></span>Tinted Glass</li></ul><p>Sound System</p><ul><li><span style=\"background-color: initial;\"><img src=\"https://www.autolanka.com/templates/auto_nova/img/blank.gif\"></span>CD Changer</li><li><img src=\"https://www.autolanka.com/templates/auto_nova/img/blank.gif\">CD Player</li><li><span style=\"background-color: initial;\"><img src=\"https://www.autolanka.com/templates/auto_nova/img/blank.gif\"></span>Premium Sound</li></ul><p>Other Features</p><ul><li><span style=\"background-color: initial;\"><img src=\"https://www.autolanka.com/templates/auto_nova/img/blank.gif\"></span>Alloy Wheels</li><li><img src=\"https://www.autolanka.com/templates/auto_nova/img/blank.gif\">Sunroof/Moonroof</li><li><img src=\"https://www.autolanka.com/templates/auto_nova/img/blank.gif\">Third Row Seats</li><li><img src=\"https://www.autolanka.com/templates/auto_nova/img/blank.gif\">Tow Package</li></ul><p>Additional Information</p><p>Honda N-Box</p><p>2018</p><p>Registered in 2022</p><p>First Owner (Registered Owner)</p>",
+        "plane": "Gold",
+        "mobileNumber": "(076) 131-7399",
+        "whatsappNumber": "(076) 131-7399",
+        "price": "Rs 8,000,000",
+        "socialIcon": [
+            "heart"
+        ],
+        "verify": true,
+        "postId": "66921e9a222fe75b8e3b9703",
+        "createdAt": "2024-07-13T06:28:42.284Z",
+        "updatedAt": "2024-07-13T06:29:13.412Z",
+        "__v": 0
+    },
+      {
         "_id": "66865d66016454c3719fed41",
         "userId": "6661f7790b2cabbbaa60ed27",
         "brand": "Wagon",

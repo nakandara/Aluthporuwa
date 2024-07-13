@@ -1,5 +1,6 @@
 import React from "react";
 import Head from "next/head"; // Importing Head component from next/head
+import Swal from "sweetalert2";
 import LayoutSecond from "../../../components/LayoutSecond/LayoutSecond";
 import MobileProtectedRoute from "../../../components/protect/mobileProtectRoute";
 import { useRouter } from "next/router";
@@ -8,11 +9,19 @@ const Campaign = () => {
   const router = useRouter();
 
   const handleSelect = (option) => {
-    console.log(option, "1111111");
+  if (option==="Property") {
+    Swal.fire({
+      icon: "error",
+      title: "Oops...",
+      text: "Still Developing!",
+    });
+  }else {
     router.push({
       pathname: "/packages",
       query: { category: option },
     });
+  }
+   
   };
 
   return (
