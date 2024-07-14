@@ -86,12 +86,12 @@ export default function MyInformations({ name, data }) {
       });
 
       const data = response.data;
-      console.log(data, 'AlreadyUseProfile');
+      console.log(data, 'AlreadyUse');
 
       const AlreadyUse = await axios.get(`${GetProfileUrl}/${user.userId}`);
-      console.log(AlreadyUse, 'AlreadyUseProfileData');
+      console.log(AlreadyUse.data, 'AlreadyUseProfileData');
 
-      if (!AlreadyUse.data) {
+      if (!AlreadyUse.data.success ) {
         const apiUrl = `${environments.BASE_HOST_URL}/api/createProfile`;
         await axios.post(apiUrl, userData);
         console.log("Information Successfully Created");

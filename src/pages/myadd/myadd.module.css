@@ -43,3 +43,11 @@
   .myaccount-profile-image-details {
     color: #ffffff; /* Light text color for these specific elements */
   }
+
+  .noDataMessage {
+    text-align: center;
+    margin-top: 20px;
+    color: #070101;
+    font-size: 18px;
+  }
+  

@@ -84,114 +84,120 @@ const MyAdd = () => {
     <LayoutSecond>
       <MobileProtectedRoute>
         <div className={styles.container}>
-          {data.map((post, index) => (
-            <Paper
-              key={index}
-              sx={{
-                p: 2,
-                margin: "auto",
-                maxWidth: 500,
-                flexGrow: 1,
-                backgroundColor: (theme) =>
-                  theme.palette.mode === "dark" ? "#1A2027" : "#fff",
-                position: "relative",
-              }}
-              className={styles.card}
-              onClick={() => PostClick(post.postId)}
-            >
-              {/* Status Indicator */}
-              <Typography
-                variant="subtitle2"
-                className="myaccount-profile-image-mobile"
-                style={{
-                  position: "absolute",
-                  top: 8,
-                  right: 8,
-                  backgroundColor: "rgba(0, 0, 0, 0.7)",
-                  color: "#fff",
-                  padding: "2px 8px",
-                  borderRadius: "4px",
-                  zIndex: 1,
+          {data.length === 0 ? (
+            <Typography variant="h6" className={styles.noDataMessage}>
+              No posts available....
+            </Typography>
+          ) : (
+            data.map((post, index) => (
+              <Paper
+                key={index}
+                sx={{
+                  p: 2,
+                  margin: "auto",
+                  maxWidth: 500,
+                  flexGrow: 1,
+                  backgroundColor: (theme) =>
+                    theme.palette.mode === "dark" ? "#1A2027" : "#fff",
+                  position: "relative",
                 }}
+                className={styles.card}
+                onClick={() => PostClick(post.postId)}
               >
-                {post.verify ? "POST" : "PENDING"}
-              </Typography>
-              <IconButton
-                aria-label="delete"
-                style={{
-                  position: "absolute",
-                  bottom: 8,
-                  right: 8,
-                }}
-                onClick={(e) => {
-                  e.stopPropagation();
-                  handleDelete(post.userId, post.postId);
-                }}
-              >
-                <DeleteIcon />
-              </IconButton>
-              <Grid container spacing={2}>
-                <Grid item>
-                  <ButtonBase sx={{ width: 188, height: 145 }}>
-                    <Img alt="complex" src={post.images[0].imageUrl} />
-                  </ButtonBase>
-                </Grid>
-                <Grid item xs={12} sm container>
-                  <Grid item xs container direction="column" spacing={2}>
-                    <Grid item xs>
+                {/* Status Indicator */}
+                <Typography
+                  variant="subtitle2"
+                  className="myaccount-profile-image-mobile"
+                  style={{
+                    position: "absolute",
+                    top: 8,
+                    right: 8,
+                    backgroundColor: "rgba(0, 0, 0, 0.7)",
+                    color: "#fff",
+                    padding: "2px 8px",
+                    borderRadius: "4px",
+                    zIndex: 1,
+                  }}
+                >
+                  {post.verify ? "POST" : "PENDING"}
+                </Typography>
+                <IconButton
+                  aria-label="delete"
+                  style={{
+                    position: "absolute",
+                    bottom: 8,
+                    right: 8,
+                  }}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    handleDelete(post.userId, post.postId);
+                  }}
+                >
+                  <DeleteIcon />
+                </IconButton>
+                <Grid container spacing={2}>
+                  <Grid item>
+                    <ButtonBase sx={{ width: 188, height: 145 }}>
+                      <Img alt="complex" src={post.images[0].imageUrl} />
+                    </ButtonBase>
+                  </Grid>
+                  <Grid item xs={12} sm container>
+                    <Grid item xs container direction="column" spacing={2}>
+                      <Grid item xs>
+                        <Typography
+                          gutterBottom
+                          variant="subtitle1"
+                          component="div"
+                        >
+                          {post.title}
+                        </Typography>
+                        <Typography variant="body2" gutterBottom>
+                          <div
+                            dangerouslySetInnerHTML={{
+                              __html: post.description.substring(0, 160),
+                            }}
+                          />
+                        </Typography>
+                        <Typography variant="body2" color="text.secondary">
+                          {Array.isArray(post.category)
+                            ? post.category.join(", ")
+                            : post.category}
+                        </Typography>
+                        <Typography variant="body2" color="text.secondary">
+                          Mobile: {post.mobileNumber}
+                        </Typography>
+                      </Grid>
+                      <Grid item>
+                        <Typography sx={{ cursor: "pointer" }} variant="body2">
+                          {Array.isArray(post.socialIcon)
+                            ? post.socialIcon.join(", ")
+                            : post.socialIcon}
+                        </Typography>
+                      </Grid>
+                    </Grid>
+                    <Grid item>
                       <Typography
-                        gutterBottom
+                        className="myaccount-profile-image-details"
                         variant="subtitle1"
                         component="div"
                       >
-                        {post.title}
-                      </Typography>
-                      <Typography variant="body2" gutterBottom>
-                        <div
-                          dangerouslySetInnerHTML={{
-                            __html: post.description.substring(0, 160),
-                          }}
-                        />
-                      </Typography>
-                      <Typography variant="body2" color="text.secondary">
-                        {Array.isArray(post.category)
-                          ? post.category.join(", ")
-                          : post.category}
-                      </Typography>
-                      <Typography variant="body2" color="text.secondary">
-                        Mobile: {post.mobileNumber}
+                        {post.price}
                       </Typography>
                     </Grid>
                     <Grid item>
-                      <Typography sx={{ cursor: "pointer" }} variant="body2">
-                        {Array.isArray(post.socialIcon)
-                          ? post.socialIcon.join(", ")
-                          : post.socialIcon}
+                      <Typography
+                        className="myaccount-profile-image-mobile"
+                        variant="subtitle1"
+                        component="div"
+                      >
+                        {post.mobileNumber}
                       </Typography>
                     </Grid>
                   </Grid>
-                  <Grid item>
-                    <Typography
-                      className="myaccount-profile-image-details"
-                      variant="subtitle1"
-                      component="div"
-                    >
-                      {post.price}
-                    </Typography>
-                  </Grid>
-                  <Grid item>
-                    <Typography
-                      className="myaccount-profile-image-mobile"
-                      variant="subtitle1"
-                      component="div"
-                    >
-                      {post.mobileNumber}
-                    </Typography>
-                  </Grid>
                 </Grid>
-              </Grid>
-            </Paper>
-          ))}
+              </Paper>
+            ))
+          )}
         </div>
       </MobileProtectedRoute>
     </LayoutSecond>
