@@ -413,6 +413,7 @@ const Post = () => {
           key={index}
              className={styles.card}
           onClick={() => handleClick(post.postId)}
+         
         >
           <Box
             sx={{
@@ -425,9 +426,8 @@ const Post = () => {
           >
             <Typography
               variant="subtitle2"
-              className="myaccount-profile-image-mobile"
               sx={{
-                backgroundColor: "rgba(0, 0, 0, 0.7)",
+               
                 color: "#fff",
                 padding: "2px 8px",
                 borderRadius: "4px",
@@ -455,7 +455,8 @@ const Post = () => {
             sx={{
               position: "absolute",
               bottom: 8,
-              right: 8
+              right: 8,
+              zIndex: 2 // Ensure the IconButton stays on top
             }}
             onClick={(e) => {
               e.stopPropagation();
@@ -511,22 +512,21 @@ const Post = () => {
                 </Typography>
               </Grid>
               {!isMobile && (
-                <Grid item>
-                  <Typography
-                    variant="body2"
-                    sx={{
-                      position: 'absolute',
-                      bottom: 8,
-                      right: 8,
-                      backgroundColor: "rgba(0, 0, 0, 0.7)",
-                      color: "#fff",
-                      padding: "2px 8px",
-                      borderRadius: "4px"
-                    }}
-                  >
-                    {post.city}
-                  </Typography>
-                </Grid>
+                <Typography
+                  variant="body2"
+                  sx={{
+                    position: 'absolute',
+                    bottom: 8,
+                    right: 8,
+                    backgroundColor: "rgba(0, 0, 0, 0.7)",
+                    color: "#fff",
+                    padding: "50px 8px",
+                    borderRadius: "4px",
+                    zIndex: 1 // Ensure the city text is below the IconButton
+                  }}
+                >
+                  {post.city}
+                </Typography>
               )}
             </Grid>
           </Grid>
