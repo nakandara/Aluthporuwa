@@ -44,10 +44,12 @@ const Index = () => {
     userId: '',
     condition: '',
     brand: '',
+    city:'',
     model: '',
     trimEdition: '',
     yearOfManufacture: '',
     mileage: '',
+    title:'',
     engineCapacity: '',
     fuelType: '',
     category: '',
@@ -76,6 +78,7 @@ const Index = () => {
         ...prevFormData,
         plane: selectedPlan,
         category: vehicle,
+        city: location+"/"+subLocation
       }));
       console.log(`Selected Plan: ${selectedPlan}`);
     }
@@ -246,6 +249,16 @@ const Index = () => {
                   />
                 </RadioGroup>
               </FormControl>
+              <TextField
+                fullWidth
+                margin='normal'
+                label='Title'
+                name='title'
+                value={formData.title}
+                onChange={handleChange}
+                variant='outlined'
+                placeholder='Enter your Title'
+              />
               <TextField
                 fullWidth
                 margin='normal'

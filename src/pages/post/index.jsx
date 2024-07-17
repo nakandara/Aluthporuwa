@@ -6,8 +6,8 @@ import axios from "axios";
 import { environments } from "../../../components/environment/environments";
 import { useRouter } from "next/router";
 import Card from "../../../components/card/Card";
+import { styled } from '@mui/material/styles';
 import styles from "../myadd/myadd.module.css";
-import { styled } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Grid";
@@ -17,6 +17,7 @@ import Drawer from "@mui/material/Drawer";
 import IconButton from "@mui/material/IconButton";
 import FilterListIcon from "@mui/icons-material/FilterList";
 import Modal from "@mui/material/Modal";
+import { useMediaQuery } from '@mui/material';
 import CircularProgress from "@mui/material/CircularProgress";
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
@@ -31,6 +32,11 @@ const Img = styled("img")({
   maxWidth: "100%",
   height: "160px",
 });
+const StyledPaper = styled(Paper)(({ theme }) => ({
+  position: 'relative',
+  marginBottom: theme.spacing(2),
+  padding: theme.spacing(2)
+}));
 
 const url = `${environments.BASE_HOST_URL}/api/increment`;
 
@@ -123,6 +129,7 @@ const Post = () => {
   const [filteredData, setFilteredData] = useState([]);
   const [reactionCount, setReactionCount] = useState("");
   const [posts, setPosts] = useState([]);
+  const isMobile = useMediaQuery('(max-width:600px)');
   const [category, setCategory] = useState([
     { category: "Vehicles", count: "10780" },
     { category: "Property", count: "1600" },
@@ -401,96 +408,131 @@ const Post = () => {
               </Modal>
             ) : (
               <>
-                {renderPosts.map((post, index) => (
-                  <Paper
-                    key={index}
-                    className={styles.card}
-                    onClick={() => handleClick(post.postId)}
+ {renderPosts.map((post, index) => (
+        <StyledPaper
+          key={index}
+             className={styles.card}
+          onClick={() => handleClick(post.postId)}
+        >
+          <Box
+            sx={{
+              position: "absolute",
+              top: 8,
+              right: 8,
+              zIndex: 1,
+              textAlign: "right"
+            }}
+          >
+            <Typography
+              variant="subtitle2"
+              className="myaccount-profile-image-mobile"
+              sx={{
+                backgroundColor: "rgba(0, 0, 0, 0.7)",
+                color: "#fff",
+                padding: "2px 8px",
+                borderRadius: "4px",
+                marginBottom: "4px"
+              }}
+            >
+              SAVE
+            </Typography>
+            {isMobile && (
+              <Typography
+                variant="body2"
+                sx={{
+                  backgroundColor: "rgba(0, 0, 0, 0.7)",
+                  color: "#fff",
+                  padding: "2px 8px",
+                  borderRadius: "4px"
+                }}
+              >
+                {post.city}
+              </Typography>
+            )}
+          </Box>
+          <IconButton
+            aria-label="share"
+            sx={{
+              position: "absolute",
+              bottom: 8,
+              right: 8
+            }}
+            onClick={(e) => {
+              e.stopPropagation();
+              handleShareClick(post);
+            }}
+          >
+            <ShareIcon sx={{ color: "white" }} />
+          </IconButton>
+          <Grid container spacing={2}>
+            <Grid item>
+              <ButtonBase sx={{ width: 188, height: 145 }}>
+                <Img alt="complex" src={post.images[0].imageUrl} />
+              </ButtonBase>
+            </Grid>
+            <Grid sx={{ ml: 1 }} item xs={12} sm container>
+              <Grid item xs container direction="column" spacing={2}>
+                <Grid item xs>
+                  <Typography
+                    gutterBottom
+                    variant="subtitle1"
+                    component="div"
+                    sx={{ fontWeight: "700" }}
                   >
+                    {post.brand} {post.title}
+                  </Typography>
+                  <Grid item>
                     <Typography
-                      variant="subtitle2"
-                      className="myaccount-profile-image-mobile"
-                      style={{
-                        position: "absolute",
-                        top: 8,
-                        right: 8,
-                        backgroundColor: "rgba(0, 0, 0, 0.7)",
-                        color: "#fff",
-                        padding: "2px 8px",
-                        borderRadius: "4px",
-                        zIndex: 1,
-                      }}
+                      className="myaccount-profile-brand-details"
+                      variant="subtitle1"
+                      component="div"
                     >
-                      {/* {post.verify ? "POST" : "PENDING"} */}
-                      SAVE
+                      {post.transmission}
                     </Typography>
-                    <IconButton
-                      aria-label="share"
-                      style={{
-                        position: "absolute",
-                        bottom: 8,
-                        right: 8,
-                      }}
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        handleShareClick(post);
-                      }}
-                    >
-                      <ShareIcon sx={{color:"white"}}/>
-                    </IconButton>
-                    <Grid container spacing={2}>
-                      <Grid item>
-                        <ButtonBase sx={{ width: 188, height: 145 }}>
-                          <Img alt="complex" src={post.images[0].imageUrl} />
-                        </ButtonBase>
-                      </Grid>
-                      <Grid sx={{ml:1}} item xs={12} sm container>
-                        <Grid item xs container direction="column" spacing={2}>
-                          <Grid item xs>
-                            <Typography
-                              gutterBottom
-                              variant="subtitle1"
-                              component="div"
-                           sx={{fontWeight:"700"}}
-                            >
-                              {post.brand}
-                            </Typography>
-                          
-                            <Grid item>
-                          <Typography
-                            className="myaccount-profile-brand-details"
-                            variant="subtitle1"
-                            component="div"
-                          >
-                            {post.transmission}
-                          </Typography>
-                        </Grid>
-                            
-                          </Grid>
-                       
-                        </Grid>
-                        <Grid item>
-                          <Typography
-                            className="myaccount-profile-image-details"
-                            variant="subtitle1"
-                            component="div"
-                          >
-                            {post.price}
-                          </Typography>
-                        </Grid>
-                        <Grid item>
-                          <Typography
-                            className="myaccount-profile-image-mobile"
-                            variant="subtitle1"
-                            component="div"
-                          >
-                            {post.mobileNumber}
-                          </Typography>
-                        </Grid>
-                      </Grid>
-                    </Grid>
-                  </Paper>
-                ))}
+                  </Grid>
+                </Grid>
+              </Grid>
+              <Grid item>
+                <Typography
+                  className="myaccount-profile-image-details"
+                  variant="subtitle1"
+                  component="div"
+                >
+                  {post.price}
+                </Typography>
+              </Grid>
+              <Grid item>
+                <Typography
+                  className="myaccount-profile-image-mobile"
+                  variant="subtitle1"
+                  component="div"
+                >
+                  {post.mobileNumber}
+                </Typography>
+              </Grid>
+              {!isMobile && (
+                <Grid item>
+                  <Typography
+                    variant="body2"
+                    sx={{
+                      position: 'absolute',
+                      bottom: 8,
+                      right: 8,
+                      backgroundColor: "rgba(0, 0, 0, 0.7)",
+                      color: "#fff",
+                      padding: "2px 8px",
+                      borderRadius: "4px"
+                    }}
+                  >
+                    {post.city}
+                  </Typography>
+                </Grid>
+              )}
+            </Grid>
+          </Grid>
+        </StyledPaper>
+      ))}
+
               </>
             )}
           </div>

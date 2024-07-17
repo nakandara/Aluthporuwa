@@ -110,7 +110,7 @@ export default function Elevation() {
         </Grid>
       </Grid>
       <div>
-      <button onClick={handleButtonClick}>Go to Second Project</button>
+      {/* <button onClick={handleButtonClick}>Go to Second Project</button> */}
     </div>
     </Box>
   );
