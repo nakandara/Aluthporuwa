@@ -32,14 +32,14 @@ const SignupPage = () => {
         }
       );
 
-      const chatResponse = await axios.post(
-        "https://socketio-api.vercel.app/api/auth/register",
-        {
-          username: username,
-          email: email,
-          password: password,
-        }
-      );
+      // const chatResponse = await axios.post(
+      //   "https://socketio-api.vercel.app/api/auth/register",
+      //   {
+      //     username: username,
+      //     email: email,
+      //     password: password,
+      //   }
+      // );
 
       if (response.data && response.data.token) {
         const responsel = await axios.post(
@@ -63,17 +63,17 @@ const SignupPage = () => {
 
           router.push("/home");
 
-          const response2 = await axios.post(
-            `https://socketio-api.vercel.app/api/auth/login`,
-            {
-              name: username,
-              email: email,
-              password: password,
-            }
-          );
+          // const response2 = await axios.post(
+          //   `https://socketio-api.vercel.app/api/auth/login`,
+          //   {
+          //     name: username,
+          //     email: email,
+          //     password: password,
+          //   }
+          // );
 
-          const socketUser = response2.data;
-          localStorage.setItem("userone", JSON.stringify(socketUser));
+          // const socketUser = response2.data;
+          // localStorage.setItem("userone", JSON.stringify(socketUser));
         } else {
           Swal.fire({
             icon: "error",

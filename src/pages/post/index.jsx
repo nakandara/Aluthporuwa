@@ -6,7 +6,7 @@ import axios from "axios";
 import { environments } from "../../../components/environment/environments";
 import { useRouter } from "next/router";
 import Card from "../../../components/card/Card";
-import { styled } from '@mui/material/styles';
+import { styled } from "@mui/material/styles";
 import styles from "../myadd/myadd.module.css";
 import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
@@ -17,7 +17,7 @@ import Drawer from "@mui/material/Drawer";
 import IconButton from "@mui/material/IconButton";
 import FilterListIcon from "@mui/icons-material/FilterList";
 import Modal from "@mui/material/Modal";
-import { useMediaQuery } from '@mui/material';
+import { useMediaQuery } from "@mui/material";
 import CircularProgress from "@mui/material/CircularProgress";
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
@@ -33,9 +33,9 @@ const Img = styled("img")({
   height: "160px",
 });
 const StyledPaper = styled(Paper)(({ theme }) => ({
-  position: 'relative',
+  position: "relative",
   marginBottom: theme.spacing(2),
-  padding: theme.spacing(2)
+  padding: theme.spacing(2),
 }));
 
 const url = `${environments.BASE_HOST_URL}/api/increment`;
@@ -68,8 +68,7 @@ export const incrementReactionCount = async (postId, reactionType) => {
 };
 
 const ShareModal = ({ open, handleClose, post }) => {
-
-  console.log(post,'ddddddddddddddd');
+  console.log(post, "ddddddddddddddd");
   if (!post) return null;
 
   const shareUrl = `https://www.quickadshub.com/post/${post.postId}`;
@@ -129,7 +128,7 @@ const Post = () => {
   const [filteredData, setFilteredData] = useState([]);
   const [reactionCount, setReactionCount] = useState("");
   const [posts, setPosts] = useState([]);
-  const isMobile = useMediaQuery('(max-width:600px)');
+  const isMobile = useMediaQuery("(max-width:600px)");
   const [category, setCategory] = useState([
     { category: "Vehicles", count: "10780" },
     { category: "Property", count: "1600" },
@@ -157,8 +156,6 @@ const Post = () => {
   const [searchQuery, setSearchQuery] = useState(""); // State for search query
   const [shareModalOpen, setShareModalOpen] = useState(false);
   const [selectedPost, setSelectedPost] = useState(null);
-
-
 
   useEffect(() => {
     const fetchPosts = async () => {
@@ -240,14 +237,13 @@ const Post = () => {
   };
 
   const renderPosts = filteredData.length > 0 ? filteredData : data;
-  console.log(renderPosts,'renderPostsrenderPosts');
+  console.log(renderPosts, "renderPostsrenderPosts");
 
   const imageReaction = async (value, index, post) => {
     const newAnimateState = [...animateState];
     newAnimateState[index] = { ...newAnimateState[index] };
-    newAnimateState[index][value] = !newAnimateState[index][
-      value.toLowerCase()
-    ];
+    newAnimateState[index][value] =
+      !newAnimateState[index][value.toLowerCase()];
 
     if (animateState[index][value]) {
       return;
@@ -299,7 +295,6 @@ const Post = () => {
   };
 
   const handleShareClick = (post) => {
-   
     setSelectedPost(post);
     setShareModalOpen(true);
   };
@@ -325,7 +320,11 @@ const Post = () => {
             <IconButton onClick={toggleDrawer(true)} style={{ float: "right" }}>
               <FilterListIcon />
             </IconButton>
-            <Drawer anchor="right" open={drawerOpen} onClose={toggleDrawer(false)}>
+            <Drawer
+              anchor="right"
+              open={drawerOpen}
+              onClose={toggleDrawer(false)}
+            >
               <Box
                 sx={{
                   "& .MuiDrawer-paper": {
@@ -408,131 +407,128 @@ const Post = () => {
               </Modal>
             ) : (
               <>
- {renderPosts.map((post, index) => (
-        <StyledPaper
-          key={index}
-             className={styles.card}
-          onClick={() => handleClick(post.postId)}
-         
-        >
-          <Box
-            sx={{
-              position: "absolute",
-              top: 8,
-              right: 8,
-              zIndex: 1,
-              textAlign: "right"
-            }}
-          >
-            <Typography
-              variant="subtitle2"
-              sx={{
-               
-                color: "#fff",
-                padding: "2px 8px",
-                borderRadius: "4px",
-                marginBottom: "4px"
-              }}
-            >
-              SAVE
-            </Typography>
-            {isMobile && (
-              <Typography
-                variant="body2"
-                sx={{
-                  backgroundColor: "rgba(0, 0, 0, 0.7)",
-                  color: "#fff",
-                  padding: "2px 8px",
-                  borderRadius: "4px"
-                }}
-              >
-                {post.city}
-              </Typography>
-            )}
-          </Box>
-          <IconButton
-            aria-label="share"
-            sx={{
-              position: "absolute",
-              bottom: 8,
-              right: 8,
-              zIndex: 2 // Ensure the IconButton stays on top
-            }}
-            onClick={(e) => {
-              e.stopPropagation();
-              handleShareClick(post);
-            }}
-          >
-            <ShareIcon sx={{ color: "white" }} />
-          </IconButton>
-          <Grid container spacing={2}>
-            <Grid item>
-              <ButtonBase sx={{ width: 188, height: 145 }}>
-                <Img alt="complex" src={post.images[0].imageUrl} />
-              </ButtonBase>
-            </Grid>
-            <Grid sx={{ ml: 1 }} item xs={12} sm container>
-              <Grid item xs container direction="column" spacing={2}>
-                <Grid item xs>
-                  <Typography
-                    gutterBottom
-                    variant="subtitle1"
-                    component="div"
-                    sx={{ fontWeight: "700" }}
+                {renderPosts.map((post, index) => (
+                  <StyledPaper
+                    key={index}
+                    className={styles.card}
+                    onClick={() => handleClick(post.postId)}
                   >
-                    {post.brand} {post.title}
-                  </Typography>
-                  <Grid item>
-                    <Typography
-                      className="myaccount-profile-brand-details"
-                      variant="subtitle1"
-                      component="div"
+                    <Box
+                      sx={{
+                        position: "absolute",
+                        top: 8,
+                        right: 8,
+                        zIndex: 1,
+                        textAlign: "right",
+                      }}
                     >
-                      {post.transmission}
-                    </Typography>
-                  </Grid>
-                </Grid>
-              </Grid>
-              <Grid item>
-                <Typography
-                  className="myaccount-profile-image-details"
-                  variant="subtitle1"
-                  component="div"
-                >
-                  {post.price}
-                </Typography>
-              </Grid>
-              <Grid item>
-                <Typography
-                  className="myaccount-profile-image-mobile"
-                  variant="subtitle1"
-                  component="div"
-                >
-                  {post.mobileNumber}
-                </Typography>
-              </Grid>
-              {!isMobile && (
-                <Typography
-                  variant="body2"
-                  sx={{
-                    position: 'absolute',
-                    bottom: 8,
-                    right: 8,
-                    backgroundColor: "rgba(0, 0, 0, 0.7)",
-                    color: "#fff",
-                    padding: "50px 8px",
-                    borderRadius: "4px",
-                    zIndex: 1 // Ensure the city text is below the IconButton
-                  }}
-                >
-                  {post.city}
-                </Typography>
-              )}
-            </Grid>
-          </Grid>
-        </StyledPaper>
-      ))}
-
+                      <Typography
+                        variant="subtitle2"
+                        sx={{
+                          color: "#fff",
+                          padding: "2px 8px",
+                          borderRadius: "4px",
+                          marginBottom: "4px",
+                        }}
+                      >
+                        SAVE
+                      </Typography>
+                      {isMobile && (
+                        <Typography
+                          variant="body2"
+                          sx={{
+                            backgroundColor: "rgba(0, 0, 0, 0.7)",
+                            color: "#fff",
+                            padding: "2px 8px",
+                            borderRadius: "4px",
+                          }}
+                        >
+                          {post.city}
+                        </Typography>
+                      )}
+                    </Box>
+                    <IconButton
+                      aria-label="share"
+                      sx={{
+                        position: "absolute",
+                        bottom: 8,
+                        right: 8,
+                        zIndex: 2, // Ensure the IconButton stays on top
+                      }}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        handleShareClick(post);
+                      }}
+                    >
+                      <ShareIcon sx={{ color: "white" }} />
+                    </IconButton>
+                    <Grid container spacing={2}>
+                      <Grid item>
+                        <ButtonBase sx={{ width: 188, height: 145 }}>
+                          <Img alt="complex" src={post.images[0].imageUrl} />
+                        </ButtonBase>
+                      </Grid>
+                      <Grid sx={{ ml: 1 }} item xs={12} sm container>
+                        <Grid item xs container direction="column" spacing={2}>
+                          <Grid item xs>
+                            <Typography
+                              gutterBottom
+                              variant="subtitle1"
+                              component="div"
+                              sx={{ fontWeight: "700" }}
+                            >
+                              {post.brand} {post.title}
+                            </Typography>
+                            <Grid item>
+                              <Typography
+                                className="myaccount-profile-brand-details"
+                                variant="subtitle1"
+                                component="div"
+                              >
+                                {post.transmission}
+                              </Typography>
+                            </Grid>
+                          </Grid>
+                        </Grid>
+                        <Grid item>
+                          <Typography
+                            className="myaccount-profile-image-details"
+                            variant="subtitle1"
+                            component="div"
+                          >
+                            {post.price}
+                          </Typography>
+                        </Grid>
+                        <Grid item>
+                          <Typography
+                            className="myaccount-profile-image-mobile"
+                            variant="subtitle1"
+                            component="div"
+                          >
+                            {post.mobileNumber}
+                          </Typography>
+                        </Grid>
+                        {!isMobile && (
+                          <Typography
+                            variant="body2"
+                            sx={{
+                              position: "absolute",
+                              bottom: 8,
+                              right: 8,
+                              backgroundColor: "rgba(0, 0, 0, 0.7)",
+                              color: "#fff",
+                              padding: "50px 8px",
+                              borderRadius: "4px",
+                              zIndex: 1, // Ensure the city text is below the IconButton
+                            }}
+                          >
+                            {post.city}
+                          </Typography>
+                        )}
+                      </Grid>
+                    </Grid>
+                  </StyledPaper>
+                ))}
               </>
             )}
           </div>
