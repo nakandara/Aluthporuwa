@@ -73,12 +73,12 @@ export default function HomeStep() {
           </Grid>
           <Grid item xs={12} sm={6} order={{ xs: 1, sm: 2 }}>
             <ContentItem>
-            පලමුව ඔබ Account එකක් නිර්මාණය කර එයින් log වෙන්න.<br/>
+            පලමුව ඔබ Account එකක් නිර්මාණය කර එයින් log වෙන්න.<br/>First, create an account and log in.
           
             </ContentItem>
           </Grid>
           <Grid item xs={12} sm={4} order={{ xs: 4, sm: 3 }}>
-            <ContentItem>ඔබගේ දුරකථන අංකය යොදා account  එක verify කරගන්න.</ContentItem>
+            <ContentItem>ඔබගේ දුරකථන අංකය යොදා account  එක verify කරගන්න.<br/> Verify the account using your phone number.</ContentItem>
           </Grid>
           <Grid item xs={12} sm={8} order={{ xs: 3, sm: 4 }}>
             <Item>
@@ -101,10 +101,10 @@ export default function HomeStep() {
             </Item>
           </Grid>
           <Grid item xs={12} sm={6} order={{ xs: 5, sm: 6 }}>
-            <ContentItem>ඔබගේ Advertisement එක නිර්මාණය කිරීම</ContentItem>
+            <ContentItem>ඔබගේ Advertisement එක නිර්මාණය කිරීම <br/> Creating Your Advertisement</ContentItem>
           </Grid>
           <Grid item xs={12} sm={4} order={{ xs: 8, sm: 7 }}>
-            <ContentItem>ගෙවීම් (PAYMENT) සිදු කිරීම.</ContentItem>
+            <ContentItem>ගෙවීම් (PAYMENT) සිදු කිරීම. <br/> Making payment (PAYMENT).</ContentItem>
           </Grid>
           <Grid item xs={12} sm={8} order={{ xs: 7, sm: 8 }}>
             <Item>
@@ -121,7 +121,7 @@ export default function HomeStep() {
         <Grid container spacing={2}>
           <Grid item xs={12} sm={6} order={{ xs: 2, sm: 1 }}>
             <ContentItem>
-            පලමුව ඔබ Account එකක් නිර්මාණය කර එයින් log වෙන්න.<br/>
+            පලමුව ඔබ Account එකක් නිර්මාණය කර එයින් log වෙන්න.<br/> First, create an account and log in.
            
             </ContentItem>
           </Grid>
@@ -136,7 +136,7 @@ export default function HomeStep() {
             </Item>
           </Grid>
           <Grid item xs={12} sm={6} order={{ xs: 4, sm: 3 }}>
-            <ContentItem>ඔබගේ දුරකථන අංකය යොදා account  එක verify කරගන්න.</ContentItem>
+            <ContentItem>ඔබගේ දුරකථන අංකය යොදා account  එක verify කරගන්න.<br/> Verify the account using your phone number.</ContentItem>
           </Grid>
           <Grid item xs={12} sm={6} order={{ xs: 3, sm: 4 }}>
             <Item>
@@ -149,7 +149,7 @@ export default function HomeStep() {
             </Item>
           </Grid>
           <Grid item xs={12} sm={6} order={{ xs: 6, sm: 5 }}>
-            <ContentItem>ඔබගේ Advertisement එක නිර්මාණය කිරීම</ContentItem>
+            <ContentItem>ඔබගේ Advertisement එක නිර්මාණය කිරීම <br/> Creating Your Advertisement</ContentItem>
           </Grid>
           <Grid item xs={12} sm={6} order={{ xs: 5, sm: 6 }}>
             <Item>
@@ -162,7 +162,7 @@ export default function HomeStep() {
             </Item>
           </Grid>
           <Grid item xs={12} sm={6} order={{ xs: 8, sm: 7 }}>
-            <ContentItem>ගෙවීම් (PAYMENT) සිදු කිරීම.</ContentItem>
+            <ContentItem>ගෙවීම් (PAYMENT) සිදු කිරීම. <br/>Making payment (PAYMENT).</ContentItem>
           </Grid>
           <Grid item xs={12} sm={6} order={{ xs: 7, sm: 8 }}>
             <Item>

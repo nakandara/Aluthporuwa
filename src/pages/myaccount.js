@@ -140,7 +140,7 @@ const MyAccount = () => {
               display="grid"
               gridTemplateColumns={{ xs: "1fr", md: "repeat(12, 1fr)" }}
               gap={2}
-              sx={{m:"5px"}}
+             
             >
               <Box
                 gridColumn={{ xs: "1", md: "span 12" }}
