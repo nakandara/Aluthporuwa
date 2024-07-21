@@ -25,6 +25,9 @@ import ButtonBase from "@mui/material/ButtonBase";
 import ShareIcon from "@mui/icons-material/Share";
 import WhatsAppIcon from "@mui/icons-material/WhatsApp";
 import FacebookIcon from "@mui/icons-material/Facebook";
+import FavoriteIcon from '@mui/icons-material/Favorite';
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+
 
 const Img = styled("img")({
   margin: "auto",
@@ -160,11 +163,18 @@ const Post = () => {
   useEffect(() => {
     const fetchPosts = async () => {
       try {
-        const response = await axios.get(
+        const postResponse = await axios.get(
           `${environments.BASE_HOST_URL}/api/getVerifyAllPosts`
         );
-
-        setData(response.data.data);
+        const savedResponse = await axios.get(
+          `${environments.BASE_HOST_URL}/api/get-save-post/${user.userId}`
+        );
+        const savedPosts = savedResponse.data.savedPosts;
+        const postsWithSaveState = postResponse.data.data.map((post) => {
+          const isSaved = savedPosts.some((saved) => saved.postId === post.postId);
+          return { ...post, isSaved };
+        });
+        setData(postsWithSaveState);
         setLoading(false);
       } catch (error) {
         console.error("Error fetching posts:", error);
@@ -172,7 +182,7 @@ const Post = () => {
     };
 
     fetchPosts();
-  }, []);
+  }, [user]);
 
   useEffect(() => {
     if (user && user.userId) {
@@ -304,6 +314,33 @@ const Post = () => {
     setSelectedPost(null);
   };
 
+
+
+
+
+  const handleSaveToggle = async (post) => {
+    try {
+      const response = await api.post(
+        `${environments.BASE_HOST_URL}/api/save-post`,
+        {
+          userId: user.userId,
+          postId: post.postId,
+          name: "ssssssssss", // Add the name field here
+        }
+      );
+
+      const updatedPosts = data.map((p) =>
+        p.postId === post.postId
+          ? { ...p, isSaved: response.data.isSaved }
+          : p
+      );
+
+      setData(updatedPosts);
+    } catch (error) {
+      console.error("Error saving post:", error);
+    }
+  };
+
   return (
     <LayoutSecond>
       <div className="postBaseContainer">
@@ -407,128 +444,132 @@ const Post = () => {
               </Modal>
             ) : (
               <>
-                {renderPosts.map((post, index) => (
-                  <StyledPaper
-                    key={index}
-                    className={styles.card}
-                    onClick={() => handleClick(post.postId)}
-                  >
-                    <Box
-                      sx={{
-                        position: "absolute",
-                        top: 8,
-                        right: 8,
-                        zIndex: 1,
-                        textAlign: "right",
-                      }}
-                    >
-                      <Typography
-                        variant="subtitle2"
-                        sx={{
-                          color: "#fff",
-                          padding: "2px 8px",
-                          borderRadius: "4px",
-                          marginBottom: "4px",
-                        }}
-                      >
-                        SAVE
-                      </Typography>
-                      {isMobile && (
-                        <Typography
-                          variant="body2"
-                          sx={{
-                            backgroundColor: "rgba(0, 0, 0, 0.7)",
-                            color: "#fff",
-                            padding: "2px 8px",
-                            borderRadius: "4px",
-                          }}
-                        >
-                          {post.city}
-                        </Typography>
-                      )}
-                    </Box>
-                    <IconButton
-                      aria-label="share"
-                      sx={{
-                        position: "absolute",
-                        bottom: 8,
-                        right: 8,
-                        zIndex: 2, // Ensure the IconButton stays on top
-                      }}
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        handleShareClick(post);
-                      }}
-                    >
-                      <ShareIcon sx={{ color: "white" }} />
-                    </IconButton>
-                    <Grid container spacing={2}>
-                      <Grid item>
-                        <ButtonBase sx={{ width: 188, height: 145 }}>
-                          <Img alt="complex" src={post.images[0].imageUrl} />
-                        </ButtonBase>
-                      </Grid>
-                      <Grid sx={{ ml: 1 }} item xs={12} sm container>
-                        <Grid item xs container direction="column" spacing={2}>
-                          <Grid item xs>
-                            <Typography
-                              gutterBottom
-                              variant="subtitle1"
-                              component="div"
-                              sx={{ fontWeight: "700" }}
-                            >
-                              {post.brand} {post.title}
-                            </Typography>
-                            <Grid item>
-                              <Typography
-                                className="myaccount-profile-brand-details"
-                                variant="subtitle1"
-                                component="div"
-                              >
-                                {post.transmission}
-                              </Typography>
-                            </Grid>
-                          </Grid>
-                        </Grid>
-                        <Grid item>
-                          <Typography
-                            className="myaccount-profile-image-details"
-                            variant="subtitle1"
-                            component="div"
-                          >
-                            {post.price}
-                          </Typography>
-                        </Grid>
-                        <Grid item>
-                          <Typography
-                            className="myaccount-profile-image-mobile"
-                            variant="subtitle1"
-                            component="div"
-                          >
-                            {post.mobileNumber}
-                          </Typography>
-                        </Grid>
-                        {!isMobile && (
-                          <Typography
-                            variant="body2"
-                            sx={{
-                              position: "absolute",
-                              bottom: 8,
-                              right: 8,
-                              backgroundColor: "rgba(0, 0, 0, 0.7)",
-                              color: "#fff",
-                              padding: "50px 8px",
-                              borderRadius: "4px",
-                              zIndex: 1, // Ensure the city text is below the IconButton
-                            }}
-                          >
-                            {post.city}
-                          </Typography>
-                        )}
-                      </Grid>
-                    </Grid>
-                  </StyledPaper>
-                ))}
+       {renderPosts.map((post, index) => (
+  <StyledPaper
+    key={index}
+    className={styles.card}
+    onClick={() => handleClick(post.postId)}
+  >
+    <Box
+      sx={{
+        position: "absolute",
+        top: 8,
+        right: 8,
+        zIndex: 1,
+        textAlign: "right",
+      }}
+    >
+      <IconButton
+        aria-label="save"
+        onClick={(e) => {
+          e.stopPropagation();  // Prevent the click from propagating to the parent
+          handleSaveToggle(post);
+        }}
+      >
+        {post.isSaved ? (
+          <FavoriteIcon sx={{ color: "red" }} />
+        ) : (
+          <FavoriteBorderIcon color="secondary" />
+        )}
+      </IconButton>
+
+      {isMobile && (
+        <Typography
+          variant="body2"
+          sx={{
+            backgroundColor: "rgba(0, 0, 0, 0.7)",
+            color: "#fff",
+            padding: "2px 8px",
+            borderRadius: "4px",
+          }}
+        >
+          {post.city}
+        </Typography>
+      )}
+    </Box>
+    <IconButton
+      aria-label="share"
+      sx={{
+        position: "absolute",
+        bottom: 8,
+        right: 8,
+        zIndex: 2, // Ensure the IconButton stays on top
+      }}
+      onClick={(e) => {
+        e.stopPropagation();
+        handleShareClick(post);
+      }}
+    >
+      <ShareIcon sx={{ color: "white" }} />
+    </IconButton>
+    <Grid container spacing={2}>
+      <Grid item>
+        <ButtonBase sx={{ width: 188, height: 145 }}>
+          <Img alt="complex" src={post.images[0].imageUrl} />
+        </ButtonBase>
+      </Grid>
+      <Grid sx={{ ml: 1 }} item xs={12} sm container>
+        <Grid item xs container direction="column" spacing={2}>
+          <Grid item xs>
+            <Typography
+              gutterBottom
+              variant="subtitle1"
+              component="div"
+              sx={{ fontWeight: "700" }}
+            >
+              {post.brand} {post.title}
+            </Typography>
+            <Grid item>
+              <Typography
+                className="myaccount-profile-brand-details"
+                variant="subtitle1"
+                component="div"
+              >
+                {post.transmission}
+              </Typography>
+            </Grid>
+          </Grid>
+        </Grid>
+        <Grid item>
+          <Typography
+            className="myaccount-profile-image-details"
+            variant="subtitle1"
+            component="div"
+          >
+            {post.price}
+          </Typography>
+        </Grid>
+        <Grid item>
+          <Typography
+            className="myaccount-profile-image-mobile"
+            variant="subtitle1"
+            component="div"
+          >
+            {post.mobileNumber}
+          </Typography>
+        </Grid>
+        {!isMobile && (
+          <Typography
+            variant="body2"
+            sx={{
+              position: "absolute",
+              bottom: 8,
+              right: 8,
+              backgroundColor: "rgba(0, 0, 0, 0.7)",
+              color: "#fff",
+              padding: "50px 8px",
+              borderRadius: "4px",
+              zIndex: 1, // Ensure the city text is below the IconButton
+            }}
+          >
+            {post.city}
+          </Typography>
+        )}
+      </Grid>
+    </Grid>
+  </StyledPaper>
+))}
+
               </>
             )}
           </div>
