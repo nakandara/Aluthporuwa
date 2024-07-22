@@ -160,20 +160,27 @@ const Post = () => {
   const [shareModalOpen, setShareModalOpen] = useState(false);
   const [selectedPost, setSelectedPost] = useState(null);
 
+
   useEffect(() => {
     const fetchPosts = async () => {
       try {
         const postResponse = await axios.get(
           `${environments.BASE_HOST_URL}/api/getVerifyAllPosts`
         );
-        const savedResponse = await axios.get(
-          `${environments.BASE_HOST_URL}/api/get-save-post/${user.userId}`
-        );
-        const savedPosts = savedResponse.data.savedPosts;
-        const postsWithSaveState = postResponse.data.data.map((post) => {
-          const isSaved = savedPosts.some((saved) => saved.postId === post.postId);
-          return { ...post, isSaved };
-        });
+
+        let postsWithSaveState = postResponse.data.data;
+
+        if (user && user.userId) {
+          const savedResponse = await axios.get(
+            `${environments.BASE_HOST_URL}/api/get-save-post/${user.userId}`
+          );
+          const savedPosts = savedResponse.data.savedPosts;
+          postsWithSaveState = postResponse.data.data.map((post) => {
+            const isSaved = savedPosts.some((saved) => saved.postId === post.postId);
+            return { ...post, isSaved };
+          });
+        }
+
         setData(postsWithSaveState);
         setLoading(false);
       } catch (error) {
