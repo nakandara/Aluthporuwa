@@ -7,6 +7,8 @@ import { useToken } from '../../context/TokenContext';
 import { useRouter } from 'next/router';
 import dynamic from 'next/dynamic';
 import imageCompression from 'browser-image-compression';
+import { storage } from '../../../firebase';
+import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import {
   Box,
   Button,
@@ -39,7 +41,7 @@ const Index = () => {
   const fileInputRef = useRef(null);
   const { user } = useToken();
   const router = useRouter();
-  const [loading, setLoading] = useState(false); // Loading state
+  const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
     userId: '',
     condition: '',
@@ -61,6 +63,18 @@ const Index = () => {
     images: [],
   });
   const { selectedPlan, vehicle, location, subLocation } = router.query;
+
+  useEffect(() => {
+    if (selectedPlan) {
+      setFormData((prevFormData) => ({
+        ...prevFormData,
+        plane: selectedPlan,
+        category: vehicle,
+        city: `${location}/${subLocation}`,
+      }));
+    }
+  }, [selectedPlan]);
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevFormData) => ({
@@ -70,32 +84,20 @@ const Index = () => {
     }));
   };
 
-  console.log(router.query, 'router.query');
-
-  useEffect(() => {
-    if (selectedPlan) {
-      setFormData((prevFormData) => ({
-        ...prevFormData,
-        plane: selectedPlan,
-        category: vehicle,
-        city: location+"/"+subLocation
-      }));
-      console.log(`Selected Plan: ${selectedPlan}`);
-    }
-  }, [selectedPlan]);
-
   const handleDescriptionChange = (value) => {
     setFormData((prevFormData) => ({
       ...prevFormData,
       description: value,
     }));
   };
+
   const handleRemoveImage = (index) => {
     setFormData((prevFormData) => ({
       ...prevFormData,
       images: prevFormData.images.filter((_, i) => i !== index),
     }));
   };
+
   const handleFileChange = async (e) => {
     const files = Array.from(e.target.files);
     const totalImages = formData.images.length + files.length;
@@ -126,33 +128,40 @@ const Index = () => {
       })
     );
 
+    const uploadedImages = await Promise.all(
+      compressedImages.map(async (image) => {
+        const storageRef = ref(storage, `images/${image.name}`);
+        await uploadBytes(storageRef, image);
+        const downloadURL = await getDownloadURL(storageRef);
+        return downloadURL;
+      })
+    );
+
     setFormData((prevFormData) => ({
       ...prevFormData,
-      images: [...prevFormData.images, ...compressedImages],
+      images: [...prevFormData.images, ...uploadedImages],
     }));
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setLoading(true); // Start loading
+    setLoading(true);
     try {
       const postData = new FormData();
       for (const key in formData) {
         if (formData.hasOwnProperty(key)) {
           if (key === 'images') {
-            formData[key].forEach((file) => postData.append('image', file));
+            formData[key].forEach((url) => postData.append('image', url));
           } else {
             postData.append(key, formData[key]);
           }
         }
       }
       const response = await axios.post(
-        `${environments.BASE_HOST_URL}/api/createPost`,
+        `${environments.BASE_HOST_LOCAL_URL}/api/createPost`,
         postData,
         { headers: { 'Content-Type': 'multipart/form-data' } }
       );
-      console.log(response.data.post.postId);
-      console.log(JSON.stringify(response, null, 2), '44444444');
       if (response.data) {
         router.push(`/mypost/${response.data.post.postId}`);
         Swal.fire({
@@ -174,7 +183,7 @@ const Index = () => {
     } catch (error) {
       console.error(error);
     } finally {
-      setLoading(false); // End loading
+      setLoading(false);
     }
   };
 
@@ -211,7 +220,7 @@ const Index = () => {
               variant='h4'
               component='h4'
               gutterBottom
-              sx={{ fontSize: { xs: '12px', sm: '16px', md: '20px' } }} // Adjust font size here
+              sx={{ fontSize: { xs: '12px', sm: '16px', md: '20px' } }}
             >
               <img
                 style={{ width: '30px', height: '30px' }}
@@ -242,155 +251,119 @@ const Index = () => {
                     control={<Radio />}
                     label='Used'
                   />
-                  <FormControlLabel
-                    value='Reconditioned'
-                    control={<Radio />}
-                    label='Reconditioned'
-                  />
                 </RadioGroup>
               </FormControl>
+
               <TextField
-                fullWidth
-                margin='normal'
-                label='Title'
-                name='title'
-                value={formData.title}
-                onChange={handleChange}
-                variant='outlined'
-                placeholder='Enter your Title'
-              />
-              <TextField
-                fullWidth
-                margin='normal'
-                label='Brand'
                 name='brand'
+                label='Brand'
                 value={formData.brand}
                 onChange={handleChange}
-                variant='outlined'
-                placeholder='Enter your brand'
-              />
-              <TextField
                 fullWidth
                 margin='normal'
-                label='Category'
-                name='category'
-                value={formData.category}
-                onChange={handleChange}
-                variant='outlined'
-                placeholder='Enter your brand'
               />
               <TextField
-                fullWidth
-                margin='normal'
-                label='Model'
                 name='model'
+                label='Model'
                 value={formData.model}
                 onChange={handleChange}
-                variant='outlined'
-                placeholder='Enter your model'
+                fullWidth
+       
+               
+                margin='normal'
               />
               <TextField
-                fullWidth
-                margin='normal'
-                label='Trim/Edition'
                 name='trimEdition'
+                label='Trim/Edition'
                 value={formData.trimEdition}
                 onChange={handleChange}
-                variant='outlined'
-                placeholder='Enter your trim/edition'
-              />
-              <TextField
                 fullWidth
                 margin='normal'
-                label='Year of Manufacture'
+              />
+              <TextField
                 name='yearOfManufacture'
+                label='Year of Manufacture'
                 value={formData.yearOfManufacture}
                 onChange={handleChange}
-                variant='outlined'
-                placeholder='Enter your year of manufacture'
-              />
-              <TextField
                 fullWidth
                 margin='normal'
-                label='Mileage'
+              />
+              <TextField
                 name='mileage'
+                label='Mileage'
                 value={formData.mileage}
                 onChange={handleChange}
-                variant='outlined'
-                placeholder='Enter your mileage'
-              />
-              <TextField
                 fullWidth
                 margin='normal'
-                label='Engine Capacity'
+              />
+              <TextField
+                name='title'
+                label='Title'
+                value={formData.title}
+                onChange={handleChange}
+                fullWidth
+                margin='normal'
+              />
+              <TextField
                 name='engineCapacity'
+                label='Engine Capacity'
                 value={formData.engineCapacity}
                 onChange={handleChange}
-                variant='outlined'
-                placeholder='Enter your engine capacity'
+                fullWidth
+                margin='normal'
               />
-              <FormControl fullWidth margin='normal' variant='outlined'>
-                <InputLabel id='fuelTypeLabel'>Fuel Type</InputLabel>
+              <FormControl fullWidth margin='normal'>
+                <InputLabel>Fuel Type</InputLabel>
                 <Select
-                  labelId='fuelTypeLabel'
-                  id='fuelType'
                   name='fuelType'
                   value={formData.fuelType}
                   onChange={handleChange}
-                  label='Fuel Type'
                 >
-                  {fuelTypes.map((fuelType) => (
-                    <MenuItem key={fuelType} value={fuelType}>
-                      {fuelType}
+                  {fuelTypes.map((type) => (
+                    <MenuItem key={type} value={type}>
+                      {type}
                     </MenuItem>
                   ))}
                 </Select>
               </FormControl>
-              <FormControl fullWidth margin='normal' variant='outlined'>
-                <InputLabel id='transmissionLabel'>Transmission</InputLabel>
+              <FormControl fullWidth margin='normal'>
+                <InputLabel>Transmission</InputLabel>
                 <Select
-                  labelId='transmissionLabel'
-                  id='transmission'
                   name='transmission'
                   value={formData.transmission}
                   onChange={handleChange}
-                  label='Transmission'
                 >
-                  {transmissions.map((transmission) => (
-                    <MenuItem key={transmission} value={transmission}>
-                      {transmission}
+                  {transmissions.map((type) => (
+                    <MenuItem key={type} value={type}>
+                      {type}
                     </MenuItem>
                   ))}
                 </Select>
               </FormControl>
+              <FormControl fullWidth margin='normal'>
+                <InputLabel>Body Type</InputLabel>
+                <Select
+                  name='bodyType'
+                  value={formData.bodyType}
+                  onChange={handleChange}
+                >
+                  <MenuItem value='Sedan'>Sedan</MenuItem>
+                  <MenuItem value='SUV'>SUV</MenuItem>
+                  <MenuItem value='Truck'>Truck</MenuItem>
+                  <MenuItem value='Coupe'>Coupe</MenuItem>
+                  <MenuItem value='Convertible'>Convertible</MenuItem>
+                  <MenuItem value='Wagon'>Wagon</MenuItem>
+                </Select>
+              </FormControl>
               <TextField
-                fullWidth
-                margin='normal'
-                label='Body Type'
-                name='bodyType'
-                value={formData.bodyType}
-                onChange={handleChange}
-                variant='outlined'
-                placeholder='Enter your body type'
-              />
-              <Typography variant='body1'>Description</Typography>
-              <ReactQuill
-                theme='snow'
-                value={formData.description}
-                onChange={handleDescriptionChange}
-                style={{ marginBottom: '16px',color:"black" }}              />
-              <TextField
-                fullWidth
-                margin='normal'
-                label='Price'
                 name='price'
+                label='Price'
                 value={formData.price}
                 onChange={handleChange}
-                variant='outlined'
-                placeholder='Enter your price'
+                fullWidth
+                margin='normal'
               />
               <FormControlLabel
-              sx={{color:"black"}}
                 control={
                   <Radio
                     checked={formData.negotiable}
@@ -400,49 +373,53 @@ const Index = () => {
                         negotiable: e.target.checked,
                       }))
                     }
-                    name='negotiable'
-                    color='primary'
                   />
                 }
                 label='Negotiable'
               />
-              <Box my={2}>
+              <Box mt={2}>
                 <input
+                  ref={fileInputRef}
                   type='file'
                   accept='image/*'
                   multiple
                   onChange={handleFileChange}
-                  ref={fileInputRef}
                   style={{ display: 'none' }}
                 />
                 <Button
-                  variant='outlined'
+                  variant='contained'
+                  color='primary'
                   onClick={() => fileInputRef.current.click()}
                 >
                   Upload Images
                 </Button>
-                <Box mt={2}>
-                  <Grid container spacing={2} sx={{ marginTop: '20px' }}>
-                    {formData.images.map((image, index) => (
-                      <Grid item xs={6} key={index}>
-                        <Card>
-                          <CardMedia
-                            component='img'
-                            height='140'
-                            image={URL.createObjectURL(image)}
-                            alt={`Image ${index + 1}`}
-                          />
-                          <IconButton
-                            aria-label='delete'
-                            onClick={() => handleRemoveImage(index)}
-                          >
-                            <DeleteIcon />
-                          </IconButton>
-                        </Card>
-                      </Grid>
-                    ))}
+              </Box>
+              <Grid container spacing={2} mt={2}>
+                {formData.images.map((url, index) => (
+                  <Grid item key={index}>
+                    <Card>
+                      <CardMedia
+                        component='img'
+                        height='140'
+                        image={url}
+                        alt={`Uploaded Image ${index + 1}`}
+                      />
+                      <IconButton
+                        aria-label='delete'
+                        onClick={() => handleRemoveImage(index)}
+                      >
+                        <DeleteIcon />
+                      </IconButton>
+                    </Card>
                   </Grid>
-                </Box>
+                ))}
+              </Grid>
+              <Box mt={2}>
+                <ReactQuill
+                  theme='snow'
+                  value={formData.description}
+                  onChange={handleDescriptionChange}
+                />
               </Box>
               <TextField
                 fullWidth

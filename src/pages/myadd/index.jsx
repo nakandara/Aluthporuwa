@@ -138,7 +138,11 @@ const MyAdd = () => {
                 <Grid container spacing={2}>
                   <Grid item>
                     <ButtonBase sx={{ width: 188, height: 145 }}>
-                      <Img alt="complex" src={post.images[0].imageUrl} />
+                      {post.images && post.images.length > 0 ? (
+                        <Img alt="complex" src={post.images[0].imageUrl} />
+                      ) : (
+                        <Img alt="placeholder" src="/path/to/placeholder-image.jpg" />
+                      )}
                     </ButtonBase>
                   </Grid>
                   <Grid item xs={12} sm container>
