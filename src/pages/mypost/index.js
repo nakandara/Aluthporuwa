@@ -158,7 +158,7 @@ const Index = () => {
         }
       }
       const response = await axios.post(
-        `${environments.BASE_HOST_LOCAL_URL}/api/createPost`,
+        `${environments.BASE_HOST_URL}/api/createPost`,
         postData,
         { headers: { 'Content-Type': 'multipart/form-data' } }
       );
@@ -250,6 +250,11 @@ const Index = () => {
                     value='Used'
                     control={<Radio />}
                     label='Used'
+                  />
+                     <FormControlLabel
+                    value='Recondition'
+                    control={<Radio />}
+                    label='Recondition'
                   />
                 </RadioGroup>
               </FormControl>
