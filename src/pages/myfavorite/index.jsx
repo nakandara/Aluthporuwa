@@ -31,7 +31,7 @@ export default function MyFavorite() {
 
   const fetchSavedPosts = useCallback(async () => {
     try {
-      const response = await axios.get(`${environments.BASE_HOST_LOCAL_URL}/api/get-save-post/${user.userId}`);
+      const response = await axios.get(`${environments.BASE_HOST_URL}/api/get-save-post/${user.userId}`);
       setSavedPosts(response.data.relatedPosts);
     } catch (error) {
       console.error("Error fetching saved posts:", error);
