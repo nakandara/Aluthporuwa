@@ -42,6 +42,7 @@ const ImageWithTextAndOpacity = ({ onLogin }) => {
           >
             Proceed
           </Button>
+          
         </h1>
       </div>
     </div>
@@ -64,117 +65,128 @@ export default function BasicGrid() {
   useEffect(() => {
     setData([
       {
-        "_id": "66921e9a222fe75b8e3b9700",
+        "_id": "66a4a10aeeb5272ad4dd79a2",
         "userId": "6661f7790b2cabbbaa60ed27",
-        "brand": "Honda N-Box for sale",
-        "model": "Hatchback",
-        "trimEdition": "Honda",
-        "yearOfManufacture": "2018",
-        "mileage": "30000 km",
-        "engineCapacity": "660",
+        "brand": "SUV",
+        "model": "SUV",
+        "trimEdition": "-",
+        "yearOfManufacture": "2014",
+        "mileage": "128243 km",
+        "engineCapacity": "1500",
         "fuelType": "Petrol",
         "transmission": "Automatic",
-        "bodyType": "Hatchback",
+        "bodyType": "SUV",
         "category": [
             "Cars"
         ],
         "images": [
             {
-                "imageUrl": "https://world-api-demo.s3.amazonaws.com/1720852122086-blob",
-                "_id": "66921e9a222fe75b8e3b9701"
-            },
-            {
-                "imageUrl": "https://world-api-demo.s3.amazonaws.com/1720852122089-blob",
-                "_id": "66921e9a222fe75b8e3b9702"
+                "imageUrl": "https://firebasestorage.googleapis.com/v0/b/datamithurunode.appspot.com/o/images%2Fhonda-vezel-x-301334179_large.jpg?alt=media&token=85687b5c-db3e-47e2-945f-db37e22256f2",
+                "_id": "66a4a10aeeb5272ad4dd79a3"
             }
         ],
         "negotiable": true,
-        "description": "<p>Automatic</p><p>Engine Cylinders</p><p>660</p><p>Fuel</p><p>Petrol</p><p>Mileage</p><p>30000 km</p><p>Comfort</p><ul><li><span style=\"background-color: initial;\"><img src=\"https://www.autolanka.com/templates/auto_nova/img/blank.gif\"></span>A/C: Front</li><li><span style=\"background-color: initial;\"><img src=\"https://www.autolanka.com/templates/auto_nova/img/blank.gif\"></span>A/C: Rear</li><li><span style=\"background-color: initial;\"><img src=\"https://www.autolanka.com/templates/auto_nova/img/blank.gif\"></span>Cruise Control</li><li><span style=\"background-color: initial;\"><img src=\"https://www.autolanka.com/templates/auto_nova/img/blank.gif\"></span>Navigation System</li><li><span style=\"background-color: initial;\"><img src=\"https://www.autolanka.com/templates/auto_nova/img/blank.gif\"></span>Power Locks</li><li><span style=\"background-color: initial;\"><img src=\"https://www.autolanka.com/templates/auto_nova/img/blank.gif\"></span>Power Steering</li><li><span style=\"background-color: initial;\"><img src=\"https://www.autolanka.com/templates/auto_nova/img/blank.gif\"></span>Remote Keyless Entry</li><li><img src=\"https://www.autolanka.com/templates/auto_nova/img/blank.gif\">TV/VCR</li></ul><p>Safety</p><ul><li><span style=\"background-color: initial;\"><img src=\"https://www.autolanka.com/templates/auto_nova/img/blank.gif\"></span>Airbag: Driver</li><li><span style=\"background-color: initial;\"><img src=\"https://www.autolanka.com/templates/auto_nova/img/blank.gif\"></span>Airbag: Passenger</li><li><span style=\"background-color: initial;\"><img src=\"https://www.autolanka.com/templates/auto_nova/img/blank.gif\"></span>Airbag: Side</li><li><span style=\"background-color: initial;\"><img src=\"https://www.autolanka.com/templates/auto_nova/img/blank.gif\"></span>Alarm</li><li><span style=\"background-color: initial;\"><img src=\"https://www.autolanka.com/templates/auto_nova/img/blank.gif\"></span>Anti-Lock Brakes</li><li><span style=\"background-color: initial;\"><img src=\"https://www.autolanka.com/templates/auto_nova/img/blank.gif\"></span>Fog Lights</li></ul><p>Windows</p><ul><li><span style=\"background-color: initial;\"><img src=\"https://www.autolanka.com/templates/auto_nova/img/blank.gif\"></span>Power Windows</li><li><img src=\"https://www.autolanka.com/templates/auto_nova/img/blank.gif\">Rear Window Defroster</li><li><span style=\"background-color: initial;\"><img src=\"https://www.autolanka.com/templates/auto_nova/img/blank.gif\"></span>Rear Window Wiper</li><li><span style=\"background-color: initial;\"><img src=\"https://www.autolanka.com/templates/auto_nova/img/blank.gif\"></span>Tinted Glass</li></ul><p>Sound System</p><ul><li><span style=\"background-color: initial;\"><img src=\"https://www.autolanka.com/templates/auto_nova/img/blank.gif\"></span>CD Changer</li><li><img src=\"https://www.autolanka.com/templates/auto_nova/img/blank.gif\">CD Player</li><li><span style=\"background-color: initial;\"><img src=\"https://www.autolanka.com/templates/auto_nova/img/blank.gif\"></span>Premium Sound</li></ul><p>Other Features</p><ul><li><span style=\"background-color: initial;\"><img src=\"https://www.autolanka.com/templates/auto_nova/img/blank.gif\"></span>Alloy Wheels</li><li><img src=\"https://www.autolanka.com/templates/auto_nova/img/blank.gif\">Sunroof/Moonroof</li><li><img src=\"https://www.autolanka.com/templates/auto_nova/img/blank.gif\">Third Row Seats</li><li><img src=\"https://www.autolanka.com/templates/auto_nova/img/blank.gif\">Tow Package</li></ul><p>Additional Information</p><p>Honda N-Box</p><p>2018</p><p>Registered in 2022</p><p>First Owner (Registered Owner)</p>",
+        "description": "<p><span style=\"background-color: rgb(255, 255, 255); color: rgb(17, 17, 17);\">HONDA VEZEL ,year of manufacture 2014, Year of Registration 2014,</span></p><p><span style=\"background-color: rgb(255, 255, 255); color: rgb(17, 17, 17);\">Rs 8,600,000.00 ,Records available,</span></p><p><br></p><p><br></p><ul><li><span style=\"background-color: rgb(255, 255, 255); color: rgb(17, 17, 17);\">﻿</span><span style=\"background-color: initial;\"><img src=\"https://www.autolanka.com/templates/auto_nova/img/blank.gif\"></span>A/C: Front</li><li><span style=\"background-color: initial;\"><img src=\"https://www.autolanka.com/templates/auto_nova/img/blank.gif\"></span>A/C: Rear</li><li><span style=\"background-color: initial;\"><img src=\"https://www.autolanka.com/templates/auto_nova/img/blank.gif\"></span>Cruise Control</li><li><span style=\"background-color: initial;\"><img src=\"https://www.autolanka.com/templates/auto_nova/img/blank.gif\"></span>Navigation System</li><li><span style=\"background-color: initial;\"><img src=\"https://www.autolanka.com/templates/auto_nova/img/blank.gif\"></span>Power Locks</li><li><span style=\"background-color: initial;\"><img src=\"https://www.autolanka.com/templates/auto_nova/img/blank.gif\"></span>Power Steering</li><li><span style=\"background-color: initial;\"><img src=\"https://www.autolanka.com/templates/auto_nova/img/blank.gif\"></span>Remote Keyless Entry</li><li><span style=\"background-color: initial;\"><img src=\"https://www.autolanka.com/templates/auto_nova/img/blank.gif\"></span>TV/VCR</li></ul><p>Safety</p><ul><li><span style=\"background-color: initial;\"><img src=\"https://www.autolanka.com/templates/auto_nova/img/blank.gif\"></span>Airbag: Driver</li><li><span style=\"background-color: initial;\"><img src=\"https://www.autolanka.com/templates/auto_nova/img/blank.gif\"></span>Airbag: Passenger</li><li><span style=\"background-color: initial;\"><img src=\"https://www.autolanka.com/templates/auto_nova/img/blank.gif\"></span>Airbag: Side</li><li><span style=\"background-color: initial;\"><img src=\"https://www.autolanka.com/templates/auto_nova/img/blank.gif\"></span>Alarm</li><li><span style=\"background-color: initial;\"><img src=\"https://www.autolanka.com/templates/auto_nova/img/blank.gif\"></span>Anti-Lock Brakes</li><li><span style=\"background-color: initial;\"><img src=\"https://www.autolanka.com/templates/auto_nova/img/blank.gif\"></span>Fog Lights</li></ul><p>Windows</p><ul><li><span style=\"background-color: initial;\"><img src=\"https://www.autolanka.com/templates/auto_nova/img/blank.gif\"></span>Power Windows</li><li><span style=\"background-color: initial;\"><img src=\"https://www.autolanka.com/templates/auto_nova/img/blank.gif\"></span>Rear Window Defroster</li><li><span style=\"background-color: initial;\"><img src=\"https://www.autolanka.com/templates/auto_nova/img/blank.gif\"></span>Rear Window Wiper</li><li><span style=\"background-color: initial;\"><img src=\"https://www.autolanka.com/templates/auto_nova/img/blank.gif\"></span>Tinted Glass</li></ul>",
         "plane": "Gold",
-        "mobileNumber": "(076) 131-7399",
-        "whatsappNumber": "(076) 131-7399",
-        "price": "Rs 8,000,000",
+        "title": " Honda Vezel x",
+        "city": "Colombo/Colombo 2",
+        "mobileNumber": " (777) 354-296",
+        "whatsappNumber": " (777) 354-296",
+        "price": "Rs 8,600,000",
         "socialIcon": [
             "heart"
         ],
         "verify": true,
-        "postId": "66921e9a222fe75b8e3b9703",
-        "createdAt": "2024-07-13T06:28:42.284Z",
-        "updatedAt": "2024-07-13T06:29:13.412Z",
+        "postId": "66a4a10aeeb5272ad4dd79a4",
+        "createdAt": "2024-07-27T07:26:02.048Z",
+        "updatedAt": "2024-07-27T07:26:26.334Z",
         "__v": 0
     },
-      {
-        "_id": "66865d66016454c3719fed41",
+    {
+        "_id": "66a47b3f2beb0cfe8eaa50a1",
         "userId": "6661f7790b2cabbbaa60ed27",
-        "brand": "Wagon",
-        "model": "Piaggio ape",
-        "trimEdition": "Manual",
-        "yearOfManufacture": "2011",
-        "mileage": "80000 km",
-        "engineCapacity": "355",
-        "fuelType": "Diesel",
+        "brand": "Hatchback",
+        "model": "Hatchback",
+        "trimEdition": "-",
+        "yearOfManufacture": "1992",
+        "mileage": "124958 km",
+        "engineCapacity": "1000",
+        "fuelType": "Petrol",
         "transmission": "Manual",
-        "bodyType": "Wagon",
+        "bodyType": "SUV",
         "category": [
-          "Three Wheelers"
+            "Cars"
         ],
         "images": [
-          {
-            "imageUrl": "https://world-api-demo.s3.amazonaws.com/1720081764048-blob",
-            "_id": "66865d66016454c3719fed42"
-          }
+            {
+                "imageUrl": "https://firebasestorage.googleapis.com/v0/b/datamithurunode.appspot.com/o/images%2Fnissan-march-1003276416_large.jpg?alt=media&token=59ef8b8f-1eea-47e0-83ac-36dd014ad585",
+                "_id": "66a47b3f2beb0cfe8eaa50a2"
+            },
+            {
+                "imageUrl": "https://firebasestorage.googleapis.com/v0/b/datamithurunode.appspot.com/o/images%2Fnissan-march-194027542_large.jpg?alt=media&token=0dffb85f-7ea8-416b-9749-ffea866163ce",
+                "_id": "66a47b3f2beb0cfe8eaa50a3"
+            }
         ],
         "negotiable": true,
-        "description": "<p>Additional Information</p><p>වැඩි විස්තර සදහා අමතන්න</p><p>0775605970</p>",
-        "plane": "Gold",
-        "mobileNumber": " (077) 560-5970",
-        "whatsappNumber": " (077) 560-5970",
-        "price": "Rs 975,000",
+        "description": "<p><span style=\"background-color: rgb(255, 255, 255); color: rgb(17, 17, 17);\">Nissan K10 කාරය ඉක්මනින් විකිණේ</span></p><p><span style=\"background-color: rgb(255, 255, 255); color: rgb(17, 17, 17);\">1992 නිෂ්පාදිත වර්ෂය</span></p><p><span style=\"background-color: rgb(255, 255, 255); color: rgb(17, 17, 17);\">1000CC එන්ජිම</span></p><p><span style=\"background-color: rgb(255, 255, 255); color: rgb(17, 17, 17);\">A/C 100%</span></p><p><span style=\"background-color: rgb(255, 255, 255); color: rgb(17, 17, 17);\">ඔරිජිනල්ම බොඩි තත්වය</span></p><p><span style=\"background-color: rgb(255, 255, 255); color: rgb(17, 17, 17);\">ටින් බොඩි දිරුම් කිසිවක් නොමැත</span></p><p><span style=\"background-color: rgb(255, 255, 255); color: rgb(17, 17, 17);\">අනර්ඝ ධාවනය</span></p><p><span style=\"background-color: rgb(255, 255, 255); color: rgb(17, 17, 17);\">සියලුම ලයිට් මීටර් ඔරිජිනල් තත්වයෙන් වැඩ</span></p><p><span style=\"background-color: rgb(255, 255, 255); color: rgb(17, 17, 17);\">ඩෑෂ් බෝඩ් ඇතුළුව ඇතුලත 100%</span></p><p><span style=\"background-color: rgb(255, 255, 255); color: rgb(17, 17, 17);\">ඔරිජිනල් දොර බෝඩ්</span></p><p><span style=\"background-color: rgb(255, 255, 255); color: rgb(17, 17, 17);\">අලුත් බැට්ටරිය</span></p><p><span style=\"background-color: rgb(255, 255, 255); color: rgb(17, 17, 17);\">පෙට්‍රල් 16-18 ත් අතර වැඩ</span></p><p><span style=\"background-color: rgb(255, 255, 255); color: rgb(17, 17, 17);\">ඔරිජිනල් තත්වයේ පවතින හොද වාහනයක් සොයන්නෙකුට</span></p><p><span style=\"background-color: rgb(255, 255, 255); color: rgb(17, 17, 17);\">ඔරිජිනල් පොත ඇතුළු ලියකියවිලි සියල්ල</span></p><p><span style=\"background-color: rgb(255, 255, 255); color: rgb(17, 17, 17);\">ලක්ෂ 9 ක් ෆිනෑන්ස් ගත හැක</span></p><p><span style=\"background-color: rgb(255, 255, 255); color: rgb(17, 17, 17);\">වැඩි විස්තර සදහා අමතන්න</span></p><p><span style=\"background-color: rgb(255, 255, 255); color: rgb(17, 17, 17);\">0766102600</span></p>",
+        "plane": "Silver",
+        "title": "Nissan March",
+        "city": "Kegalle/Mawanella",
+        "mobileNumber": "(076) 610-2600",
+        "whatsappNumber": "(076) 610-2600",
+        "price": "Rs 1,400,000",
         "socialIcon": [
-          "heart"
+            "heart"
         ],
         "verify": true,
-        "postId": "66865d66016454c3719fed43",
-        "createdAt": "2024-07-04T08:29:26.864Z",
-        "updatedAt": "2024-07-04T08:29:53.836Z",
+        "postId": "66a47b3f2beb0cfe8eaa50a4",
+        "createdAt": "2024-07-27T04:44:47.128Z",
+        "updatedAt": "2024-07-27T04:45:05.126Z",
         "__v": 0
-      },
-      {
-        "_id": "668658504de8104461b2f1de",
+    },
+    {
+        "_id": "669fa2ef1cd8f5abe0000738",
         "userId": "6661f7790b2cabbbaa60ed27",
-        "brand": "2015 Toyota Premio G superior",
-        "model": "Sedan",
-        "trimEdition": "Automatic",
-        "yearOfManufacture": "2015",
-        "mileage": " 109000 km",
-        "engineCapacity": "-",
+        "brand": "Hatchback",
+        "model": "Hatchback",
+        "trimEdition": "-",
+        "yearOfManufacture": "2019",
+        "mileage": " 16300 km",
+        "engineCapacity": "3",
         "fuelType": "Petrol",
         "transmission": "Automatic",
         "bodyType": "Sedan",
         "category": [
-          "Cars"
+            "Cars"
         ],
         "images": [
-          {
-            "imageUrl": "https://world-api-demo.s3.amazonaws.com/1720080460428-blob",
-            "_id": "668658504de8104461b2f1df"
-          }
+            {
+                "imageUrl": "https://firebasestorage.googleapis.com/v0/b/datamithurunode.appspot.com/o/images%2Ftoyota-tank-1442596372_large.jpg?alt=media&token=cb0e0095-4dd7-404c-b30f-7a8796b74076",
+                "_id": "669fa2ef1cd8f5abe0000739"
+            },
+            {
+                "imageUrl": "https://firebasestorage.googleapis.com/v0/b/datamithurunode.appspot.com/o/images%2Ftoyota-tank-1747124239_large.jpg?alt=media&token=99bb124e-97b5-4619-8e06-80893d8be311",
+                "_id": "669fa2ef1cd8f5abe000073a"
+            }
         ],
         "negotiable": true,
-        "description": "<p><span style=\"background-color: rgb(255, 255, 255); color: rgb(136, 136, 136);\">Additional Information</span></p><p><span style=\"background-color: rgb(255, 255, 255); color: rgb(17, 17, 17);\">Mint Condition</span></p><p><span style=\"background-color: rgb(255, 255, 255); color: rgb(17, 17, 17);\">All 3M tinted glasses</span></p><p><span style=\"background-color: rgb(255, 255, 255); color: rgb(17, 17, 17);\">Full option</span></p><p><span style=\"background-color: rgb(255, 255, 255); color: rgb(17, 17, 17);\">Alloy wheels</span></p><p><span style=\"background-color: rgb(255, 255, 255); color: rgb(17, 17, 17);\">2nd Owner</span></p><p><span style=\"background-color: rgb(255, 255, 255); color: rgb(17, 17, 17);\">Urgent Sale</span></p><p><span style=\"background-color: rgb(255, 255, 255); color: rgb(17, 17, 17);\">Call for more information</span></p>",
+        "description": "<p><span style=\"color: rgb(17, 17, 17); background-color: rgb(255, 255, 255);\">A/C: Front</span></p><p><span style=\"color: rgb(17, 17, 17); background-color: rgb(255, 255, 255);\">Navigation System</span></p><ul><li><img src=\"https://www.autolanka.com/templates/auto_nova/img/blank.gif\">Power Locks</li><li><img src=\"https://www.autolanka.com/templates/auto_nova/img/blank.gif\">Remote Keyless Entry</li><li><img src=\"https://www.autolanka.com/templates/auto_nova/img/blank.gif\">Airbag: Driver</li><li><img src=\"https://www.autolanka.com/templates/auto_nova/img/blank.gif\">Alloy Wheels</li><li><img src=\"https://www.autolanka.com/templates/auto_nova/img/blank.gif\">Sunroof/Moonroof</li><li><img src=\"https://www.autolanka.com/templates/auto_nova/img/blank.gif\">Third Row Seats</li><li><img src=\"https://www.autolanka.com/templates/auto_nova/img/blank.gif\">Tow Package</li></ul><p><span style=\"color: rgb(17, 17, 17); background-color: rgb(255, 255, 255);\">* 1 st owner</span></p><p><span style=\"color: rgb(17, 17, 17); background-color: rgb(255, 255, 255);\">* 1000 cc Turbo engine</span></p><p><span style=\"color: rgb(17, 17, 17); background-color: rgb(255, 255, 255);\">* May 2020 Registration</span></p><p><span style=\"color: rgb(17, 17, 17); background-color: rgb(255, 255, 255);\">* Dual Power Doors</span></p><p><span style=\"color: rgb(17, 17, 17); background-color: rgb(255, 255, 255);\">* LED (Head Lights / Fog lamps)</span></p><p><span style=\"color: rgb(17, 17, 17); background-color: rgb(255, 255, 255);\">* Cruise Control</span></p><p><span style=\"color: rgb(17, 17, 17); background-color: rgb(255, 255, 255);\">* Climate control A/C (Auto A/C)</span></p><p><span style=\"color: rgb(17, 17, 17); background-color: rgb(255, 255, 255);\">* Seat heaters</span></p><p><span style=\"color: rgb(17, 17, 17); background-color: rgb(255, 255, 255);\">* Auto Headlight and Auto Headlight Dim</span></p><p><span style=\"color: rgb(17, 17, 17); background-color: rgb(255, 255, 255);\">* Lane Assist</span></p><p><span style=\"color: rgb(17, 17, 17); background-color: rgb(255, 255, 255);\">* Auto break</span></p><p><span style=\"color: rgb(17, 17, 17); background-color: rgb(255, 255, 255);\">* Auto Stop function</span></p><p><span style=\"color: rgb(17, 17, 17); background-color: rgb(255, 255, 255);\">* 8 Parking sensors</span></p><p><span style=\"color: rgb(17, 17, 17); background-color: rgb(255, 255, 255);\">* 6 Speaker Sound system</span></p><p><span style=\"color: rgb(17, 17, 17); background-color: rgb(255, 255, 255);\">* Android multimedia player / sub woofer</span></p><p><span style=\"color: rgb(17, 17, 17); background-color: rgb(255, 255, 255);\">* dash cam and rear cam</span></p><p><span style=\"color: rgb(17, 17, 17); background-color: rgb(255, 255, 255);\">* 15'' inch Original Alloy wheel</span></p><p><span style=\"color: rgb(17, 17, 17); background-color: rgb(255, 255, 255);\">* Multi Function Steering Wheel</span></p><p><span style=\"color: rgb(17, 17, 17); background-color: rgb(255, 255, 255);\">* 2 Tone Color</span></p><p><span style=\"color: rgb(17, 17, 17); background-color: rgb(255, 255, 255);\">* 2 Original Remote Key</span></p><p><span style=\"color: rgb(17, 17, 17); background-color: rgb(255, 255, 255);\">* Original Owners Manual</span></p><p><span style=\"color: rgb(17, 17, 17); background-color: rgb(255, 255, 255);\">* Personal Imported From Japan(All Document)</span></p>",
         "plane": "Silver",
-        "mobileNumber": "(070) 193-9116",
-        "whatsappNumber": "(070) 193-9116",
-        "price": "Rs 15,500,000",
+        "title": "Toyota Tank 2019",
+        "city": "Galle/Ambalangoda",
+        "mobileNumber": "(077) 695-3542",
+        "whatsappNumber": "(077) 695-3542",
+        "price": "Rs 11,800,000",
         "socialIcon": [
-          "heart"
+            "heart"
         ],
         "verify": true,
-        "postId": "668658504de8104461b2f1e0",
-        "createdAt": "2024-07-04T08:07:44.939Z",
-        "updatedAt": "2024-07-04T08:08:21.587Z",
+        "postId": "669fa2ef1cd8f5abe000073b",
+        "createdAt": "2024-07-23T12:32:47.992Z",
+        "updatedAt": "2024-07-23T12:33:17.030Z",
         "__v": 0
-      },
+    },
+
     ]);
   }, []);
 

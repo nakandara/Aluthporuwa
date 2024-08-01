@@ -20,7 +20,7 @@ import YourPost from "../Your-post/YourPost";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import Avatar from "@mui/material/Avatar";
-import Image from 'next/image'; // Import Image from next/image if using Next.js
+import Image from "next/image"; // Import Image from next/image if using Next.js
 
 const drawerWidth = 240;
 const navItems = ["Home", "About", "Contact", "Post", "MyAccount", "MyAdd"];
@@ -34,7 +34,8 @@ const LayoutSecond = ({ children }) => {
   const handleDrawerToggle = () => {
     setMobileOpen((prevState) => !prevState);
   };
-  const container = typeof window !== "undefined" ? window.document.body : undefined;
+  const container =
+    typeof window !== "undefined" ? window.document.body : undefined;
 
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
@@ -53,17 +54,22 @@ const LayoutSecond = ({ children }) => {
   const loginAdminPostReview = () => {
     router.push("/postReview");
   };
+  const loginMyfavorite = () => {
+    router.push("/myfavorite");
+  };
+
+  const loginMyAccount = () => {
+    router.push("/myaccount");
+  };
 
   const handleClick = () => {
     router.push("/");
   };
 
-  const settings = ["Profile", "MyAccount"];
+  const settings = ["Profile", "MyAccount", "MyFavorite 💖"];
   if (user && user.email === "pramodnakandara@gmail.com") {
     settings.push("AdminPostReview");
   }
-
-  console.log(user?.name,'rrrrrrrrrrrrrrrr');
 
   return (
     <div>
@@ -86,69 +92,66 @@ const LayoutSecond = ({ children }) => {
           </IconButton>
           {/* Replace Typography with Image */}
           <Box
-  component="div"
-  onClick={handleClick}
-  sx={{
-    flexGrow: 1,
-    display: { xs: "none", sm: "block" },
-    cursor: "pointer",
-   
-    alignItems: 'center', // Vertically align images
-    gap: 0.5 // Adjusts the gap between images
-  }}
->
+            component="div"
+            onClick={handleClick}
+            sx={{
+              flexGrow: 1,
+              display: { xs: "none", sm: "block" },
+              cursor: "pointer",
 
-     <Image 
-    src="/media/icons8-q-50 (1).png" 
-    alt="QuickAds Hub"
-    width={25} // Adjust width as necessary
-    height={25} // Adjust height as necessary
-  />
-  <Image 
-    src="/media/letter-u_9511521.png" 
-    alt="QuickAds Hub"
-    width={15} // Adjust width as necessary
-    height={15} // Adjust height as necessary
-  />
-    <Image 
-    src="/media/letter-i_9511556.png" 
-    alt="QuickAds Hub"
-    width={15} // Adjust width as necessary
-    height={15} // Adjust height as necessary
-  />
-    <Image 
-    src="/media/letter-c_9511541.png" 
-    alt="QuickAds Hub"
-    width={15} // Adjust width as necessary
-    height={15} // Adjust height as necessary
-  />
-    <Image 
-    src="/media/letter-k_9511489.png" 
-    alt="QuickAds Hub"
-    width={15} // Adjust width as necessary
-    height={15} // Adjust height as necessary
-  />
-   <Image 
-    src="/media/letter-a_9511496.png" 
-    alt="QuickAds Hub"
-    width={15} // Adjust width as necessary
-    height={15} // Adjust height as necessary
-  />
-   <Image 
-    src="/media/letter-d_9511555.png" 
-    alt="QuickAds Hub"
-    width={15} // Adjust width as necessary
-    height={15} // Adjust height as necessary
-  />
-   <Image 
-    src="/media/letter-s_9511527.png" 
-    alt="QuickAds Hub"
-    width={15} // Adjust width as necessary
-    height={15} // Adjust height as necessary
-  />
-</Box>
-
-
+              alignItems: "center", // Vertically align images
+              gap: 0.5, // Adjusts the gap between images
+            }}
+          >
+            <Image
+              src="/media/icons8-q-50 (1).png"
+              alt="QuickAds Hub"
+              width={25} // Adjust width as necessary
+              height={25} // Adjust height as necessary
+            />
+            <Image
+              src="/media/letter-u_9511521.png"
+              alt="QuickAds Hub"
+              width={15} // Adjust width as necessary
+              height={15} // Adjust height as necessary
+            />
+            <Image
+              src="/media/letter-i_9511556.png"
+              alt="QuickAds Hub"
+              width={15} // Adjust width as necessary
+              height={15} // Adjust height as necessary
+            />
+            <Image
+              src="/media/letter-c_9511541.png"
+              alt="QuickAds Hub"
+              width={15} // Adjust width as necessary
+              height={15} // Adjust height as necessary
+            />
+            <Image
+              src="/media/letter-k_9511489.png"
+              alt="QuickAds Hub"
+              width={15} // Adjust width as necessary
+              height={15} // Adjust height as necessary
+            />
+            <Image
+              src="/media/letter-a_9511496.png"
+              alt="QuickAds Hub"
+              width={15} // Adjust width as necessary
+              height={15} // Adjust height as necessary
+            />
+            <Image
+              src="/media/letter-d_9511555.png"
+              alt="QuickAds Hub"
+              width={15} // Adjust width as necessary
+              height={15} // Adjust height as necessary
+            />
+            <Image
+              src="/media/letter-s_9511527.png"
+              alt="QuickAds Hub"
+              width={15} // Adjust width as necessary
+              height={15} // Adjust height as necessary
+            />
+          </Box>
 
           <YourPost />
 
@@ -177,7 +180,9 @@ const LayoutSecond = ({ children }) => {
                   } else if (setting === "AdminPostReview") {
                     loginAdminPostReview();
                   } else if (setting === "MyAccount") {
-                    router.push(`myaccount`);
+                    loginMyAccount();
+                  } else if (setting === "MyFavorite 💖") {
+                    loginMyfavorite();
                   } else {
                     handleCloseUserMenu();
                   }
@@ -200,10 +205,7 @@ const LayoutSecond = ({ children }) => {
               </Button>
             ))}
             {user ? (
-              <Button
-                sx={{ color: "#fff" }}
-                onClick={handleLogout}
-              >
+              <Button sx={{ color: "#fff" }} onClick={handleLogout}>
                 Logout
               </Button>
             ) : (
@@ -217,7 +219,10 @@ const LayoutSecond = ({ children }) => {
           </Box>
           <Tooltip title="Open settings">
             <IconButton onClick={handleOpenUserMenu}>
-            <Avatar alt={user?.name?.toUpperCase()} src="/static/images/avatar/2.jpg" />
+              <Avatar
+                alt={user?.name?.toUpperCase()}
+                src="/static/images/avatar/2.jpg"
+              />
             </IconButton>
           </Tooltip>
         </Toolbar>
@@ -248,57 +253,56 @@ const LayoutSecond = ({ children }) => {
           <Box
             component="div"
             onClick={handleClick}
-          
-            sx={{ m: 3, fontFamily: "sans-serif", cursor: 'pointer' }}
+            sx={{ m: 3, fontFamily: "sans-serif", cursor: "pointer" }}
           >
-     <Image 
-    src="/media/icons8-q-50 (1).png" 
-    alt="QuickAds Hub"
-    width={25} // Adjust width as necessary
-    height={25} // Adjust height as necessary
-  />
-  <Image 
-    src="/media/letter-u_9511521.png" 
-    alt="QuickAds Hub"
-    width={15} // Adjust width as necessary
-    height={15} // Adjust height as necessary
-  />
-    <Image 
-    src="/media/letter-i_9511556.png" 
-    alt="QuickAds Hub"
-    width={15} // Adjust width as necessary
-    height={15} // Adjust height as necessary
-  />
-    <Image 
-    src="/media/letter-c_9511541.png" 
-    alt="QuickAds Hub"
-    width={15} // Adjust width as necessary
-    height={15} // Adjust height as necessary
-  />
-    <Image 
-    src="/media/letter-k_9511489.png" 
-    alt="QuickAds Hub"
-    width={15} // Adjust width as necessary
-    height={15} // Adjust height as necessary
-  />
-   <Image 
-    src="/media/letter-a_9511496.png" 
-    alt="QuickAds Hub"
-    width={15} // Adjust width as necessary
-    height={15} // Adjust height as necessary
-  />
-   <Image 
-    src="/media/letter-d_9511555.png" 
-    alt="QuickAds Hub"
-    width={15} // Adjust width as necessary
-    height={15} // Adjust height as necessary
-  />
-   <Image 
-    src="/media/letter-s_9511527.png" 
-    alt="QuickAds Hub"
-    width={15} // Adjust width as necessary
-    height={15} // Adjust height as necessary
-  />
+            <Image
+              src="/media/icons8-q-50 (1).png"
+              alt="QuickAds Hub"
+              width={25} // Adjust width as necessary
+              height={25} // Adjust height as necessary
+            />
+            <Image
+              src="/media/letter-u_9511521.png"
+              alt="QuickAds Hub"
+              width={15} // Adjust width as necessary
+              height={15} // Adjust height as necessary
+            />
+            <Image
+              src="/media/letter-i_9511556.png"
+              alt="QuickAds Hub"
+              width={15} // Adjust width as necessary
+              height={15} // Adjust height as necessary
+            />
+            <Image
+              src="/media/letter-c_9511541.png"
+              alt="QuickAds Hub"
+              width={15} // Adjust width as necessary
+              height={15} // Adjust height as necessary
+            />
+            <Image
+              src="/media/letter-k_9511489.png"
+              alt="QuickAds Hub"
+              width={15} // Adjust width as necessary
+              height={15} // Adjust height as necessary
+            />
+            <Image
+              src="/media/letter-a_9511496.png"
+              alt="QuickAds Hub"
+              width={15} // Adjust width as necessary
+              height={15} // Adjust height as necessary
+            />
+            <Image
+              src="/media/letter-d_9511555.png"
+              alt="QuickAds Hub"
+              width={15} // Adjust width as necessary
+              height={15} // Adjust height as necessary
+            />
+            <Image
+              src="/media/letter-s_9511527.png"
+              alt="QuickAds Hub"
+              width={15} // Adjust width as necessary
+              height={15} // Adjust height as necessary
+            />
           </Box>
           {navItems.map((item) => (
             <ListItem
