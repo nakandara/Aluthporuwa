@@ -17,6 +17,7 @@ import ProtectedRoute from "../../components/protect/protectedRoute";
 import MyInformations from "../../components/MyInformation/MyInformations";
 import { environments } from "../../components/environment/environments";
 import { useToken } from "../context/TokenContext";
+import Alert from '@mui/material/Alert';
 
 const url = `${environments.BASE_HOST_URL}/api/createProfilePhoto`;
 const urlGet = `${environments.BASE_HOST_URL}/api/getProfilePhoto`;
@@ -126,7 +127,16 @@ const MyAccount = () => {
   }));
 
   if (!user) {
-    return <div>Loading user data...</div>;
+    return (
+      <LayoutSecond>
+        <div style={{ marginTop: "30vh", marginLeft: "15px", marginRight: "15px",color:"black",marginBottom:"100px" }}>
+        <Alert variant="outlined" severity="info">
+        Please log in to view your Account
+</Alert>
+        </div>
+      
+      </LayoutSecond>
+    );
   }
   const handleButtonClick = () => {
     fileInputRef.current.click(); // Programmatically trigger file input click

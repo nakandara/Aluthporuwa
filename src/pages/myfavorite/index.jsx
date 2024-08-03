@@ -9,6 +9,9 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import ShareIcon from '@mui/icons-material/Share';
 import { styled } from "@mui/material/styles";
+import Alert from '@mui/material/Alert';
+
+
 
 const Img = styled("img")({
   margin: "auto",
@@ -59,10 +62,24 @@ export default function MyFavorite() {
     router.push(`/post/${postId}`);
   };
 
-  console.log(savedPosts, 'savedPostssavedPosts');
+  console.log(user,'hhhhhhhhhhh');
+
+  if (!user) {
+    return (
+      <LayoutSecond>
+        <div style={{ marginTop: "30vh", marginLeft: "15px", marginRight: "15px",color:"black",marginBottom:"100px" }}>
+        <Alert variant="outlined" severity="info">
+        Please log in to view your saved posts
+</Alert>
+        </div>
+      
+      </LayoutSecond>
+    );
+  }
+
   return (
     <LayoutSecond>
-      <div style={{ marginTop: "20vh",marginLeft:"15px",marginRight:"15px" }}>
+      <div style={{ marginTop: "20vh", marginLeft: "15px", marginRight: "15px" }}>
         {loading ? (
           <Typography>Loading...</Typography>
         ) : savedPosts.length === 0 ? (

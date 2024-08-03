@@ -122,7 +122,7 @@ const ModalPackage = ({ show, onClose, vehicles,selectedPlan,category}) => {
 
   // List of Sri Lankan districts in Sinhalese
   const locations = [
-    'Colombo', 'Gampaha', 'Kalutara', 'Maha Nuwara', 'Matale', 'Nuwara Eliya',
+    'Colombo', 'Gampaha', 'Kalutara', 'Kandy', 'Matale', 'Nuwara Eliya',
     'Galle', 'Matara', 'Hambantota', 'Jaffna', 'Kilinochchi', 'Mannar',
     'Vavuniya', 'Mullaitivu', 'Batticaloa', 'Trincomalee', 'Ampara', 'Badulla',
     'Monaragala', 'Anuradhapura', 'Polonnaruwa', 'Poonakari', 'Kurunegala',
