@@ -174,7 +174,8 @@ const Post = () => {
           const savedResponse = await axios.get(
             `${environments.BASE_HOST_URL}/api/get-save-post/${user.userId}`
           );
-          const savedPosts = savedResponse.data.savedPosts;
+          const savedPosts = savedResponse.data.relatedPosts;
+        
           postsWithSaveState = postResponse.data.data.map((post) => {
             const isSaved = savedPosts.some((saved) => saved.postId === post.postId);
             return { ...post, isSaved };
