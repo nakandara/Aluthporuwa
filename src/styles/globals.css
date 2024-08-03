@@ -1374,7 +1374,7 @@ margin: 10px;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  margin: 30px;
+  margin: 20px;
  
   margin-bottom: 20vh;
 }
@@ -2266,7 +2266,22 @@ input {
   }
 }
 
+.price-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 10px;
+}
 
-.responsive_content{
-  
+.original-price {
+  text-decoration: line-through;
+  color: #a0a0a0;
+  margin-right: 10px;
+  font-size: 1rem; /* Adjust the size as needed */
+}
+
+.discounted-price {
+  color: #d32f2f;
+  font-weight: bold;
+  font-size: 1.5rem; /* Increase the size as needed */
 }

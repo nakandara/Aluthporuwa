@@ -33,7 +33,7 @@ const Campaign = () => {
   "Maintenance and Repair",
   "Boats & Water Transport"];
 
-  const { category} = router.query;
+  const { category } = router.query;
 
   console.log(router.query,'router.queryxxxxxxxxx');
 
@@ -50,8 +50,10 @@ const Campaign = () => {
               <h6 className="golden-point">1. Your advertisement receives premium placement for maximum visibility.</h6>
               <h6 className="golden-point">2. Enhanced Visibility: Highlighted listings attract more attention from potential buyers or renters.</h6>
               <h6 className="golden-point">3. Priority Support: Access to dedicated customer support for swift resolution of any issues.</h6>
-           
-              <div className="price">රු 699/=</div> {/* Price added */}
+              <div className="price-container">
+                <span className="original-price">රු 799/=</span> {/* Original Price */}
+                <span className="discounted-price">රු 599/=</span> {/* Discounted Price */}
+              </div>
               <button onClick={() => handleSelect('Gold')} className="attractive-button">Select</button>
             </div>
           </div>
@@ -64,8 +66,10 @@ const Campaign = () => {
               <h6 className="golden-point">1. Standard Placement: Your advertisement is displayed prominently among other listings.</h6>
               <h6 className="golden-point">2. Moderate Visibility: Listings are visible to a wide audience, ensuring decent exposure.</h6>
               <h6 className="golden-point">3. Basic Support: Standard assistance is available for any queries or concerns.</h6>
-             
-              <div className="price">රු 599/=</div> {/* Price added */}
+              <div className="price-container">
+                <span className="original-price">රු 699/=</span> {/* Original Price */}
+                <span className="discounted-price">රු 499/=</span> {/* Discounted Price */}
+              </div>
               <button onClick={() => handleSelect('Silver')} className="attractive-button">Select</button>
             </div>
           </div>
