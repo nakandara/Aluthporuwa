@@ -4,14 +4,12 @@ import LayoutSecond from "../../../components/LayoutSecond/LayoutSecond";
 import { environments } from "../../../components/environment/environments";
 import { useRouter } from "next/router";
 import { useToken } from "../../context/TokenContext";
-import { Typography, Grid, IconButton, ButtonBase, Box, Paper } from "@mui/material";
+import { Typography, Grid, IconButton, ButtonBase, Box, Paper, CircularProgress } from "@mui/material";
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import ShareIcon from '@mui/icons-material/Share';
 import { styled } from "@mui/material/styles";
 import Alert from '@mui/material/Alert';
-
-
 
 const Img = styled("img")({
   margin: "auto",
@@ -62,17 +60,14 @@ export default function MyFavorite() {
     router.push(`/post/${postId}`);
   };
 
-  console.log(user,'hhhhhhhhhhh');
-
   if (!user) {
     return (
       <LayoutSecond>
-        <div style={{ marginTop: "30vh", marginLeft: "15px", marginRight: "15px",color:"black",marginBottom:"100px" }}>
-        <Alert variant="outlined" severity="info">
-        Please log in to view your saved posts
-</Alert>
+        <div style={{ marginTop: "30vh", marginLeft: "15px", marginRight: "15px", color: "black", marginBottom: "100px" }}>
+          <Alert variant="outlined" severity="info">
+            Please log in to view your saved posts
+          </Alert>
         </div>
-      
       </LayoutSecond>
     );
   }
@@ -81,7 +76,9 @@ export default function MyFavorite() {
     <LayoutSecond>
       <div style={{ marginTop: "20vh", marginLeft: "15px", marginRight: "15px" }}>
         {loading ? (
-          <Typography>Loading...</Typography>
+          <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", minHeight: "50vh" }}>
+            <CircularProgress />
+          </Box>
         ) : savedPosts.length === 0 ? (
           <Typography>No saved posts found.</Typography>
         ) : (
