@@ -4,12 +4,10 @@ import LayoutSecond from "../../../components/LayoutSecond/LayoutSecond";
 import { environments } from "../../../components/environment/environments";
 import { useRouter } from "next/router";
 import { useToken } from "../../context/TokenContext";
-import { Typography, Grid, IconButton, ButtonBase, Box, Paper, CircularProgress } from "@mui/material";
+import { Typography, Grid, IconButton, ButtonBase, Box, Paper, Alert } from "@mui/material";
 import FavoriteIcon from '@mui/icons-material/Favorite';
-import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import ShareIcon from '@mui/icons-material/Share';
 import { styled } from "@mui/material/styles";
-import Alert from '@mui/material/Alert';
 
 const Img = styled("img")({
   margin: "auto",
@@ -33,7 +31,7 @@ export default function MyFavorite() {
   const fetchSavedPosts = useCallback(async () => {
     try {
       const response = await axios.get(`${environments.BASE_HOST_URL}/api/get-save-post/${user.userId}`);
-      setSavedPosts(response.data.relatedPosts);
+      setSavedPosts(response.data.relatedPosts.reverse());
     } catch (error) {
       console.error("Error fetching saved posts:", error);
     } finally {
@@ -77,7 +75,7 @@ export default function MyFavorite() {
       <div style={{ marginTop: "20vh", marginLeft: "15px", marginRight: "15px" }}>
         {loading ? (
           <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", minHeight: "50vh" }}>
-            <CircularProgress />
+            <Typography>Loading...</Typography>
           </Box>
         ) : savedPosts.length === 0 ? (
           <Typography>No saved posts found.</Typography>
