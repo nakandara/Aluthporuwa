@@ -8,8 +8,7 @@ import Cardl from "../../components/card/HomeCard";
 import Card from "@mui/material/Card";
 import CardMedia from "@mui/material/CardMedia";
 
-// Your Image component with text overlay and opacity
-const ImageWithTextAndOpacity = ({ onLogin }) => {
+const ImageWithTextAndOpacity = ({ onLogin, onFavorite }) => {
   return (
     <div style={{ position: "relative" }}>
       <img
@@ -17,12 +16,21 @@ const ImageWithTextAndOpacity = ({ onLogin }) => {
         alt="Cover"
         style={{ width: "100%", height: "auto", opacity: 0.25 }}
       />
+      <img
+        src="/media/pablita-deliveryman-with-parcel-riding-a-motorbike.gif" // Replace with your logo's path
+        alt="Logo"
+        className="logo-home-l" // Apply the CSS class here
+        onClick={onFavorite} // Add onClick event handler here
+        style={{ cursor: "pointer" }} // Add a pointer cursor to indicate clickable
+        placeholder="click your Favorite post"
+      />
       <div
         style={{
           position: "absolute",
           top: "50%",
           left: "50%",
           transform: "translate(-50%, -50%)",
+          zIndex: 2, // Ensure text is above the image
         }}
       >
         <h1
@@ -30,6 +38,7 @@ const ImageWithTextAndOpacity = ({ onLogin }) => {
             color: "white",
             fontSize: "2rem",
             textShadow: "2px 2px 4px rgba(128, 128, 128, 0.5)",
+            textAlign: "center",
           }}
         >
           <span className="responsive-text">Book your ad today.</span>
@@ -42,7 +51,6 @@ const ImageWithTextAndOpacity = ({ onLogin }) => {
           >
             Proceed
           </Button>
-          
         </h1>
       </div>
     </div>
@@ -193,10 +201,13 @@ export default function BasicGrid() {
   const handleLogin = () => {
     router.push("/auth/signin");
   };
-
+  const handleFavorite = () => {
+    router.push("myfavorite");
+  };
+  
   return (
     <div>
-      <ImageWithTextAndOpacity onLogin={handleLogin} />
+     <ImageWithTextAndOpacity onLogin={handleLogin} onFavorite={handleFavorite} />
       <div
         style={{
           display: "flex",

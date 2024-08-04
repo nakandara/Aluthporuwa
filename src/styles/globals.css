@@ -2285,3 +2285,21 @@ input {
   font-weight: bold;
   font-size: 1.5rem; /* Increase the size as needed */
 }
+
+
+.logo-home-l {
+  position: absolute;
+  top: 10%;
+  right: 10%;
+  width: 10%;
+  height: auto;
+  z-index: 1;
+}
+
+@media (max-width: 600px) {
+  .logo-home-l {
+    width: 20%; /* Increase the size for mobile view */
+  }
+}
+
+
