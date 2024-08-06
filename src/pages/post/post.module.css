@@ -123,33 +123,96 @@
     margin-top: 20px; /* Add some margin for spacing */
   }
   
-  .postIdDescription{
-    font-size: 20px;
-      font-weight: 800;
-      color: #009877;
-      font-family: 'Open Sans', 'PF DinText Pro', Arial, Helvetica, sans-serif;
-      line-height: 1.71428571;
-      margin: 0;
-      padding: 0;
-      outline: 0;
-      background: transparent;
+  .postDescriptionContainer {
+    padding: 20px;
+    background: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 20px 0;
   }
-
-  .postIdDescription_content{
+  
+  .postIdDescription {
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: #009877;
+    font-family: 'Open Sans', 'PF DinText Pro', Arial, Helvetica, sans-serif;
+    line-height: 1.7;
+    margin: 0 0 10px 0;
+  }
+  
+  .postIdDescriptionContent {
     color: #707676;
-      word-break: normal;
-      margin: 15px;
-      white-space: pre-wrap;
-      word-wrap: break-word;
-      font-family: 'Open Sans', 'PF DinText Pro', Arial, Helvetica, sans-serif;
-      line-height: 1.71428571;
-      font-size: 14px;
+    font-weight: bold;
+    margin: 0;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    font-family: 'Open Sans', 'PF DinText Pro', Arial, Helvetica, sans-serif;
+    line-height: 1.7;
+    font-size: 1rem;
+    padding: 15px;
+    background: #ffffff;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   }
+  
+  @media (max-width: 768px) {
+    .postIdDescription {
+      font-size: 1rem;
+    }
+  
+    .postIdDescriptionContent {
+      font-size: 0.875rem;
+      padding: 10px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .postIdDescription {
+      font-size: 0.875rem;
+    }
+  
+    .postIdDescriptionContent {
+      font-size: 0.75rem;
+      padding: 8px;
+    }
+  }
+  
 
-  .postIdPhoneNumber{
+  .postIdPhoneNumberContainer {
+    display: flex;
+    align-items: center;
+    background-color: #f5f5f5;
     border: 2px solid #4de99b;
-    margin: 10px;
-    padding: 5px;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 10px 0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .phoneIcon {
+    width: 24px; /* Adjust as needed */
+    height: 24px;
+    margin-right: 10px;
+  }
+  
+  .postIdPhoneNumber {
+    font-size: 1rem;
+    font-weight: bold;
+    color: #333;
+    display: flex;
+    align-items: center;
+  }
+  
+  @media (max-width: 768px) {
+    .postIdPhoneNumber {
+      font-size: 0.875rem;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .postIdPhoneNumber {
+      font-size: 0.75rem;
+    }
   }
   
   .action_buttons{
@@ -238,3 +301,45 @@
     }
   }
   
+
+  /* post.module.css */
+
+.statusIcon {
+  width: 25px; /* Initial width */
+  height: 25px; /* Initial height */
+  margin-left: 10px;
+
+}
+
+@media (max-width: 768px) {
+  .statusIcon {
+    width: 15px; /* Smaller size for tablet */
+    height: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .statusIcon {
+    width: 15px; /* Even smaller size for mobile */
+    height: 15px;
+  }
+}
+.detailRow {
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+}
+
+.priceDetail {
+  color: #ff5722; /* Example color for price */
+  font-weight: bold;
+}
+
+.statusIcon {
+  margin-left: 8px;
+}
+
+.logo{
+  width: 20px;
+  height: 20px;
+}

@@ -23,7 +23,9 @@ const PostId = ({ postIdData }) => {
   const [transmission, setTransmission] = useState("");
   const [trimEdition, setTrimEdition] = useState("");
   const [yearOfManufacture, setYearOfManufacture] = useState("");
+  const [price, setPrice] = useState(""); // Added state for price
   const [loading, setLoading] = useState(true);
+  const [viewCount, setViewCount] = useState(0);
 
   useEffect(() => {
     if (postIdData?.allPosts?.[0]?.PostDetails) {
@@ -42,9 +44,24 @@ const PostId = ({ postIdData }) => {
       setTransmission(postDetails.transmission);
       setTrimEdition(postDetails.trimEdition);
       setYearOfManufacture(postDetails.yearOfManufacture);
+      setPrice(postDetails.price); // Set price here
       setLoading(false); // Data fetching complete
+      setViewCount(postDetails.viewCount);
     }
   }, [postIdData]);
+
+  useEffect(() => {
+    const incrementViewCount = async () => {
+      try {
+        await axios.post(`${environments.BASE_HOST_URL}/api/incrementViewCount/${postIdData?.allPosts?.[0]?._id}`);
+      } catch (error) {
+        console.error('Error incrementing view count:', error);
+      }
+    };
+  
+    incrementViewCount();
+  }, [postIdData]);
+  
 
   const formatDate = (dateString) => {
     const options = {
@@ -71,6 +88,20 @@ const PostId = ({ postIdData }) => {
   const handleCallClick = () => {
     window.location.href = `tel:${mobileNumber}`;
   };
+
+  const renderDetail = (label, value) => (
+    <div className={styles.detailRow}>
+      <strong>{label}:</strong> 
+      {value ? (label === "Price" ? (
+        <span className={styles.priceDetail}>{value}</span>
+      ) : value) : '-'}
+      <img
+        className={styles.statusIcon}
+        src={value && value !== '-' ? "/media/icons8-correct.gif" : "/media/icons8-wrong.gif"}
+        alt={value && value !== '-' ? "Correct" : "Wrong"}
+      />
+    </div>
+  );
 
   return (
     <LayoutSecond>
@@ -105,43 +136,53 @@ const PostId = ({ postIdData }) => {
         <div className={styles.PostIdMain}>
           <div className={styles.FirstContent}>
             <div className={styles.imageContainer}>
-              <div>
-                {postIdData?.allPosts?.map((post, index) => (
-                  <div className="image-size" key={index}>
-                    <ImageGallery
-                      items={post.PostDetails.images.map((image, index) => ({
-                        original: image.imageUrl,
-                        thumbnail: image.imageUrl,
-                      }))}
-                    />
-                  </div>
-                ))}
-              </div>
+              {postIdData?.allPosts?.map((post, index) => (
+                <div className="image-size" key={index}>
+                  <ImageGallery
+                    items={post.PostDetails.images.map((image, index) => ({
+                      original: image.imageUrl,
+                      thumbnail: image.imageUrl,
+                    }))}
+                  />
+                </div>
+              ))}
             </div>
             <div className={styles.imageContainer_content}>
+        
               <div>
                 <div className={styles.postIdHeading}>{title}</div>
                 <div className={styles.subtitle}>
-                  Posted on {createdAt}, <strong>{city}</strong>
+                  Posted on {createdAt}, <strong>{city}</strong>  <img src="/media/icons8-location.gif" alt="Logo" className={styles.logo} />
                 </div>
                 <div className={styles.horizontalLine}></div>
-                <div className={styles.postIdPhoneNumber}>Phone Number {mobileNumber}</div>
+                <div className={styles.postIdPhoneNumberContainer}>
+                  <img
+                    className={styles.phoneIcon}
+                    src="/media/icons8-phone-message.gif" // Replace with your phone icon path
+                    alt="Phone"
+                  />
+                  <div className={styles.postIdPhoneNumber}>
+                    <span>Phone Number:</span> {mobileNumber}
+                  </div>
+                </div>
+
                 <div className={styles.postIdDetails}>
-                  <div><strong>Body Type:</strong> {bodyType}</div>
-                  <div><strong>Brand:</strong> {brand}</div>
-                  <div><strong>Engine Capacity:</strong> {engineCapacity}</div>
-                  <div><strong>Fuel Type:</strong> {fuelType}</div>
-                  <div><strong>Mileage:</strong> {mileage}</div>
-                  <div><strong>Model:</strong> {model}</div>
-                  <div><strong>Transmission:</strong> {transmission}</div>
-                  <div><strong>Trim Edition:</strong> {trimEdition}</div>
-                  <div><strong>Year of Manufacture:</strong> {yearOfManufacture}</div>
+                  {renderDetail("Price", price)}
+                  {renderDetail("Body Type", bodyType)}
+                  {renderDetail("Brand", brand)}
+                  {renderDetail("Engine Capacity", engineCapacity)}
+                  {renderDetail("Fuel Type", fuelType)}
+                  {renderDetail("Mileage", mileage)}
+                  {renderDetail("Model", model)}
+                  {renderDetail("Transmission", transmission)}
+                  {renderDetail("Trim Edition", trimEdition)}
+                  {renderDetail("Year of Manufacture", yearOfManufacture)}
                 </div>
               </div>
-              <div>
+              <div className={styles.postDescriptionContainer}>
                 <div className={styles.postIdDescription}>Description</div>
                 <div
-                  className={styles.postIdDescription_content}
+                  className={styles.postIdDescriptionContent}
                   dangerouslySetInnerHTML={{ __html: description }}
                 />
               </div>
