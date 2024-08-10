@@ -172,7 +172,7 @@ const MyPost = ({ postIdData }) => {
             />
             <Typography
               sx={{
-                fontSize: { xs: "20px", sm: "22px", md: "26px" },
+                fontSize: { xs: "20px", sm: "22px", md: "26px",color:"black" },
                 fontWeight: "500",
               }}
               component="a"
