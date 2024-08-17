@@ -214,25 +214,12 @@ const Post = () => {
     router.push(`/post/${postId}`);
   };
 
-  const handleCategorySelect = (categories) => {
-    setSelectedCategories(categories);
-    filterPosts(categories, selectedCities, searchQuery);
-  };
 
-  const handleCitySelect = (cities) => {
-    setSelectedCities(cities);
-    filterPosts(selectedCategories, cities, searchQuery);
-  };
-
-  const handleSearchChange = (event) => {
-    const query = event.target.value;
-    setSearchQuery(query);
-    filterPosts(selectedCategories, selectedCities, query);
-  };
 
   const filterPosts = (categories, cities, query) => {
     let filtered = data;
-
+  
+    // Filter by selected categories
     if (categories.length > 0) {
       filtered = filtered.filter((post) =>
         categories.some((selectedCategory) =>
@@ -240,19 +227,46 @@ const Post = () => {
         )
       );
     }
-
+  
+    // Filter by selected cities
     if (cities.length > 0) {
-      filtered = filtered.filter((post) => cities.includes(post.city));
+      filtered = filtered.filter((post) =>
+      cities.some((selectedCity) =>
+        post.city && post.city.toLowerCase().includes(selectedCity.toLowerCase())
+      )
+    );
+    
     }
-
+  
+    // Filter by search query
     if (query) {
       filtered = filtered.filter((post) =>
         post.brand.toLowerCase().includes(query.toLowerCase())
       );
     }
-
+  
     setFilteredData(filtered);
   };
+  
+  // Handle category selection
+  const handleCategorySelect = (categories) => {
+    setSelectedCategories(categories);
+    filterPosts(categories, selectedCities, searchQuery);
+  };
+  
+  // Handle city selection
+  const handleCitySelect = (cities) => {
+    setSelectedCities(cities);
+    filterPosts(selectedCategories, cities, searchQuery);
+  };
+  
+  // Handle search input change
+  const handleSearchChange = (event) => {
+    const query = event.target.value;
+    setSearchQuery(query);
+    filterPosts(selectedCategories, selectedCities, query);
+  };
+  
 
   const renderPosts = filteredData.length > 0 ? filteredData : data;
   console.log(renderPosts, "renderPostsrenderPosts");

@@ -8,6 +8,13 @@ import Checkbox from "@mui/material/Checkbox";
 import ListItemText from "@mui/material/ListItemText";
 
 const SearchCity = ({ cities, handleCitySelect, selectedCities, closeSidebar }) => {
+  const formatCityName = (city) => {
+    return city ? city.split("/")[0] : "";
+  };
+
+  // Filter out duplicate city names
+  const uniqueCities = Array.from(new Set(cities.map(formatCityName)));
+
   return (
     <Box sx={{ minWidth: 120 }}>
       <FormControl sx={{ m: 1, minWidth: 200 }} size="small">
@@ -22,9 +29,9 @@ const SearchCity = ({ cities, handleCitySelect, selectedCities, closeSidebar }) 
             handleCitySelect(value);
             closeSidebar(); // Call the function to close the sidebar
           }}
-          renderValue={(selected) => selected.join(", ")}
+          renderValue={(selected) => Array.from(new Set(selected.map(formatCityName))).join(", ")}
         >
-          {cities.map((city) => (
+          {uniqueCities.map((city) => (
             <MenuItem key={city} value={city}>
               <Checkbox checked={selectedCities.includes(city)} />
               <ListItemText primary={city} />
