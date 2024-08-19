@@ -11,6 +11,7 @@ import styles from "../myadd/myadd.module.css";
 import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Grid";
+import RefreshIcon from "@mui/icons-material/Refresh";
 import api from "../../ services/api";
 import { useToken } from "../../context/TokenContext";
 import Drawer from "@mui/material/Drawer";
@@ -269,7 +270,7 @@ const Post = () => {
   
 
   const renderPosts = filteredData.length > 0 ? filteredData : data;
-  console.log(renderPosts, "renderPostsrenderPosts");
+  
 
   const imageReaction = async (value, index, post) => {
     const newAnimateState = [...animateState];
@@ -326,6 +327,13 @@ const Post = () => {
     setDrawerOpen(open);
   };
 
+
+
+  const toggleDrawerRefresh =  () => {
+    setSelectedCategories([])
+    setSelectedCities([])
+    setFilteredData([])
+  };
   const handleShareClick = (post) => {
     setSelectedPost(post);
     setShareModalOpen(true);
@@ -376,9 +384,12 @@ const Post = () => {
               onChange={handleSearchChange}
               style={{ marginBottom: "30px", marginTop: "6px" }}
             />
-            <IconButton onClick={toggleDrawer(true)} style={{ float: "right" }}>
+            {selectedCategories.length >0 || selectedCities.length>0 ?  <IconButton onClick={toggleDrawerRefresh} style={{ float: "right" }}>
+              <RefreshIcon />
+            </IconButton>: <IconButton onClick={toggleDrawer(true)} style={{ float: "right" }}>
               <FilterListIcon />
-            </IconButton>
+            </IconButton>}
+           
             <Drawer
               anchor="right"
               open={drawerOpen}
