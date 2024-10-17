@@ -23,7 +23,7 @@ const SignupPage = () => {
 
     try {
       const response = await axios.post(
-        `${environments.BASE_HOST_URL}/api/createUser`,
+        `${environments.BASE_HOST_URL}/api/auth/register`,
         {
           name: username,
           password: password,
@@ -43,7 +43,7 @@ const SignupPage = () => {
 
       if (response.data && response.data.token) {
         const responsel = await axios.post(
-          `${environments.BASE_HOST_URL}/api/login`,
+          `${environments.BASE_HOST_URL}/api/auth/login`,
           {
             name: username,
             email: email,
