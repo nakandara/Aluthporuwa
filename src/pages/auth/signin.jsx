@@ -21,7 +21,7 @@ const Signin = () => {
     setLoading(true); // Start loading
     try {
       const response = await axios.post(
-        `${environments.BASE_HOST_URL}/api/login`,
+        `${environments.BASE_HOST_URL}/api/auth/login`,
         {
           name: username,
           email: email,
