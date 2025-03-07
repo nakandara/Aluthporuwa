@@ -9,7 +9,6 @@ import { useRouter } from 'next/router';
 import CircularProgress from '@mui/material/CircularProgress';
 import Box from '@mui/material/Box';
 
-
 export default function App({ Component, pageProps: { session, ...pageProps } }) {
   const [loading, setLoading] = useState(false);
   const router = useRouter();
@@ -34,15 +33,13 @@ export default function App({ Component, pageProps: { session, ...pageProps } })
     <LocalizationProvider dateAdapter={AdapterDayjs}>
       <TokenProvider>
         <ToggleProvider>
-    
-            {loading ? (
-              <Box display="flex" justifyContent="center" alignItems="center" height="100vh">
-                <CircularProgress />
-              </Box>
-            ) : (
-              <Component {...pageProps} />
-            )}
-    
+          {loading ? (
+            <Box display="flex" justifyContent="center" alignItems="center" height="100vh">
+              <CircularProgress />
+            </Box>
+          ) : (
+            <Component {...pageProps} />
+          )}
         </ToggleProvider>
       </TokenProvider>
     </LocalizationProvider>
